@@ -1,0 +1,21 @@
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+
+$_bg-color: #fff;
+$_sidebar-height: 72px;
+
+.header {
+  height: $_sidebar-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $_bg-color;
+  padding: 0 $gutter;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header__title {
+  line-height: $_sidebar-height;
+  font-weight: 700;
+}

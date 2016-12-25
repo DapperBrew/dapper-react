@@ -1,0 +1,22 @@
+// ----------------------------------------------------------------------------
+// Sidebar
+// ----------------------------------------------------------------------------
+
+// variables
+$_sidebar-width: 200px;
+$_bg-color: #2b2c37;
+
+.sidebar {
+  width: $_sidebar-width;
+  position: fixed;
+  height: 100vh;
+  background-color: $_bg-color;
+  top: 0;
+  left: 0;
+}
+
+.sidebar__logo {
+  width: 70px;
+  display: block;
+  margin: 35px auto 0;
+}
