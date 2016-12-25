@@ -8,7 +8,6 @@ class CardSelect extends React.Component {
     this.updateValue = this.updateValue.bind(this);
 
     this.state = {
-      selectValue: 'Select...',
       order: {},
     };
   }
@@ -28,6 +27,7 @@ class CardSelect extends React.Component {
           value={this.state.selectValue}
           onChange={this.updateValue}
           options={props.options}
+          className="input__select"
         />
       </div>
     );

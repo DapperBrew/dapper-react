@@ -10,3 +10,13 @@ $select-padding-horizontal: 12px !default;
 
 // Then import
 @import '../../../node_modules/react-select/scss/default';
+
+// Custom Css
+
+.input__select {
+  font-size: 14px;
+}
+
+.Select-clear {
+  line-height: 1.5;
+}

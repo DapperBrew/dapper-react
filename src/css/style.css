@@ -690,6 +690,12 @@ th {
   to {
     -webkit-transform: rotate(1turn); } }
 
+.input__select {
+  font-size: 14px; }
+
+.Select-clear {
+  line-height: 1.5; }
+
 /**
 Output media query with focus on min-width, max-width, min-height and
 max-height. Other media rules are passed as the 2nd argument in a map.
