@@ -47,7 +47,6 @@ class Main extends React.Component {
             render={() => (<Settings updateHeader={this.props.updateHeader} />)}
           />
           <Miss
-            component={NotFound}
             render={() => (<NotFound updateHeader={this.props.updateHeader} />)}
           />
         </div>

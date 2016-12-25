@@ -13,6 +13,7 @@
 // -------------------------
 @import '../../node_modules/normalize.scss/normalize',
         '../../node_modules/susy/sass/susy',
+        'vendor/react-select',
         'vendor/breakpoints';
 
 // Dependancies & Utilities
@@ -32,7 +33,9 @@
 // -------------------------
 @import 'components/buttons',
         'components/card',
-        'components/side-nav';
+        'components/side-nav',
+        'components/forms',
+        'components/input-card';
 
 
 // layout

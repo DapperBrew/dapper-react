@@ -1,0 +1,12 @@
+// ----------------------------------------------------------------------------
+// React Select
+// ----------------------------------------------------------------------------
+
+// First overwrite defaults
+$select-input-height: 47px;
+$select-input-placeholder: #d3d3d3;
+$select-padding-vertical: 12px !default;
+$select-padding-horizontal: 12px !default;
+
+// Then import
+@import '../../../node_modules/react-select/scss/default';

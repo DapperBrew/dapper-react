@@ -1,0 +1,16 @@
+// ----------------------------------------------------------------------------
+// Card Input
+// ----------------------------------------------------------------------------
+
+.form-group {
+  @include span(6 inside no-gutters);
+  margin-bottom: 20px;
+}
+
+.form-group--left {
+  padding-right: 10px;
+}
+
+.form-group--right {
+  padding-left: 10px;
+}

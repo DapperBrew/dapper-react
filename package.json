@@ -2,12 +2,14 @@
   "name": "dapper-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://DapperBrew.github.io/dapper-react",
   "devDependencies": {
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
+    "gh-pages": "^0.12.0",
     "node-sass": "^4.1.0",
     "normalize.scss": "^0.1.0",
     "react-scripts": "0.8.4"
@@ -18,6 +20,7 @@
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
     "react-router": "^4.0.0-alpha.6",
+    "react-select": "^1.0.0-rc.2",
     "redux": "^3.6.0",
     "susy": "^2.2.12"
   },
@@ -29,6 +32,7 @@
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",
     "styles:test": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./public/css",
-    "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css"
+    "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
