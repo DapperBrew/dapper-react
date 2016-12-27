@@ -28,4 +28,8 @@ class CardInput extends React.Component {
   }
 }
 
+CardInput.propTypes = {
+  measurement: React.PropTypes.string,
+};
+
 export default CardInput;

@@ -35,7 +35,9 @@
         'components/card',
         'components/side-nav',
         'components/forms',
-        'components/input-card';
+        'components/input-card',
+        'components/recipe-table',
+        'components/add-modal';
 
 
 // layout
@@ -47,8 +49,9 @@
         'layout/footer';
 
 
-// pages
+// views
 // -------------------------
+@import 'views/create-recipe';
 
 
 // Shaaaammmeee

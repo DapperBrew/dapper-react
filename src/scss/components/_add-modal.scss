@@ -1,0 +1,33 @@
+// ----------------------------------------------------------------------------
+// Add Modal
+// ----------------------------------------------------------------------------
+
+.add-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(115, 115, 115, 0.75);
+}
+
+.add-modal-wrapper {
+  position: relative;
+  margin-left: 200px;
+  margin-top: 72px;
+}
+
+.add-modal {
+  @include span(10);
+  @include push(1);
+  margin-top: 40px;
+  position: relative;
+  min-height: 300px;
+  background-color: $white;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}

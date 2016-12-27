@@ -2,17 +2,17 @@ import React from 'react';
 import { Match, Miss } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as HeaderActionCreators from '../actions';
+import * as HeaderActionCreators from '../../actions';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Dashboard from '../components/Dashboard';
-import RecipeCreate from '../components/RecipeCreate';
-import Calculators from '../components/Calculators';
-import Brewlog from '../components/Brewlog';
-import Equipment from '../components/Equipment';
-import Settings from '../components/Settings';
-import NotFound from '../components/NotFound';
+import Header from '../../layout/header/Header';
+import Footer from '../../layout/footer/Footer';
+import Dashboard from '../../views/dashboard/Dashboard';
+import RecipeCreate from '../../views/recipes/views/recipe-create/RecipeCreate';
+import Calculators from '../../views/calculators/Calculators';
+import Brewlog from '../../views/brewlog/Brewlog';
+import Equipment from '../../views/equipment/Equipment';
+import Settings from '../../views/settings/Settings';
+import NotFound from '../../views/not-found/NotFound';
 
 class Main extends React.Component {
 

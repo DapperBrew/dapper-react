@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import logo from '../img/logo.svg';
-import SidebarNav from './SidebarNav';
+import logo from './img/logo.svg';
+import SidebarNav from './components/SidebarNav';
 
 const Sidebar = () => (
   <div className="sidebar">
