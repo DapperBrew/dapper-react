@@ -1,5 +1,5 @@
 // Update the title in the header
-const updateHeader = title => ({
+export const updateHeader = title => ({
   type: 'UPDATE_HEADER',
   title,
 });

@@ -9,7 +9,7 @@ const Card = props => (
 
 Card.propTypes = {
   cardTitle: React.PropTypes.string,
-  children: React.PropTypes.element,
+  children: React.PropTypes.node,
 };
 
 export default Card;
