@@ -10,20 +10,17 @@ class Fermentables extends React.Component {
   constructor() {
     super();
 
-    this.closeModal = this.closeModal.bind(this);
-    this.openModal = this.openModal.bind(this);
-
     // getinitialState
     this.state = {
       modalIsOpen: false,
     };
   }
 
-  closeModal() {
+  closeModal= () => {
     this.setState({ modalIsOpen: false });
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({ modalIsOpen: true });
   }
 

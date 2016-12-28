@@ -5,15 +5,13 @@ class CardSelect extends React.Component {
   constructor() {
     super();
 
-    this.updateValue = this.updateValue.bind(this);
-
     this.state = {
       order: {},
     };
   }
 
   // updates component state on select
-  updateValue(newValue) {
+  updateValue = (newValue) => {
     this.setState({ selectValue: newValue });
   }
 
