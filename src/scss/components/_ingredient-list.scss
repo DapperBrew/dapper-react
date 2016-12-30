@@ -1,0 +1,53 @@
+// ----------------------------------------------------------------------------
+// Ingredient List
+// ----------------------------------------------------------------------------
+
+
+.ingredient-list-wrap {
+  overflow-y: auto;
+  height: 250px; // height of ingredient list
+  border: 1px solid #d0d0d0;
+  margin-bottom: 20px;
+}
+
+.ingredient-list__thead {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ingredient-list__tbody {
+}
+
+// the header
+.ingredient-list {
+  width: 100%;
+}
+
+.ingredient-list__header {
+  background-color: #d0d0d0;
+}
+
+.ingredient-list__header-cell {
+  padding: 10px;
+  float: left;
+}
+
+
+// the body
+.ingredient-list__row {
+  border-bottom: 1px solid #d0d0d0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(116, 189, 166, 0.3);
+  }
+
+  &.is-active {
+    background-color: red;
+  }
+}
+.ingredient-list__cell {
+  padding: 10px;
+}

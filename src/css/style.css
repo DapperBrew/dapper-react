@@ -2756,6 +2756,50 @@ input[type="button"].button--block {
 .ReactModal__Body--open {
   overflow: hidden; }
 
+.ingredient-list-wrap {
+  overflow-y: auto;
+  height: 250px;
+  border: 1px solid #d0d0d0;
+  margin-bottom: 20px; }
+
+.ingredient-list__thead {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.ingredient-list {
+  width: 100%; }
+
+.ingredient-list__header {
+  background-color: #d0d0d0; }
+
+.ingredient-list__header-cell {
+  padding: 10px;
+  float: left; }
+
+.ingredient-list__row {
+  border-bottom: 1px solid #d0d0d0;
+  cursor: pointer; }
+  .ingredient-list__row:hover {
+    background-color: rgba(116, 189, 166, 0.3); }
+  .ingredient-list__row.is-active {
+    background-color: red; }
+
+.ingredient-list__cell {
+  padding: 10px; }
+
+.ingredient-search input {
+  width: 100%;
+  border: 2px solid #d0d0d0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px; }
+
+.ingredient-section-title {
+  display: block; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CardInput extends React.Component {
+class Input extends React.Component {
 
   renderUserMessage() {
     if (this.props.measurement) {
@@ -28,8 +28,8 @@ class CardInput extends React.Component {
   }
 }
 
-CardInput.propTypes = {
+Input.propTypes = {
   measurement: React.PropTypes.string,
 };
 
-export default CardInput;
+export default Input;

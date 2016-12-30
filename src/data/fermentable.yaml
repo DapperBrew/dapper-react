@@ -1,0 +1,18 @@
+Fermentable:
+  id: 1234
+  index: 1
+  name: CaraMunich
+  description: A caramel copper colored malt used in Belgian ales and German bocks.
+  origin: BE
+  supplier:
+  type: grain
+  srm: 56
+  moisture: 4
+  yield: 71.7
+  courseFineDifference: 1.5
+  potential: 1.033
+  diasticPower: 72
+  protein: 11.5
+  max: 10
+  recommendMash: true
+  afterBoil: false

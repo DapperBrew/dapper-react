@@ -9,7 +9,6 @@ import AddButton from './AddButton';
 class Fermentables extends React.Component {
   constructor() {
     super();
-
     // getinitialState
     this.state = {
       modalIsOpen: false,
