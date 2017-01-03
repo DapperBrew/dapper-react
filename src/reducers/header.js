@@ -4,7 +4,6 @@ const header = (state = [], action) => {
       return {
         ...state,
         title: action.title,
-        tester: { ...state.tester, meh: 'yaya' },
       };
     default:
       return state;

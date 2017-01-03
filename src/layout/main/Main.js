@@ -19,12 +19,12 @@ class Main extends React.Component {
   render() {
     return (
       <div className="main">
-        <Header props={this.props} />
+        <Header title={this.props.header.title} />
         <div className="content">
           <Match
             exactly
             pattern="/"
-            render={() => (<Dashboard updateHeader={this.props.updateHeader} />)}
+            render={() => (<Dashboard updateHeader={this.props} />)}
           />
           <Match
             pattern="/recipes"
@@ -58,6 +58,9 @@ class Main extends React.Component {
 
 Main.propTypes = {
   updateHeader: React.PropTypes.func.isRequired,
+  header: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+  }),
 };
 
 

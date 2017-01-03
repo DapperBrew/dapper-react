@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 const Header = props => (
   <div className="header">
@@ -12,4 +11,4 @@ Header.propTypes = {
 };
 
 // export default Header;
-export default connect(state => ({ title: state.header.title }))(Header);
+export default Header;
