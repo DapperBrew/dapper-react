@@ -3,6 +3,8 @@ import React from 'react';
 import RecipeInfo from './components/RecipeInfo';
 import Fermentables from './components/Fermentables';
 import Hops from './components/Hops';
+import Extras from './components/Extras';
+import Yeast from './components/Yeast';
 
 // DELETE LATER
 import Card from '../../../../components/Card';
@@ -18,8 +20,10 @@ class RecipeCreate extends React.Component {
       <div className="container">
         <RecipeInfo />
         <div className="input-column">
-          <Fermentables meh={this.meh} />
+          <Fermentables />
           <Hops />
+          <Extras />
+          <Yeast />
         </div>
         <div className="info-column">
           <Card cardTitle="Stats" />

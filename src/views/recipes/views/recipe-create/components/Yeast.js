@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Card from '../../../../../components/Card';
-import FermentableRow from './FermentableRow';
-import FermentableModal from './FermentableModal';
+import YeastRow from './YeastRow';
+import YeastModal from './YeastModal';
 import AddModal from './AddModal';
 import AddButton from './AddButton';
 
-class Fermentables extends React.Component {
+class Yeast extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -25,24 +25,23 @@ class Fermentables extends React.Component {
   render() {
     return (
       <div>
-        <Card cardTitle="Fermentables">
+        <Card cardTitle="Yeast">
           <table className="recipe-table">
             <thead>
               <tr className="">
                 <th className="recipe-table__header text-left">Name</th>
-                <th className="recipe-table__header text-right">Weight</th>
-                <th className="recipe-table__header text-right">Color</th>
-                <th className="recipe-table__header text-right">%</th>
+                <th className="recipe-table__header text-right">Fermentation Temp</th>
+                <th className="recipe-table__header text-right">Av. Attenuation</th>
                 <th className="recipe-table__header text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <FermentableRow />
+              <YeastRow />
             </tbody>
           </table>
-          <AddButton text="Add Fermentable" openModal={this.openModal} />
+          <AddButton text="Add Yeast" openModal={this.openModal} />
           <AddModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal}>
-            <FermentableModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
+            <YeastModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
           </AddModal>
         </Card>
       </div>
@@ -50,4 +49,4 @@ class Fermentables extends React.Component {
   }
 }
 
-export default Fermentables;
+export default Yeast;

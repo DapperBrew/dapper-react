@@ -17,7 +17,7 @@ const CELL_ITEMS = ['name', 'type', 'srm'];
 const KEYS_TO_FILTERS = ['name', 'type'];
 
 
-class FermentableModal extends React.Component {
+class YeastModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +43,7 @@ class FermentableModal extends React.Component {
   render() {
     return (
       <div>
-        <h3>Add a Fermentable</h3>
+        <h3>Add Yeast</h3>
         <IngredientSearch
           onChange={this.searchUpdated}
           headers={COLUMNS_HEADERS}
@@ -74,8 +74,8 @@ class FermentableModal extends React.Component {
   }
 }
 
-FermentableModal.propTypes = {
+YeastModal.propTypes = {
   closeModal: React.PropTypes.func,
 };
 
-export default FermentableModal;
+export default YeastModal;
