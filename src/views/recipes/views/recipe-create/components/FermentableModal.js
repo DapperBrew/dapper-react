@@ -32,12 +32,10 @@ class FermentableModal extends React.Component {
     });
   }
 
-  // triggers after updating search filter
-  searchUpdated = (term) => {
+  setSearchTerm = (term) => {
     this.setState({
       searchTerm: term,
     });
-    this.setHeaderSize();
   }
 
   render() {
@@ -51,7 +49,7 @@ class FermentableModal extends React.Component {
           keys={KEYS_TO_FILTERS}
           onSelect={this.onSelect}
           selectedItem={this.state.selectedItem}
-          searchUpdated={this.searchUpdated}
+          setSearchTerm={this.setSearchTerm}
           items={items}
           searchTerm={this.state.searchTerm}
         />

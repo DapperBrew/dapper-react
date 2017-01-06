@@ -36,6 +36,12 @@ class IngredientSearch extends React.Component {
     }
   }
 
+  // triggers after updating search filter
+  searchUpdated = (term) => {
+    this.props.setSearchTerm(term);
+    this.setHeaderSize();
+  }
+
   render() {
     const items = this.props.items;
     const filteredItems = items.filter(createFilter(this.props.searchTerm, this.props.keys));
@@ -45,7 +51,7 @@ class IngredientSearch extends React.Component {
           className="ingredient-search"
           throttle={100}
           placeholder="Filter..."
-          onChange={this.props.searchUpdated}
+          onChange={this.searchUpdated}
         />
         <IngredientList
           headers={this.props.headers}
@@ -62,7 +68,6 @@ class IngredientSearch extends React.Component {
 
 IngredientSearch.propTypes = {
   items: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  searchUpdated: React.PropTypes.func.isRequired,
   headers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   cells: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   keys: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
