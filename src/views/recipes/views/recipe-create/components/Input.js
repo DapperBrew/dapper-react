@@ -2,6 +2,10 @@ import React from 'react';
 
 class Input extends React.Component {
 
+  onUpdate = (e) => {
+    this.props.onUpdate(e.target.value);
+  }
+
   renderUserMessage() {
     if (this.props.measurement) {
       return (
@@ -19,6 +23,7 @@ class Input extends React.Component {
         <input
           id={props.id}
           type="text"
+          onChange={this.onUpdate}
           placeholder={props.placeholder}
           className={`form__input ${props.measurement ? 'form__input--measure' : ''}`}
         />
@@ -30,6 +35,7 @@ class Input extends React.Component {
 
 Input.propTypes = {
   measurement: React.PropTypes.string,
+  onUpdate: React.PropTypes.func,
 };
 
 export default Input;

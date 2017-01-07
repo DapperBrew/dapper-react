@@ -1,25 +1,42 @@
 import React from 'react';
 
+// Components
 import Card from '../../../../../components/Card';
+import AddItem from './AddItem';
 import ExtrasRow from './ExtrasRow';
-import ExtrasModal from './ExtrasModal';
-import AddModal from './AddModal';
-import AddButton from './AddButton';
+import FermentableModalContent from './FermentableModalContent';
+
+// Dummy Data
+import items from '../../../../../data/fermentable';
+
+// Inputs for AddItem Component
+const COLUMNS_HEADERS = ['Name', 'Type', 'Color'];
+const CELL_ITEMS = ['name', 'type', 'srm'];
+const KEYS_TO_FILTERS = ['name', 'type'];
 
 class Extras extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      modalIsOpen: false,
+      newItemId: '',
+      newItemWeight: '',
     };
   }
 
-  closeModal= () => {
-    this.setState({ modalIsOpen: false });
+  onSubmit = () => {
+    console.log(this.state.newItemId, this.state.newItemWeight);
+    this.setState({
+      newItemId: '',
+      newItemWeight: '',
+    });
   }
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
+  selectItem = (id) => {
+    this.setState({ newItemId: id });
+  }
+
+  inputWeight = (weight) => {
+    this.setState({ newItemWeight: weight });
   }
 
   render() {
@@ -30,9 +47,9 @@ class Extras extends React.Component {
             <thead>
               <tr className="">
                 <th className="recipe-table__header text-left">Name</th>
-                <th className="recipe-table__header text-right">Amount</th>
-                <th className="recipe-table__header text-right">Time</th>
-                <th className="recipe-table__header text-right">Stage</th>
+                <th className="recipe-table__header text-right">Weight</th>
+                <th className="recipe-table__header text-right">Color</th>
+                <th className="recipe-table__header text-right">%</th>
                 <th className="recipe-table__header text-right">Actions</th>
               </tr>
             </thead>
@@ -40,10 +57,19 @@ class Extras extends React.Component {
               <ExtrasRow />
             </tbody>
           </table>
-          <AddButton text="Add Extra" openModal={this.openModal} />
-          <AddModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal}>
-            <ExtrasModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
-          </AddModal>
+          <AddItem
+            title="Add Extras"
+            items={items}
+            headers={COLUMNS_HEADERS}
+            cells={CELL_ITEMS}
+            keys={KEYS_TO_FILTERS}
+            selectItem={this.selectItem}
+            onSubmit={this.onSubmit}
+          >
+            <FermentableModalContent
+              onUpdate={this.inputWeight}
+            />
+          </AddItem>
         </Card>
       </div>
     );

@@ -74,6 +74,7 @@ IngredientSearch.propTypes = {
   onSelect: React.PropTypes.func.isRequired,
   selectedItem: React.PropTypes.string.isRequired,
   searchTerm: React.PropTypes.string.isRequired,
+  setSearchTerm: React.PropTypes.func.isRequired,
 };
 
 export default IngredientSearch;
