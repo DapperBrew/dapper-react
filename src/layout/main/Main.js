@@ -24,7 +24,7 @@ class Main extends React.Component {
           <Match
             exactly
             pattern="/"
-            render={() => (<Dashboard updateHeader={this.props} />)}
+            render={() => (<Dashboard updateHeader={this.props.updateHeader} />)}
           />
           <Match
             pattern="/recipes"

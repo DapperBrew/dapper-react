@@ -8,6 +8,7 @@ const defaultState = {
     title: 'Dashboard',
   },
   recipes: [],
+  stagedRecipe: [],
   equipment: [],
   settings: [],
 };

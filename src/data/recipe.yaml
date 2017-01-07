@@ -1,0 +1,58 @@
+Recipe:
+  name: Hop Pun
+  bersion: 1
+  brewer: Dan Brown
+  batchSize: 5.5
+  boilTime: 90
+  efficiency: 72
+  style: [id of style]
+  fermentables:
+    - id: 2234
+      weight: 14
+    - id: 2235
+      weight: 2
+  hops:
+    - id: 1234
+      weight: 3
+      time: 60
+      timeUnit: min
+      stage: boil
+    - id: 1235
+      weight: 1
+      time: 7
+      timeUnit: days
+      stage: secondary
+  misc:
+    - id: 3234
+      amount: 1
+      amountUnit: lb
+      time: 2
+      timeUnit: days
+      stage: secondary
+    - id: 3235
+      amount: 1
+      amountUnit: item
+      time: 15
+      timeUnit: min
+      stage: boil
+  yeast:
+    - id: 4234
+  mash:
+    - name: Mash In
+      mashType: infusion
+      mashTemp: 152
+      mashTime: 60
+  water:
+    - name: Custom Hop Profile
+      version: 1
+      calcium: 295
+      bicarbonate: 300
+      sulfate: 725
+      chloride: 25
+      sodium: 55
+      magnesium: 45
+      ph: 8
+  carbonation: 2.4
+  notes:
+    - id: 5234
+      content: my note
