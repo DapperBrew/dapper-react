@@ -3,7 +3,7 @@ import React from 'react';
 import RecipeInfo from './components/RecipeInfo';
 import Fermentables from './components/Fermentables';
 import Hops from './components/Hops';
-import Extras from './components/Extras';
+import Misc from './components/Misc';
 import Yeast from './components/Yeast';
 
 // DELETE LATER
@@ -22,7 +22,7 @@ class RecipeCreate extends React.Component {
         <div className="input-column">
           <Fermentables />
           <Hops />
-          <Extras />
+          <Misc />
           <Yeast />
         </div>
         <div className="info-column">

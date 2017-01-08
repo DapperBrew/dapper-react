@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import Card from '../../../../../components/Card';
 import AddItem from './AddItem';
-import ExtrasRow from './ExtrasRow';
+import MiscRow from './MiscRow';
 import FermentableModalContent from './FermentableModalContent';
 
 // Dummy Data
@@ -14,7 +14,7 @@ const COLUMNS_HEADERS = ['Name', 'Type', 'Color'];
 const CELL_ITEMS = ['name', 'type', 'srm'];
 const KEYS_TO_FILTERS = ['name', 'type'];
 
-class Extras extends React.Component {
+class Misc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ class Extras extends React.Component {
   render() {
     return (
       <div>
-        <Card cardTitle="Spices & Extras">
+        <Card cardTitle="Spices & Misc">
           <table className="recipe-table">
             <thead>
               <tr className="">
@@ -54,11 +54,11 @@ class Extras extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <ExtrasRow />
+              <MiscRow />
             </tbody>
           </table>
           <AddItem
-            title="Add Extras"
+            title="Add Misc"
             items={items}
             headers={COLUMNS_HEADERS}
             cells={CELL_ITEMS}
@@ -76,4 +76,4 @@ class Extras extends React.Component {
   }
 }
 
-export default Extras;
+export default Misc;

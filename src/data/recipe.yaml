@@ -1,6 +1,6 @@
 Recipe:
   name: Hop Pun
-  bersion: 1
+  version: 1
   brewer: Dan Brown
   batchSize: 5.5
   boilTime: 90
@@ -9,8 +9,10 @@ Recipe:
   fermentables:
     - id: 2234
       weight: 14
+      weightUnit: lb
     - id: 2235
-      weight: 2
+      weight: 8
+      weightUnit: oz
   hops:
     - id: 1234
       weight: 3
