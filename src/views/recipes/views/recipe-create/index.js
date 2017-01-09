@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 import RecipeInfo from './components/RecipeInfo';
@@ -21,9 +22,6 @@ class RecipeCreate extends React.Component {
         <RecipeInfo />
         <div className="input-column">
           <Fermentables />
-          <Hops />
-          <Misc />
-          <Yeast />
         </div>
         <div className="info-column">
           <Card cardTitle="Stats" />

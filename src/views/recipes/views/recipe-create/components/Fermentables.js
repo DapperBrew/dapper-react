@@ -1,18 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+// actions
+import { showModal, modalInfo } from '../actions';
 
 // Components
 import Card from '../../../../../components/Card';
-import AddItem from './AddItem';
 import FermentableRow from './FermentableRow';
-import FermentableModalContent from './FermentableModalContent';
+import FermentableModal from './FermentableModal';
+
 
 // Dummy Data
 import items from '../../../../../data/fermentable';
-
-// Inputs for AddItem Component
-const COLUMNS_HEADERS = ['Name', 'Type', 'Color'];
-const CELL_ITEMS = ['name', 'type', 'srm'];
-const KEYS_TO_FILTERS = ['name', 'type'];
 
 class Fermentables extends React.Component {
   constructor(props) {
@@ -40,6 +39,8 @@ class Fermentables extends React.Component {
   }
 
   render() {
+    const { dispatch } = this.props;
+    const name = modalInfo.FERMENTABLE.NAME;
     return (
       <div>
         <Card cardTitle="Fermentables">
@@ -57,23 +58,23 @@ class Fermentables extends React.Component {
               <FermentableRow />
             </tbody>
           </table>
-          <AddItem
-            title="Add Fermentable"
-            items={items}
-            headers={COLUMNS_HEADERS}
-            cells={CELL_ITEMS}
-            keys={KEYS_TO_FILTERS}
-            selectItem={this.selectItem}
-            onSubmit={this.onSubmit}
-          >
-            <FermentableModalContent
-              onUpdate={this.inputWeight}
-            />
-          </AddItem>
+
+          <FermentableModal items={items} name={name} />
+          <button onClick={() => dispatch(showModal(name))}>
+            Test Button
+          </button>
         </Card>
       </div>
     );
   }
 }
 
-export default Fermentables;
+const mapStateToProps = state => ({
+  modal: state.recipeCreate.modals,
+});
+
+Fermentables.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps)(Fermentables);
