@@ -46,6 +46,11 @@ const modals = (state = initialState, action) => {
   }
 };
 
+// return [...state,{
+//         user: action.author,
+//         text: action.comment
+//       }];
+
 const initialNewRecipe = {
   fermentables: [],
 };
@@ -55,12 +60,13 @@ const newRecipe = (state = initialNewRecipe, action) => {
     case ADD_FERMENTABLE:
       return {
         ...state,
-        fermentable: {
-          ...state.fermentable,
-          [action.id]: {
+        fermentables: [
+          ...state.fermentables,
+          {
+            id: action.id,
             weight: action.weight,
           },
-        },
+        ],
       };
     default:
       return state;
