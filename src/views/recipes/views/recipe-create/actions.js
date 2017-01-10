@@ -4,6 +4,7 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 export const LOAD_MODAL = 'LOAD_MODAL';
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
 export const SELECT_ITEM = 'SELECT_ITEM';
+export const UPDATE_WEIGHT = 'UPDATE_WEIGHT';
 
 // Add to Recipe action types
 export const ADD_FERMENTABLE = 'ADD_FERMENTABLE';
@@ -37,7 +38,6 @@ export const modalInfo = {
 };
 
 // action creators
-
 export const showModal = name => ({
   type: SHOW_MODAL,
   name,
@@ -67,9 +67,13 @@ export const selectItem = item => ({
   item,
 });
 
+export const updateWeight = weight => ({
+  type: UPDATE_WEIGHT,
+  weight,
+});
+
 export const addFermentable = (id, weight) => (
   (dispatch) => {
-    console.log(id, weight);
     dispatch({
       type: ADD_FERMENTABLE,
       id,

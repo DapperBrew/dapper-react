@@ -6,6 +6,7 @@ import {
   SEARCH_UPDATE,
   SELECT_ITEM,
   ADD_FERMENTABLE,
+  UPDATE_WEIGHT,
 } from './actions';
 
 const initialState = {
@@ -41,15 +42,15 @@ const modals = (state = initialState, action) => {
         ...state,
         selectedItem: action.item,
       };
+    case UPDATE_WEIGHT:
+      return {
+        ...state,
+        itemWeight: action.weight,
+      };
     default:
       return state;
   }
 };
-
-// return [...state,{
-//         user: action.author,
-//         text: action.comment
-//       }];
 
 const initialNewRecipe = {
   fermentables: [],
