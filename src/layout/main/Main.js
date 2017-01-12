@@ -7,7 +7,7 @@ import * as HeaderActionCreators from '../../actions';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import Dashboard from '../../views/dashboard/Dashboard';
-import RecipeCreate from '../../views/recipes/views/recipe-create/RecipeCreate';
+import RecipeCreate from '../../views/recipes/views/recipe-create';
 import Calculators from '../../views/calculators/Calculators';
 import Brewlog from '../../views/brewlog/Brewlog';
 import Equipment from '../../views/equipment/Equipment';
@@ -72,8 +72,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(HeaderActionCreators, dispatch);
 
-
-// const CalculatorContainer = connect(mapStateToProps, mapDispatchToProps)(Calculators);
-
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
-// export default Main;
