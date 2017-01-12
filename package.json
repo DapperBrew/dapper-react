@@ -31,13 +31,11 @@
     "susy": "^2.2.12"
   },
   "scripts": {
-    "start": "react-scripts start && npm run styles:watch",
-    "watch": "concurrently --kill-others --names 'react-scripts,sass,test' --prefix name 'react-scripts start' 'npm run styles:watch' 'npm run styles:test'",
+    "start": "react-scripts start",
+    "watch": "concurrently --kill-others --names 'react-scripts,sass' --prefix name 'react-scripts start' 'npm run styles:watch'",
     "build": "npm run styles & react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",
-    "styles:test": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./public/css",
     "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css",
     "deploy": "npm run build&&gh-pages -d build"
   }
