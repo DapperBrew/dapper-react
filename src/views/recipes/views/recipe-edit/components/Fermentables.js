@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { showModal, modalInfo } from '../actions';
+import { showModal, modalInfo } from '../actions/modals';
 
 // Components
 import Card from '../../../../../components/Card';
@@ -41,7 +41,7 @@ const Fermentables = (props) => {
 };
 
 const mapStateToProps = state => ({
-  modal: state.recipeCreate.modals,
+  modal: state.recipeEdit.modals,
 });
 
 Fermentables.propTypes = {

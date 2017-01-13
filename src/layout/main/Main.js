@@ -7,7 +7,7 @@ import * as HeaderActionCreators from '../../actions';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import Dashboard from '../../views/dashboard/Dashboard';
-import RecipeCreate from '../../views/recipes/views/recipe-create';
+import RecipeEdit from '../../views/recipes/views/recipe-edit';
 import Calculators from '../../views/calculators/Calculators';
 import Brewlog from '../../views/brewlog/Brewlog';
 import Equipment from '../../views/equipment/Equipment';
@@ -28,7 +28,7 @@ class Main extends React.Component {
           />
           <Match
             pattern="/recipes"
-            render={() => (<RecipeCreate updateHeader={this.props.updateHeader} />)}
+            render={() => (<RecipeEdit updateHeader={this.props.updateHeader} />)}
           />
           <Match
             pattern="/calculators"

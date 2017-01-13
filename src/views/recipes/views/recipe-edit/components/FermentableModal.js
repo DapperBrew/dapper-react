@@ -7,7 +7,8 @@ import ModalSubmit from './ModalSubmit';
 import Input from './Input';
 
 // actions
-import { hideModal, addFermentable, modalInfo, updateWeight } from '../actions';
+import { hideModal, modalInfo, updateWeight } from '../actions/modals';
+import { addFermentable } from '../actions/recipeStaged';
 
 // Dummy Data
 import items from '../../../../../data/fermentable';
@@ -44,7 +45,7 @@ FermentableModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  modal: state.recipeCreate.modals,
+  modal: state.recipeEdit.modals,
 });
 
 

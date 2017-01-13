@@ -1,13 +1,11 @@
-import { combineReducers } from 'redux';
 import {
   SHOW_MODAL,
   HIDE_MODAL,
   LOAD_MODAL,
   SEARCH_UPDATE,
   SELECT_ITEM,
-  ADD_FERMENTABLE,
   UPDATE_WEIGHT,
-} from './actions';
+} from '../actions/modals';
 
 const initialState = {
   modalOpen: false,
@@ -52,32 +50,4 @@ const modals = (state = initialState, action) => {
   }
 };
 
-const initialNewRecipe = {
-  fermentables: [],
-};
-
-const newRecipe = (state = initialNewRecipe, action) => {
-  switch (action.type) {
-    case ADD_FERMENTABLE:
-      return {
-        ...state,
-        fermentables: [
-          ...state.fermentables,
-          {
-            id: action.id,
-            weight: action.weight,
-          },
-        ],
-      };
-    default:
-      return state;
-  }
-};
-
-const recipeCreate = combineReducers({
-  modals,
-  newRecipe,
-});
-
-
-export default recipeCreate;
+export default modals;

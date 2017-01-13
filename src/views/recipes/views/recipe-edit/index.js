@@ -10,7 +10,7 @@ import Yeast from './components/Yeast';
 // DELETE LATER
 import Card from '../../../../components/Card';
 
-class RecipeCreate extends React.Component {
+class RecipeEdit extends React.Component {
 
   componentWillMount() {
     this.props.updateHeader('Create Recipe');
@@ -32,8 +32,8 @@ class RecipeCreate extends React.Component {
   }
 }
 
-RecipeCreate.propTypes = {
+RecipeEdit.propTypes = {
   updateHeader: React.PropTypes.func.isRequired,
 };
 
-export default RecipeCreate;
+export default RecipeEdit;

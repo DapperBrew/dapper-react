@@ -7,7 +7,7 @@ import SearchInput, { createFilter } from 'react-search-input';
 import IngredientList from './IngredientList';
 
 // actions
-import { hideModal, loadModal, updateSearch, selectItem, modalInfo } from '../actions';
+import { hideModal, loadModal, updateSearch, selectItem, modalInfo } from '../actions/modals';
 
 // dummy data
 import items from '../../../../../data/fermentable';
@@ -78,7 +78,7 @@ AddModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  modal: state.recipeCreate.modals,
+  modal: state.recipeEdit.modals,
 });
 
 
