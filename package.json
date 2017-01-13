@@ -2,7 +2,6 @@
   "name": "dapper-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DapperBrew.github.io/dapper-react",
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "eslint": "^3.12.2",
