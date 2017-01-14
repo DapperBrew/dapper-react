@@ -1,5 +1,4 @@
 import {
-  INGREDIENTS_SUCCESS,
   FERMENTABLES_SUCCESS,
 } from '../actions/loadData';
 

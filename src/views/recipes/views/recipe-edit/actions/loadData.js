@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const INGREDIENTS_REQUEST = 'INGREDIENTS_REQUEST';
 export const INGREDIENTS_SUCCESS = 'INGREDIENTS_SUCCESS';
-export const INGREDIENTS_ERROR = 'INGREDIENTS_FAILURE';
+export const INGREDIENTS_ERROR = 'INGREDIENTS_ERROR';
 
 export const FERMENTABLES_REQUEST = 'FERMENTABLES_REQUEST';
 export const FERMENTABLES_SUCCESS = 'FERMENTABLES_SUCCESS';
@@ -40,20 +40,20 @@ export const errorFermentables = error => ({
   data: error,
 });
 
-export const fetchFermentables = () => (
+
+const fetchFermentables = () => (
   (dispatch) => {
     dispatch(requestFermentables());
-    axios({
+    return axios({
       url: `${process.env.REACT_APP_API_URL}/fermentables`,
       timeout: 20000,
       method: 'get',
       responseType: 'json',
     })
-      .then((response) => {
-        dispatch(receiveFermentables(response.data));
-      })
+      .then(response => dispatch(receiveFermentables(response.data)))
       .catch((response) => {
         dispatch(errorFermentables(response.data));
+        throw response;
       });
   }
 );
@@ -62,14 +62,8 @@ export const fetchIngredients = () => (
   (dispatch) => {
     dispatch(requestIngredients());
     Promise.resolve()
-      .then(() => {
-        dispatch(fetchFermentables());
-      })
-      .then(() => {
-        dispatch(receiveIngredients());
-      })
-      .catch((response) => {
-        dispatch(errorIngredients(response.data));
-      });
+      .then(() => dispatch(fetchFermentables()))
+      .then(() => dispatch(receiveIngredients()))
+      .catch(response => dispatch(errorIngredients(response.data)));
   }
 );
