@@ -8,7 +8,7 @@ import Hops from './components/Hops';
 import Misc from './components/Misc';
 import Yeast from './components/Yeast';
 
-import { fetchIngredients } from './actions/loadData';
+import { fetchIngredients } from '../../../../actions/ingredients';
 
 
 // DELETE LATER

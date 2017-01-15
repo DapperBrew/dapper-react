@@ -20,6 +20,7 @@ const modals = (state = initialState, action) => {
         ...state,
         modalOpen: true,
         modalName: action.name,
+        modalLoaded: false,
       };
     case HIDE_MODAL:
       return initialState;
@@ -29,6 +30,7 @@ const modals = (state = initialState, action) => {
         searchTableHeaders: action.payload.searchTableHeaders,
         searchTableCells: action.payload.searchTableCells,
         searchKeys: action.payload.searchKeys,
+        modalLoaded: true,
       };
     case SEARCH_UPDATE:
       return {

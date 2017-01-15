@@ -1,10 +1,8 @@
-import {
-  FERMENTABLES_SUCCESS,
-} from '../actions/loadData';
+import { FERMENTABLES_SUCCESS } from '../actions/ingredients';
 
 const initialState = {};
 
-const loadData = (state = initialState, action) => {
+const ingredients = (state = initialState, action) => {
   switch (action.type) {
     case FERMENTABLES_SUCCESS:
       return {
@@ -16,4 +14,4 @@ const loadData = (state = initialState, action) => {
   }
 };
 
-export default loadData;
+export default ingredients;

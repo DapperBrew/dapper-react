@@ -1,8 +1,7 @@
 import React from 'react';
 import { Match, Miss } from 'react-router';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as HeaderActionCreators from '../../actions';
+import { updateHeader } from '../../actions/ui';
 
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
@@ -17,37 +16,38 @@ import NotFound from '../../views/not-found/NotFound';
 class Main extends React.Component {
 
   render() {
+    const changeHeader = title => this.props.dispatch(updateHeader(title));
     return (
       <div className="main">
-        <Header title={this.props.header.title} />
+        <Header title={this.props.ui.title} />
         <div className="content">
           <Match
             exactly
             pattern="/"
-            render={() => (<Dashboard updateHeader={this.props.updateHeader} />)}
+            render={() => (<Dashboard updateHeader={changeHeader} />)}
           />
           <Match
             pattern="/recipes"
-            render={() => (<RecipeEdit updateHeader={this.props.updateHeader} />)}
+            render={() => (<RecipeEdit updateHeader={changeHeader} />)}
           />
           <Match
             pattern="/calculators"
-            render={() => (<Calculators updateHeader={this.props.updateHeader} />)}
+            render={() => (<Calculators updateHeader={changeHeader} />)}
           />
           <Match
             pattern="/brewlog"
-            render={() => (<Brewlog updateHeader={this.props.updateHeader} />)}
+            render={() => (<Brewlog updateHeader={changeHeader} />)}
           />
           <Match
             pattern="/equipment"
-            render={() => (<Equipment updateHeader={this.props.updateHeader} />)}
+            render={() => (<Equipment updateHeader={changeHeader} />)}
           />
           <Match
             pattern="/settings"
-            render={() => (<Settings updateHeader={this.props.updateHeader} />)}
+            render={() => (<Settings updateHeader={changeHeader} />)}
           />
           <Miss
-            render={() => (<NotFound updateHeader={this.props.updateHeader} />)}
+            render={() => (<NotFound updateHeader={changeHeader} />)}
           />
         </div>
         <Footer />
@@ -57,19 +57,15 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
-  header: React.PropTypes.shape({
+  dispatch: React.PropTypes.func.isRequired,
+  ui: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
   }),
 };
 
 
 const mapStateToProps = state => ({
-  header: state.header,
+  ui: state.ui,
 });
 
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(HeaderActionCreators, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);

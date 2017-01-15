@@ -22,8 +22,9 @@ const IngredientListRows = props => (
   <tbody className="ingredient-list__tbody">
     {props.filteredItems.map(item => (
       <tr
-        key={item.id}
-        onClick={() => props.onSelect(item.id)} className={classNames('ingredient-list__row', { 'is-active': props.selectedItem === item.id })}
+        key={item._id}
+        onClick={() => props.onSelect(item._id)}
+        className={classNames('ingredient-list__row', { 'is-active': props.selectedItem === item._id })}
       >
         {props.cells.map(cell => (
           <td key={cell} className="ingredient-list__cell text-left">{item[cell]}</td>

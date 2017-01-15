@@ -1,4 +1,8 @@
-const header = (state = [], action) => {
+const initialState = {
+  title: 'Dashboard',
+};
+
+const ui = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_HEADER' :
       return {
@@ -10,4 +14,4 @@ const header = (state = [], action) => {
   }
 };
 
-export default header;
+export default ui;

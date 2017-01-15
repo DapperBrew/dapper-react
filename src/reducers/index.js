@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-import header from './header';
+import ui from './ui';
+import ingredients from './ingredients';
 import recipeEdit from '../views/recipes/views/recipe-edit/reducers/index';
 
 const rootReducer = combineReducers({
-  header,
+  ui,
   recipeEdit,
+  ingredients,
 });
 
 export default rootReducer;
