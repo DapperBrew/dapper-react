@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import values from 'lodash/values';
+
 
 // Components
 import AddModal from './AddModal';
@@ -12,14 +14,15 @@ import { addFermentable } from '../actions/recipeStaged';
 
 const FermentableModal = (props) => {
   const { modal, dispatch } = props;
-  const { selectedItem, itemWeight } = modal;
+  const { selectedItem, itemWeight, color } = modal;
   const name = modalInfo.FERMENTABLE.NAME;
+  const items = values(props.fermentables);
 
   // don't mount the modal unless the modal is ready to use
   if (modal.modalOpen === true) {
     return (
       <AddModal
-        items={props.fermentables}
+        items={items}
         name={name}
         header="Add Fermentable"
       >
@@ -44,7 +47,7 @@ const FermentableModal = (props) => {
 FermentableModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
-  fermentables: React.PropTypes.arrayOf(React.PropTypes.object),
+  fermentables: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

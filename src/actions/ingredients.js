@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { normalize } from 'normalizr';
+import { fermentableListSchema } from './schemas';
 
 // action constants
 
@@ -50,7 +52,9 @@ const fetchFermentables = () => (
       method: 'get',
       responseType: 'json',
     })
-      .then(response => dispatch(receiveFermentables(response.data)))
+      .then(response => normalize(response.data, fermentableListSchema))
+      // .then(response => console.log(response))
+      .then(response => dispatch(receiveFermentables(response)))
       .catch((response) => {
         dispatch(errorFermentables(response.data));
         throw response;
