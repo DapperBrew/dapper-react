@@ -4,11 +4,7 @@ import thunk from 'redux-thunk';
 
 import rootReducer from './reducers/index';
 
-const defaultState = {
-  header: {
-    title: 'Dashboard',
-  },
-};
+const defaultState = {};
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

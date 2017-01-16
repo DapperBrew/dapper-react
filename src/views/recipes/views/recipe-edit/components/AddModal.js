@@ -9,17 +9,15 @@ import IngredientList from './IngredientList';
 // actions
 import { hideModal, loadModal, updateSearch, selectItem, modalInfo } from '../actions/modals';
 
-// dummy data
-import items from '../../../../../data/fermentable';
-
 
 class AddModal extends React.Component {
-  componentWillUpdate() {
+  componentWillMount() {
     const { dispatch } = this.props;
 
     // Load appropriate data
     const currentModal = modalInfo[this.props.name];
-    if (!this.props.modal.modalName) {
+
+    if (this.props.modal.modalName) {
       dispatch(loadModal(
         currentModal.SEARCH_TABLE_HEADER,
         currentModal.SEARCH_TABLE_CELLS,
@@ -32,9 +30,12 @@ class AddModal extends React.Component {
     const { modal, dispatch } = this.props;
     const isOpen = this.props.modal.modalOpen === true
                 && modal.modalName === this.props.name;
+    const items = this.props.items;
     const filteredItems = items.filter(createFilter(modal.searchTerm, modal.searchKeys));
-    return (
-      <div>
+
+    // only load if all of the data for the modal is ready
+    if (this.props.modal.modalLoaded) {
+      return (
         <Modal
           isOpen={isOpen}
           onRequestClose={() => dispatch(hideModal())}
@@ -61,10 +62,10 @@ class AddModal extends React.Component {
               {this.props.children}
             </div>
           </div>
-
         </Modal>
-      </div>
-    );
+      );
+    }
+    return <div />;
   }
 
 }
@@ -75,6 +76,7 @@ AddModal.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   children: React.PropTypes.array.isRequired, // eslint-disable-line
   header: React.PropTypes.string.isRequired,
+  items: React.PropTypes.array.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
