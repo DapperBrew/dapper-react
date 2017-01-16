@@ -68,6 +68,9 @@ export const fetchIngredients = () => (
     Promise.resolve()
       .then(() => dispatch(fetchFermentables()))
       .then(() => dispatch(receiveIngredients()))
-      .catch(response => dispatch(errorIngredients(response.data)));
+      .catch((response) => {
+        dispatch(errorIngredients(response.data));
+        console.error(response);
+      });
   }
 );
