@@ -10,7 +10,6 @@ const recipeEdit = (state = { fermentables: [] }, action) => {
           {
             id: action.id,
             weight: action.weight,
-            color: action.color
           },
         ],
       };
