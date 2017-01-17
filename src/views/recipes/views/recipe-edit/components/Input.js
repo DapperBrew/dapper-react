@@ -26,6 +26,7 @@ class Input extends React.Component {
           onChange={this.onUpdate}
           placeholder={props.placeholder}
           className={`form__input ${props.measurement ? 'form__input--measure' : ''}`}
+          value={props.value}
         />
         {this.renderUserMessage()}
       </div>

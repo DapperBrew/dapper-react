@@ -1,6 +1,6 @@
 import isInteger from 'lodash/isInteger';
 import uniqueId from 'lodash/uniqueId';
-import { hideModal } from './modals';
+import { hideModal, resetModal } from './modals';
 
 
 // action types
@@ -10,7 +10,7 @@ export const REMOVE_FERMENTABLE = 'REMOVE_FERMENTABLE';
 
 
 // action creators
-export const addFermentable = (id, weight) => (
+export const addFermentable = (id, weight, reset) => (
   (dispatch) => {
     if (id && weight && isInteger(Number(weight))) {
       dispatch({
@@ -19,7 +19,11 @@ export const addFermentable = (id, weight) => (
         key: uniqueId(),
         weight,
       });
-      dispatch(hideModal());
+      if (reset) {
+        dispatch(resetModal());
+      } else {
+        dispatch(hideModal());
+      }
     } else {
       dispatch({
         type: ADD_FERMENTABLE_ERROR,

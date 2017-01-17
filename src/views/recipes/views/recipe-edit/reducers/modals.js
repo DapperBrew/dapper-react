@@ -2,6 +2,7 @@ import {
   SHOW_MODAL,
   HIDE_MODAL,
   LOAD_MODAL,
+  RESET_MODAL,
   SEARCH_UPDATE,
   SELECT_ITEM,
   UPDATE_WEIGHT,
@@ -11,6 +12,11 @@ const initialState = {
   modalOpen: false,
   searchTerm: '',
   selectedItem: '',
+  itemWeight: '',
+  searchTableHeaders: '',
+  searchTableCells: '',
+  searchKeys: '',
+  modalLoaded: false,
 };
 
 const modals = (state = initialState, action) => {
@@ -24,6 +30,13 @@ const modals = (state = initialState, action) => {
       };
     case HIDE_MODAL:
       return initialState;
+    case RESET_MODAL:
+      return {
+        ...state,
+        searchTerm: '',
+        selectedItem: '',
+        itemWeight: '',
+      };
     case LOAD_MODAL:
       return {
         ...state,

@@ -33,9 +33,11 @@ const FermentableModal = (props) => {
           measurement="lb"
           placeholder="ex: 2"
           onUpdate={weight => dispatch(updateWeight(weight))}
+          value={modal.itemWeight}
         />
         <ModalSubmit
           closeModal={() => dispatch(hideModal())}
+          resetModal={() => dispatch(addFermentable(selectedItem, itemWeight, true))}
           submitModal={() => dispatch(addFermentable(selectedItem, itemWeight))}
         />
       </AddModal>
