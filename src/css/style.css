@@ -2727,6 +2727,27 @@ input[type="button"].button--block {
 .shrink {
   white-space: nowrap; }
 
+.recipe-table__icon {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  stroke: none;
+  fill: currentColor;
+  vertical-align: middle;
+  transition: color 0.3s ease;
+  cursor: pointer; }
+
+.recipe-table__icon--edit {
+  color: #828282;
+  margin-right: 8px; }
+  .recipe-table__icon--edit:hover {
+    color: #26d58f; }
+
+.recipe-table__icon--remove {
+  color: #828282; }
+  .recipe-table__icon--remove:hover {
+    color: #e91c53; }
+
 .add-modal-overlay {
   position: fixed;
   top: 0;

@@ -2,6 +2,8 @@
 // Input Table
 // ----------------------------------------------------------------------------
 
+$_icon-color: #828282;
+
 .recipe-table {
   width: 100%;
   max-width: 100%;
@@ -32,4 +34,30 @@
 
 .shrink {
   white-space: nowrap;
+}
+
+.recipe-table__icon {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  stroke: none;
+  fill: currentColor;
+  vertical-align: middle;
+  transition: color $base-time $base-ease;
+  cursor: pointer;
+}
+
+.recipe-table__icon--edit {
+  color: $_icon-color;
+  margin-right: 8px;
+  &:hover {
+    color: $success;
+  }
+}
+
+.recipe-table__icon--remove {
+  color: $_icon-color;
+  &:hover {
+    color: $danger;
+  }
 }

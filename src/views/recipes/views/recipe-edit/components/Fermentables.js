@@ -29,7 +29,7 @@ const Fermentables = (props) => {
           <FermentableList />
         </table>
 
-        <button onClick={() => dispatch(showModal(name))}>
+        <button className="mt1" onClick={() => dispatch(showModal(name))}>
           Test Button
         </button>
         <FermentableModal />
