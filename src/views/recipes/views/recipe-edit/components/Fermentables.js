@@ -6,7 +6,7 @@ import { showModal, modalInfo } from '../actions/modals';
 
 // Components
 import Card from '../../../../../components/Card';
-import FermentableRowAll from './FermentableRow';
+import FermentableList from './FermentableList';
 import FermentableModal from './FermentableModal';
 
 
@@ -26,7 +26,7 @@ const Fermentables = (props) => {
               <th className="recipe-table__header text-right">Actions</th>
             </tr>
           </thead>
-          <FermentableRowAll />
+          <FermentableList />
         </table>
 
         <button onClick={() => dispatch(showModal(name))}>

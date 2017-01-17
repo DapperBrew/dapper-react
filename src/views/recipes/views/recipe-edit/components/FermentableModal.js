@@ -14,7 +14,7 @@ import { addFermentable } from '../actions/recipeStaged';
 
 const FermentableModal = (props) => {
   const { modal, dispatch } = props;
-  const { selectedItem, itemWeight, color } = modal;
+  const { selectedItem, itemWeight } = modal;
   const name = modalInfo.FERMENTABLE.NAME;
   const items = values(props.fermentables);
 
