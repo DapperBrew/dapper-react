@@ -26,14 +26,15 @@ const FermentableModal = (props) => {
         name={name}
         header="Add Fermentable"
       >
-        <span className="ingredient-section-title">Amount</span>
         <Input
           side="left"
+          label="Input Weight"
           id="weight"
           measurement="lb"
           placeholder="ex: 2"
           onUpdate={weight => dispatch(updateWeight(weight))}
           value={modal.itemWeight}
+          isError={modal.modalErrorField === 'weight'}
         />
         <ModalSubmit
           closeModal={() => dispatch(hideModal())}

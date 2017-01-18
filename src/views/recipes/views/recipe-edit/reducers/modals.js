@@ -6,6 +6,7 @@ import {
   SEARCH_UPDATE,
   SELECT_ITEM,
   UPDATE_WEIGHT,
+  ERROR_MODAL,
 } from '../actions/modals';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   searchTableCells: '',
   searchKeys: '',
   modalLoaded: false,
+  modalError: '',
 };
 
 const modals = (state = initialState, action) => {
@@ -36,6 +38,7 @@ const modals = (state = initialState, action) => {
         searchTerm: '',
         selectedItem: '',
         itemWeight: '',
+        modalError: '',
       };
     case LOAD_MODAL:
       return {
@@ -59,6 +62,12 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         itemWeight: action.weight,
+      };
+    case ERROR_MODAL:
+      return {
+        ...state,
+        modalError: action.error,
+        modalErrorField: action.field,
       };
     default:
       return state;

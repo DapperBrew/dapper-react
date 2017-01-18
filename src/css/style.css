@@ -2669,6 +2669,8 @@ input[type="button"].button--block {
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #d3d3d3; }
+  .form__input.isError {
+    border: 1px solid #e91c53; }
 
 .form__input--measure {
   width: 90%;
@@ -2691,6 +2693,10 @@ input[type="button"].button--block {
   border-bottom-left-radius: 0;
   padding: 12px 0;
   text-align: center; }
+  .form__measure.isError {
+    border-top: 1px solid #e91c53;
+    border-right: 1px solid #e91c53;
+    border-bottom: 1px solid #e91c53; }
 
 .form-group {
   width: 50%;
@@ -2777,11 +2783,19 @@ input[type="button"].button--block {
 .ReactModal__Body--open {
   overflow: hidden; }
 
+.add-modal__error {
+  color: #e91c53;
+  display: inline-block;
+  padding-top: 10px;
+  font-weight: bold; }
+
 .ingredient-list-wrap {
   overflow-y: auto;
   height: 250px;
   border: 1px solid #d0d0d0;
   margin-bottom: 20px; }
+  .ingredient-list-wrap.isError {
+    border: 1px solid #e91c53; }
 
 .ingredient-list__thead {
   display: block;
@@ -2805,7 +2819,7 @@ input[type="button"].button--block {
   .ingredient-list__row:hover {
     background-color: rgba(116, 189, 166, 0.3); }
   .ingredient-list__row.is-active {
-    background-color: red; }
+    background-color: #8FD1B6; }
 
 .ingredient-list__cell {
   padding: 10px; }

@@ -31,3 +31,10 @@
 .ReactModal__Body--open {
   overflow: hidden;
 }
+
+.add-modal__error {
+  color: $danger;
+  display: inline-block;
+  padding-top: 10px;
+  font-weight: bold;
+}

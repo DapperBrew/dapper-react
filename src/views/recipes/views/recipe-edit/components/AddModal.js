@@ -51,6 +51,7 @@ class AddModal extends React.Component {
                 throttle={100}
                 placeholder="Filter..."
                 onChange={(term => dispatch(updateSearch(term)))}
+                autoFocus
               />
               <IngredientList
                 headers={modal.searchTableHeaders}
@@ -58,8 +59,10 @@ class AddModal extends React.Component {
                 filteredItems={filteredItems}
                 selectedItem={modal.selectedItem}
                 onSelect={item => dispatch(selectItem(item))}
+                isError={modal.modalErrorField === 'select'}
               />
               {this.props.children}
+              {modal.modalError ? <span className="add-modal__error">{modal.modalError}</span> : null }
             </div>
           </div>
         </Modal>

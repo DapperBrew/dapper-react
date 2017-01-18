@@ -8,6 +8,10 @@
   height: 250px; // height of ingredient list
   border: 1px solid #d0d0d0;
   margin-bottom: 20px;
+
+  &.isError {
+    border: 1px solid $danger;
+  }
 }
 
 .ingredient-list__thead {
@@ -45,7 +49,7 @@
   }
 
   &.is-active {
-    background-color: red;
+    background-color: $primary;
   }
 }
 .ingredient-list__cell {

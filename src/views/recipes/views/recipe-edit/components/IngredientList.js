@@ -72,7 +72,7 @@ class IngredientList extends React.Component {
         <div className="ingredient-list__header clearfix">
           <IngredientHeader {...this.props} />
         </div>
-        <div className="ingredient-list-wrap">
+        <div className={classNames('ingredient-list-wrap', { isError: this.props.isError })}>
           <table className="ingredient-list" id="tester">
             <IngredientListRows {...this.props} />
           </table>

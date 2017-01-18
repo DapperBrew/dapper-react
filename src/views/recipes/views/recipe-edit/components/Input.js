@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 class Input extends React.Component {
 
   onUpdate = (e) => {
@@ -9,7 +11,8 @@ class Input extends React.Component {
   renderUserMessage() {
     if (this.props.measurement) {
       return (
-        <div className="form__measure">{this.props.measurement}</div>
+        // <div className="form__measure">{this.props.measurement}</div>
+        <div className={classNames('form__measure', { isError: this.props.isError })}>{this.props.measurement}</div>
       );
     }
     return false;
@@ -25,7 +28,13 @@ class Input extends React.Component {
           type="text"
           onChange={this.onUpdate}
           placeholder={props.placeholder}
-          className={`form__input ${props.measurement ? 'form__input--measure' : ''}`}
+          // className={`form__input ${props.measurement ? 'form__input--measure' : ''}`}
+          className={
+            classNames(
+              'form__input',
+              { 'form__input--measure': props.measurement },
+              { isError: props.isError })
+          }
           value={props.value}
         />
         {this.renderUserMessage()}
@@ -37,6 +46,7 @@ class Input extends React.Component {
 Input.propTypes = {
   measurement: React.PropTypes.string,
   onUpdate: React.PropTypes.func,
+  isError: React.PropTypes.bool,
 };
 
 export default Input;
