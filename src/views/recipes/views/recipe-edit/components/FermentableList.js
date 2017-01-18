@@ -27,7 +27,7 @@ const FermentableList = props => (
 );
 
 const mapStateToProps = state => ({
-  fermentables: state.ingredients.fermentables,
+  fermentables: state.data.fermentables,
   recipeFermentables: state.recipeEdit.recipeStaged.fermentables,
   totalWeight: getTotalWeight(state),
 });

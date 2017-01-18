@@ -8,7 +8,7 @@ import Hops from './components/Hops';
 import Misc from './components/Misc';
 import Yeast from './components/Yeast';
 
-import { fetchIngredients } from '../../../../actions/ingredients';
+import { fetchData, fetchStyles } from '../../../../actions/data';
 
 
 // DELETE LATER
@@ -18,22 +18,30 @@ class RecipeEdit extends React.Component {
 
   componentWillMount(dispatch) {
     this.props.updateHeader('Create Recipe');
-    this.props.dispatch(fetchIngredients());
+    this.props.dispatch(fetchData());
+    this.props.dispatch(fetchStyles());
   }
 
+
   render() {
-    return (
-      <div className="container">
-        <RecipeInfo />
-        <div className="input-column">
-          <Fermentables />
+    const { data } = this.props;
+
+    if (data.loaded) {
+      return (
+        <div className="container">
+          <RecipeInfo />
+          <div className="input-column">
+            <Fermentables />
+          </div>
+          <div className="info-column">
+            <Card cardTitle="Stats" />
+            <Card cardTitle="Style Guide" />
+          </div>
         </div>
-        <div className="info-column">
-          <Card cardTitle="Stats" />
-          <Card cardTitle="Style Guide" />
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <div>LOADING</div>
+    }
   }
 }
 
@@ -43,6 +51,7 @@ RecipeEdit.propTypes = {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
+  data: state.data,
 });
 
 export default connect(mapStateToProps)(RecipeEdit);

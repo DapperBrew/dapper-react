@@ -1,0 +1,22 @@
+Style:
+  Name: American-Style Pale Ale
+  category: Pale American Ale
+  categoryNum: 18
+  styleNum: 18B
+  edition: 2015
+  og_min: 1.044
+  og_max: 1.05
+  fg_min: 1.088
+  fg_max: 1.014
+  ibu_min: 10.0
+  ibu_max: 30.0
+  srm_min: 2
+  srm_max: 8
+  abv_min: 4.5
+  abv_max: 6.2
+  carb_min: 2.2
+  carb_max: 2.7
+  examples: Ballast Point Grunion Pale Ale, Firestone Walker Pale 31, Great Lakes Burning River, Sierra Nevada Pale Ale, Stone Pale Ale, Tröegs Pale Ale
+  notes:
+  profile:
+  ingredients:

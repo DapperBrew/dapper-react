@@ -55,7 +55,7 @@ FermentableModal.propTypes = {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  fermentables: state.ingredients.fermentables,
+  fermentables: state.data.fermentables,
 });
 
 
