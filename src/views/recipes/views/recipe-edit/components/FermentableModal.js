@@ -32,7 +32,7 @@ const FermentableModal = (props) => {
           id="weight"
           measurement="lb"
           placeholder="ex: 2"
-          onUpdate={weight => dispatch(updateWeight(weight))}
+          onChange={weight => dispatch(updateWeight(weight))}
           value={modal.itemWeight}
           isError={modal.modalErrorField === 'weight'}
         />

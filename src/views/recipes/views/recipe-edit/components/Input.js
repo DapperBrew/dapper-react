@@ -1,17 +1,27 @@
 import React from 'react';
-
 import classNames from 'classnames';
 
 class Input extends React.Component {
 
-  onUpdate = (e) => {
-    this.props.onUpdate(e.target.value);
+  // debounce workaround
+  // componentWillMount() {
+  //   this.method = debounce(e => (
+  //     this.props.onChange(e.target.value)
+  //   ), 300);
+  // }
+  //
+  // debounceEvent = (event) => {
+  //   event.persist();
+  //   this.method(event);
+  // };
+
+  onChange = (e) => {
+    this.props.onChange(e.target.value);
   }
 
   renderUserMessage() {
     if (this.props.measurement) {
       return (
-        // <div className="form__measure">{this.props.measurement}</div>
         <div className={classNames('form__measure', { isError: this.props.isError })}>{this.props.measurement}</div>
       );
     }
@@ -26,9 +36,8 @@ class Input extends React.Component {
         <input
           id={props.id}
           type="text"
-          onChange={this.onUpdate}
+          onChange={this.onChange}
           placeholder={props.placeholder}
-          // className={`form__input ${props.measurement ? 'form__input--measure' : ''}`}
           className={
             classNames(
               'form__input',
@@ -45,7 +54,7 @@ class Input extends React.Component {
 
 Input.propTypes = {
   measurement: React.PropTypes.string,
-  onUpdate: React.PropTypes.func,
+  onChange: React.PropTypes.func,
   isError: React.PropTypes.bool,
 };
 

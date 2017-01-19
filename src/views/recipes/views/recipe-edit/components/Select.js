@@ -2,18 +2,6 @@ import React from 'react';
 import Select from 'react-select';
 
 class CardSelect extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      order: {},
-    };
-  }
-
-  // updates component state on select
-  updateValue = (newValue) => {
-    this.setState({ selectValue: newValue });
-  }
 
   render() {
     const props = this.props;
@@ -22,10 +10,11 @@ class CardSelect extends React.Component {
         <label htmlFor={props.name} className="form__label">{props.label}</label>
         <Select
           name={props.name}
-          value={this.state.selectValue}
-          onChange={this.updateValue}
+          label
+          onChange={props.onChange}
           options={props.options}
           className="input__select"
+          value={props.value}
         />
       </div>
     );

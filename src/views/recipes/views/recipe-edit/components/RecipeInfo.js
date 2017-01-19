@@ -1,18 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
+// Components
 import Card from '../../../../../components/Card';
 import CardInput from '../components/Input';
 import CardSelect from '../components/Select';
 
-import { getStylesObject } from '../selectors/data';
+// Selectors
+import { getStylesObject } from '../selectors/recipeEdit';
 
+// Action creators
+import { setStyle, setName, setEfficiency, setBoilTime, setBatchSize, setRecipeType } from '../actions/recipeStaged';
+
+// Temp data
 import type from '../../../../../data/type';
 
 class RecipeInfo extends React.Component {
   render() {
-    const { stylesDropdown } = this.props;
+    const { stylesDropdown, recipeStaged, dispatch } = this.props;
     return (
       <div className="recipe-info">
         <Card cardTitle="Recipe Info">
@@ -21,6 +26,8 @@ class RecipeInfo extends React.Component {
             id="recipe-name"
             label="Recipe Name"
             placeholder="ex: Hop Pun"
+            onChange={name => dispatch(setName(name))}
+            value={recipeStaged.name}
           />
           <CardInput
             side="right"
@@ -28,18 +35,24 @@ class RecipeInfo extends React.Component {
             label="Efficiency"
             measurement="%"
             placeholder="ex: 76"
+            onChange={eff => dispatch(setEfficiency(eff))}
+            value={recipeStaged.efficiency}
           />
           <CardSelect
             side="left"
             label="Recipe Type"
             options={type}
             name="select-type"
+            onChange={recipeType => dispatch(setRecipeType(recipeType))}
+            value={recipeStaged.recipeType}
           />
           <CardSelect
             side="right"
             label="Recipe Style"
             options={stylesDropdown}
             name="select-style"
+            onChange={style => dispatch(setStyle(style))}
+            value={recipeStaged.style}
           />
           <CardInput
             side="left"
@@ -47,6 +60,8 @@ class RecipeInfo extends React.Component {
             label="Boil Time"
             measurement="min"
             placeholder="ex: 90"
+            onChange={time => dispatch(setBoilTime(time))}
+            value={recipeStaged.boilTime}
           />
           <CardInput
             side="right"
@@ -54,6 +69,8 @@ class RecipeInfo extends React.Component {
             label="Batch Size"
             measurement="gal"
             placeholder="ex: 5.5"
+            onChange={size => dispatch(setBatchSize(size))}
+            value={recipeStaged.batchSize}
           />
         </Card>
       </div>
@@ -62,10 +79,13 @@ class RecipeInfo extends React.Component {
 }
 
 RecipeInfo.propTypes = {
-  stylesDropdown: React.PropTypes.array,
+  stylesDropdown: React.PropTypes.array, // eslint-disable-line
+  recipeStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
+  recipeStaged: state.recipeEdit.recipeStaged,
   styles: state.data.styles,
   stylesDropdown: getStylesObject(state),
 });
