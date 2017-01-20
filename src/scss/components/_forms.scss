@@ -38,6 +38,13 @@ $_line-height: 1.5;
   border-bottom-right-radius: 0;
 }
 
+// if input has a select field immediatly following
+.form__input--select {
+  width: 80%;
+  border-right: 0 solid transparent;
+  border-radius: 4px 0 0 4px;
+}
+
 // measurement indicator to the right of the form input
 .form__measure {
   font-size: $_font-size;
@@ -56,9 +63,22 @@ $_line-height: 1.5;
   padding: 12px 0;
   text-align: center;
 
-  &.isError{
+  &.isError {
     border-top: 1px solid $danger;
     border-right: 1px solid $danger;
     border-bottom: 1px solid $danger;
   }
+}
+
+.form__select--input {
+  width: 20%;
+  float: left;
+}
+
+.form__select--input .Select-control {
+  border-radius: 0 4px 4px 0;
+}
+
+.form__select--input.is-open .Select-control {
+  border-radius: 0 4px 0 0;
 }

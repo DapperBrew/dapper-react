@@ -45,7 +45,7 @@ export const setRecipeType = recipeType => ({
   recipeType,
 });
 
-export const addFermentable = (id, weight, reset) => (
+export const addFermentable = (id, weight, unit, reset) => (
   (dispatch) => {
     if (!id) { // check if an item is selected
       dispatch({
@@ -71,6 +71,7 @@ export const addFermentable = (id, weight, reset) => (
         id,
         key: uniqueId(),
         weight,
+        unit,
       });
       dispatch(resetModal());
     } else {
@@ -79,6 +80,7 @@ export const addFermentable = (id, weight, reset) => (
         id,
         key: uniqueId(),
         weight,
+        unit,
       });
       dispatch(hideModal());
     }

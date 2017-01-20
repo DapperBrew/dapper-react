@@ -7,6 +7,7 @@ export const ERROR_MODAL = 'ERROR_MODAL';
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
 export const SELECT_ITEM = 'SELECT_ITEM';
 export const UPDATE_WEIGHT = 'UPDATE_WEIGHT';
+export const UPDATE_FERMENTABLE_UNIT = 'UPDATE_UNIT';
 
 // other constants
 export const modalInfo = {
@@ -76,4 +77,9 @@ export const selectItem = item => ({
 export const updateWeight = weight => ({
   type: UPDATE_WEIGHT,
   weight,
+});
+
+export const updateFermentableUnit = unit => ({
+  type: UPDATE_FERMENTABLE_UNIT,
+  unit,
 });

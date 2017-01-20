@@ -15,8 +15,7 @@ const getStylesDropdown = (items) => {
   if (items) {
     return Object.keys(items).map(item => ({
       label: items[item].name,
-      value: items[item].name,
-      id: items[item]._id,
+      value: items[item]._id,
     }));
   }
   return [{ label: 'loading...', value: 'loading...' }];

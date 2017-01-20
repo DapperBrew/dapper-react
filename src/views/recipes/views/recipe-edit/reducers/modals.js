@@ -7,6 +7,7 @@ import {
   SELECT_ITEM,
   UPDATE_WEIGHT,
   ERROR_MODAL,
+  UPDATE_FERMENTABLE_UNIT,
 } from '../actions/modals';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   searchTerm: '',
   selectedItem: '',
   itemWeight: '',
+  fermentableUnit: 'lb',
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
@@ -39,6 +41,8 @@ const modals = (state = initialState, action) => {
         selectedItem: '',
         itemWeight: '',
         modalError: '',
+        modalErrorField: '',
+        fermentableUnit: 'lb',
       };
     case LOAD_MODAL:
       return {
@@ -62,6 +66,11 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         itemWeight: action.weight,
+      };
+    case UPDATE_FERMENTABLE_UNIT:
+      return {
+        ...state,
+        fermentableUnit: action.unit,
       };
     case ERROR_MODAL:
       return {

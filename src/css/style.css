@@ -2677,6 +2677,11 @@ input[type="button"].button--block {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
+.form__input--select {
+  width: 80%;
+  border-right: 0 solid transparent;
+  border-radius: 4px 0 0 4px; }
+
 .form__measure {
   font-size: 14px;
   line-height: 1.5;
@@ -2697,6 +2702,16 @@ input[type="button"].button--block {
     border-top: 1px solid #e91c53;
     border-right: 1px solid #e91c53;
     border-bottom: 1px solid #e91c53; }
+
+.form__select--input {
+  width: 20%;
+  float: left; }
+
+.form__select--input .Select-control {
+  border-radius: 0 4px 4px 0; }
+
+.form__select--input.is-open .Select-control {
+  border-radius: 0 4px 0 0; }
 
 .form-group {
   width: 50%;

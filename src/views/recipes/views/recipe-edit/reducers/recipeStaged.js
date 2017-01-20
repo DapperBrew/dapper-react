@@ -52,6 +52,7 @@ const recipeEdit = (state = initialState, action) => {
             id: action.id,
             key: action.key,
             weight: action.weight,
+            unit: action.unit,
           },
         ],
       };

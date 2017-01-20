@@ -6,46 +6,52 @@ import values from 'lodash/values';
 // Components
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
-import Input from './Input';
+import InputSelect from './InputSelect';
 
 // actions
-import { hideModal, modalInfo, updateWeight } from '../actions/modals';
+import { hideModal, modalInfo, updateWeight, updateFermentableUnit } from '../actions/modals';
 import { addFermentable } from '../actions/recipeStaged';
 
-const FermentableModal = (props) => {
-  const { modal, dispatch } = props;
-  const { selectedItem, itemWeight } = modal;
-  const name = modalInfo.FERMENTABLE.NAME;
-  const items = values(props.fermentables);
+class FermentableModal extends React.Component {
 
-  // don't mount the modal unless the modal is ready to use
-  if (modal.modalOpen === true) {
-    return (
-      <AddModal
-        items={items}
-        name={name}
-        header="Add Fermentable"
-      >
-        <Input
-          side="left"
-          label="Input Weight"
-          id="weight"
-          measurement="lb"
-          placeholder="ex: 2"
-          onChange={weight => dispatch(updateWeight(weight))}
-          value={modal.itemWeight}
-          isError={modal.modalErrorField === 'weight'}
-        />
-        <ModalSubmit
-          closeModal={() => dispatch(hideModal())}
-          resetModal={() => dispatch(addFermentable(selectedItem, itemWeight, true))}
-          submitModal={() => dispatch(addFermentable(selectedItem, itemWeight))}
-        />
-      </AddModal>
-    );
+  render() {
+    const props = this.props;
+    const { modal, dispatch } = this.props;
+    const { selectedItem, itemWeight, fermentableUnit } = modal;
+    const name = modalInfo.FERMENTABLE.NAME;
+    const items = values(props.fermentables);
+
+    // don't mount the modal unless the modal is ready to use
+    if (modal.modalOpen === true) {
+      return (
+        <AddModal
+          items={items}
+          name={name}
+          header="Add Fermentable"
+        >
+          <InputSelect
+            side="left"
+            label="Input Weight"
+            id="weight"
+            placeholder="ex: 2"
+            isError={modal.modalErrorField === 'weight'}
+            options={[{ label: 'lb', value: 'lb' }, { label: 'oz', value: 'oz' }]}
+            onInputChange={weight => dispatch(updateWeight(weight))}
+            onSelectChange={unit => dispatch(updateFermentableUnit(unit))}
+            inputValue={modal.itemWeight}
+            selectValue={modal.fermentableUnit}
+          />
+          <ModalSubmit
+            closeModal={() => dispatch(hideModal())}
+            resetModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit, true))}
+            submitModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit))}
+          />
+        </AddModal>
+      );
+    }
+    return <div />;
   }
-  return <div />;
-};
+}
 
 FermentableModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
