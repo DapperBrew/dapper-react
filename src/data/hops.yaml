@@ -1,0 +1,23 @@
+Hop:
+  id: 1234
+  name: Simcoe
+  description: Simcoe is a dual-purpose hop variety which its grower claims is similar in character to Amarillo. It is a proprietary hop, and the name \"Simcoe\" is a registered trademark of Yakima Chief Ranches, LLC.
+  country: US
+  alphaAcidMin: 12
+  alphaAcidMax: 14
+  betaAcidMin: 4
+  betaAcidMax: 5
+  caryophylleneMin: 5
+  caryophylleneMax: 8
+  cohumuloneMin: 15
+  cohumuloneMax: 20
+  farneseneMin: 0
+  farneseneMax: 1
+  humuleneMin: 10
+  humuleneMax: 15
+  myrceneMin: 60
+  myrceneMax: 65
+  isNoble: false
+  isAroma: true
+  isBittering: true
+  substitutes:

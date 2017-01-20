@@ -1,9 +1,13 @@
 import { schema } from 'normalizr';
 
 const fermentableSchema = new schema.Entity('fermentables', {}, { idAttribute: '_id' });
-const fermentableListSchema = [fermentableSchema];
+export const fermentableListSchema = [fermentableSchema];
 
 const styleSchema = new schema.Entity('styles', {}, { idAttribute: '_id' });
-const styleListSchema = [styleSchema];
+export const styleListSchema = [styleSchema];
 
-export { fermentableSchema, fermentableListSchema, styleListSchema };
+const hopSchema = new schema.Entity('hops', {}, { idAttribute: '_id' });
+export const hopListSchema = [hopSchema];
+
+const yeastSchema = new schema.Entity('yeasts', {}, { idAttribute: '_id' });
+export const yeastListSchema = [yeastSchema];

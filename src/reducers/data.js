@@ -1,4 +1,4 @@
-import { FERMENTABLES_SUCCESS, STYLES_SUCCESS, DATA_SUCCESS } from '../actions/data';
+import * as actions from '../actions/data';
 
 const initialState = {
   fermentables: {},
@@ -6,17 +6,27 @@ const initialState = {
 
 const data = (state = initialState, action) => {
   switch (action.type) {
-    case DATA_SUCCESS:
+    case actions.DATA_SUCCESS:
       return {
         ...state,
         loaded: true,
       };
-    case FERMENTABLES_SUCCESS:
+    case actions.FERMENTABLES_SUCCESS:
       return {
         ...state,
         fermentables: action.data.entities.fermentables,
       };
-    case STYLES_SUCCESS:
+    case actions.HOPS_SUCCESS:
+      return {
+        ...state,
+        hops: action.data.entities.hops,
+      };
+    case actions.YEASTS_SUCCESS:
+      return {
+        ...state,
+        yeasts: action.data.entities.yeasts,
+      };
+    case actions.STYLES_SUCCESS:
       return {
         ...state,
         styles: action.data.entities.styles,

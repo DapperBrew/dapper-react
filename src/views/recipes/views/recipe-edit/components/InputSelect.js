@@ -31,6 +31,7 @@ const InputSelect = props => (
         clearable={false}
         selectValue={'lb'}
         simpleValue={true} //eslint-disable-line
+        searchable={false}
       />
     </div>
   </div>
