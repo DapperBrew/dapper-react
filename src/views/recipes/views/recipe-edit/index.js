@@ -32,6 +32,7 @@ class RecipeEdit extends React.Component {
           <RecipeInfo />
           <div className="input-column">
             <Fermentables />
+            <Hops />
           </div>
           <div className="info-column">
             <Card cardTitle="Stats" />

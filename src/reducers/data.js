@@ -2,6 +2,7 @@ import * as actions from '../actions/data';
 
 const initialState = {
   fermentables: {},
+  hops: {},
 };
 
 const data = (state = initialState, action) => {

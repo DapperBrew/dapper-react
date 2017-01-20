@@ -9,6 +9,7 @@ const initialState = {
   batchSize: '',
   recipeType: '',
   fermentables: [],
+  hops: [],
 };
 
 const recipeEdit = (state = initialState, action) => {

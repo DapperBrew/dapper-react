@@ -1,7 +1,6 @@
 // action types
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
-export const LOAD_MODAL = 'LOAD_MODAL';
 export const RESET_MODAL = 'RESET_MODAL';
 export const ERROR_MODAL = 'ERROR_MODAL';
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
@@ -18,9 +17,10 @@ export const modalInfo = {
     SEARCH_KEYS: ['name', 'type'],
   },
   HOP: {
-    HEADER: ['Name', 'Type', 'Color'],
-    CELL_ITEMS: ['name', 'type', 'srm'],
-    SEARCH_KEYS: ['name', 'type'],
+    NAME: 'HOP',
+    SEARCH_TABLE_HEADER: ['Name', 'Type', 'Alphas'],
+    SEARCH_TABLE_CELLS: ['name', 'country', 'alphaAcidMin'],
+    SEARCH_KEYS: ['name'],
   },
   MISC: {
     HEADER: ['Name', 'Type', 'Color'],
@@ -47,15 +47,6 @@ export const hideModal = name => ({
 
 export const resetModal = () => ({
   type: RESET_MODAL,
-});
-
-export const loadModal = (searchTableHeaders, searchTableCells, searchKeys) => ({
-  type: LOAD_MODAL,
-  payload: {
-    searchTableHeaders,
-    searchTableCells,
-    searchKeys,
-  },
 });
 
 export const errorModal = (error, field) => ({

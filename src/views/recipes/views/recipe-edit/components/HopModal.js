@@ -9,17 +9,17 @@ import ModalSubmit from './ModalSubmit';
 import InputSelect from './InputSelect';
 
 // actions
-import { hideModal, modalInfo, updateWeight, updateFermentableUnit } from '../actions/modals';
-import { addFermentable } from '../actions/recipeStaged';
+import { hideModal, modalInfo, updateWeight, updateHopUnit } from '../actions/modals';
+import { addHop } from '../actions/recipeStaged';
 
-class FermentableModal extends React.Component {
+class HopModal extends React.Component {
 
   render() {
     const props = this.props;
     const { modal, dispatch } = this.props;
-    const { selectedItem, itemWeight, fermentableUnit } = modal;
-    const name = modalInfo.FERMENTABLE.NAME;
-    const items = values(props.fermentables);
+    const { selectedItem, itemWeight, hopUnit } = modal;
+    const name = modalInfo.HOP.NAME;
+    const items = values(props.hops);
 
     // don't mount the modal unless the modal is ready to use
     if (modal.modalOpen === true) {
@@ -27,10 +27,10 @@ class FermentableModal extends React.Component {
         <AddModal
           items={items}
           name={name}
-          header="Add Fermentable"
-          headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
-          cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
-          searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
+          header="Add Hop"
+          headers={modalInfo.HOP.SEARCH_TABLE_HEADER}
+          cells={modalInfo.HOP.SEARCH_TABLE_CELLS}
+          searchKeys={modalInfo.HOP.SEARCH_KEYS}
         >
           <InputSelect
             side="left"
@@ -40,14 +40,14 @@ class FermentableModal extends React.Component {
             isError={modal.modalErrorField === 'weight'}
             options={[{ label: 'lb', value: 'lb' }, { label: 'oz', value: 'oz' }]}
             onInputChange={weight => dispatch(updateWeight(weight))}
-            onSelectChange={unit => dispatch(updateFermentableUnit(unit))}
+            onSelectChange={unit => dispatch(updateHopUnit(unit))}
             inputValue={modal.itemWeight}
             selectValue={modal.fermentableUnit}
           />
           <ModalSubmit
             closeModal={() => dispatch(hideModal())}
-            resetModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit, true))}
-            submitModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit))}
+            resetModal={() => dispatch(addHop(selectedItem, itemWeight, hopUnit, true))}
+            submitModal={() => dispatch(addHop(selectedItem, itemWeight, hopUnit))}
           />
         </AddModal>
       );
@@ -56,16 +56,16 @@ class FermentableModal extends React.Component {
   }
 }
 
-FermentableModal.propTypes = {
+HopModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
-  fermentables: React.PropTypes.object, // eslint-disable-line
+  hops: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  fermentables: state.data.fermentables,
+  hops: state.data.hops,
 });
 
 
-export default connect(mapStateToProps)(FermentableModal);
+export default connect(mapStateToProps)(HopModal);
