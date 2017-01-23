@@ -19,6 +19,7 @@ const Hops = (props) => {
           <thead>
             <tr className="">
               <th className="recipe-table__header text-left">Name</th>
+              <th className="recipe-table__header text-right">Weight</th>
               <th className="recipe-table__header text-right">Time</th>
               <th className="recipe-table__header text-right">Stage</th>
               <th className="recipe-table__header text-right">IBU</th>

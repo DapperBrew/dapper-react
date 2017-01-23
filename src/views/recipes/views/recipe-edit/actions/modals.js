@@ -8,6 +8,11 @@ export const SELECT_ITEM = 'SELECT_ITEM';
 export const UPDATE_WEIGHT = 'UPDATE_WEIGHT';
 export const UPDATE_FERMENTABLE_UNIT = 'UPDATE_UNIT';
 
+export const UPDATE_HOP_WEIGHT = 'UPDATE_HOP_WEIGHT';
+export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
+export const UPDATE_HOP_STAGE = 'UPDATE_HOP_STAGE';
+export const UPDATE_HOP_TYPE = 'UPDATE_HOP_TYPE';
+
 // other constants
 export const modalInfo = {
   FERMENTABLE: {
@@ -19,7 +24,7 @@ export const modalInfo = {
   HOP: {
     NAME: 'HOP',
     SEARCH_TABLE_HEADER: ['Name', 'Type', 'Alphas'],
-    SEARCH_TABLE_CELLS: ['name', 'country', 'alphaAcidMin'],
+    SEARCH_TABLE_CELLS: ['name', 'type', 'alpha'],
     SEARCH_KEYS: ['name'],
   },
   MISC: {
@@ -73,4 +78,25 @@ export const updateWeight = weight => ({
 export const updateFermentableUnit = unit => ({
   type: UPDATE_FERMENTABLE_UNIT,
   unit,
+});
+
+// Hop modal actions
+export const updateHopWeight = weight => ({
+  type: UPDATE_HOP_WEIGHT,
+  weight,
+});
+
+export const updateHopTime = time => ({
+  type: UPDATE_HOP_TIME,
+  time,
+});
+
+export const updateHopStage = stage => ({
+  type: UPDATE_HOP_STAGE,
+  stage,
+});
+
+export const updateHopType = hopType => ({
+  type: 'UPDATE_HOP_TYPE',
+  hopType,
 });

@@ -7,14 +7,15 @@ import EditIcons from './EditIcons';
 const HopList = props => (
   <tbody>
     {props.recipeHops.map((hop) => {
-      const { dispatch } = props;
+      const { dispatch, hops } = props;
+      console.log(hop.weight);
 
       return (
         <tr key={hop.key} className="recipe-table__row">
-          <td className="recipe-table__cell text-left">Centennial</td>
-          <td className="recipe-table__cell text-right">2 oz</td>
-          <td className="recipe-table__cell text-right">60 min</td>
-          <td className="recipe-table__cell text-right">Boil</td>
+          <td className="recipe-table__cell text-left">{hops[hop.id].name}</td>
+          <td className="recipe-table__cell text-right">{hop.weight} oz</td>
+          <td className="recipe-table__cell text-right">{hop.time} {hop.stage === 'dry hop' ? 'days' : 'min'}</td>
+          <td className="recipe-table__cell text-right capitolize">{hop.stage}</td>
           <td className="recipe-table__cell text-right">40 IBU</td>
           <EditIcons removeItem={() => dispatch(removeHop(hop.key))} />
         </tr>

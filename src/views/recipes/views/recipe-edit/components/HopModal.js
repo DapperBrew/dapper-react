@@ -6,18 +6,28 @@ import values from 'lodash/values';
 // Components
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
-import InputSelect from './InputSelect';
+import HopModalInput from './HopModalInput';
 
 // actions
-import { hideModal, modalInfo, updateWeight, updateHopUnit } from '../actions/modals';
+import {
+  hideModal,
+  modalInfo,
+  updateHopWeight,
+  updateHopTime,
+  updateHopStage,
+  updateHopType,
+} from '../actions/modals';
+
 import { addHop } from '../actions/recipeStaged';
 
-class HopModal extends React.Component {
+// selectors
+import { getHopList } from '../selectors/modals';
 
+class HopModal extends React.Component {
   render() {
     const props = this.props;
     const { modal, dispatch } = this.props;
-    const { selectedItem, itemWeight, hopUnit } = modal;
+    const { selectedItem, hopWeight, hopTime, hopStage, hopType } = modal;
     const name = modalInfo.HOP.NAME;
     const items = values(props.hops);
 
@@ -32,22 +42,24 @@ class HopModal extends React.Component {
           cells={modalInfo.HOP.SEARCH_TABLE_CELLS}
           searchKeys={modalInfo.HOP.SEARCH_KEYS}
         >
-          <InputSelect
-            side="left"
-            label="Input Weight"
-            id="weight"
-            placeholder="ex: 2"
-            isError={modal.modalErrorField === 'weight'}
-            options={[{ label: 'lb', value: 'lb' }, { label: 'oz', value: 'oz' }]}
-            onInputChange={weight => dispatch(updateWeight(weight))}
-            onSelectChange={unit => dispatch(updateHopUnit(unit))}
-            inputValue={modal.itemWeight}
-            selectValue={modal.fermentableUnit}
+          <HopModalInput
+            onWeightChange={weight => dispatch(updateHopWeight(weight))}
+            onTimeChange={time => dispatch(updateHopTime(time))}
+            onStageChange={stage => dispatch(updateHopStage(stage))}
+            onTypeChange={theHopType => dispatch(updateHopType(theHopType))}
+            weightValue={hopWeight}
+            timeValue={hopTime}
+            stageValue={hopStage}
+            typeValue={hopType}
+            isError={modal.modalError}
+            errorField={modal.modalErrorField}
           />
           <ModalSubmit
             closeModal={() => dispatch(hideModal())}
-            resetModal={() => dispatch(addHop(selectedItem, itemWeight, hopUnit, true))}
-            submitModal={() => dispatch(addHop(selectedItem, itemWeight, hopUnit))}
+            resetModal={() =>
+              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType, true))}
+            submitModal={() =>
+              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType))}
           />
         </AddModal>
       );
@@ -59,12 +71,12 @@ class HopModal extends React.Component {
 HopModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
-  hops: React.PropTypes.object, // eslint-disable-line
+  hops: React.PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  hops: state.data.hops,
+  hops: getHopList(state),
 });
 
 

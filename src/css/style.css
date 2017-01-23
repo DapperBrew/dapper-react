@@ -804,6 +804,9 @@ Takes a few variables and creates a new button style
 .text-right {
   text-align: right; }
 
+.capitolize {
+  text-transform: capitalize; }
+
 /**
 This is to help create a simple system for whitespace for blocks. It needs a
 single variable: $whitespace
@@ -2678,7 +2681,7 @@ input[type="button"].button--block {
   border-bottom-right-radius: 0; }
 
 .form__input--select {
-  width: 80%;
+  width: 70%;
   border-right: 0 solid transparent;
   border-radius: 4px 0 0 4px; }
 
@@ -2704,7 +2707,7 @@ input[type="button"].button--block {
     border-bottom: 1px solid #e91c53; }
 
 .form__select--input {
-  width: 20%;
+  width: 30%;
   float: left; }
 
 .form__select--input .Select-control {
@@ -2849,6 +2852,26 @@ input[type="button"].button--block {
 
 .ingredient-section-title {
   display: block; }
+
+.hop-modal-input {
+  display: flex;
+  justify-content: space-between; }
+
+.hop-form-group {
+  margin-bottom: 20px;
+  width: 24%; }
+
+.hop-form-group__weight {
+  width: 70%; }
+
+.hop-form-group__unit {
+  width: 30%; }
+
+.hop-form-group__input-select {
+  width: 50%; }
+
+.hop-form-group__select {
+  width: 50%; }
 
 .main {
   min-height: 100vh;

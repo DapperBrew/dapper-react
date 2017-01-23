@@ -1,0 +1,19 @@
+.hop-modal-input {
+  display: flex;
+  justify-content: space-between; }
+
+.hop-form-group {
+  margin-bottom: 20px;
+  width: 24%; }
+
+.hop-form-group__weight {
+  width: 70%; }
+
+.hop-form-group__unit {
+  width: 30%; }
+
+.hop-form-group__input-select {
+  width: 50%; }
+
+.hop-form-group__select {
+  width: 50%; }

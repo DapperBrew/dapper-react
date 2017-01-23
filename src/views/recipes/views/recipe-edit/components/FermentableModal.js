@@ -12,6 +12,9 @@ import InputSelect from './InputSelect';
 import { hideModal, modalInfo, updateWeight, updateFermentableUnit } from '../actions/modals';
 import { addFermentable } from '../actions/recipeStaged';
 
+// selectors
+import { getFermentableList } from '../selectors/modals';
+
 class FermentableModal extends React.Component {
 
   render() {
@@ -59,12 +62,12 @@ class FermentableModal extends React.Component {
 FermentableModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
-  fermentables: React.PropTypes.object, // eslint-disable-line
+  fermentables: React.PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  fermentables: state.data.fermentables,
+  fermentables: getFermentableList(state),
 });
 
 

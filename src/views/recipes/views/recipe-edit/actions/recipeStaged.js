@@ -13,6 +13,9 @@ export const SET_RECIPE_TYPE = 'SET_RECIPE_TYPE';
 export const ADD_FERMENTABLE_SUCCESS = 'ADD_FERMENTABLE_SUCCESS';
 export const ADD_FERMENTABLE_ERROR = 'ADD_FERMENTABLE_ERROR';
 export const REMOVE_FERMENTABLE = 'REMOVE_FERMENTABLE';
+export const ADD_HOP_SUCCESS = 'ADD_HOP_SUCCESSS';
+export const ADD_HOP_ERROR = 'ADD_HOP_ERROR';
+export const REMOVE_HOP = 'REMOVE_HOP';
 
 
 export const setStyle = style => ({
@@ -91,6 +94,73 @@ export const removeFermentable = key => (
   dispatch => (
     dispatch({
       type: REMOVE_FERMENTABLE,
+      key,
+    })
+  )
+);
+
+export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
+  (dispatch) => {
+    if (!id) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please select an item.',
+        field: 'select',
+      });
+    } else if (!hopWeight) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a weight.',
+        field: 'weight',
+      });
+    } else if (isFinite(Number(hopWeight)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Weight must be a number',
+        field: 'weight',
+      });
+    } else if (!hopTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(hopTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else if (reset === true) { // if there is a reset flag
+      dispatch({
+        type: ADD_HOP_SUCCESS,
+        id,
+        key: uniqueId(),
+        hopWeight,
+        hopTime,
+        hopStage,
+        hopType,
+      });
+      dispatch(resetModal());
+    } else {
+      dispatch({
+        type: ADD_HOP_SUCCESS,
+        id,
+        key: uniqueId(),
+        hopWeight,
+        hopTime,
+        hopStage,
+        hopType,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
+export const removeHop = key => (
+  dispatch => (
+    dispatch({
+      type: REMOVE_HOP,
       key,
     })
   )

@@ -1,14 +1,4 @@
-import {
-  SHOW_MODAL,
-  HIDE_MODAL,
-  LOAD_MODAL,
-  RESET_MODAL,
-  SEARCH_UPDATE,
-  SELECT_ITEM,
-  UPDATE_WEIGHT,
-  ERROR_MODAL,
-  UPDATE_FERMENTABLE_UNIT,
-} from '../actions/modals';
+import * as actions from '../actions/modals';
 
 const initialState = {
   modalOpen: false,
@@ -21,20 +11,24 @@ const initialState = {
   searchKeys: '',
   modalLoaded: false,
   modalError: '',
+  hopStage: 'boil',
+  hopTime: '',
+  hopWeight: '',
+  hopType: 'pellet',
 };
 
 const modals = (state = initialState, action) => {
   switch (action.type) {
-    case SHOW_MODAL:
+    case actions.SHOW_MODAL:
       return {
         ...state,
         modalOpen: true,
         modalName: action.name,
         modalLoaded: false,
       };
-    case HIDE_MODAL:
+    case actions.HIDE_MODAL:
       return initialState;
-    case RESET_MODAL:
+    case actions.RESET_MODAL:
       return {
         ...state,
         searchTerm: '',
@@ -43,8 +37,12 @@ const modals = (state = initialState, action) => {
         modalError: '',
         modalErrorField: '',
         fermentableUnit: 'lb',
+        hopStage: 'boil',
+        hopTime: '',
+        hopWeight: '',
+        hopType: 'pellet',
       };
-    case LOAD_MODAL:
+    case actions.LOAD_MODAL:
       return {
         ...state,
         searchTableHeaders: action.payload.searchTableHeaders,
@@ -52,27 +50,47 @@ const modals = (state = initialState, action) => {
         searchKeys: action.payload.searchKeys,
         modalLoaded: true,
       };
-    case SEARCH_UPDATE:
+    case actions.SEARCH_UPDATE:
       return {
         ...state,
         searchTerm: action.term,
       };
-    case SELECT_ITEM:
+    case actions.SELECT_ITEM:
       return {
         ...state,
         selectedItem: action.item,
       };
-    case UPDATE_WEIGHT:
+    case actions.UPDATE_WEIGHT:
       return {
         ...state,
         itemWeight: action.weight,
       };
-    case UPDATE_FERMENTABLE_UNIT:
+    case actions.UPDATE_FERMENTABLE_UNIT:
       return {
         ...state,
         fermentableUnit: action.unit,
       };
-    case ERROR_MODAL:
+    case actions.UPDATE_HOP_WEIGHT:
+      return {
+        ...state,
+        hopWeight: action.weight,
+      };
+    case actions.UPDATE_HOP_TIME:
+      return {
+        ...state,
+        hopTime: action.time,
+      };
+    case actions.UPDATE_HOP_STAGE:
+      return {
+        ...state,
+        hopStage: action.stage,
+      };
+    case actions.UPDATE_HOP_TYPE:
+      return {
+        ...state,
+        hopType: action.hopType,
+      };
+    case actions.ERROR_MODAL:
       return {
         ...state,
         modalError: action.error,

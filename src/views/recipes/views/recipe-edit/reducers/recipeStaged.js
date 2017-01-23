@@ -62,6 +62,26 @@ const recipeEdit = (state = initialState, action) => {
         ...state,
         fermentables: reject(state.fermentables, { key: action.key }),
       };
+    case recipeAction.ADD_HOP_SUCCESS:
+      return {
+        ...state,
+        hops: [
+          ...state.hops,
+          {
+            id: action.id,
+            key: action.key,
+            weight: action.hopWeight,
+            time: action.hopTime,
+            stage: action.hopStage,
+            type: action.hopType,
+          },
+        ],
+      };
+    case recipeAction.REMOVE_HOP:
+      return {
+        ...state,
+        hops: reject(state.hops, { key: action.key }),
+      };
     default:
       return state;
   }
