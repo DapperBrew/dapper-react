@@ -4,9 +4,9 @@ import * as recipeAction from '../actions/recipeStaged';
 const initialState = {
   name: '',
   style: '',
-  efficiency: '',
-  boilTime: '',
-  batchSize: '',
+  efficiency: '75',
+  boilTime: '60',
+  batchSize: '6',
   recipeType: '',
   fermentables: [],
   hops: [],

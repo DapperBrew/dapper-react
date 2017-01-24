@@ -2,11 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Components
 import RecipeInfo from './components/RecipeInfo';
 import Fermentables from './components/Fermentables';
 import Hops from './components/Hops';
 import Misc from './components/Misc';
 import Yeast from './components/Yeast';
+import Stats from './components/Stats';
 
 import { fetchData, fetchStyles } from '../../../../actions/data';
 
@@ -35,7 +37,7 @@ class RecipeEdit extends React.Component {
             <Hops />
           </div>
           <div className="info-column">
-            <Card cardTitle="Stats" />
+            <Stats />
             <Card cardTitle="Style Guide" />
           </div>
         </div>

@@ -2873,6 +2873,21 @@ input[type="button"].button--block {
 .hop-form-group__select {
   width: 50%; }
 
+.stat {
+  width: 50%;
+  float: left;
+  margin-bottom: 20px; }
+
+.stat__title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0; }
+
+.stat__content {
+  font-weight: 700;
+  font-size: 36px; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

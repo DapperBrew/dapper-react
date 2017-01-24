@@ -1,0 +1,45 @@
+{
+    "name": "Test Recipe",
+    "description": "Recipe description",
+    "author": "Anonymous Brewer",
+    "boilSize": 10,
+    "batchSize": 20,
+    "servingSize": 0.355,
+    "steepEfficiency": 50,
+    "steepTime": 20,
+    "mashEfficiency": 75,
+    "style": null,
+    "ibuMethod": "tinseth",
+    "fermentables": [{
+        "name": "Extra pale extract",
+        "weight": 4,
+        "yield": 75,
+        "color": 2.5,
+        "late": false
+    }],
+    "spices": [{
+        "name": "Cascade hops",
+        "weight": 0.028349556839727483,
+        "aa": 4.5,
+        "use": "boil",
+        "time": 60,
+        "form": "pellet"
+    }],
+    "yeast": [{
+        "name": "Wyeast 3052",
+        "type": "ale",
+        "form": "liquid",
+        "attenuation": 74
+    }],
+    "mash": null,
+    "bottlingTemp": 0,
+    "bottlingPressure": 0,
+    "primaryDays": 14,
+    "primaryTemp": 20,
+    "secondaryDays": 0,
+    "secondaryTemp": 0,
+    "tertiaryDays": 0,
+    "tertiaryTemp": 0,
+    "agingDays": 14,
+    "agingTemp": 20
+}
