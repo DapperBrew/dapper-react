@@ -11,6 +11,7 @@ const ModalSubmit = props => (
 ModalSubmit.propTypes = {
   closeModal: React.PropTypes.func.isRequired,
   submitModal: React.PropTypes.func.isRequired,
+  resetModal: React.PropTypes.func.isRequired,
 };
 
 export default ModalSubmit;

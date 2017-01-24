@@ -49,7 +49,9 @@ class FermentableModal extends React.Component {
           />
           <ModalSubmit
             closeModal={() => dispatch(hideModal())}
-            resetModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit, true))}
+            resetModal={
+              () => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit, true))
+            }
             submitModal={() => dispatch(addFermentable(selectedItem, itemWeight, fermentableUnit))}
           />
         </AddModal>

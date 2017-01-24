@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
 import * as calc from 'dapper-calc/build';
+import isFinite from 'lodash/isFinite';
 
 const recipeFermentables = state => state.recipeEdit.recipeStaged.fermentables;
+const recipeHops = state => state.recipeEdit.recipeStaged.hops;
 const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
 const batchSize = state => state.recipeEdit.recipeStaged.batchSize;
-
 
 // Returns sum weight of all recipe fermentables
 const calculateTotalWeight = items => (
@@ -33,7 +34,7 @@ const getTotalPoints = (allFermentables, items) => {
       const points = (potential - 1) * 1000;
       const weight = items[key].weight;
       const totalPoints = points * weight;
-      return totalPoints;
+      return acc + totalPoints;
     }, 0);
   }
   return 0;
@@ -53,6 +54,23 @@ const calcOriginalGravity = (gravityPoints, eff, finalVolume) => {
     return finalCalc.toFixed(3);
   }
   return 'N/A';
+};
+
+// returns total IBUs (added from all recipe hops)
+const calcTotalIbu = (items, gravity, volume) => {
+  if (items) {
+    return Object.keys(items).reduce((acc, key) => {
+      const weightNum = Number(items[key].weight);
+      const aaNum = Number(items[key].aa);
+      const timeNum = Number(items[key].time);
+      const gravityNum = Number(gravity);
+      const volumeNum = Number(volume);
+      const hopIBU = calc.ibu(weightNum, aaNum, timeNum, gravityNum, volumeNum);
+      const hopIBURound = Math.round(hopIBU);
+      return acc + hopIBURound;
+    }, 0);
+  }
+  return 0;
 };
 
 export const getTotalWeight = createSelector(
@@ -76,4 +94,11 @@ export const estimateOriginalGravity = createSelector(
   efficiency,
   batchSize,
   calcOriginalGravity,
+);
+
+export const getRecipeIbu = createSelector(
+  recipeHops,
+  estimateOriginalGravity,
+  batchSize,
+  calcTotalIbu,
 );

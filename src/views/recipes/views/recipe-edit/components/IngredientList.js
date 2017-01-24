@@ -91,5 +91,9 @@ IngredientListRows.propTypes = {
   cells: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
+IngredientList.propTypes = {
+  isError: React.PropTypes.bool.isRequired,
+};
+
 
 export default IngredientList;

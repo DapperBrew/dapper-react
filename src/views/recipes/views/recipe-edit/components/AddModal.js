@@ -62,6 +62,9 @@ AddModal.propTypes = {
   children: React.PropTypes.array.isRequired, // eslint-disable-line
   header: React.PropTypes.string.isRequired,
   items: React.PropTypes.array.isRequired, // eslint-disable-line
+  cells: React.PropTypes.array.isRequired, // eslint-disable-line
+  headers: React.PropTypes.array.isRequired, // eslint-disable-line
+  searchKeys: React.PropTypes.array.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

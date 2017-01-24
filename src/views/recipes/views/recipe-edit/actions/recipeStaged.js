@@ -100,7 +100,7 @@ export const removeFermentable = key => (
 );
 
 export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
-  (dispatch) => {
+  (dispatch, getState) => {
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -132,6 +132,8 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         field: 'time',
       });
     } else if (reset === true) { // if there is a reset flag
+      const currentHop = getState().data.hops[id];
+      const hopAA = (currentHop.alphaAcidMax + currentHop.alphaAcidMin) / 2;
       dispatch({
         type: ADD_HOP_SUCCESS,
         id,
@@ -140,9 +142,12 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         hopTime,
         hopStage,
         hopType,
+        hopAA,
       });
       dispatch(resetModal());
     } else {
+      const currentHop = getState().data.hops[id];
+      const hopAA = ((currentHop.alphaAcidMax + currentHop.alphaAcidMin) / 2).toFixed(1);
       dispatch({
         type: ADD_HOP_SUCCESS,
         id,
@@ -151,6 +156,7 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         hopTime,
         hopStage,
         hopType,
+        hopAA,
       });
       dispatch(hideModal());
     }

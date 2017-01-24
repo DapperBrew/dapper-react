@@ -40,6 +40,7 @@
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",
     "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "test": "./node_modules/.bin/eslint src"
   }
 }
