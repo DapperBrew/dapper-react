@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import * as calc from 'dapper-calc/build';
-import isFinite from 'lodash/isFinite';
 
 const recipeFermentables = state => state.recipeEdit.recipeStaged.fermentables;
 const fermentables = state => state.data.fermentables;
@@ -42,7 +41,11 @@ const getTotalPoints = (allFermentables, items) => {
 
 // returns the estimated original gravity of a recipe
 const calcOriginalGravity = (gravityPoints, eff, finalVolume) => {
-  if (isFinite(Number(gravityPoints)) && isFinite(Number(eff)) && isFinite(Number(finalVolume))) {
+  if (
+      isFinite(Number(gravityPoints))
+      && Number(eff) > 0
+      && Number(finalVolume) > 0
+    ) {
     const gravityPointsNum = Number(gravityPoints);
     const effNum = Number(eff);
     const finalVolumeNum = Number(finalVolume);
