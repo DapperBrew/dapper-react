@@ -16,7 +16,6 @@ import { addFermentable } from '../actions/recipeStaged';
 import { getFermentableList } from '../selectors/modals';
 
 class FermentableModal extends React.Component {
-
   render() {
     const props = this.props;
     const { modal, dispatch } = this.props;

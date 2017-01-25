@@ -28,19 +28,29 @@ const getHopsInfo = (items) => {
         alpha: `${alpha}%`,
         type: getType(item),
       };
+    }).sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
     });
   }
   return [{ name: 'loading...', alpha: 'loading...', type: 'loading...' }];
 };
 
+// returns fermentables object with info for the add fermentable modal
 const getFermentablesInfo = (items) => {
   if (items) {
+    // get all items, put them into an arry, add "SRM";
     return Object.keys(items).map(item => ({
       name: items[item].name,
       _id: items[item]._id,
       type: items[item].type,
       srm: `${items[item].srm} SRM`,
-    }));
+    })).sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
   }
   return [{ name: '...loading', type: '...loading', color: '...loading' }];
 };
