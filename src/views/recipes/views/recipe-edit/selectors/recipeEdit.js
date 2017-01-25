@@ -30,9 +30,14 @@ const getStylesDropdown = (items) => {
 const getTotalPoints = (allFermentables, items) => {
   if (items) {
     return Object.keys(items).reduce((acc, key) => {
+      let weight;
       const potential = allFermentables[items[key].id].potential;
       const points = (potential - 1) * 1000;
-      const weight = items[key].weight;
+      if (items[key].unit === 'oz') {
+        weight = items[key].weight / 16;
+      } else {
+        weight = items[key].weight;
+      }
       const totalPoints = points * weight;
       return acc + totalPoints;
     }, 0);
