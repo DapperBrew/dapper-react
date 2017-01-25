@@ -78,6 +78,29 @@ const calcTotalIbu = (items, gravity, volume) => {
   return 0;
 };
 
+// returns total MCU for beer from recipe Fermentables
+const calcMcu = (allFermentables, items, volume) => {
+  if (items) {
+    return Object.keys(items).reduce((acc, key) => {
+      let weight;
+      if (items[key].unit === 'oz') {
+        weight = Number(items[key].weight) / 16;
+      } else {
+        weight = Number(items[key].weight);
+      }
+      const volumeNum = Number(volume);
+      const srm = Number(allFermentables[items[key].id].srm);
+      // const lovi = calc.srm2lovibond(srm);
+      // for now, Dapper assumes that as a MALT (not wort) lovi = srm
+      const mcu = calc.mcu(weight, srm, volumeNum);
+      return acc + mcu;
+    }, 0);
+  }
+  return 0;
+};
+
+const calcSrm = mcu => calc.srm(mcu);
+
 export const getTotalWeight = createSelector(
   recipeFermentables,
   calculateTotalWeight,
@@ -106,4 +129,16 @@ export const getRecipeIbu = createSelector(
   estimateOriginalGravity,
   batchSize,
   calcTotalIbu,
+);
+
+export const getRecipeMcu = createSelector(
+  fermentables,
+  recipeFermentables,
+  batchSize,
+  calcMcu,
+);
+
+export const getRecipeSrm = createSelector(
+  getRecipeMcu,
+  calcSrm,
 );
