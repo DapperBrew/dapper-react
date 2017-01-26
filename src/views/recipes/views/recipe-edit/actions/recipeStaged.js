@@ -7,7 +7,7 @@ import { hideModal, resetModal, ERROR_MODAL } from './modals';
 export const SET_STYLE = 'SET_STYLE';
 export const SET_NAME = 'SET_NAME';
 export const SET_EFFICIENCY = 'SET_EFFICIENCY';
-export const SET_BOIL_TIME = 'SET_BOIL_TIME';
+export const SET_BOIL_VOLUME = 'SET_BOIL_VOLUME';
 export const SET_BATCH_SIZE = 'SET_BATCH_SIZE';
 export const SET_RECIPE_TYPE = 'SET_RECIPE_TYPE';
 export const ADD_FERMENTABLE_SUCCESS = 'ADD_FERMENTABLE_SUCCESS';
@@ -33,9 +33,9 @@ export const setEfficiency = eff => ({
   eff,
 });
 
-export const setBoilTime = time => ({
-  type: SET_BOIL_TIME,
-  time,
+export const setBoilVolume = volume => ({
+  type: SET_BOIL_VOLUME,
+  volume,
 });
 
 export const setBatchSize = size => ({

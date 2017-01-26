@@ -8,6 +8,7 @@ const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
 const batchSize = state => state.recipeEdit.recipeStaged.batchSize;
+const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
 
 // Returns sum weight of all recipe fermentables
 const calculateTotalWeight = items => (
@@ -61,16 +62,30 @@ const calcOriginalGravity = (gravityPoints, eff, finalVolume) => {
   return 'N/A';
 };
 
+const calcPreBoilGravity = (og, volume, preBoilVolume) => {
+  if (og > 0 && volume > 0 && preBoilVolume > 0) {
+    const volumeAdd = Number(preBoilVolume) - Number(volume);
+    return calc.dilute(Number(og), Number(volume), volumeAdd);
+  }
+  return 0;
+};
+
+
 // returns total IBUs (added from all recipe hops)
 const calcTotalIbu = (items, gravity, volume) => {
   if (items) {
     return Object.keys(items).reduce((acc, key) => {
       const weightNum = Number(items[key].weight);
+      const type = items[key].type;
       const aaNum = Number(items[key].aa);
       const timeNum = Number(items[key].time);
       const gravityNum = Number(gravity);
       const volumeNum = Number(volume);
-      const hopIBU = calc.ibu(weightNum, aaNum, timeNum, gravityNum, volumeNum);
+      let adjust;
+      if (type === 'pellet') {
+        adjust = 10;
+      }
+      const hopIBU = calc.ibu(weightNum, aaNum, timeNum, gravityNum, volumeNum, adjust);
       const hopIBURound = Math.round(hopIBU);
       return acc + hopIBURound;
     }, 0);
@@ -124,9 +139,16 @@ export const estimateOriginalGravity = createSelector(
   calcOriginalGravity,
 );
 
+export const getBoilGravity = createSelector(
+  estimateOriginalGravity,
+  batchSize,
+  boilVolume,
+  calcPreBoilGravity,
+);
+
 export const getRecipeIbu = createSelector(
   recipeHops,
-  estimateOriginalGravity,
+  getBoilGravity,
   batchSize,
   calcTotalIbu,
 );

@@ -10,7 +10,7 @@ import CardSelect from '../components/Select';
 import { getStylesObject } from '../selectors/recipeEdit';
 
 // Action creators
-import { setStyle, setName, setEfficiency, setBoilTime, setBatchSize, setRecipeType } from '../actions/recipeStaged';
+import { setStyle, setName, setEfficiency, setBoilVolume, setBatchSize, setRecipeType } from '../actions/recipeStaged';
 
 // Temp data
 import type from '../../../../../data/type';
@@ -56,12 +56,12 @@ class RecipeInfo extends React.Component {
           />
           <CardInput
             side="left"
-            id="boil-time"
-            label="Boil Time"
-            measurement="min"
-            placeholder="ex: 90"
-            onChange={time => dispatch(setBoilTime(time))}
-            value={recipeStaged.boilTime}
+            id="boil-volume"
+            label="Estimated Boil Volume"
+            measurement="gal"
+            placeholder="ex: 7.5"
+            onChange={vol => dispatch(setBoilVolume(vol))}
+            value={recipeStaged.boilVolume}
           />
           <CardInput
             side="right"

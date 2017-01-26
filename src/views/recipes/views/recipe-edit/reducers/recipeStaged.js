@@ -5,7 +5,7 @@ const initialState = {
   name: '',
   style: '',
   efficiency: '75',
-  boilTime: '60',
+  boilVolume: '7.25',
   batchSize: '6',
   recipeType: '',
   fermentables: [],
@@ -29,10 +29,10 @@ const recipeEdit = (state = initialState, action) => {
         ...state,
         efficiency: action.eff,
       };
-    case recipeAction.SET_BOIL_TIME:
+    case recipeAction.SET_BOIL_VOLUME:
       return {
         ...state,
-        boilTime: action.time,
+        boilVolume: action.volume,
       };
     case recipeAction.SET_BATCH_SIZE:
       return {
