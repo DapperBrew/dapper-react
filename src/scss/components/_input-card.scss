@@ -7,10 +7,35 @@
   margin-bottom: 20px;
 }
 
+.form-group--half {
+  @include span(3 inside no-gutters);
+  margin-bottom: 20px;
+}
+
+.form-group--half {
+  .form__input--measure {
+    width: 80%;
+  }
+
+  .form__measure {
+    width: 20%;
+  }
+}
+
 .form-group--left {
   padding-right: 10px;
 }
 
 .form-group--right {
+  padding-left: 10px;
+}
+
+.form-group--inside-left {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-group--inside-right {
+  padding-right: 0;
   padding-left: 10px;
 }

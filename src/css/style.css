@@ -2721,10 +2721,29 @@ input[type="button"].button--block {
   float: left;
   margin-bottom: 20px; }
 
+.form-group--half {
+  width: 25%;
+  float: left;
+  margin-bottom: 20px; }
+
+.form-group--half .form__input--measure {
+  width: 80%; }
+
+.form-group--half .form__measure {
+  width: 20%; }
+
 .form-group--left {
   padding-right: 10px; }
 
 .form-group--right {
+  padding-left: 10px; }
+
+.form-group--inside-left {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.form-group--inside-right {
+  padding-right: 0;
   padding-left: 10px; }
 
 .recipe-table {
@@ -2886,7 +2905,7 @@ input[type="button"].button--block {
 
 .stat__content {
   font-weight: 700;
-  font-size: 36px; }
+  font-size: 28px; }
 
 .main {
   min-height: 100vh;

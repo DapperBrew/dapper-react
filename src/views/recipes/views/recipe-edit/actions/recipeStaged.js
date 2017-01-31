@@ -6,9 +6,12 @@ import { hideModal, resetModal, ERROR_MODAL } from './modals';
 // action types
 export const SET_STYLE = 'SET_STYLE';
 export const SET_NAME = 'SET_NAME';
+export const SET_EQUIPMENT_PROFILE = 'SET_EQUIPMENT_PROFILE';
 export const SET_EFFICIENCY = 'SET_EFFICIENCY';
+export const SET_EFFICIENCY_TYPE = 'SET_EFFICIENCY_TYPE';
+export const SET_BOIL_TIME = 'SET_BOIL_TIME';
 export const SET_BOIL_VOLUME = 'SET_BOIL_VOLUME';
-export const SET_BATCH_SIZE = 'SET_BATCH_SIZE';
+export const SET_FINAL_VOLUME = 'SET_FINAL_VOLUME';
 export const SET_RECIPE_TYPE = 'SET_RECIPE_TYPE';
 export const ADD_FERMENTABLE_SUCCESS = 'ADD_FERMENTABLE_SUCCESS';
 export const ADD_FERMENTABLE_ERROR = 'ADD_FERMENTABLE_ERROR';
@@ -28,9 +31,24 @@ export const setName = name => ({
   name,
 });
 
+export const setEquipmentProfile = profile => ({
+  type: SET_EQUIPMENT_PROFILE,
+  profile,
+});
+
 export const setEfficiency = eff => ({
   type: SET_EFFICIENCY,
   eff,
+});
+
+export const setEfficiencyType = eff => ({
+  type: SET_EFFICIENCY_TYPE,
+  eff,
+});
+
+export const setBoilTime = time => ({
+  type: SET_BOIL_TIME,
+  time,
 });
 
 export const setBoilVolume = volume => ({
@@ -38,9 +56,9 @@ export const setBoilVolume = volume => ({
   volume,
 });
 
-export const setBatchSize = size => ({
-  type: SET_BATCH_SIZE,
-  size,
+export const setFinalVolume = volume => ({
+  type: SET_FINAL_VOLUME,
+  volume,
 });
 
 export const setRecipeType = recipeType => ({

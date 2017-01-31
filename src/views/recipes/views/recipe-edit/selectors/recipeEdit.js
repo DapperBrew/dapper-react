@@ -7,7 +7,7 @@ const recipeHops = state => state.recipeEdit.recipeStaged.hops;
 const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
-const batchSize = state => state.recipeEdit.recipeStaged.batchSize;
+const finalVolume = state => state.recipeEdit.recipeStaged.finalVolume;
 const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
 
 // Returns sum weight of all recipe fermentables
@@ -47,16 +47,16 @@ const getTotalPoints = (allFermentables, items) => {
 };
 
 // returns the estimated original gravity of a recipe
-const calcOriginalGravity = (gravityPoints, eff, finalVolume) => {
+const calcOriginalGravity = (gravityPoints, eff, volume) => {
   if (
       isFinite(Number(gravityPoints))
       && Number(eff) > 0
-      && Number(finalVolume) > 0
+      && Number(volume) > 0
     ) {
     const gravityPointsNum = Number(gravityPoints);
     const effNum = Number(eff);
-    const finalVolumeNum = Number(finalVolume);
-    const finalCalc = calc.estimateOriginalGravity(gravityPointsNum, effNum, finalVolumeNum);
+    const VolumeNum = Number(volume);
+    const finalCalc = calc.estimateOriginalGravity(gravityPointsNum, effNum, VolumeNum);
     return finalCalc.toFixed(3);
   }
   return 'N/A';
@@ -135,13 +135,13 @@ export const totalGravityPoints = createSelector(
 export const estimateOriginalGravity = createSelector(
   totalGravityPoints,
   efficiency,
-  batchSize,
+  finalVolume,
   calcOriginalGravity,
 );
 
 export const getBoilGravity = createSelector(
   estimateOriginalGravity,
-  batchSize,
+  finalVolume,
   boilVolume,
   calcPreBoilGravity,
 );
@@ -149,14 +149,14 @@ export const getBoilGravity = createSelector(
 export const getRecipeIbu = createSelector(
   recipeHops,
   getBoilGravity,
-  batchSize,
+  finalVolume,
   calcTotalIbu,
 );
 
 export const getRecipeMcu = createSelector(
   fermentables,
   recipeFermentables,
-  batchSize,
+  finalVolume,
   calcMcu,
 );
 

@@ -5,11 +5,14 @@ const initialState = {
   name: '',
   style: '',
   efficiency: '75',
-  boilVolume: '7.25',
-  batchSize: '6',
+  finalVolume: 6,
+  boilTime: '60',
   recipeType: '',
   fermentables: [],
   hops: [],
+  efficiencyType: 'brewhouse',
+  equipmentProfile: 'default',
+  boilVolume: '7.25',
 };
 
 const recipeEdit = (state = initialState, action) => {
@@ -24,20 +27,35 @@ const recipeEdit = (state = initialState, action) => {
         ...state,
         name: action.name,
       };
+    case recipeAction.SET_EQUIPMENT_PROFILE:
+      return {
+        ...state,
+        equipmentProfile: action.profile,
+      };
     case recipeAction.SET_EFFICIENCY:
       return {
         ...state,
         efficiency: action.eff,
+      };
+    case recipeAction.SET_EFFICIENCY_TYPE:
+      return {
+        ...state,
+        efficiencyType: action.eff,
       };
     case recipeAction.SET_BOIL_VOLUME:
       return {
         ...state,
         boilVolume: action.volume,
       };
-    case recipeAction.SET_BATCH_SIZE:
+    case recipeAction.SET_FINAL_VOLUME:
       return {
         ...state,
-        batchSize: action.size,
+        finalVolume: action.volume,
+      };
+    case recipeAction.SET_BOIL_TIME:
+      return {
+        ...state,
+        boilTime: action.time,
       };
     case recipeAction.SET_RECIPE_TYPE:
       return {

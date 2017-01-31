@@ -7,19 +7,24 @@ import { removeHop } from '../actions/recipeStaged';
 import EditIcons from './EditIcons';
 
 // selectors
-import { estimateOriginalGravity } from '../selectors/recipeEdit';
+import { getBoilGravity } from '../selectors/recipeEdit';
 
 const HopList = props => (
   <tbody>
     {props.recipeHops.map((hop) => {
-      const { dispatch, hops, originalGravity, recipeStaged } = props;
+      const { dispatch, hops, boilGravity, recipeStaged } = props;
+      let adjust;
+      if (hop.type === 'pellet') {
+        adjust = 10;
+      }
       // calculate IBU
       const aa = ibu(
         Number(hop.weight),
         Number(hop.aa),
         Number(hop.time),
-        Number(originalGravity),
-        Number(recipeStaged.batchSize),
+        Number(boilGravity),
+        Number(recipeStaged.finalVolume),
+        adjust,
       );
       return (
         <tr key={hop.key} className="recipe-table__row">
@@ -39,7 +44,7 @@ const mapStateToProps = state => ({
   hops: state.data.hops,
   recipeHops: state.recipeEdit.recipeStaged.hops,
   recipeStaged: state.recipeEdit.recipeStaged,
-  originalGravity: estimateOriginalGravity(state),
+  boilGravity: getBoilGravity(state),
 });
 
 HopList.propTypes = {
