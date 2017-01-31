@@ -156,7 +156,7 @@ const fetchHops = () => (
 
 const fetchYeasts = () => (
   (dispatch) => {
-    dispatch(requestHops());
+    dispatch(requestYeasts());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/yeasts`,
       timeout: 20000,
