@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Miss } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateHeader } from '../../actions/ui';
 
@@ -21,34 +21,36 @@ class Main extends React.Component {
       <div className="main">
         <Header title={this.props.ui.title} />
         <div className="content">
-          <Match
-            exactly
-            pattern="/"
-            render={() => (<Dashboard updateHeader={changeHeader} />)}
-          />
-          <Match
-            pattern="/recipes"
-            render={() => (<RecipeEdit updateHeader={changeHeader} />)}
-          />
-          <Match
-            pattern="/calculators"
-            render={() => (<Calculators updateHeader={changeHeader} />)}
-          />
-          <Match
-            pattern="/brewlog"
-            render={() => (<Brewlog updateHeader={changeHeader} />)}
-          />
-          <Match
-            pattern="/equipment"
-            render={() => (<Equipment updateHeader={changeHeader} />)}
-          />
-          <Match
-            pattern="/settings"
-            render={() => (<Settings updateHeader={changeHeader} />)}
-          />
-          <Miss
-            render={() => (<NotFound updateHeader={changeHeader} />)}
-          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (<Dashboard updateHeader={changeHeader} />)}
+            />
+            <Route
+              path="/recipes"
+              render={() => (<RecipeEdit updateHeader={changeHeader} />)}
+            />
+            <Route
+              path="/calculators"
+              render={() => (<Calculators updateHeader={changeHeader} />)}
+            />
+            <Route
+              path="/brewlog"
+              render={() => (<Brewlog updateHeader={changeHeader} />)}
+            />
+            <Route
+              path="/equipment"
+              render={() => (<Equipment updateHeader={changeHeader} />)}
+            />
+            <Route
+              path="/settings"
+              render={() => (<Settings updateHeader={changeHeader} />)}
+            />
+            <Route
+              render={() => (<NotFound updateHeader={changeHeader} />)}
+            />
+          </Switch>
         </div>
         <Footer />
       </div>

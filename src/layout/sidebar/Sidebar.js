@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import logo from './img/logo.svg';
 import SidebarNav from './components/SidebarNav';
@@ -10,24 +10,24 @@ const Sidebar = () => (
 
     <ul className="side-nav">
       <li className="side-nav__title">Menu</li>
-      <Link to="/" activeOnlyWhenExact activeClassName="is-active">
+      <NavLink to="/" activeClassName="is-active">
         <SidebarNav sideIcon="home-51" sideName="Dashboard" />
-      </Link>
-      <Link to="/recipes" activeClassName="is-active">
+      </NavLink>
+      <NavLink to="/recipes" activeClassName="is-active">
         <SidebarNav sideIcon="lab" sideName="Recipes" />
-      </Link>
-      <Link to="/calculators" activeClassName="is-active">
+      </NavLink>
+      <NavLink to="/calculators" activeClassName="is-active">
         <SidebarNav sideIcon="calculator" sideName="Calculators" />
-      </Link>
-      <Link to="/brewlog" activeClassName="is-active">
+      </NavLink>
+      <NavLink to="/brewlog" activeClassName="is-active">
         <SidebarNav sideIcon="agenda-bookmark" sideName="Brew Log" />
-      </Link>
-      <Link to="/equipment" activeClassName="is-active">
+      </NavLink>
+      <NavLink to="/equipment" activeClassName="is-active">
         <SidebarNav sideIcon="box" sideName="Equipment" />
-      </Link>
-      <Link to="/settings" activeClassName="is-active">
+      </NavLink>
+      <NavLink to="/settings" activeClassName="is-active">
         <SidebarNav sideIcon="settings-gear-64" sideName="Settings" />
-      </Link>
+      </NavLink>
     </ul>
   </div>
 );
