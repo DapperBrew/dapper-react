@@ -11,7 +11,8 @@ export const SET_EFFICIENCY = 'SET_EFFICIENCY';
 export const SET_EFFICIENCY_TYPE = 'SET_EFFICIENCY_TYPE';
 export const SET_BOIL_TIME = 'SET_BOIL_TIME';
 export const SET_BOIL_VOLUME = 'SET_BOIL_VOLUME';
-export const SET_FINAL_VOLUME = 'SET_FINAL_VOLUME';
+export const SET_BATCH_VOLUME = 'SET_BATCH_VOLUME';
+export const SET_POST_BOIL_VOLUME = 'SET_POST_BOIL_VOLUME';
 export const SET_RECIPE_TYPE = 'SET_RECIPE_TYPE';
 export const ADD_FERMENTABLE_SUCCESS = 'ADD_FERMENTABLE_SUCCESS';
 export const ADD_FERMENTABLE_ERROR = 'ADD_FERMENTABLE_ERROR';
@@ -56,8 +57,13 @@ export const setBoilVolume = volume => ({
   volume,
 });
 
-export const setFinalVolume = volume => ({
-  type: SET_FINAL_VOLUME,
+export const setBatchVolume = volume => ({
+  type: SET_BATCH_VOLUME,
+  volume,
+});
+
+export const setPostBoilVolume = volume => ({
+  type: SET_POST_BOIL_VOLUME,
   volume,
 });
 

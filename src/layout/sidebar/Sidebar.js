@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom';
 import logo from './img/logo.svg';
 import SidebarNav from './components/SidebarNav';
 
+
 const Sidebar = () => (
   <div className="sidebar">
     <img className="sidebar__logo" src={logo} alt="Dapper Logo" />
 
     <ul className="side-nav">
       <li className="side-nav__title">Menu</li>
-      <NavLink to="/" activeClassName="">
+      <NavLink to="/" activeClassName="is-active">
         <SidebarNav sideIcon="home-51" sideName="Dashboard" />
       </NavLink>
       <NavLink to="/recipes" activeClassName="is-active">

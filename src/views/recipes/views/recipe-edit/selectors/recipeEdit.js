@@ -7,8 +7,8 @@ const recipeHops = state => state.recipeEdit.recipeStaged.hops;
 const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
-const finalVolume = state => state.recipeEdit.recipeStaged.finalVolume;
 const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
+const postBoilVolume = state => state.recipeEdit.recipeStaged.postBoilVolume;
 
 // Returns sum weight of all recipe fermentables
 const calculateTotalWeight = items => (
@@ -135,13 +135,13 @@ export const totalGravityPoints = createSelector(
 export const estimateOriginalGravity = createSelector(
   totalGravityPoints,
   efficiency,
-  finalVolume,
+  postBoilVolume,
   calcOriginalGravity,
 );
 
 export const getBoilGravity = createSelector(
   estimateOriginalGravity,
-  finalVolume,
+  postBoilVolume,
   boilVolume,
   calcPreBoilGravity,
 );
@@ -149,14 +149,14 @@ export const getBoilGravity = createSelector(
 export const getRecipeIbu = createSelector(
   recipeHops,
   getBoilGravity,
-  finalVolume,
+  postBoilVolume,
   calcTotalIbu,
 );
 
 export const getRecipeMcu = createSelector(
   fermentables,
   recipeFermentables,
-  finalVolume,
+  postBoilVolume,
   calcMcu,
 );
 

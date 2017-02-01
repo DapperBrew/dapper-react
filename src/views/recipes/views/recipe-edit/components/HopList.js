@@ -23,7 +23,7 @@ const HopList = props => (
         Number(hop.aa),
         Number(hop.time),
         Number(boilGravity),
-        Number(recipeStaged.finalVolume),
+        Number(recipeStaged.postBoilVolume),
         adjust,
       );
       return (

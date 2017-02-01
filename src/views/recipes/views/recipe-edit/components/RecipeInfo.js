@@ -19,6 +19,18 @@ import type from '../../../../../data/type';
 
 class RecipeInfo extends React.Component {
 
+  updateBatchVolume = (volume) => {
+    const { dispatch, recipeStaged } = this.props;
+    dispatch(actions.setBatchVolume(volume));
+    dispatch(actions.setPostBoilVolume(Number(volume) + Number(recipeStaged.trubChillerLoss)));
+  }
+
+  updatePostBoilVolume = (volume) => {
+    const { dispatch, recipeStaged } = this.props;
+    dispatch(actions.setPostBoilVolume(volume));
+    dispatch(actions.setBatchVolume(Number(volume) - Number(recipeStaged.trubChillerLoss)));
+  }
+
   batchVolumeInput = () => (
     <InputHalf
       side="right"
@@ -27,8 +39,8 @@ class RecipeInfo extends React.Component {
       label="Batch Size"
       measurement="gal"
       placeholder="ex: 5.5"
-      onChange={size => this.props.dispatch(actions.setFinalVolume(size))}
-      value={this.props.recipeStaged.finalVolume}
+      onChange={this.updateBatchVolume}
+      value={this.props.recipeStaged.batchVolume}
     />
   )
 
@@ -40,8 +52,8 @@ class RecipeInfo extends React.Component {
       label="Post-Boil Volume"
       measurement="gal"
       placeholder="ex: 5.5"
-      onChange={size => this.props.dispatch(actions.setFinalVolume(size))}
-      value={this.props.recipeStaged.finalVolume}
+      onChange={this.updatePostBoilVolume}
+      value={this.props.recipeStaged.postBoilVolume}
     />
   )
 
