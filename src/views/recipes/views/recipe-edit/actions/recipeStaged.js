@@ -203,7 +203,7 @@ export const removeHop = key => (
 );
 
 export const addYeast = (id, reset) => (
-  (dispatch) => {
+  (dispatch, getState) => {
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -211,17 +211,23 @@ export const addYeast = (id, reset) => (
         field: 'select',
       });
     } else if (reset === true) { // if there is a reset flag
+      const { attenuationMin, attenuationMax } = getState().data.yeasts[id];
+      const yeastAvgAttenuation = ((attenuationMin + attenuationMax) / 2).toFixed(0);
       dispatch({
         type: ADD_YEAST_SUCCESS,
         id,
+        averageAttenuation: yeastAvgAttenuation,
         key: uniqueId(),
       });
       dispatch(resetModal());
     } else {
+      const { attenuationMin, attenuationMax } = getState().data.yeasts[id];
+      const yeastAvgAttenuation = ((attenuationMin + attenuationMax) / 2).toFixed(0);
       dispatch({
         type: ADD_YEAST_SUCCESS,
         id,
         key: uniqueId(),
+        averageAttenuation: yeastAvgAttenuation,
       });
       dispatch(hideModal());
     }
@@ -237,8 +243,16 @@ export const removeYeast = key => (
   )
 );
 
-export const addMisc = (id, miscAmount, miscAmountUnit, miscTime, miscTimeUnit, miscStage, reset) => (
-  (dispatch, getState) => {
+export const addMisc = (
+  id,
+  miscAmount,
+  miscAmountUnit,
+  miscTime,
+  miscTimeUnit,
+  miscStage,
+  reset,
+) => (
+  (dispatch) => {
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
