@@ -13,7 +13,8 @@
     "gh-pages": "^0.12.0",
     "node-sass": "^4.1.0",
     "normalize.scss": "^0.1.0",
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.8.4",
+    "why-did-you-update": "0.0.8"
   },
   "dependencies": {
     "axios": "^0.15.3",

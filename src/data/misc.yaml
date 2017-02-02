@@ -1,0 +1,11 @@
+misc:
+  id: 1234
+  name: Irish Moss
+  type: Fining Agent
+  use: Boil
+  amount: 1
+  unit: tsp
+  time: 10
+  timeUnit: min
+  useFor: Clarity
+  notes: ''

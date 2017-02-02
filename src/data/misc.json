@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Irish Moss",
+    "type": "fining agent",
+    "stage": "boil",
+    "amount": "1",
+    "amountUnit": "tsp",
+    "time": "10",
+    "timeUnit": "min",
+    "useFor": "Clarity",
+    "notes": ""
+  },
+  {
+    "name": "Yeast Nutrient",
+    "type": "other",
+    "stage": "boil",
+    "amount": ".5",
+    "amountUnit": "tsp",
+    "time": "1",
+    "timeUnit": "day",
+    "useFor": "secondary",
+    "notes": ""
+  },
+  {
+    "name": "Gelatin",
+    "type": "Fining Agent",
+    "stage": "secondary",
+    "amount": "1",
+    "amountUnit": "tsp",
+    "time": "10",
+    "timeUnit": "min",
+    "useFor": "clarity",
+    "notes": ""
+  }
+]
