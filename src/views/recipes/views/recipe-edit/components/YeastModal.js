@@ -20,7 +20,12 @@ class YeastModal extends React.Component {
     const { modal, dispatch } = this.props;
     const { selectedItem } = modal;
     const name = modalInfo.YEAST.NAME;
-    const items = values(props.yeasts);
+    const items = values(props.yeasts)
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
 
     // don't mount the modal unless the modal is ready to use
     if (modal.modalOpen === true) {

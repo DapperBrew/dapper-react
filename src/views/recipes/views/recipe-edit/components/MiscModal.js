@@ -27,7 +27,12 @@ class MiscModal extends React.Component {
     const { modal, dispatch } = this.props;
     const { selectedItem, miscAmount, miscAmountUnit, miscTime, miscTimeUnit, miscStage } = modal;
     const name = modalInfo.MISC.NAME;
-    const items = values(props.miscs);
+    const items = values(props.miscs)
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
 
     // don't mount the modal unless the modal is ready to use
     if (modal.modalOpen === true) {
@@ -53,6 +58,9 @@ class MiscModal extends React.Component {
             stageValue={miscStage}
             isError={modal.modalError}
             errorField={modal.modalErrorField}
+            selectedItem={selectedItem}
+            miscs={props.miscs}
+            batchVolume={props.batchVolume}
           />
           <ModalSubmit
             closeModal={() => dispatch(hideModal())}
@@ -91,6 +99,7 @@ MiscModal.propTypes = {
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   miscs: state.data.miscs,
+  batchVolume: state.recipeEdit.recipeStaged.batchVolume,
 });
 
 

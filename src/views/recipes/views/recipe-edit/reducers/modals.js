@@ -16,10 +16,10 @@ const initialState = {
   hopWeight: '',
   hopType: 'pellet',
   miscAmount: '',
-  miscAmountUnit: '',
+  miscAmountUnit: 'oz',
   miscTime: '',
-  miscTimeUnit: '',
-  miscStage: '',
+  miscTimeUnit: 'min',
+  miscStage: 'boil',
 };
 
 const modals = (state = initialState, action) => {

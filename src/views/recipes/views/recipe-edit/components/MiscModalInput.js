@@ -4,6 +4,25 @@ import Select from 'react-select';
 
 class MiscModalInput extends React.Component {
 
+  componentWillReceiveProps(nextProps) {
+    // update the input fields with the default data from the API
+    if (nextProps.selectedItem !== this.props.selectedItem) {
+      const selectedItem = this.props.miscs[nextProps.selectedItem];
+      const batchVolume = this.props.batchVolume;
+      let amount = selectedItem.amount;
+      // amount values from API are for 5 gallon batches
+      // so adjust according to batch size
+      if (batchVolume) {
+        amount = (selectedItem.amount * (batchVolume / 5)).toFixed(1);
+      }
+
+      this.props.onAmountUnitChange(selectedItem.amountUnit);
+      this.props.onAmountChange(amount);
+      this.props.onTimeUnitChange(selectedItem.timeUnit);
+      this.props.onStageChange(selectedItem.stage);
+    }
+  }
+
   render() {
     const props = this.props;
     return (
@@ -20,7 +39,8 @@ class MiscModalInput extends React.Component {
                 'form__input',
                 'form__input--select',
                 'form__input--misc',
-                { isError: props.isError === 'amount' })
+                { isError: props.errorField === 'amount' },
+              )
             }
             value={props.amountValue}
           />
@@ -43,7 +63,12 @@ class MiscModalInput extends React.Component {
               { label: 'qt', value: 'qt' },
               { label: 'items', value: 'items' },
             ]}
-            className="form__select--input misc__select--input"
+            className={
+              classNames(
+                'form__select--input',
+                'misc__select--input',
+              )
+            }
             onChange={props.onAmountUnitChange}
             value={props.amountUnitValue}
             clearable={false}
@@ -62,7 +87,7 @@ class MiscModalInput extends React.Component {
                 'form__input',
                 'form__input--select',
                 'form__input--misc',
-                { isError: props.isError === 'amount' })
+                { isError: props.errorField === 'time' })
             }
             value={props.timeValue}
           />
@@ -105,5 +130,15 @@ class MiscModalInput extends React.Component {
     );
   }
 }
+
+MiscModalInput.propTypes = {
+  onAmountUnitChange: React.PropTypes.func.isRequired,
+  onAmountChange: React.PropTypes.func.isRequired,
+  onTimeUnitChange: React.PropTypes.func.isRequired,
+  onStageChange: React.PropTypes.func.isRequired,
+  miscs: React.PropTypes.object, // eslint-disable-line
+  selectedItem: React.PropTypes.string,
+  batchVolume: React.PropTypes.string,
+};
 
 export default MiscModalInput;
