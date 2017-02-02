@@ -11,7 +11,7 @@ const Sidebar = () => (
 
     <ul className="side-nav">
       <li className="side-nav__title">Menu</li>
-      <NavLink to="/" activeClassName="">
+      <NavLink to="/" exact activeClassName="is-active">
         <SidebarNav sideIcon="home-51" sideName="Dashboard" />
       </NavLink>
       <NavLink to="/recipes" activeClassName="is-active">
