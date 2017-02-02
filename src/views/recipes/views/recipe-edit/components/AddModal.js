@@ -23,7 +23,7 @@ class AddModal extends React.Component {
       <Modal
         isOpen={isOpen}
         onRequestClose={() => dispatch(hideModal())}
-        contentLabel="Fermentation Modal"
+        contentLabel="Add Modal"
         className="add-modal-wrapper"
         overlayClassName="add-modal-overlay"
       >

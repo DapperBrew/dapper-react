@@ -11,3 +11,6 @@ export const hopListSchema = [hopSchema];
 
 const yeastSchema = new schema.Entity('yeasts', {}, { idAttribute: '_id' });
 export const yeastListSchema = [yeastSchema];
+
+const miscSchema = new schema.Entity('miscs', {}, { idAttribute: '_id' });
+export const miscListSchema = [miscSchema];

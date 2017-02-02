@@ -23,6 +23,9 @@ export const REMOVE_HOP = 'REMOVE_HOP';
 export const ADD_YEAST_SUCCESS = 'ADD_YEAST_SUCCESSS';
 export const ADD_YEAST_ERROR = 'ADD_YEAST_ERROR';
 export const REMOVE_YEAST = 'REMOVE_YEAST';
+export const ADD_MISC_SUCCESS = 'ADD_MISC_SUCCESSS';
+export const ADD_MISC_ERROR = 'ADD_MISC_ERROR';
+export const REMOVE_MISC = 'REMOVE_MISC';
 
 
 export const setStyle = style => ({
@@ -229,6 +232,75 @@ export const removeYeast = key => (
   dispatch => (
     dispatch({
       type: REMOVE_YEAST,
+      key,
+    })
+  )
+);
+
+export const addMisc = (id, miscAmount, miscAmountUnit, miscTime, miscTimeUnit, miscStage, reset) => (
+  (dispatch, getState) => {
+    if (!id) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please select an item.',
+        field: 'select',
+      });
+    } else if (!miscAmount) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an amount.',
+        field: 'amount',
+      });
+    } else if (isFinite(Number(miscAmount)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Amount must be a number',
+        field: 'amount',
+      });
+    } else if (!miscTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(miscTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else if (reset === true) { // if there is a reset flag
+      dispatch({
+        type: ADD_MISC_SUCCESS,
+        id,
+        key: uniqueId(),
+        miscAmount,
+        miscAmountUnit,
+        miscTime,
+        miscTimeUnit,
+        miscStage,
+      });
+      dispatch(resetModal());
+    } else {
+      dispatch({
+        type: ADD_MISC_SUCCESS,
+        id,
+        key: uniqueId(),
+        miscAmount,
+        miscAmountUnit,
+        miscTime,
+        miscTimeUnit,
+        miscStage,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
+export const removeMisc = key => (
+  dispatch => (
+    dispatch({
+      type: REMOVE_MISC,
       key,
     })
   )

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import RecipeInfo from './components/RecipeInfo';
 import Fermentables from './components/Fermentables';
 import Hops from './components/Hops';
-import Misc from './components/Misc';
 import Yeast from './components/Yeast';
+import Misc from './components/Misc';
 import Stats from './components/Stats';
 
 import { fetchData, fetchStyles } from '../../../../actions/data';
@@ -36,6 +36,7 @@ class RecipeEdit extends React.Component {
             <Fermentables />
             <Hops />
             <Yeast />
+            <Misc />
           </div>
           <div className="info-column">
             <Stats />

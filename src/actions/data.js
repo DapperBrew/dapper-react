@@ -24,6 +24,10 @@ export const YEASTS_REQUEST = 'YEASTS_REQUEST';
 export const YEASTS_SUCCESS = 'YEASTS_SUCCESS';
 export const YEASTS_ERROR = 'YEASTS_ERROR';
 
+export const MISC_REQUEST = 'MISC_REQUEST';
+export const MISC_SUCCESS = 'MISC_SUCCESS';
+export const MISC_ERROR = 'MISC_ERROR';
+
 
 export const requestData = () => ({
   type: DATA_REQUEST,
@@ -81,6 +85,21 @@ export const receiveYeasts = yeasts => ({
 
 export const errorYeasts = error => ({
   type: YEASTS_ERROR,
+  data: error,
+});
+
+export const requestMisc = misc => ({
+  type: MISC_REQUEST,
+  data: misc,
+});
+
+export const receiveMisc = misc => ({
+  type: MISC_SUCCESS,
+  data: misc,
+});
+
+export const errorMisc = error => ({
+  type: MISC_ERROR,
   data: error,
 });
 
@@ -172,6 +191,24 @@ const fetchYeasts = () => (
   }
 );
 
+const fetchMisc = () => (
+  (dispatch) => {
+    dispatch(requestMisc());
+    return axios({
+      url: `${process.env.REACT_APP_API_URL}/miscs`,
+      timeout: 20000,
+      method: 'get',
+      responseType: 'json',
+    })
+      .then(response => normalize(response.data, schema.miscListSchema))
+      .then(response => dispatch(receiveMisc(response)))
+      .catch((response) => {
+        dispatch(errorMisc(response.data));
+        throw response;
+      });
+  }
+);
+
 export const fetchData = () => (
   (dispatch) => {
     dispatch(requestData());
@@ -179,6 +216,7 @@ export const fetchData = () => (
       .then(() => dispatch(fetchFermentables()))
       .then(() => dispatch(fetchHops()))
       .then(() => dispatch(fetchYeasts()))
+      .then(() => dispatch(fetchMisc()))
       .then(() => dispatch(receiveData()))
       .catch((response) => {
         dispatch(errorData(response.data));

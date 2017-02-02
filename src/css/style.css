@@ -2894,6 +2894,20 @@ input[type="button"].button--block {
 .hop-form-group__select {
   width: 50%; }
 
+.misc-modal-input {
+  display: flex;
+  justify-content: space-between; }
+
+.misc-form-group {
+  margin-bottom: 20px;
+  width: 32%; }
+
+.form__input--misc {
+  width: 60%; }
+
+.misc__select--input {
+  width: 40%; }
+
 .stat {
   width: 50%;
   float: left;

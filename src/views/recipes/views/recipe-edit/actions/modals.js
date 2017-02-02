@@ -13,6 +13,12 @@ export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
 export const UPDATE_HOP_STAGE = 'UPDATE_HOP_STAGE';
 export const UPDATE_HOP_TYPE = 'UPDATE_HOP_TYPE';
 
+export const UPDATE_MISC_AMOUNT = 'UPDATE_MISC_AMOUNT';
+export const UPDATE_MISC_AMOUNT_UNIT = 'UPDATE_MISC_AMOUNT_UNIT';
+export const UPDATE_MISC_TIME = 'UPDATE_MISC_TIME';
+export const UPDATE_MISC_TIME_UNIT = 'UPDATE_MISC_TIME_UNIT';
+export const UPDATE_MISC_STAGE = 'UPDATE_MISC_STAGE';
+
 // other constants
 export const modalInfo = {
   FERMENTABLE: {
@@ -34,9 +40,10 @@ export const modalInfo = {
     SEARCH_KEYS: ['name', 'type'],
   },
   MISC: {
-    HEADER: ['Name', 'Type', 'Color'],
-    CELL_ITEMS: ['name', 'type', 'srm'],
-    SEARCH_KEYS: ['name', 'supplier', 'supplierId'],
+    NAME: 'MISC',
+    SEARCH_TABLE_HEADER: ['Name', 'Type', 'Purpose'],
+    SEARCH_TABLE_CELLS: ['name', 'type', 'useFor'],
+    SEARCH_KEYS: ['name', 'type', 'stage', 'useFor'],
   },
 };
 
@@ -98,6 +105,32 @@ export const updateHopStage = stage => ({
 });
 
 export const updateHopType = hopType => ({
-  type: 'UPDATE_HOP_TYPE',
+  type: UPDATE_HOP_TYPE,
   hopType,
+});
+
+// Misc modal actions
+export const updateMiscAmount = amount => ({
+  type: UPDATE_MISC_AMOUNT,
+  amount,
+});
+
+export const updateMiscAmountUnit = unit => ({
+  type: UPDATE_MISC_AMOUNT_UNIT,
+  unit,
+});
+
+export const updateMiscTime = time => ({
+  type: UPDATE_MISC_TIME,
+  time,
+});
+
+export const updateMiscTimeUnit = unit => ({
+  type: UPDATE_MISC_TIME_UNIT,
+  unit,
+});
+
+export const updateMiscStage = stage => ({
+  type: UPDATE_MISC_STAGE,
+  stage,
 });

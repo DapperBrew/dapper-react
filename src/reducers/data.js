@@ -3,6 +3,8 @@ import * as actions from '../actions/data';
 const initialState = {
   fermentables: {},
   hops: {},
+  yeasts: {},
+  miscs: {},
 };
 
 const data = (state = initialState, action) => {
@@ -26,6 +28,11 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         yeasts: action.data.entities.yeasts,
+      };
+    case actions.MISC_SUCCESS:
+      return {
+        ...state,
+        miscs: action.data.entities.miscs,
       };
     case actions.STYLES_SUCCESS:
       return {

@@ -23,7 +23,7 @@ const InputSelect = props => (
         value={props.inputValue}
       />
       <Select
-        name="test"
+        name="select"
         options={props.options}
         className="form__select--input"
         onChange={props.onSelectChange}

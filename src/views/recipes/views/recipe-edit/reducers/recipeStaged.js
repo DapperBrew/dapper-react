@@ -12,6 +12,7 @@ const initialState = {
   fermentables: [],
   hops: [],
   yeasts: [],
+  miscs: [],
   efficiencyType: 'brewhouse',
   equipmentProfile: 'default',
   boilVolume: '7.38',
@@ -124,6 +125,27 @@ const recipeEdit = (state = initialState, action) => {
       return {
         ...state,
         yeasts: reject(state.yeasts, { key: action.key }),
+      };
+    case recipeAction.ADD_MISC_SUCCESS:
+      return {
+        ...state,
+        miscs: [
+          ...state.miscs,
+          {
+            id: action.id,
+            key: action.key,
+            amount: action.miscAmount,
+            amountUnit: action.miscAmountUnit,
+            time: action.miscTime,
+            timeUnit: action.miscTimeUnit,
+            stage: action.miscStage,
+          },
+        ],
+      };
+    case recipeAction.REMOVE_MISC:
+      return {
+        ...state,
+        miscs: reject(state.miscs, { key: action.key }),
       };
     default:
       return state;

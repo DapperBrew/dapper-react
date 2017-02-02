@@ -15,6 +15,11 @@ const initialState = {
   hopTime: '',
   hopWeight: '',
   hopType: 'pellet',
+  miscAmount: '',
+  miscAmountUnit: '',
+  miscTime: '',
+  miscTimeUnit: '',
+  miscStage: '',
 };
 
 const modals = (state = initialState, action) => {
@@ -89,6 +94,31 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         hopType: action.hopType,
+      };
+    case actions.UPDATE_MISC_AMOUNT:
+      return {
+        ...state,
+        miscAmount: action.amount,
+      };
+    case actions.UPDATE_MISC_AMOUNT_UNIT:
+      return {
+        ...state,
+        miscAmountUnit: action.unit,
+      };
+    case actions.UPDATE_MISC_TIME:
+      return {
+        ...state,
+        miscTime: action.time,
+      };
+    case actions.UPDATE_MISC_TIME_UNIT:
+      return {
+        ...state,
+        miscTimeUnit: action.unit,
+      };
+    case actions.UPDATE_MISC_STAGE:
+      return {
+        ...state,
+        miscStage: action.stage,
       };
     case actions.ERROR_MODAL:
       return {
