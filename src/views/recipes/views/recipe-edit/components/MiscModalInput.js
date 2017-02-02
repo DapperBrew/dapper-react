@@ -19,6 +19,7 @@ class MiscModalInput extends React.Component {
       this.props.onAmountUnitChange(selectedItem.amountUnit);
       this.props.onAmountChange(amount);
       this.props.onTimeUnitChange(selectedItem.timeUnit);
+      this.props.onTimeChange(selectedItem.time);
       this.props.onStageChange(selectedItem.stage);
     }
   }
@@ -134,6 +135,7 @@ class MiscModalInput extends React.Component {
 MiscModalInput.propTypes = {
   onAmountUnitChange: React.PropTypes.func.isRequired,
   onAmountChange: React.PropTypes.func.isRequired,
+  onTimeChange: React.PropTypes.func.isRequired,
   onTimeUnitChange: React.PropTypes.func.isRequired,
   onStageChange: React.PropTypes.func.isRequired,
   miscs: React.PropTypes.object, // eslint-disable-line
