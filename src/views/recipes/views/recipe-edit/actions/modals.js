@@ -27,15 +27,16 @@ export const modalInfo = {
     SEARCH_TABLE_CELLS: ['name', 'type', 'alpha'],
     SEARCH_KEYS: ['name'],
   },
+  YEAST: {
+    NAME: 'YEAST',
+    SEARCH_TABLE_HEADER: ['Name', 'ID', 'Supplier', 'Form'],
+    SEARCH_TABLE_CELLS: ['name', 'supplierId', 'supplier', 'form'],
+    SEARCH_KEYS: ['name', 'type'],
+  },
   MISC: {
     HEADER: ['Name', 'Type', 'Color'],
     CELL_ITEMS: ['name', 'type', 'srm'],
-    SEARCH_KEYS: ['name', 'type'],
-  },
-  YEAST: {
-    HEADER: ['Name', 'Type', 'Color'],
-    CELL_ITEMS: ['name', 'type', 'srm'],
-    SEARCH_KEYS: ['name', 'type'],
+    SEARCH_KEYS: ['name', 'supplier', 'supplierId'],
   },
 };
 

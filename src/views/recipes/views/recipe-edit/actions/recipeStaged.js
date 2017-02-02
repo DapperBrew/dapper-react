@@ -20,6 +20,9 @@ export const REMOVE_FERMENTABLE = 'REMOVE_FERMENTABLE';
 export const ADD_HOP_SUCCESS = 'ADD_HOP_SUCCESSS';
 export const ADD_HOP_ERROR = 'ADD_HOP_ERROR';
 export const REMOVE_HOP = 'REMOVE_HOP';
+export const ADD_YEAST_SUCCESS = 'ADD_YEAST_SUCCESSS';
+export const ADD_YEAST_ERROR = 'ADD_YEAST_ERROR';
+export const REMOVE_YEAST = 'REMOVE_YEAST';
 
 
 export const setStyle = style => ({
@@ -191,6 +194,41 @@ export const removeHop = key => (
   dispatch => (
     dispatch({
       type: REMOVE_HOP,
+      key,
+    })
+  )
+);
+
+export const addYeast = (id, reset) => (
+  (dispatch) => {
+    if (!id) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please select an item.',
+        field: 'select',
+      });
+    } else if (reset === true) { // if there is a reset flag
+      dispatch({
+        type: ADD_YEAST_SUCCESS,
+        id,
+        key: uniqueId(),
+      });
+      dispatch(resetModal());
+    } else {
+      dispatch({
+        type: ADD_YEAST_SUCCESS,
+        id,
+        key: uniqueId(),
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
+export const removeYeast = key => (
+  dispatch => (
+    dispatch({
+      type: REMOVE_YEAST,
       key,
     })
   )

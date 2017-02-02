@@ -59,10 +59,14 @@ AddModal.propTypes = {
   name: React.PropTypes.string.isRequired,
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
-  children: React.PropTypes.array.isRequired, // eslint-disable-line
+  children: React.PropTypes.node.isRequired, // eslint-disable-line
   header: React.PropTypes.string.isRequired,
+  cells: React.PropTypes.array.isRequired, //eslint-disable-line
   items: React.PropTypes.array.isRequired, // eslint-disable-line
-  cells: React.PropTypes.array.isRequired, // eslint-disable-line
+  // items: React.PropTypes.oneOfType([
+  //   React.PropTypes.array,
+  //   React.PropTypes.object,
+  // ]),
   headers: React.PropTypes.array.isRequired, // eslint-disable-line
   searchKeys: React.PropTypes.array.isRequired, // eslint-disable-line
 };

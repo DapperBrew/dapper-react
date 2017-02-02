@@ -1,9 +1,10 @@
 [
   {
-    "name": "WLP001 California Ale Yeast",
+    "name": "California Ale Yeast",
     "supplier": "White Labs",
     "supplierId": "WLP001",
     "description": "This yeast is famous for its clean flavors, balance and ability to be used in almost any style ale. It accentuates the hop flavors and is extremely versatile.",
+    "type": "ale",
     "form": "liquid",
     "flocculation": "medium",
     "attenuationMin": 73,
@@ -14,10 +15,11 @@
     "alcoholToleranceMax": 15
   },
   {
-    "name": "WLP013 London Ale Yeast",
+    "name": "London Ale Yeast",
     "supplier": "White Labs",
     "supplierId": "WLP013",
     "description": "Dry, malty ale yeast. Provides a complex, oakey ester character to your beer. Hop bitterness comes through well. This yeast is well suited for classic British pale ales, bitters, and stouts. Does not flocculate as much as WLP002 and WLP005.",
+    "type": "ale",
     "form": "liquid",
     "flocculation": "medium",
     "attenuationMin": 67,
@@ -28,10 +30,11 @@
     "alcoholToleranceMax": 10
   },
   {
-    "name": "1007 German Ale",
+    "name": "German Ale",
     "supplier": "Wyeast",
     "supplierId": "1007",
     "description": "A true top cropping yeast with low ester formation and a broad temperature range. Fermentation at higher temperatures may produce mild fruitiness. This powdery strain results in yeast that remains in suspension post fermentation. Beers mature rapidly, even when cold fermentation is used. Low or no detectable diacetyl.",
+    "type": "ale",
     "form": "liquid",
     "flocculation": "Low",
     "attenuationMin": 73,

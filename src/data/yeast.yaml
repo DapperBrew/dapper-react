@@ -1,9 +1,10 @@
 Yeast:
   id: 1234
-  name: WLP001 California Ale Yeast
+  name: California Ale Yeast
   supplier: White Labs
   supplierId: WLP001
   description: This yeast is famous for its clean flavors, balance and ability to be used in almost any style ale. It accentuates the hop flavors and is extremely versatile.
+  type: ale
   form: liquid
   flocculation: medium
   attenuationMin: 73
@@ -12,4 +13,3 @@ Yeast:
   fermentTempMax: 73
   alcoholToleranceMin: 10
   alcoholToleranceMax: 15
-  

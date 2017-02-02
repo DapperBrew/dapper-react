@@ -1,26 +1,44 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+// actions
+import { showModal, modalInfo } from '../actions/modals';
 
 // Components
 import Card from '../../../../../components/Card';
-import YeastRow from './YeastRow';
+import YeastList from './YeastList';
+import YeastModal from './YeastModal';
 
-const Yeast = () => (
-  <Card cardTitle="Yeast">
-    <table className="recipe-table">
-      <thead>
-        <tr className="">
-          <th className="recipe-table__header text-left">Name</th>
-          <th className="recipe-table__header text-right">Weight</th>
-          <th className="recipe-table__header text-right">Color</th>
-          <th className="recipe-table__header text-right">%</th>
-          <th className="recipe-table__header text-right">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <YeastRow />
-      </tbody>
-    </table>
-  </Card>
-);
+const Yeast = (props) => {
+  const { dispatch } = props;
+  const name = modalInfo.YEAST.NAME;
+  return (
+    <Card cardTitle="Yeast">
+      <table className="recipe-table">
+        <thead>
+          <tr className="">
+            <th className="recipe-table__header text-left">Name</th>
+            <th className="recipe-table__header text-right">Ferm Temp</th>
+            <th className="recipe-table__header text-right">Av. Attenuation</th>
+            <th className="recipe-table__header text-right">Actions</th>
+          </tr>
+        </thead>
+        <YeastList />
+      </table>
+      <button className="mt1" onClick={() => dispatch(showModal(name))}>
+        Test Button
+      </button>
+      <YeastModal />
+    </Card>
+  );
+};
 
-export default Yeast;
+const mapStateToProps = state => ({
+  modal: state.recipeEdit.modals,
+});
+
+Yeast.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps)(Yeast);
