@@ -30,9 +30,12 @@ const getStylesDropdown = (items) => {
 // Returns total number of gravity points from staged recipe fermentables
 const getTotalPoints = (allFermentables, items) => {
   if (items) {
-    return Object.keys(items).reduce((acc, key) => {
+    let totalFermentablePoints = 0;
+    let totalSugarPoints = 0;
+    Object.keys(items).forEach((key) => {
       let weight;
       const potential = allFermentables[items[key].id].potential;
+      const type = allFermentables[items[key].id].type;
       const points = (potential - 1) * 1000;
       if (items[key].unit === 'oz') {
         weight = items[key].weight / 16;
@@ -40,8 +43,13 @@ const getTotalPoints = (allFermentables, items) => {
         weight = items[key].weight;
       }
       const totalPoints = points * weight;
-      return acc + totalPoints;
-    }, 0);
+      if (type === 'sugar') {
+        totalSugarPoints += totalPoints;
+      } else {
+        totalFermentablePoints += totalPoints;
+      }
+    });
+    return [totalFermentablePoints, totalSugarPoints];
   }
   return 0;
 };
@@ -49,14 +57,21 @@ const getTotalPoints = (allFermentables, items) => {
 // returns the estimated original gravity of a recipe
 const calcOriginalGravity = (gravityPoints, eff, volume) => {
   if (
-      isFinite(Number(gravityPoints))
+      isFinite(Number(gravityPoints[0]))
+      && isFinite(Number(gravityPoints[1]))
       && Number(eff) > 0
       && Number(volume) > 0
     ) {
-    const gravityPointsNum = Number(gravityPoints);
+    const fGravityPointsNum = Number(gravityPoints[0]);
+    const sGravityPointsNum = Number(gravityPoints[1]);
     const effNum = Number(eff);
-    const VolumeNum = Number(volume);
-    const finalCalc = calc.estimateOriginalGravity(gravityPointsNum, effNum, VolumeNum);
+    const volumeNum = Number(volume);
+    const finalCalc = calc.estimateOriginalGravity(
+      fGravityPointsNum,
+      sGravityPointsNum,
+      effNum,
+      volumeNum,
+    );
     return finalCalc.toFixed(3);
   }
   return 'N/A';
