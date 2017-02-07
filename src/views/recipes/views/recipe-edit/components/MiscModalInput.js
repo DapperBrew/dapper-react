@@ -6,7 +6,7 @@ class MiscModalInput extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // update the input fields with the default data from the API
-    if (nextProps.selectedItem !== this.props.selectedItem) {
+    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
       const selectedItem = this.props.miscs[nextProps.selectedItem];
       const batchVolume = this.props.batchVolume;
       let amount = selectedItem.amount;

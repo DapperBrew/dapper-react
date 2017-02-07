@@ -46,6 +46,11 @@ const modals = (state = initialState, action) => {
         hopTime: '',
         hopWeight: '',
         hopType: 'pellet',
+        miscAmount: '',
+        miscAmountUnit: 'oz',
+        miscTime: '',
+        miscTimeUnit: 'min',
+        miscStage: 'boil',
       };
     case actions.LOAD_MODAL:
       return {

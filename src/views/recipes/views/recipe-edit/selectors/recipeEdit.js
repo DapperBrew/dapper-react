@@ -3,6 +3,7 @@ import * as calc from 'dapper-calc/build';
 import isFinite from 'lodash/isFinite';
 
 const recipeFermentables = state => state.recipeEdit.recipeStaged.fermentables;
+const recipeYeasts = state => state.recipeEdit.recipeStaged.yeasts;
 const recipeHops = state => state.recipeEdit.recipeStaged.hops;
 const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
@@ -11,7 +12,7 @@ const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
 const postBoilVolume = state => state.recipeEdit.recipeStaged.postBoilVolume;
 
 // Returns sum weight of all recipe fermentables
-const calculateTotalWeight = items => (
+const calcTotalWeight = items => (
   Object.keys(items)
     .reduce((previous, key) => (previous + Number(items[key].weight)), 0)
 );
@@ -28,7 +29,7 @@ const getStylesDropdown = (items) => {
 };
 
 // Returns total number of gravity points from staged recipe fermentables
-const getTotalPoints = (allFermentables, items) => {
+const calcTotalPoints = (allFermentables, items) => {
   if (items) {
     let totalFermentablePoints = 0;
     let totalSugarPoints = 0;
@@ -56,8 +57,7 @@ const getTotalPoints = (allFermentables, items) => {
 
 // returns the estimated original gravity of a recipe
 const calcOriginalGravity = (gravityPoints, eff, volume) => {
-  if (
-      isFinite(Number(gravityPoints[0]))
+  if (isFinite(Number(gravityPoints[0]))
       && isFinite(Number(gravityPoints[1]))
       && Number(eff) > 0
       && Number(volume) > 0
@@ -77,6 +77,83 @@ const calcOriginalGravity = (gravityPoints, eff, volume) => {
   return 'N/A';
 };
 
+// get yeast attenuation (in case of multiple yeasts)
+const calcYeastAttenuation = (items) => {
+  // set up a default value of 75
+  let att = 75;
+  if (items) {
+    Object.keys(items).forEach((key) => {
+      const avAtt = items[key].averageAttenuation;
+      if (avAtt > att) att = avAtt;
+    });
+    return att;
+  }
+  return 75;
+};
+
+// get mash Temp
+const calcMashTemp = () => {
+  return 151;
+};
+
+// get estimated final gravity
+const calcFinalGravity = (gravityPoints, attenuation, eff, volume, mashTemp) => {
+  if (
+    isFinite(Number(gravityPoints[0]))
+    && isFinite(Number(gravityPoints[1]))
+    && isFinite(Number(attenuation))
+    && isFinite(Number(eff))
+    && isFinite(Number(volume))
+    && isFinite(Number(mashTemp))
+  ) {
+    // Make sure all variables are numbers
+    const fgp = Number(gravityPoints[0]);
+    const sgp = Number(gravityPoints[1]);
+    const attenuationNum = Number(attenuation);
+    const effNum = Number(eff);
+    const volumeNum = Number(volume);
+    const mashTempNum = Number(mashTemp);
+
+    // get Gravity Points of grains (no simple sugars)
+    let grainGp = calc.estimateOriginalGravity(
+      fgp,
+      0,
+      effNum,
+      volumeNum);
+    grainGp = calc.sg2gp(grainGp);
+
+    // get Gravity Points of simple sugars
+    let sugarGp = calc.estimateOriginalGravity(
+      0,
+      sgp,
+      effNum,
+      volumeNum);
+    sugarGp = calc.sg2gp(sugarGp);
+
+    // Use the calculated Gravity points to estimate Final Gravity
+    const finalCalc = calc.estimateFinalGravity(
+      grainGp,
+      sugarGp,
+      attenuationNum,
+      mashTempNum,
+    );
+
+    return finalCalc;
+  }
+  return 'N/A';
+};
+
+// calculate final ABV of beer
+const calcABV = (og, fg) => {
+  if (isFinite(Number(og)) && isFinite(Number(fg))) {
+    const ogNum = Number(og);
+    const fgNum = Number(fg);
+    return calc.abv(ogNum, fgNum);
+  }
+  return 0;
+};
+
+// calculate pre boil gravity
 const calcPreBoilGravity = (og, volume, preBoilVolume) => {
   if (og > 0 && volume > 0 && preBoilVolume > 0) {
     const volumeAdd = Number(preBoilVolume) - Number(volume);
@@ -133,7 +210,7 @@ const calcSrm = mcu => calc.srm(mcu);
 
 export const getTotalWeight = createSelector(
   recipeFermentables,
-  calculateTotalWeight,
+  calcTotalWeight,
 );
 
 export const getStylesObject = createSelector(
@@ -141,14 +218,14 @@ export const getStylesObject = createSelector(
   getStylesDropdown,
 );
 
-export const totalGravityPoints = createSelector(
+export const getTotalGravityPoints = createSelector(
   fermentables,
   recipeFermentables,
-  getTotalPoints,
+  calcTotalPoints,
 );
 
 export const estimateOriginalGravity = createSelector(
-  totalGravityPoints,
+  getTotalGravityPoints,
   efficiency,
   postBoilVolume,
   calcOriginalGravity,
@@ -178,4 +255,24 @@ export const getRecipeMcu = createSelector(
 export const getRecipeSrm = createSelector(
   getRecipeMcu,
   calcSrm,
+);
+
+export const getYeastAttenuation = createSelector(
+  recipeYeasts,
+  calcYeastAttenuation,
+);
+
+export const getFinalGravity = createSelector(
+  getTotalGravityPoints,
+  getYeastAttenuation,
+  efficiency,
+  postBoilVolume,
+  calcMashTemp,
+  calcFinalGravity,
+);
+
+export const getABV = createSelector(
+  estimateOriginalGravity,
+  getFinalGravity,
+  calcABV,
 );

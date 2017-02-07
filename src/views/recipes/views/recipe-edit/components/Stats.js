@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Card from '../../../../../components/Card';
 
 // selectors
-import { estimateOriginalGravity, getRecipeIbu, getRecipeSrm } from '../selectors/recipeEdit';
+import { estimateOriginalGravity, getRecipeIbu, getRecipeSrm, getABV } from '../selectors/recipeEdit';
 
 class Stats extends React.Component {
   render() {
@@ -17,7 +17,7 @@ class Stats extends React.Component {
         </div>
         <div className="stat">
           <h4 className="stat__title">ABV</h4>
-          <div className="stat__content">TBD</div>
+          <div className="stat__content">{this.props.abv} %</div>
         </div>
         <div className="stat">
           <h4 className="stat__title">Bitterness</h4>
@@ -36,6 +36,7 @@ Stats.propTypes = {
   originalGravity: React.PropTypes.string.isRequired,
   totalIbu: React.PropTypes.number.isRequired,
   srm: React.PropTypes.number.isRequired,
+  abv: React.PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -44,6 +45,7 @@ const mapStateToProps = state => ({
   originalGravity: estimateOriginalGravity(state),
   totalIbu: getRecipeIbu(state),
   srm: getRecipeSrm(state),
+  abv: getABV(state),
 });
 
 export default connect(mapStateToProps)(Stats);
