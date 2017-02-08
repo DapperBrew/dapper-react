@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { normalize } from 'normalizr';
+import { REHYDRATE } from 'redux-persist/constants';
 import * as schema from './schemas';
 
 // action constants
@@ -28,6 +29,9 @@ export const MISC_REQUEST = 'MISC_REQUEST';
 export const MISC_SUCCESS = 'MISC_SUCCESS';
 export const MISC_ERROR = 'MISC_ERROR';
 
+export const requestLocalData = () => ({
+  type: REHYDRATE,
+});
 
 export const requestData = () => ({
   type: DATA_REQUEST,

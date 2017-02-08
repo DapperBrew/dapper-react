@@ -13,8 +13,7 @@
     "gh-pages": "^0.12.0",
     "node-sass": "^4.1.0",
     "normalize.scss": "^0.1.0",
-    "react-scripts": "0.8.4",
-    "why-did-you-update": "0.0.8"
+    "react-scripts": "0.8.4"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -32,6 +31,7 @@
     "react-search-input": "^0.10.3",
     "react-select": "^1.0.0-rc.2",
     "redux": "^3.6.0",
+    "redux-persist": "^4.3.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
     "susy": "^2.2.12"
