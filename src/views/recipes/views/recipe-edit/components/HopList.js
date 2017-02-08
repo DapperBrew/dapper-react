@@ -7,7 +7,7 @@ import { removeHop } from '../actions/recipeStaged';
 import EditIcons from './EditIcons';
 
 // selectors
-import { getBoilGravity } from '../selectors/recipeEdit';
+import { getPreBoilGravity } from '../selectors/recipeEdit';
 
 const HopList = props => (
   <tbody>
@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
   hops: state.data.hops,
   recipeHops: state.recipeEdit.recipeStaged.hops,
   recipeStaged: state.recipeEdit.recipeStaged,
-  boilGravity: getBoilGravity(state),
+  boilGravity: getPreBoilGravity(state),
 });
 
 HopList.propTypes = {

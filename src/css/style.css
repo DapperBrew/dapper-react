@@ -2923,6 +2923,22 @@ input[type="button"].button--block {
   font-weight: 700;
   font-size: 28px; }
 
+.small-stats {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+.small-stats__item {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  display: inline-block;
+  width: 100%;
+  font-size: 16px; }
+
+.small-stats__name {
+  padding-right: 10px;
+  font-weight: bold; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

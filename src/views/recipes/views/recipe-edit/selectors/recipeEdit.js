@@ -231,7 +231,7 @@ export const estimateOriginalGravity = createSelector(
   calcOriginalGravity,
 );
 
-export const getBoilGravity = createSelector(
+export const getPreBoilGravity = createSelector(
   estimateOriginalGravity,
   postBoilVolume,
   boilVolume,
@@ -240,7 +240,7 @@ export const getBoilGravity = createSelector(
 
 export const getRecipeIbu = createSelector(
   recipeHops,
-  getBoilGravity,
+  getPreBoilGravity,
   postBoilVolume,
   calcTotalIbu,
 );
