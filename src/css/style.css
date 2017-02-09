@@ -2939,6 +2939,46 @@ input[type="button"].button--block {
   padding-right: 10px;
   font-weight: bold; }
 
+.style-table {
+  width: 100%;
+  font-size: 14px; }
+
+.style-table__header {
+  padding-bottom: 8px;
+  font-size: 16px;
+  text-transform: uppercase; }
+
+.style-table__header--expand {
+  min-width: 70px; }
+
+.style-table__row {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  padding: 10px 0; }
+
+.style-table__cell {
+  padding: 8px 0; }
+
+.style-table__icon {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  fill: currentColor;
+  stroke: none;
+  vertical-align: middle;
+  position: relative;
+  top: -0.0625em;
+  margin-left: 10px; }
+
+.is-in-style .style-table__icon {
+  color: #26d58f; }
+
+.is-out .style-table__icon {
+  color: #e91c53; }
+
+.is-close .style-table__icon {
+  color: #ebcd2e; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

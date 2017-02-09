@@ -6,7 +6,7 @@ import Card from '../../../../../components/Card';
 
 // selectors
 import {
-  estimateOriginalGravity,
+  getOriginalGravity,
   getRecipeIbu,
   getRecipeSrm,
   getABV,
@@ -14,44 +14,41 @@ import {
   getPreBoilGravity,
 } from '../selectors/recipeEdit';
 
-class Stats extends React.Component {
-  render() {
-    return (
-      <Card cardTitle="Stats">
-        <div className="stat">
-          <h4 className="stat__title">Original Gravity</h4>
-          <div className="stat__content">{this.props.originalGravity}</div>
-        </div>
-        <div className="stat">
-          <h4 className="stat__title">ABV</h4>
-          <div className="stat__content">{this.props.abv} %</div>
-        </div>
-        <div className="stat">
-          <h4 className="stat__title">Bitterness</h4>
-          <div className="stat__content">{this.props.totalIbu} IBU</div>
-        </div>
-        <div className="stat">
-          <h4 className="stat__title">Color</h4>
-          <div className="stat__content">{this.props.srm} SRM</div>
-        </div>
-        <ul className="small-stats">
-          <li className="small-stats__item">
-            <span className="small-stats__name">Estimated Pre-Boil Volume:</span>
-            <span className="small-stats__number">{this.props.preBoilVolume} gal</span>
-          </li>
-          <li className="small-stats__item">
-            <span className="small-stats__name">Estimated Pre-Boil Gravity:</span>
-            <span className="small-stats__number">{this.props.preBoilGravity.toFixed(3)}</span>
-          </li>
-          <li className="small-stats__item">
-            <span className="small-stats__name">Estimated Final Gravity:</span>
-            <span className="small-stats__number">{this.props.finalGravity}</span>
-          </li>
-        </ul>
-      </Card>
-    );
-  }
-}
+const Stats = props => (
+  <Card cardTitle="Stats">
+    <div className="stat">
+      <h4 className="stat__title">Original Gravity</h4>
+      <div className="stat__content">{props.originalGravity}</div>
+    </div>
+    <div className="stat">
+      <h4 className="stat__title">ABV</h4>
+      <div className="stat__content">{props.abv} %</div>
+    </div>
+    <div className="stat">
+      <h4 className="stat__title">Bitterness</h4>
+      <div className="stat__content">{props.totalIbu} IBU</div>
+    </div>
+    <div className="stat">
+      <h4 className="stat__title">Color</h4>
+      <div className="stat__content">{props.srm} SRM</div>
+    </div>
+    <ul className="small-stats">
+      <li className="small-stats__item">
+        <span className="small-stats__name">Estimated Pre-Boil Volume:</span>
+        <span className="small-stats__number">{props.preBoilVolume} gal</span>
+      </li>
+      <li className="small-stats__item">
+        <span className="small-stats__name">Estimated Pre-Boil Gravity:</span>
+        <span className="small-stats__number">{props.preBoilGravity.toFixed(3)}</span>
+      </li>
+      <li className="small-stats__item">
+        <span className="small-stats__name">Estimated Final Gravity:</span>
+        <span className="small-stats__number">{props.finalGravity}</span>
+      </li>
+    </ul>
+  </Card>
+);
+
 
 Stats.propTypes = {
   originalGravity: React.PropTypes.string.isRequired,
@@ -66,7 +63,7 @@ Stats.propTypes = {
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   data: state.data,
-  originalGravity: estimateOriginalGravity(state),
+  originalGravity: getOriginalGravity(state),
   totalIbu: getRecipeIbu(state),
   srm: getRecipeSrm(state),
   abv: getABV(state),

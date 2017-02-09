@@ -12,6 +12,7 @@ import Hops from './components/Hops';
 import Misc from './components/Misc';
 import Yeast from './components/Yeast';
 import Stats from './components/Stats';
+import StyleGuide from './components/StyleGuide';
 
 import { fetchData, fetchStyles } from '../../../../actions/data';
 
@@ -45,7 +46,7 @@ class RecipeEdit extends React.Component {
           </div>
           <div className="info-column">
             <Stats />
-            <Card cardTitle="Style Guide" />
+            <StyleGuide />
           </div>
         </div>
       );

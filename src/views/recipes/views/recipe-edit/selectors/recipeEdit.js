@@ -224,7 +224,7 @@ export const getTotalGravityPoints = createSelector(
   calcTotalPoints,
 );
 
-export const estimateOriginalGravity = createSelector(
+export const getOriginalGravity = createSelector(
   getTotalGravityPoints,
   efficiency,
   postBoilVolume,
@@ -232,7 +232,7 @@ export const estimateOriginalGravity = createSelector(
 );
 
 export const getPreBoilGravity = createSelector(
-  estimateOriginalGravity,
+  getOriginalGravity,
   postBoilVolume,
   boilVolume,
   calcPreBoilGravity,
@@ -272,7 +272,7 @@ export const getFinalGravity = createSelector(
 );
 
 export const getABV = createSelector(
-  estimateOriginalGravity,
+  getOriginalGravity,
   getFinalGravity,
   calcABV,
 );
