@@ -89,6 +89,27 @@ const StyleGuide = (props) => {
   const ibuInStyle = checkNum(ibuMin, ibuMax, recipeIBU);
   const srmInStyle = checkNum(srmMin, srmMax, recipeSRM);
 
+  const allInStyle = () => {
+    if (
+      ogInStyle[0] === 'in-style'
+      && fgInStyle[0] === 'in-style'
+      && abvInStyle[0] === 'in-style'
+      && ibuInStyle[0] === 'in-style'
+      && srmInStyle[0] === 'in-style'
+    ) {
+      return <span className="style-check">This recipe is in style.</span>;
+    } else if (
+      ogInStyle[0] !== 'out'
+      && fgInStyle[0] !== 'out'
+      && abvInStyle[0] !== 'out'
+      && ibuInStyle[0] !== 'out'
+      && srmInStyle[0] !== 'out'
+    ) {
+      return <span className="style-check">This recipe is almost in style</span>;
+    }
+    return <span className="style-check">This recipe is out of style</span>;
+  };
+
   return (
     <Card cardTitle="Style Guide">
       <h4>{category}</h4>
@@ -153,6 +174,7 @@ const StyleGuide = (props) => {
           </tr>
         </tbody>
       </table>
+      {allInStyle()}
     </Card>
   );
 };
