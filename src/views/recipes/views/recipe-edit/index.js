@@ -43,6 +43,7 @@ class RecipeEdit extends React.Component {
             <Fermentables />
             <Hops />
             <Yeast />
+            <Misc />
           </div>
           <div className="info-column">
             <Stats />

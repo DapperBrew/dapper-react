@@ -3006,7 +3006,8 @@ input[type="button"].button--block {
   width: 100%;
   background-color: #fff;
   padding: 0 1.38889%;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  z-index: 40; }
 
 .header__title {
   line-height: 72px;
