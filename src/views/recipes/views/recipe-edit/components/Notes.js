@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
+
 import RichTextEditor from 'react-rte';
 
 // Components
@@ -29,11 +30,16 @@ class Notes extends React.Component {
 
   render() {
     const toolbarConfig = {
-      display: ['INLINE_STYLE_BUTTONS', 'LINK_BUTTONS', 'HISTORY_BUTTONS'],
+      // Optionally specify the groups to display (displayed in the order listed).
+      display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'HISTORY_BUTTONS'],
       INLINE_STYLE_BUTTONS: [
         { label: 'Bold', style: 'BOLD' },
         { label: 'Italic', style: 'ITALIC' },
         { label: 'Underline', style: 'UNDERLINE' },
+      ],
+      BLOCK_TYPE_BUTTONS: [
+        { label: 'UL', style: 'unordered-list-item' },
+        { label: 'OL', style: 'ordered-list-item' },
       ],
     };
     return (
