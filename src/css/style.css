@@ -1573,7 +1573,6 @@ ul,
 ol,
 dl {
   margin-bottom: 0.75rem;
-  list-style-position: inside;
   line-height: inherit; }
 
 ul,
@@ -2978,6 +2977,9 @@ input[type="button"].button--block {
 
 .is-close .style-table__icon {
   color: #ebcd2e; }
+
+.recipe-note .DraftEditor-root {
+  height: 250px; }
 
 .main {
   min-height: 100vh;

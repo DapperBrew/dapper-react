@@ -71,6 +71,11 @@ const recipeEdit = (state = initialState, action) => {
         ...state,
         recipeType: action.recipeType,
       };
+    case recipeAction.SET_RECIPE_NOTES:
+      return {
+        ...state,
+        recipeNotes: action.notes,
+      };
     case recipeAction.ADD_FERMENTABLE_SUCCESS:
       return {
         ...state,

@@ -26,6 +26,7 @@ export const REMOVE_YEAST = 'REMOVE_YEAST';
 export const ADD_MISC_SUCCESS = 'ADD_MISC_SUCCESSS';
 export const ADD_MISC_ERROR = 'ADD_MISC_ERROR';
 export const REMOVE_MISC = 'REMOVE_MISC';
+export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
 
 
 export const setStyle = style => ({
@@ -76,6 +77,11 @@ export const setPostBoilVolume = volume => ({
 export const setRecipeType = recipeType => ({
   type: SET_RECIPE_TYPE,
   recipeType,
+});
+
+export const setRecipeNotes = notes => ({
+  type: SET_RECIPE_NOTES,
+  notes,
 });
 
 export const addFermentable = (id, weight, unit, reset) => (
