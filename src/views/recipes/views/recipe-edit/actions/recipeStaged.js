@@ -140,7 +140,6 @@ export const addFermentable = (
     } else {
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
-        id,
         name: currentFermentable.name,
         key: uniqueId(),
         fermentableWeight,
@@ -219,7 +218,6 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
     } else {
       dispatch({
         type: ADD_HOP_SUCCESS,
-        id,
         name: currentHops.name,
         key: uniqueId(),
         hopWeight,
@@ -295,7 +293,6 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
     } else {
       dispatch({
         type: ADD_YEAST_SUCCESS,
-        id,
         name: currentYeast.name,
         supplier: currentYeast.supplier,
         supplierId: currentYeast.supplierId,
@@ -367,7 +364,6 @@ export const addMisc = (
     } else {
       dispatch({
         type: ADD_MISC_SUCCESS,
-        id,
         name: currentMisc.name,
         key: uniqueId(),
         miscAmount,
