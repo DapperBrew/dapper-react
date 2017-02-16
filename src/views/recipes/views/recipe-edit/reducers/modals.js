@@ -17,6 +17,9 @@ const initialState = {
   hopWeight: '',
   hopType: 'pellet',
   hopAlpha: '',
+  yeastAttenuation: '',
+  yeastMinTemp: '',
+  yeastMaxTemp: '',
   miscAmount: '',
   miscAmountUnit: 'oz',
   miscTime: '',
@@ -107,6 +110,21 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         hopAlpha: action.hopAlpha,
+      };
+    case actions.UPDATE_YEAST_ATTENUATION:
+      return {
+        ...state,
+        yeastAttenuation: action.attenuation,
+      };
+    case actions.UPDATE_YEAST_MIN_TEMP:
+      return {
+        ...state,
+        yeastMinTemp: action.temp,
+      };
+    case actions.UPDATE_YEAST_MAX_TEMP:
+      return {
+        ...state,
+        yeastMaxTemp: action.temp,
       };
     case actions.UPDATE_MISC_AMOUNT:
       return {

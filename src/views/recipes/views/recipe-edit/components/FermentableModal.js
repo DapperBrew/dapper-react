@@ -81,7 +81,7 @@ class FermentableModal extends React.Component {
               fermentableWeightUnit,
               fermentableColor,
               fermentablePotential,
-              fermentableMaltster.value
+              fermentableMaltster.value,
             ))}
           />
         </AddModal>

@@ -130,6 +130,8 @@ const recipeEdit = (state = initialState, action) => {
             id: action.id,
             key: action.key,
             averageAttenuation: action.averageAttenuation,
+            minTemp: action.minTemp,
+            maxTemp: action.maxTemp,
           },
         ],
       };

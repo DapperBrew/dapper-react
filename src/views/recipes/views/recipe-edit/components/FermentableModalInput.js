@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-// import Select from 'react-select';
 import Select, { Creatable } from 'react-select';
-
 
 class FermentableModalInput extends React.Component {
 
@@ -13,30 +11,6 @@ class FermentableModalInput extends React.Component {
       this.props.onColorChange(selectedItem.srm);
       this.props.onPotentialChange(selectedItem.potential);
     }
-  }
-
-  onNewOption = (newOption) => {
-    console.log('YO YO OY', newOption);
-    return {
-      label: newOption.inputValue,
-      value: newOption.inputvalue,
-      labelKey: newOption.inputValue,
-      valueKey: newOption.inputValue,
-    };
-
-    // return { value: newOption.label, label: newOption.label };
-  }
-
-  newOptionCreator = ({ label, labelKey, valueKey }) => {
-    console.log('label', label);
-    console.log('labelKey', labelKey);
-    console.log('valueKey', valueKey);
-    const option = {};
-    option[valueKey] = label;
-    option[labelKey] = label;
-    option.className = 'Select-create-option-placeholder';
-    console.log('option', option);
-    return option;
   }
 
 
@@ -135,8 +109,6 @@ class FermentableModalInput extends React.Component {
             className="input__select"
             onChange={props.onMaltsterChange}
             value={props.maltsterValue}
-            // simpleValue={true} //eslint-disable-line
-            // newOptionCreator={this.newOptionCreator}
           />
         </div>
 
@@ -146,12 +118,6 @@ class FermentableModalInput extends React.Component {
 }
 
 FermentableModalInput.propTypes = {
-  // errorField: React.PropTypes.string,
-  // onWeightUnitChange: React.PropTypes.func,
-  // weightValue: React.PropTypes.string,
-  // weightUnitValue: React.PropTypes.string,
-  // colorValue: React.PropTypes.string,
-  // yieldValue: React.PropTypes.string,
   onPotentialChange: React.PropTypes.func,
   onColorChange: React.PropTypes.func,
   fermentables: React.PropTypes.object, // eslint-disable-line

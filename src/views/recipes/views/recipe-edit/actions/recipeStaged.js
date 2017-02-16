@@ -244,21 +244,57 @@ export const removeHop = key => (
   )
 );
 
-export const addYeast = (id, reset) => (
-  (dispatch, getState) => {
+export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
+  (dispatch) => {
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please select an item.',
         field: 'select',
       });
+    } else if (!attenuation) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an attenuation %.',
+        field: 'attenuation',
+      });
+    } else if (isFinite(Number(attenuation)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Attenuation must be a number',
+        field: 'attenuation',
+      });
+    } else if (!minTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a minimum temperature',
+        field: 'mintemp',
+      });
+    } else if (isFinite(Number(minTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Min temperature must be a number',
+        field: 'mintemp',
+      });
+    } else if (!maxTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a maximum temperature',
+        field: 'maxtemp',
+      });
+    } else if (isFinite(Number(maxTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Maximum temperature must be a number',
+        field: 'maxtemp',
+      });
     } else {
-      const { attenuationMin, attenuationMax } = getState().data.yeasts[id];
-      const yeastAvgAttenuation = ((attenuationMin + attenuationMax) / 2).toFixed(0);
       dispatch({
         type: ADD_YEAST_SUCCESS,
         id,
-        averageAttenuation: yeastAvgAttenuation,
+        averageAttenuation: attenuation,
+        minTemp,
+        maxTemp,
         key: uniqueId(),
       });
       if (reset) {

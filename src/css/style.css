@@ -2997,6 +2997,21 @@ input[type="button"].button--block {
 .fermentable-form-group__unit {
   width: 30%; }
 
+.yeast-modal-input {
+  display: flex;
+  justify-content: space-between; }
+
+.yeast-form-group {
+  margin-bottom: 20px;
+  width: 32%; }
+
+.yeast-form-group__temp,
+.yeast-form-group__attenuation {
+  width: 70%; }
+
+.yeast-form-group__unit {
+  width: 30%; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

@@ -1,4 +1,6 @@
 // action types
+// action types
+// action types
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 export const RESET_MODAL = 'RESET_MODAL';
@@ -17,6 +19,10 @@ export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
 export const UPDATE_HOP_STAGE = 'UPDATE_HOP_STAGE';
 export const UPDATE_HOP_TYPE = 'UPDATE_HOP_TYPE';
 export const UPDATE_HOP_ALPHA = 'UPDATE_HOP_ALPHA';
+
+export const UPDATE_YEAST_ATTENUATION = 'UPDATE_YEAST_ATTENUATION';
+export const UPDATE_YEAST_MIN_TEMP = 'UPDATE_YEAST_MIN_TEMP';
+export const UPDATE_YEAST_MAX_TEMP = 'UPDATE_YEAST_MAX_TEMP';
 
 export const UPDATE_MISC_AMOUNT = 'UPDATE_MISC_AMOUNT';
 export const UPDATE_MISC_AMOUNT_UNIT = 'UPDATE_MISC_AMOUNT_UNIT';
@@ -133,6 +139,22 @@ export const updateHopType = hopType => ({
 export const updateHopAlpha = hopAlpha => ({
   type: UPDATE_HOP_ALPHA,
   hopAlpha,
+});
+
+// Yeast Modal Actions
+export const updateYeastAttenuation = attenuation => ({
+  type: UPDATE_YEAST_ATTENUATION,
+  attenuation,
+});
+
+export const updateYeastMinTemp = temp => ({
+  type: UPDATE_YEAST_MIN_TEMP,
+  temp,
+});
+
+export const updateYeastMaxTemp = temp => ({
+  type: UPDATE_YEAST_MAX_TEMP,
+  temp,
 });
 
 // Misc modal actions
