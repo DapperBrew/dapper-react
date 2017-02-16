@@ -4,8 +4,10 @@ const initialState = {
   modalOpen: false,
   searchTerm: '',
   selectedItem: '',
-  itemWeight: '',
-  fermentableUnit: 'lb',
+  fermentableWeight: '',
+  fermentableWeightUnit: 'lb',
+  fermentableColor: '',
+  fermentablePotential: '',
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
@@ -38,10 +40,12 @@ const modals = (state = initialState, action) => {
         ...state,
         searchTerm: '',
         selectedItem: '',
-        itemWeight: '',
         modalError: '',
         modalErrorField: '',
-        fermentableUnit: 'lb',
+        fermentableWeight: '',
+        fermentableWeightUnit: 'lb',
+        fermentableColor: '',
+        fermentablePotential: '',
         hopStage: 'boil',
         hopTime: '',
         hopWeight: '',
@@ -70,15 +74,25 @@ const modals = (state = initialState, action) => {
         ...state,
         selectedItem: action.item,
       };
-    case actions.UPDATE_WEIGHT:
+    case actions.UPDATE_FERMENTABLE_WEIGHT:
       return {
         ...state,
-        itemWeight: action.weight,
+        fermentableWeight: action.weight,
       };
-    case actions.UPDATE_FERMENTABLE_UNIT:
+    case actions.UPDATE_FERMENTABLE_WEIGHT_UNIT:
       return {
         ...state,
-        fermentableUnit: action.unit,
+        fermentableWeightUnit: action.unit,
+      };
+    case actions.UPDATE_FERMENTABLE_COLOR:
+      return {
+        ...state,
+        fermentableColor: action.srm,
+      };
+    case actions.UPDATE_FERMENTABLE_POTENTIAL:
+      return {
+        ...state,
+        fermentablePotential: action.ppg,
       };
     case actions.UPDATE_HOP_WEIGHT:
       return {

@@ -2981,6 +2981,21 @@ input[type="button"].button--block {
 .recipe-note .DraftEditor-root {
   height: 250px; }
 
+.fermentable-modal-input {
+  display: flex;
+  justify-content: space-between; }
+
+.fermentable-form-group {
+  margin-bottom: 20px;
+  width: 32%; }
+
+.fermentable-form-group__color,
+.fermentable-form-group__potential {
+  width: 70%; }
+
+.fermentable-form-group__unit {
+  width: 30%; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

@@ -35,8 +35,9 @@ const calcTotalPoints = (allFermentables, items) => {
     let totalSugarPoints = 0;
     Object.keys(items).forEach((key) => {
       let weight;
-      const potential = allFermentables[items[key].id].potential;
-      const type = allFermentables[items[key].id].type;
+      const type = items[key].type;
+      // const type = allFermentables[items[key].id].type;
+      const potential = Number(items[key].potential);
       const points = (potential - 1) * 1000;
       if (items[key].unit === 'oz') {
         weight = items[key].weight / 16;
@@ -186,7 +187,7 @@ const calcTotalIbu = (items, gravity, volume) => {
 };
 
 // returns total MCU for beer from recipe Fermentables
-const calcMcu = (allFermentables, items, volume) => {
+const calcMcu = (items, volume) => {
   if (items) {
     return Object.keys(items).reduce((acc, key) => {
       let weight;
@@ -196,7 +197,7 @@ const calcMcu = (allFermentables, items, volume) => {
         weight = Number(items[key].weight);
       }
       const volumeNum = Number(volume);
-      const srm = Number(allFermentables[items[key].id].srm);
+      const srm = Number(items[key].srm);
       // const lovi = calc.srm2lovibond(srm);
       // for now, Dapper assumes that as a MALT (not wort) lovi = srm
       const mcu = calc.mcu(weight, srm, volumeNum);
@@ -246,7 +247,6 @@ export const getRecipeIbu = createSelector(
 );
 
 export const getRecipeMcu = createSelector(
-  fermentables,
   recipeFermentables,
   postBoilVolume,
   calcMcu,

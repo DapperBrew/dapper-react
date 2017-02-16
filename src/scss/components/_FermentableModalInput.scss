@@ -1,0 +1,22 @@
+// ----------------------------------------------------------------------------
+// Hop Modal Input
+// ----------------------------------------------------------------------------
+
+.fermentable-modal-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fermentable-form-group {
+  margin-bottom: 20px;
+  width: 32%;
+}
+
+.fermentable-form-group__color,
+.fermentable-form-group__potential {
+  width: 70%;
+}
+
+.fermentable-form-group__unit {
+  width: 30%;
+}

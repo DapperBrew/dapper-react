@@ -14,5 +14,5 @@ Fermentable:
   diasticPower: 72
   protein: 11.5
   max: 10
-  recommendMash: true
+  inMash: true
   afterBoil: false

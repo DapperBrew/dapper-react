@@ -5,8 +5,11 @@ export const RESET_MODAL = 'RESET_MODAL';
 export const ERROR_MODAL = 'ERROR_MODAL';
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
 export const SELECT_ITEM = 'SELECT_ITEM';
-export const UPDATE_WEIGHT = 'UPDATE_WEIGHT';
-export const UPDATE_FERMENTABLE_UNIT = 'UPDATE_UNIT';
+
+export const UPDATE_FERMENTABLE_WEIGHT = 'UPDATE_FERMENTABLE_WEIGHT';
+export const UPDATE_FERMENTABLE_WEIGHT_UNIT = 'UPDATE_FERMENTABLE_WEIGHT_UNIT';
+export const UPDATE_FERMENTABLE_COLOR = 'UPDATE_FERMENTABLE_COLOR';
+export const UPDATE_FERMENTABLE_POTENTIAL = 'UPDATE_FERMENTABLE_POTENTIAL';
 
 export const UPDATE_HOP_WEIGHT = 'UPDATE_HOP_WEIGHT';
 export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
@@ -78,14 +81,25 @@ export const selectItem = item => ({
   item,
 });
 
-export const updateWeight = weight => ({
-  type: UPDATE_WEIGHT,
+// Fermentable modal actions
+export const updateFermentableWeight = weight => ({
+  type: UPDATE_FERMENTABLE_WEIGHT,
   weight,
 });
 
-export const updateFermentableUnit = unit => ({
-  type: UPDATE_FERMENTABLE_UNIT,
+export const updateFermentableWeightUnit = unit => ({
+  type: UPDATE_FERMENTABLE_WEIGHT_UNIT,
   unit,
+});
+
+export const updateFermentableColor = srm => ({
+  type: UPDATE_FERMENTABLE_COLOR,
+  srm,
+});
+
+export const updateFermentablePotential = ppg => ({
+  type: UPDATE_FERMENTABLE_POTENTIAL,
+  ppg,
 });
 
 // Hop modal actions

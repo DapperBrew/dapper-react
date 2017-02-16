@@ -84,44 +84,77 @@ export const setRecipeNotes = notes => ({
   notes,
 });
 
-export const addFermentable = (id, weight, unit, reset) => (
-  (dispatch) => {
+export const addFermentable = (
+  id,
+  fermentableWeight,
+  fermentableWeightUnit,
+  fermentableColor,
+  fermentablePotential,
+  reset,
+) => (
+  (dispatch, getState) => {
+    const currentFermentable = getState().data.fermentables[id];
     if (!id) { // check if an item is selected
       dispatch({
         type: ERROR_MODAL,
         error: 'Please select an item.',
         field: 'select',
       });
-    } else if (!weight) { // check for weight input
+    } else if (!fermentableWeight) { // check for weight input
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a weight.',
         field: 'weight',
       });
-    } else if (isFinite(Number(weight)) === false) { // check if weight is number
+    } else if (isFinite(Number(fermentableWeight)) === false) { // check if weight is number
       dispatch({
         type: ERROR_MODAL,
         error: 'Weight must be a number',
         field: 'weight',
       });
-    } else if (reset === true) { // if there is a reset flag
+    } else if (!fermentableColor) { // check for color input
       dispatch({
-        type: ADD_FERMENTABLE_SUCCESS,
-        id,
-        key: uniqueId(),
-        weight,
-        unit,
+        type: ERROR_MODAL,
+        error: 'Please input a color (SRM).',
+        field: 'color',
       });
-      dispatch(resetModal());
+    } else if (isFinite(Number(fermentableColor)) === false) { // check if color is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Color must be a number',
+        field: 'color',
+      });
+    } else if (!fermentablePotential) { // check for fermentation potential input (ppg)
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a potential (ppg).',
+        field: 'potential',
+      });
+    } else if (isFinite(Number(fermentablePotential)) === false) { // check if potential is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Potential (ppg) must be a number',
+        field: 'Potential',
+      });
     } else {
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
         id,
         key: uniqueId(),
-        weight,
-        unit,
+        fermentableWeight,
+        fermentableWeightUnit,
+        fermentableColor,
+        fermentablePotential,
+        fermentableType: currentFermentable.type,
+        inMash: currentFermentable.inMash,
+        afterBoil: currentFermentable.afterBoil,
       });
-      dispatch(hideModal());
+      if (reset) {
+        // if reset is true, only reset the modal (don't close it)
+        dispatch(resetModal());
+      } else {
+        dispatch(hideModal());
+      }
     }
   }
 );
@@ -167,7 +200,7 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         error: 'Time must be a number',
         field: 'time',
       });
-    } else if (reset === true) { // if there is a reset flag
+    } else {
       const currentHop = getState().data.hops[id];
       const hopAA = (currentHop.alphaAcidMax + currentHop.alphaAcidMin) / 2;
       dispatch({
@@ -180,21 +213,12 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         hopType,
         hopAA,
       });
-      dispatch(resetModal());
-    } else {
-      const currentHop = getState().data.hops[id];
-      const hopAA = ((currentHop.alphaAcidMax + currentHop.alphaAcidMin) / 2).toFixed(1);
-      dispatch({
-        type: ADD_HOP_SUCCESS,
-        id,
-        key: uniqueId(),
-        hopWeight,
-        hopTime,
-        hopStage,
-        hopType,
-        hopAA,
-      });
-      dispatch(hideModal());
+      if (reset) {
+        // if reset is true, only reset the modal (don't close it)
+        dispatch(resetModal());
+      } else {
+        dispatch(hideModal());
+      }
     }
   }
 );
@@ -216,26 +240,21 @@ export const addYeast = (id, reset) => (
         error: 'Please select an item.',
         field: 'select',
       });
-    } else if (reset === true) { // if there is a reset flag
-      const { attenuationMin, attenuationMax } = getState().data.yeasts[id];
-      const yeastAvgAttenuation = ((attenuationMin + attenuationMax) / 2).toFixed(0);
-      dispatch({
-        type: ADD_YEAST_SUCCESS,
-        id,
-        averageAttenuation: yeastAvgAttenuation,
-        key: uniqueId(),
-      });
-      dispatch(resetModal());
     } else {
       const { attenuationMin, attenuationMax } = getState().data.yeasts[id];
       const yeastAvgAttenuation = ((attenuationMin + attenuationMax) / 2).toFixed(0);
       dispatch({
         type: ADD_YEAST_SUCCESS,
         id,
-        key: uniqueId(),
         averageAttenuation: yeastAvgAttenuation,
+        key: uniqueId(),
       });
-      dispatch(hideModal());
+      if (reset) {
+        // if reset is true, only reset the modal (don't close it)
+        dispatch(resetModal());
+      } else {
+        dispatch(hideModal());
+      }
     }
   }
 );
@@ -289,18 +308,6 @@ export const addMisc = (
         error: 'Time must be a number',
         field: 'time',
       });
-    } else if (reset === true) { // if there is a reset flag
-      dispatch({
-        type: ADD_MISC_SUCCESS,
-        id,
-        key: uniqueId(),
-        miscAmount,
-        miscAmountUnit,
-        miscTime,
-        miscTimeUnit,
-        miscStage,
-      });
-      dispatch(resetModal());
     } else {
       dispatch({
         type: ADD_MISC_SUCCESS,
@@ -312,7 +319,12 @@ export const addMisc = (
         miscTimeUnit,
         miscStage,
       });
-      dispatch(hideModal());
+      if (reset) {
+        // if reset is true, only reset the modal (don't close it)
+        dispatch(resetModal());
+      } else {
+        dispatch(hideModal());
+      }
     }
   }
 );
