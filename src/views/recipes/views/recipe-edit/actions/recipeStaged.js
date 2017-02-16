@@ -141,6 +141,7 @@ export const addFermentable = (
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
         id,
+        name: currentFermentable.name,
         key: uniqueId(),
         fermentableWeight,
         fermentableWeightUnit,
@@ -171,7 +172,8 @@ export const removeFermentable = key => (
 );
 
 export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, reset) => (
-  (dispatch) => {
+  (dispatch, getState) => {
+    const currentHops = getState().data.hops[id];
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -218,6 +220,7 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
       dispatch({
         type: ADD_HOP_SUCCESS,
         id,
+        name: currentHops.name,
         key: uniqueId(),
         hopWeight,
         hopTime,
@@ -245,7 +248,8 @@ export const removeHop = key => (
 );
 
 export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
-  (dispatch) => {
+  (dispatch, getState) => {
+    const currentYeast = getState().data.yeasts[id];
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -292,6 +296,9 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
       dispatch({
         type: ADD_YEAST_SUCCESS,
         id,
+        name: currentYeast.name,
+        supplier: currentYeast.supplier,
+        supplierId: currentYeast.supplierId,
         averageAttenuation: attenuation,
         minTemp,
         maxTemp,
@@ -325,7 +332,8 @@ export const addMisc = (
   miscStage,
   reset,
 ) => (
-  (dispatch) => {
+  (dispatch, getState) => {
+    const currentMisc = getState().data.miscs[id];
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -360,6 +368,7 @@ export const addMisc = (
       dispatch({
         type: ADD_MISC_SUCCESS,
         id,
+        name: currentMisc.name,
         key: uniqueId(),
         miscAmount,
         miscAmountUnit,

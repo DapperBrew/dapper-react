@@ -12,7 +12,7 @@ import { getPreBoilGravity } from '../selectors/recipeEdit';
 const HopList = props => (
   <tbody>
     {props.recipeHops.map((hop) => {
-      const { dispatch, hops, boilGravity, recipeStaged } = props;
+      const { dispatch, boilGravity, recipeStaged } = props;
       let adjust;
       if (hop.type === 'pellet') {
         adjust = 10;
@@ -28,7 +28,7 @@ const HopList = props => (
       );
       return (
         <tr key={hop.key} className="recipe-table__row">
-          <td className="recipe-table__cell text-left">{hops[hop.id].name}</td>
+          <td className="recipe-table__cell text-left">{hop.name}</td>
           <td className="recipe-table__cell text-right">{hop.weight} oz</td>
           <td className="recipe-table__cell text-right">{hop.time} {hop.stage === 'dry hop' ? 'days' : 'min'}</td>
           <td className="recipe-table__cell text-right capitolize">{hop.stage}</td>
@@ -41,7 +41,6 @@ const HopList = props => (
 );
 
 const mapStateToProps = state => ({
-  hops: state.data.hops,
   recipeHops: state.recipeEdit.recipeStaged.hops,
   recipeStaged: state.recipeEdit.recipeStaged,
   boilGravity: getPreBoilGravity(state),

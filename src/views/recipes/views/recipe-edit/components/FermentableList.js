@@ -17,10 +17,10 @@ const FermentableList = props => (
         <tr key={fermentable.key} className="recipe-table__row">
           <td className="recipe-table__cell text-left">
             {fermentable.maltster ? `[${fermentable.maltster}] ` : ''}
-            {props.fermentables[fermentable.id].name}
+            {fermentable.name}
           </td>
           <td className="recipe-table__cell text-right">{fermentable.weight} {fermentable.unit}</td>
-          <td className="recipe-table__cell text-right">{props.fermentables[fermentable.id].srm} SRM</td>
+          <td className="recipe-table__cell text-right">{fermentable.srm} SRM</td>
           <td className="recipe-table__cell text-right">{weight}%</td>
           <EditIcons removeItem={() => dispatch(removeFermentable(fermentable.key))} />
         </tr>
@@ -30,14 +30,13 @@ const FermentableList = props => (
 );
 
 const mapStateToProps = state => ({
-  fermentables: state.data.fermentables,
   recipeFermentables: state.recipeEdit.recipeStaged.fermentables,
   totalWeight: getTotalWeight(state),
 });
 
 FermentableList.propTypes = {
   recipeFermentables: React.PropTypes.array.isRequired, // eslint-disable-line
-  fermentables: React.PropTypes.object.isRequired, // eslint-disable-line
+  totalWeight: React.PropTypes.number,
 };
 
 export default connect(mapStateToProps)(FermentableList);

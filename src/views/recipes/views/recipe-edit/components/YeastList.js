@@ -8,9 +8,8 @@ import EditIcons from './EditIcons';
 const YeastList = props => (
   <tbody>
     {props.recipeYeasts.map((yeast) => {
-      const { dispatch, yeasts } = props;
-      const selYeast = yeasts[yeast.id];
-      const { name, supplier, supplierId } = selYeast;
+      const { dispatch } = props;
+      const { name, supplier, supplierId } = yeast;
       const averageFermentTemp = ((Number(yeast.minTemp) + Number(yeast.maxTemp)) / 2).toFixed(0);
       return (
         <tr key={yeast.key} className="recipe-table__row">
@@ -25,7 +24,6 @@ const YeastList = props => (
 );
 
 const mapStateToProps = state => ({
-  yeasts: state.data.yeasts,
   recipeYeasts: state.recipeEdit.recipeStaged.yeasts,
   recipeStaged: state.recipeEdit.recipeStaged,
 });

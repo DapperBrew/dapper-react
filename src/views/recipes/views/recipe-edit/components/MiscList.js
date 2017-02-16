@@ -8,10 +8,10 @@ import EditIcons from './EditIcons';
 const MiscList = props => (
   <tbody>
     {props.recipeMiscs.map((misc) => {
-      const { dispatch, miscs } = props;
+      const { dispatch } = props;
       return (
         <tr key={misc.key} className="recipe-table__row">
-          <td className="recipe-table__cell text-left">{miscs[misc.id].name}</td>
+          <td className="recipe-table__cell text-left">{misc.name}</td>
           <td className="recipe-table__cell text-right">{misc.amount} {misc.amountUnit}</td>
           <td className="recipe-table__cell text-right">{misc.time} {misc.timeUnit}</td>
           <td className="recipe-table__cell text-right capitolize">{misc.stage}</td>
@@ -23,7 +23,6 @@ const MiscList = props => (
 );
 
 const mapStateToProps = state => ({
-  miscs: state.data.miscs,
   recipeMiscs: state.recipeEdit.recipeStaged.miscs,
   recipeStaged: state.recipeEdit.recipeStaged,
 });

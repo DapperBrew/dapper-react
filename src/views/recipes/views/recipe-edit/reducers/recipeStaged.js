@@ -83,6 +83,7 @@ const recipeEdit = (state = initialState, action) => {
           ...state.fermentables,
           {
             id: action.id,
+            name: action.name,
             key: action.key,
             weight: action.fermentableWeight,
             unit: action.fermentableWeightUnit,
@@ -107,6 +108,7 @@ const recipeEdit = (state = initialState, action) => {
           ...state.hops,
           {
             id: action.id,
+            name: action.name,
             key: action.key,
             weight: action.hopWeight,
             time: action.hopTime,
@@ -128,6 +130,9 @@ const recipeEdit = (state = initialState, action) => {
           ...state.yeasts,
           {
             id: action.id,
+            supplier: action.supplier,
+            supplierId: action.supplierId,
+            name: action.name,
             key: action.key,
             averageAttenuation: action.averageAttenuation,
             minTemp: action.minTemp,
@@ -147,6 +152,7 @@ const recipeEdit = (state = initialState, action) => {
           ...state.miscs,
           {
             id: action.id,
+            name: action.name,
             key: action.key,
             amount: action.miscAmount,
             amountUnit: action.miscAmountUnit,
