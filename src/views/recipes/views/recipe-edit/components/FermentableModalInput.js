@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import Select from 'react-select';
+// import Select from 'react-select';
+import Select, { Creatable } from 'react-select';
 
 
 class FermentableModalInput extends React.Component {
@@ -12,6 +13,30 @@ class FermentableModalInput extends React.Component {
       this.props.onColorChange(selectedItem.srm);
       this.props.onPotentialChange(selectedItem.potential);
     }
+  }
+
+  onNewOption = (newOption) => {
+    console.log('YO YO OY', newOption);
+    return {
+      label: newOption.inputValue,
+      value: newOption.inputvalue,
+      labelKey: newOption.inputValue,
+      valueKey: newOption.inputValue,
+    };
+
+    // return { value: newOption.label, label: newOption.label };
+  }
+
+  newOptionCreator = ({ label, labelKey, valueKey }) => {
+    console.log('label', label);
+    console.log('labelKey', labelKey);
+    console.log('valueKey', valueKey);
+    const option = {};
+    option[valueKey] = label;
+    option[labelKey] = label;
+    option.className = 'Select-create-option-placeholder';
+    console.log('option', option);
+    return option;
   }
 
 
@@ -82,6 +107,36 @@ class FermentableModalInput extends React.Component {
                 { isError: props.errorField === 'potential' })
             }
             value={props.potentialValue}
+          />
+        </div>
+
+        <div className="fermentable-form-group">
+          <label htmlFor="maltster" className="form__label">Maltster (optional)</label>
+          <Creatable
+            name="maltster"
+            createable="true"
+            options={[
+              { label: 'Bairds', value: 'Bairds' },
+              { label: 'Boortmalt', value: 'Boortmalt' },
+              { label: 'Briess', value: 'Briess' },
+              { label: 'Castle', value: 'Castle' },
+              { label: 'Crisp', value: 'Crisp' },
+              { label: 'Dingemans', value: 'Dingemans' },
+              { label: 'Tuckers', value: 'Tuckers' },
+              { label: 'Gambrinus', value: 'Gambrinus' },
+              { label: 'GlobalMalt', value: 'globalMalt' },
+              { label: 'Great Western', value: 'Great Western' },
+              { label: 'Muntons', value: 'Muntons' },
+              { label: 'Rahr', value: 'Rahr' },
+              { label: 'Simpsons', value: 'Simpsons' },
+              { label: 'Fawcetts', value: 'Fawcetts' },
+              { label: 'Wayermann', value: 'Weyermann' },
+            ]}
+            className="input__select"
+            onChange={props.onMaltsterChange}
+            value={props.maltsterValue}
+            // simpleValue={true} //eslint-disable-line
+            // newOptionCreator={this.newOptionCreator}
           />
         </div>
 

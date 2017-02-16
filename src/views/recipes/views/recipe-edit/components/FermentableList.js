@@ -15,7 +15,10 @@ const FermentableList = props => (
 
       return (
         <tr key={fermentable.key} className="recipe-table__row">
-          <td className="recipe-table__cell text-left">{props.fermentables[fermentable.id].name}</td>
+          <td className="recipe-table__cell text-left">
+            {fermentable.maltster ? `[${fermentable.maltster}] ` : ''}
+            {props.fermentables[fermentable.id].name}
+          </td>
           <td className="recipe-table__cell text-right">{fermentable.weight} {fermentable.unit}</td>
           <td className="recipe-table__cell text-right">{props.fermentables[fermentable.id].srm} SRM</td>
           <td className="recipe-table__cell text-right">{weight}%</td>

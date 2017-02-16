@@ -10,6 +10,7 @@ export const UPDATE_FERMENTABLE_WEIGHT = 'UPDATE_FERMENTABLE_WEIGHT';
 export const UPDATE_FERMENTABLE_WEIGHT_UNIT = 'UPDATE_FERMENTABLE_WEIGHT_UNIT';
 export const UPDATE_FERMENTABLE_COLOR = 'UPDATE_FERMENTABLE_COLOR';
 export const UPDATE_FERMENTABLE_POTENTIAL = 'UPDATE_FERMENTABLE_POTENTIAL';
+export const UPDATE_FERMENTABLE_MALTSTER = 'UPDATE_FERMENTABLE_MALTSTER';
 
 export const UPDATE_HOP_WEIGHT = 'UPDATE_HOP_WEIGHT';
 export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
@@ -101,6 +102,11 @@ export const updateFermentableColor = srm => ({
 export const updateFermentablePotential = ppg => ({
   type: UPDATE_FERMENTABLE_POTENTIAL,
   ppg,
+});
+
+export const updateFermentableMaltster = maltster => ({
+  type: UPDATE_FERMENTABLE_MALTSTER,
+  maltster,
 });
 
 // Hop modal actions

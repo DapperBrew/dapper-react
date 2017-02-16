@@ -7,6 +7,7 @@ const initialState = {
   fermentableWeightUnit: 'lb',
   fermentableColor: '',
   fermentablePotential: '',
+  fermentableMaltster: '',
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
@@ -76,6 +77,11 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         fermentablePotential: action.ppg,
+      };
+    case actions.UPDATE_FERMENTABLE_MALTSTER:
+      return {
+        ...state,
+        fermentableMaltster: action.maltster,
       };
     case actions.UPDATE_HOP_WEIGHT:
       return {

@@ -15,6 +15,7 @@ import {
   updateFermentableWeightUnit,
   updateFermentableColor,
   updateFermentablePotential,
+  updateFermentableMaltster,
 } from '../actions/modals';
 
 import { addFermentable } from '../actions/recipeStaged';
@@ -32,6 +33,7 @@ class FermentableModal extends React.Component {
       fermentableWeightUnit,
       fermentableColor,
       fermentablePotential,
+      fermentableMaltster,
     } = modal;
     const name = modalInfo.FERMENTABLE.NAME;
     const items = values(props.fermentables);
@@ -56,6 +58,8 @@ class FermentableModal extends React.Component {
             colorValue={modal.fermentableColor}
             onPotentialChange={ppg => dispatch(updateFermentablePotential(ppg))}
             potentialValue={modal.fermentablePotential}
+            onMaltsterChange={maltster => dispatch(updateFermentableMaltster(maltster))}
+            maltsterValue={modal.fermentableMaltster}
             fermentables={this.props.fermentablesRaw}
             selectedItem={modal.selectedItem}
             errorField={modal.modalErrorField}
@@ -68,6 +72,7 @@ class FermentableModal extends React.Component {
               fermentableWeightUnit,
               fermentableColor,
               fermentablePotential,
+              fermentableMaltster.value,
               true,
             ))}
             submitModal={() => dispatch(addFermentable(
@@ -76,6 +81,7 @@ class FermentableModal extends React.Component {
               fermentableWeightUnit,
               fermentableColor,
               fermentablePotential,
+              fermentableMaltster.value
             ))}
           />
         </AddModal>

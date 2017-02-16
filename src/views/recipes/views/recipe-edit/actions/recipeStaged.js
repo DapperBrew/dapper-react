@@ -90,6 +90,7 @@ export const addFermentable = (
   fermentableWeightUnit,
   fermentableColor,
   fermentablePotential,
+  fermentableMaltster,
   reset,
 ) => (
   (dispatch, getState) => {
@@ -145,6 +146,7 @@ export const addFermentable = (
         fermentableWeightUnit,
         fermentableColor,
         fermentablePotential,
+        fermentableMaltster,
         fermentableType: currentFermentable.type,
         inMash: currentFermentable.inMash,
         afterBoil: currentFermentable.afterBoil,

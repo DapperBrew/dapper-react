@@ -88,6 +88,7 @@ const recipeEdit = (state = initialState, action) => {
             unit: action.fermentableWeightUnit,
             srm: action.fermentableColor,
             potential: action.fermentablePotential,
+            maltster: action.fermentableMaltster,
             type: action.fermentableType,
             inMash: action.inMash,
             afterBoil: action.afterBoil,
