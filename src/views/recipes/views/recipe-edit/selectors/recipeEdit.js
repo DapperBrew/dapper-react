@@ -5,7 +5,6 @@ import isFinite from 'lodash/isFinite';
 const recipeFermentables = state => state.recipeEdit.recipeStaged.fermentables;
 const recipeYeasts = state => state.recipeEdit.recipeStaged.yeasts;
 const recipeHops = state => state.recipeEdit.recipeStaged.hops;
-const fermentables = state => state.data.fermentables;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
 const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
@@ -29,14 +28,13 @@ const getStylesDropdown = (items) => {
 };
 
 // Returns total number of gravity points from staged recipe fermentables
-const calcTotalPoints = (allFermentables, items) => {
+const calcTotalPoints = (items) => {
   if (items) {
     let totalFermentablePoints = 0;
     let totalSugarPoints = 0;
     Object.keys(items).forEach((key) => {
       let weight;
       const type = items[key].type;
-      // const type = allFermentables[items[key].id].type;
       const potential = Number(items[key].potential);
       const points = (potential - 1) * 1000;
       if (items[key].unit === 'oz') {
@@ -170,7 +168,7 @@ const calcTotalIbu = (items, gravity, volume) => {
     return Object.keys(items).reduce((acc, key) => {
       const weightNum = Number(items[key].weight);
       const type = items[key].type;
-      const aaNum = Number(items[key].aa);
+      const aaNum = Number(items[key].alpha);
       const timeNum = Number(items[key].time);
       const gravityNum = Number(gravity);
       const volumeNum = Number(volume);
@@ -220,7 +218,6 @@ export const getStylesObject = createSelector(
 );
 
 export const getTotalGravityPoints = createSelector(
-  fermentables,
   recipeFermentables,
   calcTotalPoints,
 );

@@ -4,6 +4,15 @@ import Select from 'react-select';
 
 class HopModalInput extends React.Component {
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
+      const selectedItem = this.props.hops[nextProps.selectedItem];
+      const hopAA = (selectedItem.alphaAcidMax + selectedItem.alphaAcidMin) / 2;
+
+      this.props.onAlphaChange(hopAA);
+    }
+  }
+
   render() {
     const props = this.props;
     return (
@@ -90,6 +99,32 @@ class HopModalInput extends React.Component {
             clearable={false}
             searchable={false}
           />
+        </div>
+        <div className="hop-form-group">
+          <label htmlFor="time" className="form__label">Alpha Acid %</label>
+          <input
+            id="time"
+            type="text"
+            onChange={e => props.onAlphaChange(e.target.value)}
+            placeholder="ex: 13"
+            className={
+              classNames(
+                'form__input',
+                'form__input--measure',
+                'hop-form-group__alpha',
+                { isError: props.errorField === 'alpha' })
+            }
+            value={props.alphaValue}
+          />
+          <div
+            className={classNames(
+              'form__measure',
+              'hop-form-group__unit',
+              { isError: props.errorField === 'alpha' },
+            )}
+          >
+            %
+          </div>
         </div>
       </div>
     );

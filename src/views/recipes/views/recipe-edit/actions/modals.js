@@ -15,6 +15,7 @@ export const UPDATE_HOP_WEIGHT = 'UPDATE_HOP_WEIGHT';
 export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
 export const UPDATE_HOP_STAGE = 'UPDATE_HOP_STAGE';
 export const UPDATE_HOP_TYPE = 'UPDATE_HOP_TYPE';
+export const UPDATE_HOP_ALPHA = 'UPDATE_HOP_ALPHA';
 
 export const UPDATE_MISC_AMOUNT = 'UPDATE_MISC_AMOUNT';
 export const UPDATE_MISC_AMOUNT_UNIT = 'UPDATE_MISC_AMOUNT_UNIT';
@@ -121,6 +122,11 @@ export const updateHopStage = stage => ({
 export const updateHopType = hopType => ({
   type: UPDATE_HOP_TYPE,
   hopType,
+});
+
+export const updateHopAlpha = hopAlpha => ({
+  type: UPDATE_HOP_ALPHA,
+  hopAlpha,
 });
 
 // Misc modal actions

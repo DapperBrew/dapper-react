@@ -168,8 +168,8 @@ export const removeFermentable = key => (
   )
 );
 
-export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
-  (dispatch, getState) => {
+export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, reset) => (
+  (dispatch) => {
     if (!id) {
       dispatch({
         type: ERROR_MODAL,
@@ -200,9 +200,19 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         error: 'Time must be a number',
         field: 'time',
       });
+    } else if (!hopAlpha) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a Alpha Acid %.',
+        field: 'alpha',
+      });
+    } else if (isFinite(Number(hopAlpha)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Alpha Acid % must be a number',
+        field: 'alpha',
+      });
     } else {
-      const currentHop = getState().data.hops[id];
-      const hopAA = (currentHop.alphaAcidMax + currentHop.alphaAcidMin) / 2;
       dispatch({
         type: ADD_HOP_SUCCESS,
         id,
@@ -211,7 +221,7 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, reset) => (
         hopTime,
         hopStage,
         hopType,
-        hopAA,
+        hopAlpha,
       });
       if (reset) {
         // if reset is true, only reset the modal (don't close it)

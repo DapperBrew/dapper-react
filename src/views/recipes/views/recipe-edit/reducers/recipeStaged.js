@@ -111,7 +111,7 @@ const recipeEdit = (state = initialState, action) => {
             time: action.hopTime,
             stage: action.hopStage,
             type: action.hopType,
-            aa: action.hopAA,
+            alpha: action.hopAlpha,
           },
         ],
       };

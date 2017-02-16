@@ -9,15 +9,16 @@
 
 .hop-form-group {
   margin-bottom: 20px;
-  width: 24%;
+  width: 19%;
 }
 
-.hop-form-group__weight {
-  width: 70%;
+.hop-form-group__weight,
+.hop-form-group__alpha {
+  width: 60%;
 }
 
 .hop-form-group__unit {
-  width: 30%;
+  width: 40%;
 }
 
 .hop-form-group__input-select {

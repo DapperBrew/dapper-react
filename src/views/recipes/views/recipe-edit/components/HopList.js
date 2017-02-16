@@ -20,7 +20,7 @@ const HopList = props => (
       // calculate IBU
       const aa = ibu(
         Number(hop.weight),
-        Number(hop.aa),
+        Number(hop.alpha),
         Number(hop.time),
         Number(boilGravity),
         Number(recipeStaged.postBoilVolume),

@@ -15,6 +15,7 @@ const initialState = {
   hopTime: '',
   hopWeight: '',
   hopType: 'pellet',
+  hopAlpha: '',
   miscAmount: '',
   miscAmountUnit: 'oz',
   miscTime: '',
@@ -95,6 +96,11 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         hopType: action.hopType,
+      };
+    case actions.UPDATE_HOP_ALPHA:
+      return {
+        ...state,
+        hopAlpha: action.hopAlpha,
       };
     case actions.UPDATE_MISC_AMOUNT:
       return {

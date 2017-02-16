@@ -16,6 +16,7 @@ import {
   updateHopTime,
   updateHopStage,
   updateHopType,
+  updateHopAlpha,
 } from '../actions/modals';
 
 import { addHop } from '../actions/recipeStaged';
@@ -26,8 +27,8 @@ import { getHopList } from '../selectors/modals';
 class HopModal extends React.Component {
   render() {
     const props = this.props;
-    const { modal, dispatch } = this.props;
-    const { selectedItem, hopWeight, hopTime, hopStage, hopType } = modal;
+    const { modal, dispatch, hopsRaw } = this.props;
+    const { selectedItem, hopWeight, hopTime, hopStage, hopType, hopAlpha } = modal;
     const name = modalInfo.HOP.NAME;
     const items = values(props.hops);
 
@@ -51,15 +52,19 @@ class HopModal extends React.Component {
             timeValue={hopTime}
             stageValue={hopStage}
             typeValue={hopType}
+            onAlphaChange={alpha => dispatch(updateHopAlpha(alpha))}
+            alphaValue={hopAlpha}
             isError={modal.modalError}
             errorField={modal.modalErrorField}
+            hops={hopsRaw}
+            selectedItem={modal.selectedItem}
           />
           <ModalSubmit
             closeModal={() => dispatch(hideModal())}
             resetModal={() =>
-              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType, true))}
+              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType, hopAlpha, true))}
             submitModal={() =>
-              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType))}
+              dispatch(addHop(selectedItem, hopWeight, hopTime, hopStage, hopType, hopAlpha))}
           />
         </AddModal>
       );
@@ -72,11 +77,13 @@ HopModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
   hops: React.PropTypes.array, // eslint-disable-line
+  hopsRaw: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   hops: getHopList(state),
+  hopsRaw: state.data.hops,
 });
 
 
