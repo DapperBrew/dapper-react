@@ -1,7 +1,6 @@
 import * as actions from '../actions/modals';
 
 const initialState = {
-  modalOpen: false,
   searchTerm: '',
   selectedItem: '',
   fermentableWeight: '',
@@ -11,7 +10,6 @@ const initialState = {
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
-  modalLoaded: false,
   modalError: '',
   hopStage: 'boil',
   hopTime: '',
@@ -38,23 +36,7 @@ const modals = (state = initialState, action) => {
     case actions.RESET_MODAL:
       return {
         ...state,
-        searchTerm: '',
-        selectedItem: '',
-        modalError: '',
-        modalErrorField: '',
-        fermentableWeight: '',
-        fermentableWeightUnit: 'lb',
-        fermentableColor: '',
-        fermentablePotential: '',
-        hopStage: 'boil',
-        hopTime: '',
-        hopWeight: '',
-        hopType: 'pellet',
-        miscAmount: '',
-        miscAmountUnit: 'oz',
-        miscTime: '',
-        miscTimeUnit: 'min',
-        miscStage: 'boil',
+        ...initialState,
       };
     case actions.LOAD_MODAL:
       return {
