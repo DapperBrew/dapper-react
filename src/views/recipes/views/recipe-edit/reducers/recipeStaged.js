@@ -1,5 +1,4 @@
 import reject from 'lodash/reject';
-import merge from 'lodash/merge';
 import * as recipeAction from '../actions/recipeStaged';
 
 const initialState = {

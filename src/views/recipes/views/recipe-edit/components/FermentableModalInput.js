@@ -140,6 +140,11 @@ FermentableModalInput.propTypes = {
   onColorChange: React.PropTypes.func,
   onWeightChange: React.PropTypes.func,
   onMaltsterChange: React.PropTypes.func,
+  onNameChange: React.PropTypes.func,
+  onTypeChange: React.PropTypes.func,
+  onIndexChange: React.PropTypes.func,
+  onInMashChange: React.PropTypes.func,
+  onAfterBoilChange: React.PropTypes.func,
   fermentables: React.PropTypes.object, // eslint-disable-line
   selectedItem: React.PropTypes.string,
   isEdit: React.PropTypes.bool,
