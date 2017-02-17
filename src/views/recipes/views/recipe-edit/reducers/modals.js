@@ -3,11 +3,16 @@ import * as actions from '../actions/modals';
 const initialState = {
   searchTerm: '',
   selectedItem: '',
+  itemIndex: '',
   fermentableWeight: '',
   fermentableWeightUnit: 'lb',
   fermentableColor: '',
   fermentablePotential: '',
   fermentableMaltster: '',
+  fermentableName: '',
+  fermentableType: '',
+  fermentableInMash: '',
+  fermentableAfterBoil: '',
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
@@ -25,6 +30,8 @@ const initialState = {
   miscTime: '',
   miscTimeUnit: 'min',
   miscStage: 'boil',
+  modalIsEdit: false,
+  modalKey: '',
 };
 
 const modals = (state = initialState, action) => {
@@ -34,6 +41,15 @@ const modals = (state = initialState, action) => {
         ...state,
         modalOpen: true,
         modalName: action.name,
+        modalLoaded: false,
+      };
+    case actions.SHOW_EDIT_MODAL:
+      return {
+        ...state,
+        modalOpen: true,
+        modalName: action.name,
+        modalKey: action.key,
+        modalIsEdit: true,
         modalLoaded: false,
       };
     case actions.HIDE_MODAL:
@@ -61,6 +77,11 @@ const modals = (state = initialState, action) => {
         ...state,
         selectedItem: action.item,
       };
+    case actions.UPDATE_ITEM_INDEX:
+      return {
+        ...state,
+        itemIndex: action.index,
+      };
     case actions.UPDATE_FERMENTABLE_WEIGHT:
       return {
         ...state,
@@ -85,6 +106,26 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         fermentableMaltster: action.maltster,
+      };
+    case actions.UPDATE_FERMENTABLE_NAME:
+      return {
+        ...state,
+        fermentableName: action.name,
+      };
+    case actions.UPDATE_FERMENTABLE_TYPE:
+      return {
+        ...state,
+        fermentableType: action.fType,
+      };
+    case actions.UPDATE_FERMENTABLE_IN_MASH:
+      return {
+        ...state,
+        fermentableInMash: action.inMash,
+      };
+    case actions.UPDATE_FERMENTABLE_AFTER_BOIL:
+      return {
+        ...state,
+        fermentableAfterBoil: action.afterBoil,
       };
     case actions.UPDATE_HOP_WEIGHT:
       return {

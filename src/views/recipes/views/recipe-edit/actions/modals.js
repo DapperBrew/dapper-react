@@ -1,18 +1,26 @@
 // action types
 // action types
 // action types
+// action types
+// action types
 export const SHOW_MODAL = 'SHOW_MODAL';
+export const SHOW_EDIT_MODAL = 'SHOW_EDIT_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 export const RESET_MODAL = 'RESET_MODAL';
 export const ERROR_MODAL = 'ERROR_MODAL';
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
 export const SELECT_ITEM = 'SELECT_ITEM';
+export const UPDATE_ITEM_INDEX = 'UPDATE_ITEM_INDEX';
 
 export const UPDATE_FERMENTABLE_WEIGHT = 'UPDATE_FERMENTABLE_WEIGHT';
 export const UPDATE_FERMENTABLE_WEIGHT_UNIT = 'UPDATE_FERMENTABLE_WEIGHT_UNIT';
 export const UPDATE_FERMENTABLE_COLOR = 'UPDATE_FERMENTABLE_COLOR';
 export const UPDATE_FERMENTABLE_POTENTIAL = 'UPDATE_FERMENTABLE_POTENTIAL';
 export const UPDATE_FERMENTABLE_MALTSTER = 'UPDATE_FERMENTABLE_MALTSTER';
+export const UPDATE_FERMENTABLE_NAME = 'UPDATE_FERMENTABLE_NAME';
+export const UPDATE_FERMENTABLE_TYPE = 'UPDATE_FERMENTABLE_TYPE';
+export const UPDATE_FERMENTABLE_IN_MASH = 'UPDATE_FERMENTABLE_IN_MASH';
+export const UPDATE_FERMENTABLE_AFTER_BOIL = 'UPDATE_FERMENTABLE_AFTER_BOIL';
 
 export const UPDATE_HOP_WEIGHT = 'UPDATE_HOP_WEIGHT';
 export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
@@ -64,6 +72,12 @@ export const showModal = name => ({
   name,
 });
 
+export const showEditModal = (name, key) => ({
+  type: SHOW_EDIT_MODAL,
+  name,
+  key,
+});
+
 export const hideModal = name => ({
   type: HIDE_MODAL,
   name,
@@ -87,6 +101,11 @@ export const updateSearch = term => ({
 export const selectItem = item => ({
   type: SELECT_ITEM,
   item,
+});
+
+export const updateIndex = index => ({
+  type: UPDATE_ITEM_INDEX,
+  index,
 });
 
 // Fermentable modal actions
@@ -113,6 +132,26 @@ export const updateFermentablePotential = ppg => ({
 export const updateFermentableMaltster = maltster => ({
   type: UPDATE_FERMENTABLE_MALTSTER,
   maltster,
+});
+
+export const updateFermentableName = name => ({
+  type: UPDATE_FERMENTABLE_NAME,
+  name,
+});
+
+export const updateFermentableType = fType => ({
+  type: UPDATE_FERMENTABLE_TYPE,
+  fType,
+});
+
+export const updateFermentableInMash = inMash => ({
+  type: UPDATE_FERMENTABLE_IN_MASH,
+  inMash,
+});
+
+export const updateFermentableAfterBoil = afterBoil => ({
+  type: UPDATE_FERMENTABLE_AFTER_BOIL,
+  afterBoil,
 });
 
 // Hop modal actions

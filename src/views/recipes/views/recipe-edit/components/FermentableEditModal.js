@@ -4,40 +4,45 @@ import values from 'lodash/values';
 
 // Components
 import AddModal from './AddModal';
-import ModalSubmit from './ModalSubmit';
+import ModalEditSubmit from './ModalSubmit';
 import FermentableModalInput from './FermentableModalInput';
-import IngredientSearch from './IngredientSearch';
 
 // actions
 import {
   hideModal,
-  modalInfo,
   updateFermentableWeight,
   updateFermentableWeightUnit,
   updateFermentableColor,
   updateFermentablePotential,
   updateFermentableMaltster,
+  updateFermentableName,
+  updateFermentableType,
+  updateFermentableInMash,
+  updateFermentableAfterBoil,
+  updateIndex,
 } from '../actions/modals';
 
-import { addFermentable } from '../actions/recipeStaged';
+import { editFermentable } from '../actions/recipeStaged';
 
 // selectors
 import { getFermentableList } from '../selectors/modals';
 
 class FermentableModal extends React.Component {
-
   render() {
     const props = this.props;
     const { modal, dispatch } = this.props;
     const {
-      selectedItem,
+      itemIndex,
+      fermentableName,
       fermentableWeight,
       fermentableWeightUnit,
       fermentableColor,
       fermentablePotential,
       fermentableMaltster,
+      fermentableType,
+      fermentableInMash,
+      fermentableAfterBoil,
     } = modal;
-    const name = modalInfo.FERMENTABLE.NAME;
     const items = values(props.fermentables);
 
     // don't mount the modal unless the modal is ready to use
@@ -45,15 +50,9 @@ class FermentableModal extends React.Component {
       return (
         <AddModal
           items={items}
-          name={name}
-          header="Add Fermentable"
+          name={'editFermentable'}
+          header="Edit Fermentable"
         >
-          <IngredientSearch
-            items={items}
-            headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
-            cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
-            searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
-          />
           <FermentableModalInput
             onWeightChange={weight => dispatch(updateFermentableWeight(weight))}
             onWeightUnitChange={unit => dispatch(updateFermentableWeightUnit(unit))}
@@ -64,29 +63,32 @@ class FermentableModal extends React.Component {
             onPotentialChange={ppg => dispatch(updateFermentablePotential(ppg))}
             potentialValue={modal.fermentablePotential}
             onMaltsterChange={maltster => dispatch(updateFermentableMaltster(maltster))}
+            onNameChange={name => dispatch(updateFermentableName(name))}
+            onIndexChange={index => dispatch(updateIndex(index))}
+            onTypeChange={fType => dispatch(updateFermentableType(fType))}
+            onInMashChange={inMash => dispatch(updateFermentableInMash(inMash))}
+            onAfterBoilChange={afterBoil => dispatch(updateFermentableAfterBoil(afterBoil))}
             maltsterValue={modal.fermentableMaltster}
             fermentables={this.props.fermentablesRaw}
+            recipeFermentables={this.props.recipeFermentables}
             selectedItem={modal.selectedItem}
             errorField={modal.modalErrorField}
+            isEdit={modal.modalIsEdit}
+            modalKey={modal.modalKey}
           />
-          <ModalSubmit
+          <ModalEditSubmit
             closeModal={() => dispatch(hideModal())}
-            resetModal={() => dispatch(addFermentable(
-              selectedItem,
+            submitModal={() => dispatch(editFermentable(
+              itemIndex,
+              fermentableName,
               fermentableWeight,
               fermentableWeightUnit,
               fermentableColor,
               fermentablePotential,
-              fermentableMaltster.value,
-              true,
-            ))}
-            submitModal={() => dispatch(addFermentable(
-              selectedItem,
-              fermentableWeight,
-              fermentableWeightUnit,
-              fermentableColor,
-              fermentablePotential,
-              fermentableMaltster.value,
+              fermentableMaltster,
+              fermentableType,
+              fermentableInMash,
+              fermentableAfterBoil,
             ))}
           />
         </AddModal>
@@ -107,6 +109,7 @@ const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   fermentables: getFermentableList(state),
   fermentablesRaw: state.data.fermentables,
+  recipeFermentables: state.recipeEdit.recipeStaged.fermentables,
 });
 
 

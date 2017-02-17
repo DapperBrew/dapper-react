@@ -16,6 +16,7 @@ export const SET_POST_BOIL_VOLUME = 'SET_POST_BOIL_VOLUME';
 export const SET_RECIPE_TYPE = 'SET_RECIPE_TYPE';
 export const ADD_FERMENTABLE_SUCCESS = 'ADD_FERMENTABLE_SUCCESS';
 export const ADD_FERMENTABLE_ERROR = 'ADD_FERMENTABLE_ERROR';
+export const EDIT_FERMENTABLE_SUCCESS = 'EDIT_FERMENTABLE_SUCCESS';
 export const REMOVE_FERMENTABLE = 'REMOVE_FERMENTABLE';
 export const ADD_HOP_SUCCESS = 'ADD_HOP_SUCCESSS';
 export const ADD_HOP_ERROR = 'ADD_HOP_ERROR';
@@ -161,6 +162,75 @@ export const addFermentable = (
   }
 );
 
+export const editFermentable = (
+  itemIndex,
+  fermentableName,
+  fermentableWeight,
+  fermentableWeightUnit,
+  fermentableColor,
+  fermentablePotential,
+  fermentableMaltster,
+  fermentableType,
+  fermentableInMash,
+  fermentableAfterBoil,
+) => (
+  (dispatch) => {
+    if (!fermentableWeight) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a weight.',
+        field: 'weight',
+      });
+    } else if (isFinite(Number(fermentableWeight)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Weight must be a number',
+        field: 'weight',
+      });
+    } else if (!fermentableColor) { // check for color input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a color (SRM).',
+        field: 'color',
+      });
+    } else if (isFinite(Number(fermentableColor)) === false) { // check if color is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Color must be a number',
+        field: 'color',
+      });
+    } else if (!fermentablePotential) { // check for fermentation potential input (ppg)
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a potential (ppg).',
+        field: 'potential',
+      });
+    } else if (isFinite(Number(fermentablePotential)) === false) { // check if potential is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Potential (ppg) must be a number',
+        field: 'Potential',
+      });
+    } else {
+      dispatch({
+        type: EDIT_FERMENTABLE_SUCCESS,
+        itemIndex,
+        key: uniqueId(),
+        fermentableName,
+        fermentableWeight,
+        fermentableWeightUnit,
+        fermentableColor,
+        fermentablePotential,
+        fermentableMaltster,
+        fermentableType,
+        fermentableInMash,
+        fermentableAfterBoil,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
 export const removeFermentable = key => (
   dispatch => (
     dispatch({
@@ -169,6 +239,7 @@ export const removeFermentable = key => (
     })
   )
 );
+
 
 export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, reset) => (
   (dispatch, getState) => {

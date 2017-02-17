@@ -1,4 +1,5 @@
 import reject from 'lodash/reject';
+import merge from 'lodash/merge';
 import * as recipeAction from '../actions/recipeStaged';
 
 const initialState = {
@@ -94,6 +95,25 @@ const recipeEdit = (state = initialState, action) => {
             afterBoil: action.afterBoil,
           },
         ],
+      };
+    case recipeAction.EDIT_FERMENTABLE_SUCCESS:
+      return {
+        ...state,
+        fermentables:
+          state.fermentables.slice(0, action.itemIndex)
+            .concat([{
+              name: action.fermentableName,
+              key: action.key,
+              weight: action.fermentableWeight,
+              unit: action.fermentableWeightUnit,
+              srm: action.fermentableColor,
+              potential: action.fermentablePotential,
+              maltster: action.fermentableMaltster,
+              type: action.fermentableType,
+              inMash: action.fermentableInMash,
+              afterBoil: action.fermentableAfterBoil,
+            }])
+            .concat(state.fermentables.slice(action.itemIndex + 1)),
       };
     case recipeAction.REMOVE_FERMENTABLE:
       return {
