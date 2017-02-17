@@ -83,7 +83,7 @@ const FermentableEditModal = (props) => {
             fermentableWeightUnit,
             fermentableColor,
             fermentablePotential,
-            fermentableMaltster,
+            fermentableMaltster.value,
             fermentableType,
             fermentableInMash,
             fermentableAfterBoil,

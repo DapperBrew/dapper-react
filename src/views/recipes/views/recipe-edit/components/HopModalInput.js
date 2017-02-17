@@ -133,7 +133,7 @@ class HopModalInput extends React.Component {
 
 HopModalInput.propTypes = {
   selectedItem: React.PropTypes.string.isRequired,
-  hops: React.PropTypes.array, // eslint-disable-line
+  hops: React.PropTypes.object, // eslint-disable-line
   onAlphaChange: React.PropTypes.func,
 };
 
