@@ -7,6 +7,7 @@ import values from 'lodash/values';
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
 import YeastModalInput from './YeastModalInput';
+import IngredientSearch from './IngredientSearch';
 
 // actions
 import {
@@ -36,13 +37,15 @@ class YeastModal extends React.Component {
     if (modal.modalOpen === true) {
       return (
         <AddModal
-          items={items}
           name={name}
           header="Add Yeast"
-          headers={modalInfo.YEAST.SEARCH_TABLE_HEADER}
-          cells={modalInfo.YEAST.SEARCH_TABLE_CELLS}
-          searchKeys={modalInfo.YEAST.SEARCH_KEYS}
         >
+          <IngredientSearch
+            items={items}
+            headers={modalInfo.YEAST.SEARCH_TABLE_HEADER}
+            cells={modalInfo.YEAST.SEARCH_TABLE_CELLS}
+            searchKeys={modalInfo.YEAST.SEARCH_KEYS}
+          />
           <YeastModalInput
             onAttenuationChange={attenuation => dispatch(updateYeastAttenuation(attenuation))}
             attenuationValue={modal.yeastAttenuation}

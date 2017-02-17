@@ -6,6 +6,7 @@ import values from 'lodash/values';
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
 import FermentableModalInput from './FermentableModalInput';
+import IngredientSearch from './IngredientSearch';
 
 // actions
 import {
@@ -45,10 +46,13 @@ class FermentableModal extends React.Component {
           items={items}
           name={name}
           header="Add Fermentable"
-          headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
-          cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
-          searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
         >
+          <IngredientSearch
+            items={items}
+            headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
+            cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
+            searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
+          />
           <FermentableModalInput
             onWeightChange={weight => dispatch(updateFermentableWeight(weight))}
             onWeightUnitChange={unit => dispatch(updateFermentableWeightUnit(unit))}

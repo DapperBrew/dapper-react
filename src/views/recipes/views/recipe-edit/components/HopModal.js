@@ -7,6 +7,7 @@ import values from 'lodash/values';
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
 import HopModalInput from './HopModalInput';
+import IngredientSearch from './IngredientSearch';
 
 // actions
 import {
@@ -36,13 +37,15 @@ class HopModal extends React.Component {
     if (modal.modalOpen === true) {
       return (
         <AddModal
-          items={items}
           name={name}
           header="Add Hop"
-          headers={modalInfo.HOP.SEARCH_TABLE_HEADER}
-          cells={modalInfo.HOP.SEARCH_TABLE_CELLS}
-          searchKeys={modalInfo.HOP.SEARCH_KEYS}
         >
+          <IngredientSearch
+            items={items}
+            headers={modalInfo.HOP.SEARCH_TABLE_HEADER}
+            cells={modalInfo.HOP.SEARCH_TABLE_CELLS}
+            searchKeys={modalInfo.HOP.SEARCH_KEYS}
+          />
           <HopModalInput
             onWeightChange={weight => dispatch(updateHopWeight(weight))}
             onTimeChange={time => dispatch(updateHopTime(time))}

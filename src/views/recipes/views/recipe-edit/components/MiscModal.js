@@ -7,6 +7,8 @@ import values from 'lodash/values';
 import AddModal from './AddModal';
 import ModalSubmit from './ModalSubmit';
 import MiscModalInput from './MiscModalInput';
+import IngredientSearch from './IngredientSearch';
+
 
 // actions
 import {
@@ -38,13 +40,15 @@ class MiscModal extends React.Component {
     if (modal.modalOpen === true) {
       return (
         <AddModal
-          items={items}
           name={name}
           header="Add Spices & Misc"
-          headers={modalInfo.MISC.SEARCH_TABLE_HEADER}
-          cells={modalInfo.MISC.SEARCH_TABLE_CELLS}
-          searchKeys={modalInfo.MISC.SEARCH_KEYS}
         >
+          <IngredientSearch
+            items={items}
+            headers={modalInfo.MISC.SEARCH_TABLE_HEADER}
+            cells={modalInfo.MISC.SEARCH_TABLE_CELLS}
+            searchKeys={modalInfo.MISC.SEARCH_KEYS}
+          />
           <MiscModalInput
             onAmountChange={amount => dispatch(updateMiscAmount(amount))}
             onAmountUnitChange={unit => dispatch(updateMiscAmountUnit(unit))}
