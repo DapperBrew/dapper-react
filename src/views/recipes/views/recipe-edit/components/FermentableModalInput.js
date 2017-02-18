@@ -13,7 +13,7 @@ class FermentableModalInput extends React.Component {
       this.props.onColorChange(selectedItem.srm);
       this.props.onPotentialChange(selectedItem.potential);
       this.props.onWeightChange(selectedItem.weight);
-      this.props.onMaltsterChange(selectedItem.maltster);
+      this.props.onMaltsterChange(selectedItem.maltster ? selectedItem.maltster : '');
       this.props.onNameChange(selectedItem.name);
       this.props.onIndexChange(itemIndex);
       this.props.onTypeChange(selectedItem.type);
