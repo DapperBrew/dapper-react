@@ -20,6 +20,7 @@ export const EDIT_FERMENTABLE_SUCCESS = 'EDIT_FERMENTABLE_SUCCESS';
 export const REMOVE_FERMENTABLE = 'REMOVE_FERMENTABLE';
 export const ADD_HOP_SUCCESS = 'ADD_HOP_SUCCESSS';
 export const ADD_HOP_ERROR = 'ADD_HOP_ERROR';
+export const EDIT_HOP_SUCCESS = 'EDIT_HOP_SUCCESS';
 export const REMOVE_HOP = 'REMOVE_HOP';
 export const ADD_YEAST_SUCCESS = 'ADD_YEAST_SUCCESSS';
 export const ADD_YEAST_ERROR = 'ADD_YEAST_ERROR';
@@ -303,6 +304,61 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
       } else {
         dispatch(hideModal());
       }
+    }
+  }
+);
+
+export const editHop = (itemIndex, hopName, hopWeight, hopTime, hopStage, hopType, hopAlpha) => (
+  (dispatch) => {
+    if (!hopWeight) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a weight.',
+        field: 'weight',
+      });
+    } else if (isFinite(Number(hopWeight)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Weight must be a number',
+        field: 'weight',
+      });
+    } else if (!hopTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(hopTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else if (!hopAlpha) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a Alpha Acid %.',
+        field: 'alpha',
+      });
+    } else if (isFinite(Number(hopAlpha)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Alpha Acid % must be a number',
+        field: 'alpha',
+      });
+    } else {
+      dispatch({
+        type: EDIT_HOP_SUCCESS,
+        itemIndex,
+        key: uniqueId(),
+        hopName,
+        hopWeight,
+        hopTime,
+        hopStage,
+        hopType,
+        hopAlpha,
+      });
+      dispatch(hideModal());
     }
   }
 );

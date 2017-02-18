@@ -135,6 +135,22 @@ const recipeEdit = (state = initialState, action) => {
           },
         ],
       };
+    case recipeAction.EDIT_HOP_SUCCESS:
+      return {
+        ...state,
+        hops:
+          state.hops.slice(0, action.itemIndex)
+            .concat([{
+              name: action.hopName,
+              key: action.key,
+              weight: action.hopWeight,
+              time: action.hopTime,
+              stage: action.hopStage,
+              type: action.hopType,
+              alpha: action.hopAlpha,
+            }])
+              .concat(state.hops.slice(action.itemIndex + 1)),
+      };
     case recipeAction.REMOVE_HOP:
       return {
         ...state,

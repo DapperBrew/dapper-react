@@ -42,7 +42,6 @@ const FermentableEditModal = (props) => {
     fermentableAfterBoil,
   } = modal;
   const items = values(props.fermentables);
-  console.log(modal.fermentablePotential);
 
   // don't mount the modal unless the modal is ready to use
   if (modal.modalOpen === true) {

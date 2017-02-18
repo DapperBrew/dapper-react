@@ -23,6 +23,7 @@ export const UPDATE_HOP_TIME = 'UPDATE_HOP_TIME';
 export const UPDATE_HOP_STAGE = 'UPDATE_HOP_STAGE';
 export const UPDATE_HOP_TYPE = 'UPDATE_HOP_TYPE';
 export const UPDATE_HOP_ALPHA = 'UPDATE_HOP_ALPHA';
+export const UPDATE_HOP_NAME = 'UPDATE_HOP_NAME';
 
 export const UPDATE_YEAST_ATTENUATION = 'UPDATE_YEAST_ATTENUATION';
 export const UPDATE_YEAST_MIN_TEMP = 'UPDATE_YEAST_MIN_TEMP';
@@ -171,9 +172,14 @@ export const updateHopType = hopType => ({
   hopType,
 });
 
-export const updateHopAlpha = hopAlpha => ({
+export const updateHopAlpha = alpha => ({
   type: UPDATE_HOP_ALPHA,
-  hopAlpha,
+  alpha,
+});
+
+export const updateHopName = name => ({
+  type: UPDATE_HOP_NAME,
+  name,
 });
 
 // Yeast Modal Actions
