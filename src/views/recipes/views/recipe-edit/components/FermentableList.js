@@ -1,9 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTotalWeight } from '../selectors/recipeEdit';
-import { removeFermentable } from '../actions/recipeStaged';
 
+// selectors
+import { getTotalWeight } from '../selectors/recipeEdit';
+
+// actions
+import { removeFermentable } from '../actions/recipeStaged';
+import { showEditModal } from '../actions/modals';
+
+
+// images and icons
 import EditIcons from './EditIcons';
+
 
 const FermentableList = props => (
   <tbody>
@@ -22,7 +30,10 @@ const FermentableList = props => (
           <td className="recipe-table__cell text-right">{fermentable.weight} {fermentable.unit}</td>
           <td className="recipe-table__cell text-right">{fermentable.srm} SRM</td>
           <td className="recipe-table__cell text-right">{weight}%</td>
-          <EditIcons removeItem={() => dispatch(removeFermentable(fermentable.key))} />
+          <EditIcons
+            removeItem={() => dispatch(removeFermentable(fermentable.key))}
+            editItem={() => dispatch(showEditModal('editFermentable', fermentable.key))}
+          />
         </tr>
       );
     })}

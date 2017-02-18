@@ -2813,7 +2813,6 @@ input[type="button"].button--block {
   margin-left: 9.02778%;
   margin-top: 40px;
   position: relative;
-  min-height: 300px;
   background-color: #fff;
   border-radius: 4px;
   padding: 20px; }

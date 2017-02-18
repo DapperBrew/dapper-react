@@ -95,6 +95,25 @@ const recipeEdit = (state = initialState, action) => {
           },
         ],
       };
+    case recipeAction.EDIT_FERMENTABLE_SUCCESS:
+      return {
+        ...state,
+        fermentables:
+          state.fermentables.slice(0, action.itemIndex)
+            .concat([{
+              name: action.fermentableName,
+              key: action.key,
+              weight: action.fermentableWeight,
+              unit: action.fermentableWeightUnit,
+              srm: action.fermentableColor,
+              potential: action.fermentablePotential,
+              maltster: action.fermentableMaltster,
+              type: action.fermentableType,
+              inMash: action.fermentableInMash,
+              afterBoil: action.fermentableAfterBoil,
+            }])
+            .concat(state.fermentables.slice(action.itemIndex + 1)),
+      };
     case recipeAction.REMOVE_FERMENTABLE:
       return {
         ...state,
@@ -115,6 +134,22 @@ const recipeEdit = (state = initialState, action) => {
             alpha: action.hopAlpha,
           },
         ],
+      };
+    case recipeAction.EDIT_HOP_SUCCESS:
+      return {
+        ...state,
+        hops:
+          state.hops.slice(0, action.itemIndex)
+            .concat([{
+              name: action.hopName,
+              key: action.key,
+              weight: action.hopWeight,
+              time: action.hopTime,
+              stage: action.hopStage,
+              type: action.hopType,
+              alpha: action.hopAlpha,
+            }])
+              .concat(state.hops.slice(action.itemIndex + 1)),
       };
     case recipeAction.REMOVE_HOP:
       return {
@@ -137,6 +172,22 @@ const recipeEdit = (state = initialState, action) => {
           },
         ],
       };
+    case recipeAction.EDIT_YEAST_SUCCESS:
+      return {
+        ...state,
+        yeasts:
+          state.yeasts.slice(0, action.itemIndex)
+            .concat([{
+              supplier: action.supplier,
+              supplierId: action.supplierId,
+              name: action.name,
+              key: action.key,
+              averageAttenuation: action.attenuation,
+              minTemp: action.minTemp,
+              maxTemp: action.maxTemp,
+            }])
+              .concat(state.yeasts.slice(action.itemIndex + 1)),
+      };
     case recipeAction.REMOVE_YEAST:
       return {
         ...state,
@@ -157,6 +208,22 @@ const recipeEdit = (state = initialState, action) => {
             stage: action.miscStage,
           },
         ],
+      };
+    case recipeAction.EDIT_MISC_SUCCESS:
+      return {
+        ...state,
+        miscs:
+          state.miscs.slice(0, action.itemIndex)
+            .concat([{
+              name: action.miscName,
+              key: action.key,
+              amount: action.miscAmount,
+              amountUnit: action.miscAmountUnit,
+              time: action.miscTime,
+              timeUnit: action.miscTimeUnit,
+              stage: action.miscStage,
+            }])
+              .concat(state.miscs.slice(action.itemIndex + 1)),
       };
     case recipeAction.REMOVE_MISC:
       return {

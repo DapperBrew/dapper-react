@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// actions
 import { removeYeast } from '../actions/recipeStaged';
+import { showEditModal } from '../actions/modals';
 
 // components
 import EditIcons from './EditIcons';
@@ -16,7 +19,10 @@ const YeastList = props => (
           <td className="recipe-table__cell text-left">{`${name} (${supplier} ${supplierId})`}</td>
           <td className="recipe-table__cell text-right">{averageFermentTemp} F</td>
           <td className="recipe-table__cell text-right">{yeast.averageAttenuation}%</td>
-          <EditIcons removeItem={() => dispatch(removeYeast(yeast.key))} />
+          <EditIcons
+            removeItem={() => dispatch(removeYeast(yeast.key))}
+            editItem={() => dispatch(showEditModal('editYeast', yeast.key))}
+          />
         </tr>
       );
     })}

@@ -8,6 +8,7 @@ import { showModal, modalInfo } from '../actions/modals';
 import Card from '../../../../../components/Card';
 import MiscList from './MiscList';
 import MiscModal from './MiscModal';
+import MiscEditModal from './MiscEditModal';
 
 const Misc = (props) => {
   const { dispatch } = props;
@@ -31,6 +32,7 @@ const Misc = (props) => {
         Test Button
       </button>
       <MiscModal />
+      <MiscEditModal />
     </Card>
   );
 };

@@ -8,6 +8,7 @@ import { showModal, modalInfo } from '../actions/modals';
 import Card from '../../../../../components/Card';
 import HopList from './HopList';
 import HopModal from './HopModal';
+import HopEditModal from './HopEditModal';
 
 const Hops = (props) => {
   const { dispatch } = props;
@@ -32,6 +33,7 @@ const Hops = (props) => {
         Test Button
       </button>
       <HopModal />
+      <HopEditModal />
     </Card>
   );
 };

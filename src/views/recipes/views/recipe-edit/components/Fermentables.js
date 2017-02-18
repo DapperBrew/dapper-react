@@ -8,6 +8,7 @@ import { showModal, modalInfo } from '../actions/modals';
 import Card from '../../../../../components/Card';
 import FermentableList from './FermentableList';
 import FermentableModal from './FermentableModal';
+import FermentableEditModal from './FermentableEditModal';
 
 
 const Fermentables = (props) => {
@@ -33,6 +34,7 @@ const Fermentables = (props) => {
           Test Button
         </button>
         <FermentableModal />
+        <FermentableEditModal />
       </Card>
     </div>
   );

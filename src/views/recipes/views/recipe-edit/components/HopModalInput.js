@@ -4,6 +4,23 @@ import Select from 'react-select';
 
 class HopModalInput extends React.Component {
 
+  componentWillMount() {
+    const { recipeHops, modalKey, isEdit } = this.props;
+
+    if (isEdit) {
+      const selectedItem = recipeHops.find(hop => hop.key === modalKey);
+      const itemIndex = recipeHops.indexOf(selectedItem);
+
+      this.props.onIndexChange(itemIndex);
+      this.props.onWeightChange(selectedItem.weight);
+      this.props.onStageChange(selectedItem.stage);
+      this.props.onTimeChange(selectedItem.time);
+      this.props.onTypeChange(selectedItem.type);
+      this.props.onAlphaChange(selectedItem.alpha);
+      this.props.onNameChange(selectedItem.name);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
       const selectedItem = this.props.hops[nextProps.selectedItem];
@@ -130,5 +147,21 @@ class HopModalInput extends React.Component {
     );
   }
 }
+
+
+HopModalInput.propTypes = {
+  selectedItem: React.PropTypes.string.isRequired,
+  hops: React.PropTypes.object, // eslint-disable-line
+  onAlphaChange: React.PropTypes.func,
+  onIndexChange: React.PropTypes.func,
+  onWeightChange: React.PropTypes.func,
+  onStageChange: React.PropTypes.func,
+  onTimeChange: React.PropTypes.func,
+  onTypeChange: React.PropTypes.func,
+  onNameChange: React.PropTypes.func,
+  isEdit: React.PropTypes.bool,
+  modalKey: React.PropTypes.string,
+  recipeHops: React.PropTypes.array, //eslint-disable-line
+};
 
 export default HopModalInput;

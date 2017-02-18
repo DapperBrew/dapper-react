@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ibu } from 'dapper-calc/build';
+
+// actions
 import { removeHop } from '../actions/recipeStaged';
+import { showEditModal } from '../actions/modals';
 
 // components
 import EditIcons from './EditIcons';
@@ -18,6 +21,12 @@ const HopList = props => (
         adjust = 10;
       }
       // calculate IBU
+      console.log('hop', hop)
+      console.log('weight', hop.weight);
+      console.log('alpha', hop.alpha);
+      console.log('time', hop.time);
+      console.log('boilGravity', boilGravity);
+      console.log('postBoilVolume', recipeStaged.postBoilVolume);
       const aa = ibu(
         Number(hop.weight),
         Number(hop.alpha),
@@ -33,7 +42,10 @@ const HopList = props => (
           <td className="recipe-table__cell text-right">{hop.time} {hop.stage === 'dry hop' ? 'days' : 'min'}</td>
           <td className="recipe-table__cell text-right capitolize">{hop.stage}</td>
           <td className="recipe-table__cell text-right">{aa} IBU</td>
-          <EditIcons removeItem={() => dispatch(removeHop(hop.key))} />
+          <EditIcons
+            removeItem={() => dispatch(removeHop(hop.key))}
+            editItem={() => dispatch(showEditModal('editHop', hop.key))}
+          />
         </tr>
       );
     })}

@@ -9,6 +9,7 @@ import { showModal, modalInfo } from '../actions/modals';
 import Card from '../../../../../components/Card';
 import YeastList from './YeastList';
 import YeastModal from './YeastModal';
+import YeastEditModal from './YeastEditModal';
 
 const Yeast = (props) => {
   const { dispatch } = props;
@@ -30,6 +31,7 @@ const Yeast = (props) => {
         Test Button
       </button>
       <YeastModal />
+      <YeastEditModal />
     </Card>
   );
 };

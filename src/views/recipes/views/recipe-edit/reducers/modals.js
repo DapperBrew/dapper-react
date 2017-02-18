@@ -3,11 +3,16 @@ import * as actions from '../actions/modals';
 const initialState = {
   searchTerm: '',
   selectedItem: '',
+  itemIndex: '',
   fermentableWeight: '',
   fermentableWeightUnit: 'lb',
   fermentableColor: '',
   fermentablePotential: '',
   fermentableMaltster: '',
+  fermentableName: '',
+  fermentableType: '',
+  fermentableInMash: '',
+  fermentableAfterBoil: '',
   searchTableHeaders: '',
   searchTableCells: '',
   searchKeys: '',
@@ -17,14 +22,21 @@ const initialState = {
   hopWeight: '',
   hopType: 'pellet',
   hopAlpha: '',
+  hopName: '',
   yeastAttenuation: '',
   yeastMinTemp: '',
   yeastMaxTemp: '',
+  yeastName: '',
+  yeastSupplier: '',
+  yeastSupplierId: '',
   miscAmount: '',
   miscAmountUnit: 'oz',
   miscTime: '',
   miscTimeUnit: 'min',
   miscStage: 'boil',
+  miscName: '',
+  modalIsEdit: false,
+  modalKey: '',
 };
 
 const modals = (state = initialState, action) => {
@@ -34,6 +46,15 @@ const modals = (state = initialState, action) => {
         ...state,
         modalOpen: true,
         modalName: action.name,
+        modalLoaded: false,
+      };
+    case actions.SHOW_EDIT_MODAL:
+      return {
+        ...state,
+        modalOpen: true,
+        modalName: action.name,
+        modalKey: action.key,
+        modalIsEdit: true,
         modalLoaded: false,
       };
     case actions.HIDE_MODAL:
@@ -61,6 +82,11 @@ const modals = (state = initialState, action) => {
         ...state,
         selectedItem: action.item,
       };
+    case actions.UPDATE_ITEM_INDEX:
+      return {
+        ...state,
+        itemIndex: action.index,
+      };
     case actions.UPDATE_FERMENTABLE_WEIGHT:
       return {
         ...state,
@@ -86,6 +112,26 @@ const modals = (state = initialState, action) => {
         ...state,
         fermentableMaltster: action.maltster,
       };
+    case actions.UPDATE_FERMENTABLE_NAME:
+      return {
+        ...state,
+        fermentableName: action.name,
+      };
+    case actions.UPDATE_FERMENTABLE_TYPE:
+      return {
+        ...state,
+        fermentableType: action.fType,
+      };
+    case actions.UPDATE_FERMENTABLE_IN_MASH:
+      return {
+        ...state,
+        fermentableInMash: action.inMash,
+      };
+    case actions.UPDATE_FERMENTABLE_AFTER_BOIL:
+      return {
+        ...state,
+        fermentableAfterBoil: action.afterBoil,
+      };
     case actions.UPDATE_HOP_WEIGHT:
       return {
         ...state,
@@ -109,7 +155,12 @@ const modals = (state = initialState, action) => {
     case actions.UPDATE_HOP_ALPHA:
       return {
         ...state,
-        hopAlpha: action.hopAlpha,
+        hopAlpha: action.alpha,
+      };
+    case actions.UPDATE_HOP_NAME:
+      return {
+        ...state,
+        hopName: action.name,
       };
     case actions.UPDATE_YEAST_ATTENUATION:
       return {
@@ -125,6 +176,21 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         yeastMaxTemp: action.temp,
+      };
+    case actions.UPDATE_YEAST_NAME:
+      return {
+        ...state,
+        yeastName: action.name,
+      };
+    case actions.UPDATE_YEAST_SUPPLIER:
+      return {
+        ...state,
+        yeastSupplier: action.supplier,
+      };
+    case actions.UPDATE_YEAST_SUPPLIER_ID:
+      return {
+        ...state,
+        yeastSupplierId: action.id,
       };
     case actions.UPDATE_MISC_AMOUNT:
       return {
@@ -150,6 +216,11 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         miscStage: action.stage,
+      };
+    case actions.UPDATE_MISC_NAME:
+      return {
+        ...state,
+        miscName: action.name,
       };
     case actions.ERROR_MODAL:
       return {

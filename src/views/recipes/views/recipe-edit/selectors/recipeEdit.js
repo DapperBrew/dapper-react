@@ -91,9 +91,9 @@ const calcYeastAttenuation = (items) => {
 };
 
 // get mash Temp
-const calcMashTemp = () => {
-  return 151;
-};
+const calcMashTemp = () => (
+  151
+);
 
 // get estimated final gravity
 const calcFinalGravity = (gravityPoints, attenuation, eff, volume, mashTemp) => {

@@ -4,6 +4,24 @@ import Select, { Creatable } from 'react-select';
 
 class FermentableModalInput extends React.Component {
 
+  componentWillMount() {
+    const { recipeFermentables, modalKey, isEdit } = this.props;
+    if (isEdit) {
+      const selectedItem = recipeFermentables.find(fermentable => fermentable.key === modalKey);
+      const itemIndex = recipeFermentables.indexOf(selectedItem);
+
+      this.props.onColorChange(selectedItem.srm);
+      this.props.onPotentialChange(selectedItem.potential);
+      this.props.onWeightChange(selectedItem.weight);
+      this.props.onMaltsterChange(selectedItem.maltster ? selectedItem.maltster : '');
+      this.props.onNameChange(selectedItem.name);
+      this.props.onIndexChange(itemIndex);
+      this.props.onTypeChange(selectedItem.type);
+      this.props.onInMashChange(selectedItem.inMash);
+      this.props.onAfterBoilChange(selectedItem.afterBoil);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
       const selectedItem = this.props.fermentables[nextProps.selectedItem];
@@ -120,8 +138,18 @@ class FermentableModalInput extends React.Component {
 FermentableModalInput.propTypes = {
   onPotentialChange: React.PropTypes.func,
   onColorChange: React.PropTypes.func,
+  onWeightChange: React.PropTypes.func,
+  onMaltsterChange: React.PropTypes.func,
+  onNameChange: React.PropTypes.func,
+  onTypeChange: React.PropTypes.func,
+  onIndexChange: React.PropTypes.func,
+  onInMashChange: React.PropTypes.func,
+  onAfterBoilChange: React.PropTypes.func,
   fermentables: React.PropTypes.object, // eslint-disable-line
   selectedItem: React.PropTypes.string,
+  isEdit: React.PropTypes.bool,
+  modalKey: React.PropTypes.string,
+  recipeFermentables: React.PropTypes.array, // eslint-disable-line
 };
 
 export default FermentableModalInput;
