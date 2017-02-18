@@ -1,4 +1,5 @@
 // action types
+// action types
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const SHOW_EDIT_MODAL = 'SHOW_EDIT_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
@@ -28,12 +29,16 @@ export const UPDATE_HOP_NAME = 'UPDATE_HOP_NAME';
 export const UPDATE_YEAST_ATTENUATION = 'UPDATE_YEAST_ATTENUATION';
 export const UPDATE_YEAST_MIN_TEMP = 'UPDATE_YEAST_MIN_TEMP';
 export const UPDATE_YEAST_MAX_TEMP = 'UPDATE_YEAST_MAX_TEMP';
+export const UPDATE_YEAST_NAME = 'UPDATE_YEAST_NAME';
+export const UPDATE_YEAST_SUPPLIER = 'UPDATE_YEAST_SUPPLIER';
+export const UPDATE_YEAST_SUPPLIER_ID = 'UPDATE_YEAST_SUPPLIER_ID';
 
 export const UPDATE_MISC_AMOUNT = 'UPDATE_MISC_AMOUNT';
 export const UPDATE_MISC_AMOUNT_UNIT = 'UPDATE_MISC_AMOUNT_UNIT';
 export const UPDATE_MISC_TIME = 'UPDATE_MISC_TIME';
 export const UPDATE_MISC_TIME_UNIT = 'UPDATE_MISC_TIME_UNIT';
 export const UPDATE_MISC_STAGE = 'UPDATE_MISC_STAGE';
+export const UPDATE_MISC_NAME = 'UPDATE_MISC_NAME';
 
 // other constants
 export const modalInfo = {
@@ -198,6 +203,21 @@ export const updateYeastMaxTemp = temp => ({
   temp,
 });
 
+export const updateYeastName = name => ({
+  type: UPDATE_YEAST_NAME,
+  name,
+});
+
+export const updateYeastSupplier = supplier => ({
+  type: UPDATE_YEAST_SUPPLIER,
+  supplier,
+});
+
+export const updateYeastSupplierId = id => ({
+  type: UPDATE_YEAST_SUPPLIER_ID,
+  id,
+});
+
 // Misc modal actions
 export const updateMiscAmount = amount => ({
   type: UPDATE_MISC_AMOUNT,
@@ -222,4 +242,9 @@ export const updateMiscTimeUnit = unit => ({
 export const updateMiscStage = stage => ({
   type: UPDATE_MISC_STAGE,
   stage,
+});
+
+export const updateMiscName = name => ({
+  type: UPDATE_MISC_NAME,
+  name,
 });

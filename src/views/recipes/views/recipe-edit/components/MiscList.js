@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// actions
 import { removeMisc } from '../actions/recipeStaged';
+import { showEditModal } from '../actions/modals';
 
 // components
 import EditIcons from './EditIcons';
@@ -15,7 +18,10 @@ const MiscList = props => (
           <td className="recipe-table__cell text-right">{misc.amount} {misc.amountUnit}</td>
           <td className="recipe-table__cell text-right">{misc.time} {misc.timeUnit}</td>
           <td className="recipe-table__cell text-right capitolize">{misc.stage}</td>
-          <EditIcons removeItem={() => dispatch(removeMisc(misc.key))} />
+          <EditIcons
+            removeItem={() => dispatch(removeMisc(misc.key))}
+            editItem={() => dispatch(showEditModal('editMisc', misc.key))}
+          />
         </tr>
       );
     })}

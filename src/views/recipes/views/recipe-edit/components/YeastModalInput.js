@@ -4,6 +4,23 @@ import classNames from 'classnames';
 
 class YeastModalInput extends React.Component {
 
+  componentWillMount() {
+    const { recipeYeasts, modalKey, isEdit } = this.props;
+
+    if (isEdit) {
+      const selectedItem = recipeYeasts.find(yeast => yeast.key === modalKey);
+      const itemIndex = recipeYeasts.indexOf(selectedItem);
+
+      this.props.onIndexChange(itemIndex);
+      this.props.onNameChange(selectedItem.name);
+      this.props.onAttenuationChange(selectedItem.averageAttenuation);
+      this.props.onMinTempChange(selectedItem.minTemp);
+      this.props.onMaxTempChange(selectedItem.maxTemp);
+      this.props.onSupplierChange(selectedItem.supplier);
+      this.props.onSupplierIdChange(selectedItem.supplierId);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
       const selectedItem = this.props.yeasts[nextProps.selectedItem];
@@ -108,6 +125,8 @@ YeastModalInput.propTypes = {
   onAttenuationChange: React.PropTypes.func,
   onMinTempChange: React.PropTypes.func,
   onMaxTempChange: React.PropTypes.func,
+  onSupplierChange: React.PropTypes.func,
+  onSupplierIdChange: React.PropTypes.func,
   yeasts: React.PropTypes.object, // eslint-disable-line
   selectedItem: React.PropTypes.string,
 };

@@ -21,6 +21,12 @@ const HopList = props => (
         adjust = 10;
       }
       // calculate IBU
+      console.log('hop', hop)
+      console.log('weight', hop.weight);
+      console.log('alpha', hop.alpha);
+      console.log('time', hop.time);
+      console.log('boilGravity', boilGravity);
+      console.log('postBoilVolume', recipeStaged.postBoilVolume);
       const aa = ibu(
         Number(hop.weight),
         Number(hop.alpha),

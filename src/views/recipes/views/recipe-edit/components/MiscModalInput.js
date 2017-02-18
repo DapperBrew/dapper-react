@@ -1,8 +1,26 @@
 import React from 'react';
+
 import classNames from 'classnames';
 import Select from 'react-select';
 
 class MiscModalInput extends React.Component {
+
+  componentWillMount() {
+    const { recipeMiscs, modalKey, isEdit } = this.props;
+
+    if (isEdit) {
+      const selectedItem = recipeMiscs.find(misc => misc.key === modalKey);
+      const itemIndex = recipeMiscs.indexOf(selectedItem);
+
+      this.props.onAmountUnitChange(selectedItem.amountUnit);
+      this.props.onAmountChange(selectedItem.amount);
+      this.props.onTimeUnitChange(selectedItem.timeUnit);
+      this.props.onTimeChange(selectedItem.time);
+      this.props.onStageChange(selectedItem.stage);
+      this.props.onNameChange(selectedItem.name);
+      this.props.onIndexChange(itemIndex);
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     // update the input fields with the default data from the API
@@ -141,6 +159,11 @@ MiscModalInput.propTypes = {
   miscs: React.PropTypes.object, // eslint-disable-line
   selectedItem: React.PropTypes.string,
   batchVolume: React.PropTypes.string,
+  modalKey: React.PropTypes.string,
+  onNameChange: React.PropTypes.func,
+  onIndexChange: React.PropTypes.func,
+  isEdit: React.PropTypes.bool,
+  recipeMiscs: React.PropTypes.array, //eslint-disable-line
 };
 
 export default MiscModalInput;

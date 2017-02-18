@@ -24,8 +24,10 @@ export const EDIT_HOP_SUCCESS = 'EDIT_HOP_SUCCESS';
 export const REMOVE_HOP = 'REMOVE_HOP';
 export const ADD_YEAST_SUCCESS = 'ADD_YEAST_SUCCESSS';
 export const ADD_YEAST_ERROR = 'ADD_YEAST_ERROR';
+export const EDIT_YEAST_SUCCESS = 'EDIT_YEAST_SUCCESSS';
 export const REMOVE_YEAST = 'REMOVE_YEAST';
 export const ADD_MISC_SUCCESS = 'ADD_MISC_SUCCESSS';
+export const EDIT_MISC_SUCCESS = 'EDIT_MISC_SUCCESSS';
 export const ADD_MISC_ERROR = 'ADD_MISC_ERROR';
 export const REMOVE_MISC = 'REMOVE_MISC';
 export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
@@ -438,6 +440,61 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
   }
 );
 
+export const editYeast = (itemIndex, name, attenuation, minTemp, maxTemp, supplier, supplierId) => (
+  (dispatch) => {
+    if (!attenuation) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an attenuation %.',
+        field: 'attenuation',
+      });
+    } else if (isFinite(Number(attenuation)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Attenuation must be a number',
+        field: 'attenuation',
+      });
+    } else if (!minTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a minimum temperature',
+        field: 'mintemp',
+      });
+    } else if (isFinite(Number(minTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Min temperature must be a number',
+        field: 'mintemp',
+      });
+    } else if (!maxTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a maximum temperature',
+        field: 'maxtemp',
+      });
+    } else if (isFinite(Number(maxTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Maximum temperature must be a number',
+        field: 'maxtemp',
+      });
+    } else {
+      dispatch({
+        type: EDIT_YEAST_SUCCESS,
+        itemIndex,
+        key: uniqueId(),
+        name,
+        supplier,
+        supplierId,
+        attenuation,
+        minTemp,
+        maxTemp,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
 export const removeYeast = key => (
   dispatch => (
     dispatch({
@@ -505,6 +562,57 @@ export const addMisc = (
       } else {
         dispatch(hideModal());
       }
+    }
+  }
+);
+
+export const editMisc = (
+  itemIndex,
+  miscName,
+  miscAmount,
+  miscAmountUnit,
+  miscTime,
+  miscTimeUnit,
+  miscStage,
+) => (
+  (dispatch) => {
+    if (!miscAmount) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an amount.',
+        field: 'amount',
+      });
+    } else if (isFinite(Number(miscAmount)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Amount must be a number',
+        field: 'amount',
+      });
+    } else if (!miscTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(miscTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else {
+      dispatch({
+        type: EDIT_MISC_SUCCESS,
+        itemIndex,
+        miscName,
+        key: uniqueId(),
+        miscAmount,
+        miscAmountUnit,
+        miscTime,
+        miscTimeUnit,
+        miscStage,
+      });
+      dispatch(hideModal());
     }
   }
 );

@@ -26,11 +26,15 @@ const initialState = {
   yeastAttenuation: '',
   yeastMinTemp: '',
   yeastMaxTemp: '',
+  yeastName: '',
+  yeastSupplier: '',
+  yeastSupplierId: '',
   miscAmount: '',
   miscAmountUnit: 'oz',
   miscTime: '',
   miscTimeUnit: 'min',
   miscStage: 'boil',
+  miscName: '',
   modalIsEdit: false,
   modalKey: '',
 };
@@ -173,6 +177,21 @@ const modals = (state = initialState, action) => {
         ...state,
         yeastMaxTemp: action.temp,
       };
+    case actions.UPDATE_YEAST_NAME:
+      return {
+        ...state,
+        yeastName: action.name,
+      };
+    case actions.UPDATE_YEAST_SUPPLIER:
+      return {
+        ...state,
+        yeastSupplier: action.supplier,
+      };
+    case actions.UPDATE_YEAST_SUPPLIER_ID:
+      return {
+        ...state,
+        yeastSupplierId: action.id,
+      };
     case actions.UPDATE_MISC_AMOUNT:
       return {
         ...state,
@@ -197,6 +216,11 @@ const modals = (state = initialState, action) => {
       return {
         ...state,
         miscStage: action.stage,
+      };
+    case actions.UPDATE_MISC_NAME:
+      return {
+        ...state,
+        miscName: action.name,
       };
     case actions.ERROR_MODAL:
       return {
