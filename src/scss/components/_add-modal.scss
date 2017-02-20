@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------
 
 .add-modal-overlay {
+  @include z-index(modal);
   position: fixed;
   top: 0;
   left: 0;
