@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^7.1.1",
-    "concurrently": "^3.2.0",
+    "concurrently": "^3.3.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
@@ -13,7 +13,7 @@
     "gh-pages": "^0.12.0",
     "node-sass": "^4.1.0",
     "normalize.scss": "^0.1.0",
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.9.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -24,7 +24,7 @@
     "normalizr": "^3.1.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-modal": "^1.6.4",
+    "react-modal": "^1.6.5",
     "react-redux": "^5.0.1",
     "react-router": "^4.0.0-beta.3",
     "react-router-dom": "^4.0.0-beta.4",

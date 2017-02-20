@@ -9,6 +9,13 @@ import { hideModal } from '../actions/modals';
 
 
 class AddModal extends React.Component {
+  onRequestCancel = () => {
+    document.body.classList.remove('ReactModal__Body--open');
+  }
+
+  afterOpenModal = () => {
+    document.body.classList.add('ReactModal__Body--open');
+  }
 
   render() {
     const { modal, dispatch } = this.props;
@@ -22,6 +29,8 @@ class AddModal extends React.Component {
         contentLabel="Add Modal"
         className="add-modal-wrapper"
         overlayClassName="add-modal-overlay"
+        onAfterOpen={this.afterOpenModal}
+        onRequestCancel={this.onRequestCancel}
       >
         <div className="container">
           <div className="add-modal">
