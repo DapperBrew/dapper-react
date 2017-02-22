@@ -293,6 +293,12 @@ export const editFermentable = (
         error: 'Potential (ppg) must be a number',
         field: 'Potential',
       });
+    } else if (!fermentableType) { // check if type is chosen
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please select a fermentable type',
+        field: 'type',
+      });
     } else {
       dispatch({
         type: EDIT_FERMENTABLE_SUCCESS,
