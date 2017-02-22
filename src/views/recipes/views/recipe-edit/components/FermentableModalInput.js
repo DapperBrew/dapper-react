@@ -72,7 +72,7 @@ class FermentableModalInput extends React.Component {
     let customInfoName;
     let customInfoAdvanced;
 
-    if (modal.modalIsCustom) {
+    if (modal.modalIsCustom || modal.modalIsEdit) {
       customInfoName = (
         <div className="fermentable-custom-input">
           <div className="fermentable-form-group--name">
@@ -101,7 +101,7 @@ class FermentableModalInput extends React.Component {
               name="type"
               createable="true"
               options={[
-                { label: 'Grain', value: 'sugar' },
+                { label: 'Grain', value: 'grain' },
                 { label: 'Extract', value: 'extract' },
                 { label: 'Ery Extract', value: 'dry extract' },
                 { label: 'Sugar', value: 'sugar' },
@@ -115,6 +115,7 @@ class FermentableModalInput extends React.Component {
               }
               onChange={type => dispatch(updateFermentableType(type))}
               value={fermentableType}
+              simpleValue={true} //eslint-disable-line
             />
           </div>
           <div className="fermentable-form-group__checkbox-wrapper">

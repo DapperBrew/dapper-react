@@ -144,7 +144,7 @@ export const addFermentable = (
     } else {
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
-        name: currentFermentable.fermentableName,
+        fermentableName: currentFermentable.name,
         key: uniqueId(),
         fermentableWeight,
         fermentableWeightUnit,
