@@ -162,13 +162,13 @@ const recipeEdit = (state = initialState, action) => {
         yeasts: [
           ...state.yeasts,
           {
-            supplier: action.supplier,
-            supplierId: action.supplierId,
-            name: action.name,
+            supplier: action.yeastSupplier,
+            supplierId: action.yeastSupplierId,
+            name: action.yeastName,
             key: action.key,
-            averageAttenuation: action.averageAttenuation,
-            minTemp: action.minTemp,
-            maxTemp: action.maxTemp,
+            averageAttenuation: action.yeastAttenuation,
+            minTemp: action.yeastMinTemp,
+            maxTemp: action.yeastMaxTemp,
           },
         ],
       };
@@ -178,13 +178,13 @@ const recipeEdit = (state = initialState, action) => {
         yeasts:
           state.yeasts.slice(0, action.itemIndex)
             .concat([{
-              supplier: action.supplier,
-              supplierId: action.supplierId,
-              name: action.name,
+              supplier: action.yeastSupplier,
+              supplierId: action.yeastSupplierId,
+              name: action.yeastName,
               key: action.key,
-              averageAttenuation: action.attenuation,
-              minTemp: action.minTemp,
-              maxTemp: action.maxTemp,
+              averageAttenuation: action.yeastAttenuation,
+              minTemp: action.yeastMinTemp,
+              maxTemp: action.yeastMaxTemp,
             }])
               .concat(state.yeasts.slice(action.itemIndex + 1)),
       };

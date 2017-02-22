@@ -16,7 +16,15 @@ const YeastList = props => (
       const averageFermentTemp = ((Number(yeast.minTemp) + Number(yeast.maxTemp)) / 2).toFixed(0);
       return (
         <tr key={yeast.key} className="recipe-table__row">
-          <td className="recipe-table__cell text-left">{`${name} (${supplier} ${supplierId})`}</td>
+          <td className="recipe-table__cell text-left">
+            {`${name}`}
+            {/* if supplier or supplierID, add within ()*/}
+            {(supplier || supplierId) ? ' (' : ''}
+            {supplier ? `${supplier}` : ''}
+            {(supplier && supplierId) ? ' ' : ''}
+            {supplierId ? `${supplierId}` : ''}
+            {(supplier || supplierId) ? ')' : ''}
+          </td>
           <td className="recipe-table__cell text-right">{averageFermentTemp} F</td>
           <td className="recipe-table__cell text-right">{yeast.averageAttenuation}%</td>
           <EditIcons

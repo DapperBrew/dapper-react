@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { showModal, modalInfo } from '../actions/modals';
+import { showModal, showCustomModal, modalInfo } from '../actions/modals';
 
 
 // Components
@@ -31,8 +31,8 @@ const Yeast = (props) => {
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
-      <button className="mt1 ml1" onClick={() => dispatch(showModal('customYeast'))}>
-        Add New
+      <button className="mt1 ml1" onClick={() => dispatch(showCustomModal('customYeast'))}>
+        Add Custom
       </button>
       <YeastModal />
       <YeastEditModal />

@@ -8,7 +8,7 @@ import YeastModalInput from './YeastModalInput';
 
 // actions
 import { hideModal } from '../actions/modals';
-import { editYeast } from '../actions/recipeStaged';
+import { addCustomYeast } from '../actions/recipeStaged';
 
 const YeastEditModal = (props) => {
   const { modal, dispatch } = props;
@@ -21,8 +21,7 @@ const YeastEditModal = (props) => {
       <YeastModalInput />
       <ModalEditSubmit
         closeModal={() => dispatch(hideModal())}
-        submitModal={() => dispatch(editYeast(
-          modal.itemIndex,
+        submitModal={() => dispatch(addCustomYeast(
           modal.yeastName,
           modal.yeastAttenuation,
           modal.yeastMinTemp,

@@ -3039,6 +3039,13 @@ input[type="button"].button--block {
   display: flex;
   justify-content: space-between; }
 
+.yeast-custom-input {
+  display: flex; }
+
+.yeast-advanced-input {
+  display: flex;
+  justify-content: space-between; }
+
 .yeast-form-group {
   margin-bottom: 20px;
   width: 32%; }
@@ -3046,6 +3053,10 @@ input[type="button"].button--block {
 .yeast-form-group__temp,
 .yeast-form-group__attenuation {
   width: 70%; }
+
+.yeast-form-group--name {
+  width: 66%;
+  margin-bottom: 20px; }
 
 .yeast-form-group__unit {
   width: 30%; }

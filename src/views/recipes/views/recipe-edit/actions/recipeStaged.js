@@ -531,7 +531,7 @@ export const removeHop = key => (
   )
 );
 
-export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
+export const addYeast = (id, yeastAttenuation, yeastMinTemp, yeastMaxTemp, reset) => (
   (dispatch, getState) => {
     const currentYeast = getState().data.yeasts[id];
     if (!id) {
@@ -540,37 +540,37 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
         error: 'Please select an item.',
         field: 'select',
       });
-    } else if (!attenuation) {
+    } else if (!yeastAttenuation) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input an attenuation %.',
         field: 'attenuation',
       });
-    } else if (isFinite(Number(attenuation)) !== true) {
+    } else if (isFinite(Number(yeastAttenuation)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Attenuation must be a number',
         field: 'attenuation',
       });
-    } else if (!minTemp) {
+    } else if (!yeastMinTemp) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a minimum temperature',
         field: 'mintemp',
       });
-    } else if (isFinite(Number(minTemp)) !== true) {
+    } else if (isFinite(Number(yeastMinTemp)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Min temperature must be a number',
         field: 'mintemp',
       });
-    } else if (!maxTemp) {
+    } else if (!yeastMaxTemp) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a maximum temperature',
         field: 'maxtemp',
       });
-    } else if (isFinite(Number(maxTemp)) !== true) {
+    } else if (isFinite(Number(yeastMaxTemp)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Maximum temperature must be a number',
@@ -579,13 +579,13 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
     } else {
       dispatch({
         type: ADD_YEAST_SUCCESS,
-        name: currentYeast.name,
-        supplier: currentYeast.supplier,
-        supplierId: currentYeast.supplierId,
-        averageAttenuation: attenuation,
-        minTemp,
-        maxTemp,
         key: uniqueId(),
+        yeastName: currentYeast.name,
+        yeastSupplier: currentYeast.supplier,
+        yeastSupplierId: currentYeast.supplierId,
+        yeastAttenuation,
+        yeastMinTemp,
+        yeastMaxTemp,
       });
       if (reset) {
         // if reset is true, only reset the modal (don't close it)
@@ -597,39 +597,114 @@ export const addYeast = (id, attenuation, minTemp, maxTemp, reset) => (
   }
 );
 
-export const editYeast = (itemIndex, name, attenuation, minTemp, maxTemp, supplier, supplierId) => (
+export const addCustomYeast = (
+  yeastName,
+  yeastAttenuation,
+  yeastMinTemp,
+  yeastMaxTemp,
+  yeastSupplier,
+  yeastSupplierId,
+) => (
   (dispatch) => {
-    if (!attenuation) {
+    if (!yeastName) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!yeastAttenuation) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input an attenuation %.',
         field: 'attenuation',
       });
-    } else if (isFinite(Number(attenuation)) !== true) {
+    } else if (isFinite(Number(yeastAttenuation)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Attenuation must be a number',
         field: 'attenuation',
       });
-    } else if (!minTemp) {
+    } else if (!yeastMinTemp) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a minimum temperature',
         field: 'mintemp',
       });
-    } else if (isFinite(Number(minTemp)) !== true) {
+    } else if (isFinite(Number(yeastMinTemp)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Min temperature must be a number',
         field: 'mintemp',
       });
-    } else if (!maxTemp) {
+    } else if (!yeastMaxTemp) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a maximum temperature',
         field: 'maxtemp',
       });
-    } else if (isFinite(Number(maxTemp)) !== true) {
+    } else if (isFinite(Number(yeastMaxTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Maximum temperature must be a number',
+        field: 'maxtemp',
+      });
+    } else {
+      dispatch({
+        type: ADD_YEAST_SUCCESS,
+        key: uniqueId(),
+        yeastName,
+        yeastSupplier,
+        yeastSupplierId,
+        yeastAttenuation,
+        yeastMinTemp,
+        yeastMaxTemp,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
+export const editYeast = (
+  itemIndex,
+  yeastName,
+  yeastAttenuation,
+  yeastMinTemp,
+  yeastMaxTemp,
+  yeastSupplier,
+  yeastSupplierId,
+) => (
+  (dispatch) => {
+    if (!yeastAttenuation) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an attenuation %.',
+        field: 'attenuation',
+      });
+    } else if (isFinite(Number(yeastAttenuation)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Attenuation must be a number',
+        field: 'attenuation',
+      });
+    } else if (!yeastMinTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a minimum temperature',
+        field: 'mintemp',
+      });
+    } else if (isFinite(Number(yeastMinTemp)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Min temperature must be a number',
+        field: 'mintemp',
+      });
+    } else if (!yeastMaxTemp) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a maximum temperature',
+        field: 'maxtemp',
+      });
+    } else if (isFinite(Number(yeastMaxTemp)) !== true) {
       dispatch({
         type: ERROR_MODAL,
         error: 'Maximum temperature must be a number',
@@ -638,14 +713,14 @@ export const editYeast = (itemIndex, name, attenuation, minTemp, maxTemp, suppli
     } else {
       dispatch({
         type: EDIT_YEAST_SUCCESS,
-        itemIndex,
         key: uniqueId(),
-        name,
-        supplier,
-        supplierId,
-        attenuation,
-        minTemp,
-        maxTemp,
+        itemIndex,
+        yeastName,
+        yeastSupplier,
+        yeastSupplierId,
+        yeastAttenuation,
+        yeastMinTemp,
+        yeastMaxTemp,
       });
       dispatch(hideModal());
     }
