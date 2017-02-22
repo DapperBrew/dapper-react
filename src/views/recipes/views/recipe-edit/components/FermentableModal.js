@@ -9,105 +9,65 @@ import FermentableModalInput from './FermentableModalInput';
 import IngredientSearch from './IngredientSearch';
 
 // actions
-import {
-  hideModal,
-  modalInfo,
-  updateFermentableWeight,
-  updateFermentableWeightUnit,
-  updateFermentableColor,
-  updateFermentablePotential,
-  updateFermentableMaltster,
-} from '../actions/modals';
-
+import { hideModal, modalInfo } from '../actions/modals';
 import { addFermentable } from '../actions/recipeStaged';
 
 // selectors
 import { getFermentableList } from '../selectors/modals';
 
-class FermentableModal extends React.Component {
+const FermentableModal = (props) => {
+  const { modal, dispatch } = props;
+  const name = modalInfo.FERMENTABLE.NAME;
+  const items = values(props.fermentables);
 
-  render() {
-    const props = this.props;
-    const { modal, dispatch } = this.props;
-    const {
-      selectedItem,
-      fermentableWeight,
-      fermentableWeightUnit,
-      fermentableColor,
-      fermentablePotential,
-      fermentableMaltster,
-    } = modal;
-    const name = modalInfo.FERMENTABLE.NAME;
-    const items = values(props.fermentables);
 
-    // don't mount the modal unless the modal is ready to use
-    if (modal.modalOpen === true) {
-      return (
-        <AddModal
-          items={items}
-          name={name}
-          header="Add Fermentable"
-        >
-          <IngredientSearch
-            items={items}
-            headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
-            cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
-            searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
-          />
-          <FermentableModalInput
-            onWeightChange={weight => dispatch(updateFermentableWeight(weight))}
-            onWeightUnitChange={unit => dispatch(updateFermentableWeightUnit(unit))}
-            weightValue={modal.fermentableWeight}
-            weightUnitValue={modal.fermentableWeightUnit}
-            onColorChange={color => dispatch(updateFermentableColor(color))}
-            colorValue={modal.fermentableColor}
-            onPotentialChange={ppg => dispatch(updateFermentablePotential(ppg))}
-            potentialValue={modal.fermentablePotential}
-            onMaltsterChange={maltster => dispatch(updateFermentableMaltster(maltster))}
-            maltsterValue={modal.fermentableMaltster}
-            fermentables={this.props.fermentablesRaw}
-            selectedItem={modal.selectedItem}
-            errorField={modal.modalErrorField}
-          />
-          <ModalSubmit
-            closeModal={() => dispatch(hideModal())}
-            resetModal={() => dispatch(addFermentable(
-              selectedItem,
-              fermentableWeight,
-              fermentableWeightUnit,
-              fermentableColor,
-              fermentablePotential,
-              fermentableMaltster.value,
-              true,
-            ))}
-            submitModal={() => dispatch(addFermentable(
-              selectedItem,
-              fermentableWeight,
-              fermentableWeightUnit,
-              fermentableColor,
-              fermentablePotential,
-              fermentableMaltster.value,
-            ))}
-          />
-        </AddModal>
-      );
-    }
-    return <div />;
-  }
-}
+  return (
+    <AddModal
+      items={items}
+      name={name}
+      header="Add Fermentable"
+    >
+      <IngredientSearch
+        items={items}
+        headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}
+        cells={modalInfo.FERMENTABLE.SEARCH_TABLE_CELLS}
+        searchKeys={modalInfo.FERMENTABLE.SEARCH_KEYS}
+      />
+      <FermentableModalInput />
+      <ModalSubmit
+        closeModal={() => dispatch(hideModal())}
+        resetModal={() => dispatch(addFermentable(
+          modal.selectedItem,
+          modal.fermentableWeight,
+          modal.fermentableWeightUnit,
+          modal.fermentableColor,
+          modal.fermentablePotential,
+          modal.fermentableMaltster.value,
+          true,
+        ))}
+        submitModal={() => dispatch(addFermentable(
+          modal.selectedItem,
+          modal.fermentableWeight,
+          modal.fermentableWeightUnit,
+          modal.fermentableColor,
+          modal.fermentablePotential,
+          modal.fermentableMaltster.value,
+        ))}
+      />
+    </AddModal>
+  );
+};
+
 
 FermentableModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
   dispatch: React.PropTypes.func.isRequired,
   fermentables: React.PropTypes.array, // eslint-disable-line
-  fermentablesRaw: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   fermentables: getFermentableList(state),
-  fermentablesRaw: state.data.fermentables,
 });
-
 
 export default connect(mapStateToProps)(FermentableModal);

@@ -1,39 +1,75 @@
 import React from 'react';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+
+// components
 import Select, { Creatable } from 'react-select';
+
+// actions
+import {
+  updateFermentableWeight,
+  updateFermentableWeightUnit,
+  updateFermentableColor,
+  updateFermentablePotential,
+  updateFermentableMaltster,
+  updateFermentableName,
+  updateFermentableType,
+  updateFermentableInMash,
+  updateFermentableAfterBoil,
+  updateIndex,
+} from '../actions/modals';
+
 
 class FermentableModalInput extends React.Component {
 
   componentWillMount() {
-    const { recipeFermentables, modalKey, isEdit } = this.props;
-    if (isEdit) {
+    const { recipeFermentables, modal, dispatch } = this.props;
+    const { modalIsEdit, modalKey } = modal;
+
+    if (modalIsEdit) {
       const selectedItem = recipeFermentables.find(fermentable => fermentable.key === modalKey);
       const itemIndex = recipeFermentables.indexOf(selectedItem);
-
-      this.props.onColorChange(selectedItem.srm);
-      this.props.onPotentialChange(selectedItem.potential);
-      this.props.onWeightChange(selectedItem.weight);
-      this.props.onMaltsterChange(selectedItem.maltster ? selectedItem.maltster : '');
-      this.props.onNameChange(selectedItem.name);
-      this.props.onIndexChange(itemIndex);
-      this.props.onTypeChange(selectedItem.type);
-      this.props.onInMashChange(selectedItem.inMash);
-      this.props.onAfterBoilChange(selectedItem.afterBoil);
+      dispatch(updateFermentableColor(selectedItem.srm));
+      dispatch(updateFermentablePotential(selectedItem.potential));
+      dispatch(updateFermentableWeightUnit(selectedItem.unit));
+      dispatch(updateFermentableWeight(selectedItem.weight));
+      dispatch(updateFermentableMaltster(selectedItem.maltster ? selectedItem.maltster : ''));
+      dispatch(updateFermentableName(selectedItem.name));
+      dispatch(updateIndex(itemIndex));
+      dispatch(updateFermentableType(selectedItem.type));
+      dispatch(updateFermentableInMash(selectedItem.inMash));
+      dispatch(updateFermentableAfterBoil(selectedItem.afterBoil));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
-      const selectedItem = this.props.fermentables[nextProps.selectedItem];
+    const { dispatch, modal, fermentables } = this.props;
+    const nextPropsModal = nextProps.modal;
 
-      this.props.onColorChange(selectedItem.srm);
-      this.props.onPotentialChange(selectedItem.potential);
+    if (nextPropsModal.selectedItem && nextPropsModal.selectedItem !== modal.selectedItem) {
+      const selectedItem = fermentables[nextProps.modal.selectedItem];
+
+      dispatch(updateFermentableColor(selectedItem.srm));
+      dispatch(updateFermentablePotential(selectedItem.potential));
     }
   }
 
 
   render() {
-    const props = this.props;
+    const { modal, dispatch } = this.props;
+    const {
+      modalErrorField,
+      fermentableName,
+      fermentableWeight,
+      fermentableWeightUnit,
+      fermentableColor,
+      fermentablePotential,
+      fermentableMaltster,
+      fermentableType,
+      fermentableInMash,
+      fermentableAfterBoil,
+    } = modal;
+
     return (
       <div className="fermentable-modal-input">
         <div className="fermentable-form-group">
@@ -41,16 +77,16 @@ class FermentableModalInput extends React.Component {
           <input
             id="weight"
             type="text"
-            onChange={e => props.onWeightChange(e.target.value)}
+            onChange={e => dispatch(updateFermentableWeight(e.target.value))}
             placeholder="ex: 2"
             className={
               classNames(
                 'form__input',
                 'form__input--select',
-                { isError: props.errorField === 'weight' },
+                { isError: modalErrorField === 'weight' },
               )
             }
-            value={props.weightValue}
+            value={fermentableWeight}
           />
           <Select
             name="weight-unit"
@@ -63,8 +99,8 @@ class FermentableModalInput extends React.Component {
                 'form__select--input',
               )
             }
-            onChange={props.onWeightUnitChange}
-            value={props.weightUnitValue}
+            onChange={unit => dispatch(updateFermentableWeightUnit(unit))}
+            value={fermentableWeightUnit}
             clearable={false}
             simpleValue={true} //eslint-disable-line
           />
@@ -75,14 +111,14 @@ class FermentableModalInput extends React.Component {
           <input
             id="color"
             type="text"
-            onChange={e => props.onColorChange(e.target.value)}
+            onChange={e => dispatch(updateFermentableColor(e.target.value))}
             placeholder="ex: 4"
             className={
               classNames(
                 'form__input',
-                { isError: props.errorField === 'color' })
+                { isError: modalErrorField === 'color' })
             }
-            value={props.colorValue}
+            value={fermentableColor}
           />
         </div>
 
@@ -91,14 +127,14 @@ class FermentableModalInput extends React.Component {
           <input
             id="potential"
             type="text"
-            onChange={e => props.onPotentialChange(e.target.value)}
+            onChange={e => dispatch(updateFermentablePotential(e.target.value))}
             placeholder="ex: 1.033"
             className={
               classNames(
                 'form__input',
-                { isError: props.errorField === 'potential' })
+                { isError: modalErrorField === 'potential' })
             }
-            value={props.potentialValue}
+            value={fermentablePotential}
           />
         </div>
 
@@ -125,8 +161,8 @@ class FermentableModalInput extends React.Component {
               { label: 'Wayermann', value: 'Weyermann' },
             ]}
             className="input__select"
-            onChange={props.onMaltsterChange}
-            value={props.maltsterValue}
+            onChange={maltster => dispatch(updateFermentableMaltster(maltster))}
+            value={fermentableMaltster}
           />
         </div>
 
@@ -136,20 +172,18 @@ class FermentableModalInput extends React.Component {
 }
 
 FermentableModalInput.propTypes = {
-  onPotentialChange: React.PropTypes.func,
-  onColorChange: React.PropTypes.func,
-  onWeightChange: React.PropTypes.func,
-  onMaltsterChange: React.PropTypes.func,
-  onNameChange: React.PropTypes.func,
-  onTypeChange: React.PropTypes.func,
-  onIndexChange: React.PropTypes.func,
-  onInMashChange: React.PropTypes.func,
-  onAfterBoilChange: React.PropTypes.func,
+  dispatch: React.PropTypes.func,
   fermentables: React.PropTypes.object, // eslint-disable-line
   selectedItem: React.PropTypes.string,
-  isEdit: React.PropTypes.bool,
-  modalKey: React.PropTypes.string,
   recipeFermentables: React.PropTypes.array, // eslint-disable-line
+  modal: React.PropTypes.object, // eslint-disable-line
+  props: React.PropTypes.array, // eslint-disable-line
 };
 
-export default FermentableModalInput;
+const mapStateToProps = state => ({
+  modal: state.recipeEdit.modals,
+  fermentables: state.data.fermentables,
+  recipeFermentables: state.recipeEdit.recipeStaged.fermentables,
+});
+
+export default connect(mapStateToProps)(FermentableModalInput);
