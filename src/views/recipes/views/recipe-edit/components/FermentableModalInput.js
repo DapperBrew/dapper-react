@@ -29,13 +29,13 @@ class FermentableModalInput extends React.Component {
     if (modalIsEdit) {
       const selectedItem = recipeFermentables.find(fermentable => fermentable.key === modalKey);
       const itemIndex = recipeFermentables.indexOf(selectedItem);
+      dispatch(updateIndex(itemIndex));
+      dispatch(updateFermentableName(selectedItem.name));
       dispatch(updateFermentableColor(selectedItem.srm));
       dispatch(updateFermentablePotential(selectedItem.potential));
       dispatch(updateFermentableWeightUnit(selectedItem.unit));
       dispatch(updateFermentableWeight(selectedItem.weight));
       dispatch(updateFermentableMaltster(selectedItem.maltster ? selectedItem.maltster : ''));
-      dispatch(updateFermentableName(selectedItem.name));
-      dispatch(updateIndex(itemIndex));
       dispatch(updateFermentableType(selectedItem.type));
       dispatch(updateFermentableInMash(selectedItem.inMash));
       dispatch(updateFermentableAfterBoil(selectedItem.afterBoil));
@@ -174,7 +174,6 @@ class FermentableModalInput extends React.Component {
 FermentableModalInput.propTypes = {
   dispatch: React.PropTypes.func,
   fermentables: React.PropTypes.object, // eslint-disable-line
-  selectedItem: React.PropTypes.string,
   recipeFermentables: React.PropTypes.array, // eslint-disable-line
   modal: React.PropTypes.object, // eslint-disable-line
   props: React.PropTypes.array, // eslint-disable-line

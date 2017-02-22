@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import values from 'lodash/values';
 
 // Components
 import AddModal from './AddModal';
@@ -11,16 +10,11 @@ import FermentableModalInput from './FermentableModalInput';
 import { hideModal } from '../actions/modals';
 import { editFermentable } from '../actions/recipeStaged';
 
-// selectors
-import { getFermentableList } from '../selectors/modals';
-
 const FermentableEditModal = (props) => {
   const { modal, dispatch } = props;
-  const items = values(props.fermentables);
 
   return (
     <AddModal
-      items={items}
       name={'editFermentable'}
       header="Edit Fermentable"
     >
@@ -46,13 +40,11 @@ const FermentableEditModal = (props) => {
 
 FermentableEditModal.propTypes = {
   modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  fermentables: React.PropTypes.array, // eslint-disable-line
   dispatch: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  fermentables: getFermentableList(state),
 });
 
 export default connect(mapStateToProps)(FermentableEditModal);

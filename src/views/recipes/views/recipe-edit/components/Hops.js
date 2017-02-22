@@ -9,6 +9,7 @@ import Card from '../../../../../components/Card';
 import HopList from './HopList';
 import HopModal from './HopModal';
 import HopEditModal from './HopEditModal';
+import HopCustomModal from './HopCustomModal';
 
 const Hops = (props) => {
   const { dispatch } = props;
@@ -32,8 +33,12 @@ const Hops = (props) => {
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
+      <button className="mt1 ml1" onClick={() => dispatch(showModal('customHop'))}>
+        Add Custom
+      </button>
       <HopModal />
       <HopEditModal />
+      <HopCustomModal />
     </Card>
   );
 };

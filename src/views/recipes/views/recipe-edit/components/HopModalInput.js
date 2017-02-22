@@ -1,37 +1,67 @@
 import React from 'react';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+
+// components
 import Select from 'react-select';
+
+// actions
+import {
+  hideModal,
+  updateHopWeight,
+  updateHopTime,
+  updateHopStage,
+  updateHopType,
+  updateHopAlpha,
+  updateHopName,
+  updateIndex,
+} from '../actions/modals';
 
 class HopModalInput extends React.Component {
 
   componentWillMount() {
-    const { recipeHops, modalKey, isEdit } = this.props;
+    const { recipeHops, modal, dispatch } = this.props;
+    const { modalIsEdit, modalKey } = modal;
 
-    if (isEdit) {
+    if (modalIsEdit) {
       const selectedItem = recipeHops.find(hop => hop.key === modalKey);
       const itemIndex = recipeHops.indexOf(selectedItem);
 
-      this.props.onIndexChange(itemIndex);
-      this.props.onWeightChange(selectedItem.weight);
-      this.props.onStageChange(selectedItem.stage);
-      this.props.onTimeChange(selectedItem.time);
-      this.props.onTypeChange(selectedItem.type);
-      this.props.onAlphaChange(selectedItem.alpha);
-      this.props.onNameChange(selectedItem.name);
+      dispatch(updateIndex(itemIndex));
+      dispatch(updateHopWeight(selectedItem.weight));
+      dispatch(updateHopStage(selectedItem.stage));
+      dispatch(updateHopTime(selectedItem.time));
+      dispatch(updateHopType(selectedItem.type));
+      dispatch(updateHopAlpha(selectedItem.alpha));
+      dispatch(updateHopName(selectedItem.name));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
-      const selectedItem = this.props.hops[nextProps.selectedItem];
+    const { dispatch, modal, hops } = this.props;
+    const nextPropsModal = nextProps.modal;
+
+    if (nextPropsModal.selectedItem && nextPropsModal.selectedItem !== modal.selectedItem) {
+      const selectedItem = hops[nextProps.modal.selectedItem];
       const hopAA = (selectedItem.alphaAcidMax + selectedItem.alphaAcidMin) / 2;
 
-      this.props.onAlphaChange(hopAA);
+      dispatch(updateHopAlpha(hopAA));
     }
   }
 
   render() {
     const props = this.props;
+    const { modal, dispatch } = this.props;
+    const {
+      modalErrorField,
+      itemIndex,
+      hopName,
+      hopWeight,
+      hopTime,
+      hopStage,
+      hopType,
+      hopAlpha,
+    } = modal;
     return (
       <div className="hop-modal-input">
         <div className="hop-form-group">
@@ -39,22 +69,22 @@ class HopModalInput extends React.Component {
           <input
             id="weight"
             type="text"
-            onChange={e => props.onWeightChange(e.target.value)}
+            onChange={e => dispatch(updateHopWeight(e.target.value))}
             placeholder="ex: 1.5"
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'hop-form-group__weight',
-                { isError: props.errorField === 'weight' })
+                { isError: modalErrorField === 'weight' })
               }
-            value={props.weightValue}
+            value={hopWeight}
           />
           <div
             className={classNames(
               'form__measure',
               'hop-form-group__unit',
-              { isError: props.errorField === 'weight' },
+              { isError: modalErrorField === 'weight' },
             )}
           >oz</div>
         </div>
@@ -70,8 +100,8 @@ class HopModalInput extends React.Component {
               { label: 'Whirlpool', value: 'whirlpool' },
             ]}
             className="input__select"
-            onChange={props.onStageChange}
-            value={props.stageValue}
+            onChange={e => dispatch(updateHopStage(e))}
+            value={hopStage}
             simpleValue={true} //eslint-disable-line
             clearable={false}
             searchable={false}
@@ -82,24 +112,26 @@ class HopModalInput extends React.Component {
           <input
             id="time"
             type="text"
-            onChange={e => props.onTimeChange(e.target.value)}
-            placeholder={props.stageValue === 'dry hop' ? 'ex: 3' : 'ex: 60'}
+            onChange={e => dispatch(updateHopTime(e.target.value))}
+            placeholder={hopStage === 'dry hop' ? 'ex: 3' : 'ex: 60'}
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'hop-form-group__weight',
-                { isError: props.errorField === 'time' })
+                { isError: modalErrorField === 'time' })
             }
-            value={props.timeValue}
+            value={hopTime}
           />
           <div
             className={classNames(
               'form__measure',
               'hop-form-group__unit',
-              { isError: props.errorField === 'time' },
+              { isError: modalErrorField === 'time' },
             )}
-          >{props.stageValue === 'dry hop' ? 'days' : 'min'}</div>
+          >
+            {hopStage === 'dry hop' ? 'days' : 'min'}
+          </div>
         </div>
         <div className="hop-form-group">
           <label htmlFor="type" className="form__label">Type</label>
@@ -110,8 +142,8 @@ class HopModalInput extends React.Component {
               { label: 'Leaf', value: 'leaf' },
             ]}
             className="input__select"
-            onChange={props.onTypeChange}
-            value={props.typeValue}
+            onChange={e => dispatch(updateHopType(e))}
+            value={hopType}
             simpleValue={true} //eslint-disable-line
             clearable={false}
             searchable={false}
@@ -122,22 +154,22 @@ class HopModalInput extends React.Component {
           <input
             id="time"
             type="text"
-            onChange={e => props.onAlphaChange(e.target.value)}
+            onChange={e => dispatch(updateHopAlpha(e.target.value))}
             placeholder="ex: 13"
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'hop-form-group__alpha',
-                { isError: props.errorField === 'alpha' })
+                { isError: modalErrorField === 'alpha' })
             }
-            value={props.alphaValue}
+            value={hopAlpha}
           />
           <div
             className={classNames(
               'form__measure',
               'hop-form-group__unit',
-              { isError: props.errorField === 'alpha' },
+              { isError: modalErrorField === 'alpha' },
             )}
           >
             %
@@ -150,18 +182,17 @@ class HopModalInput extends React.Component {
 
 
 HopModalInput.propTypes = {
-  selectedItem: React.PropTypes.string.isRequired,
   hops: React.PropTypes.object, // eslint-disable-line
-  onAlphaChange: React.PropTypes.func,
-  onIndexChange: React.PropTypes.func,
-  onWeightChange: React.PropTypes.func,
-  onStageChange: React.PropTypes.func,
-  onTimeChange: React.PropTypes.func,
-  onTypeChange: React.PropTypes.func,
-  onNameChange: React.PropTypes.func,
-  isEdit: React.PropTypes.bool,
-  modalKey: React.PropTypes.string,
   recipeHops: React.PropTypes.array, //eslint-disable-line
+  modal: React.PropTypes.object, // eslint-disable-line
+  props: React.PropTypes.array, // eslint-disable-line
+  dispatch: React.PropTypes.func,
 };
 
-export default HopModalInput;
+const mapStateToProps = state => ({
+  modal: state.recipeEdit.modals,
+  hops: state.data.hops,
+  recipeHops: state.recipeEdit.recipeStaged.hops,
+});
+
+export default connect(mapStateToProps)(HopModalInput);
