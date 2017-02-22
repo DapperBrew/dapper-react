@@ -9,7 +9,7 @@ import HopModalInput from './HopModalInput';
 
 // actions
 import { hideModal } from '../actions/modals';
-import { editHop } from '../actions/recipeStaged';
+import { addCustomHop } from '../actions/recipeStaged';
 
 
 const HopEditModal = (props) => {
@@ -24,8 +24,7 @@ const HopEditModal = (props) => {
       <ModalEditSubmit
         closeModal={() => dispatch(hideModal())}
         submitModal={() =>
-          dispatch(editHop(
-            modal.itemIndex,
+          dispatch(addCustomHop(
             modal.hopName,
             modal.hopWeight,
             modal.hopTime,

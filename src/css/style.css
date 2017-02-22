@@ -2887,6 +2887,9 @@ input[type="button"].button--block {
   display: flex;
   justify-content: space-between; }
 
+.hop-custom-input {
+  display: flex; }
+
 .hop-form-group {
   margin-bottom: 20px;
   width: 19%; }
@@ -2897,6 +2900,10 @@ input[type="button"].button--block {
 
 .hop-form-group__unit {
   width: 40%; }
+
+.hop-form-group--name {
+  width: 48%;
+  margin-bottom: 20px; }
 
 .hop-form-group__input-select {
   width: 50%; }

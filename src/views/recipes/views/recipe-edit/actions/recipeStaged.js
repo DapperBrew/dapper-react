@@ -257,7 +257,13 @@ export const editFermentable = (
   fermentableAfterBoil,
 ) => (
   (dispatch) => {
-    if (!fermentableWeight) { // check for weight input
+    if (!fermentableName) { // check for name
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!fermentableWeight) { // check for weight input
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a weight.',
@@ -377,8 +383,8 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
     } else {
       dispatch({
         type: ADD_HOP_SUCCESS,
-        name: currentHops.name,
         key: uniqueId(),
+        hopName: currentHops.name,
         hopWeight,
         hopTime,
         hopStage,
@@ -395,9 +401,75 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
   }
 );
 
+export const addCustomHop = (hopName, hopWeight, hopTime, hopStage, hopType, hopAlpha) => (
+  (dispatch) => {
+    if (!hopName) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!hopWeight) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a weight.',
+        field: 'weight',
+      });
+    } else if (isFinite(Number(hopWeight)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Weight must be a number',
+        field: 'weight',
+      });
+    } else if (!hopTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(hopTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else if (!hopAlpha) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a Alpha Acid %.',
+        field: 'alpha',
+      });
+    } else if (isFinite(Number(hopAlpha)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Alpha Acid % must be a number',
+        field: 'alpha',
+      });
+    } else {
+      dispatch({
+        type: ADD_HOP_SUCCESS,
+        key: uniqueId(),
+        hopName,
+        hopWeight,
+        hopTime,
+        hopStage,
+        hopType,
+        hopAlpha,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
 export const editHop = (itemIndex, hopName, hopWeight, hopTime, hopStage, hopType, hopAlpha) => (
   (dispatch) => {
-    if (!hopWeight) { // check for weight input
+    if (!hopName) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!hopWeight) { // check for weight input
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input a weight.',

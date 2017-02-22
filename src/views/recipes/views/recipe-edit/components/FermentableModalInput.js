@@ -81,7 +81,7 @@ class FermentableModalInput extends React.Component {
               id="name"
               type="text"
               onChange={e => dispatch(updateFermentableName(e.target.value))}
-              placeholder="HBC 431"
+              placeholder="ex: Euro Vienna"
               className={
                 classNames(
                   'form__input',

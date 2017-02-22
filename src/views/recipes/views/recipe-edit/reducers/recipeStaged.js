@@ -125,7 +125,7 @@ const recipeEdit = (state = initialState, action) => {
         hops: [
           ...state.hops,
           {
-            name: action.name,
+            name: action.hopName,
             key: action.key,
             weight: action.hopWeight,
             time: action.hopTime,
