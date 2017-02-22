@@ -16,6 +16,11 @@ $_line-height: 1.5;
   margin-bottom: 5px;
 }
 
+.form__label--checkbox {
+  display: inline;
+  margin-left: 10px;
+}
+
 .form__input {
   font-size: $_font-size;
   line-height: $_line-height;
@@ -29,6 +34,10 @@ $_line-height: 1.5;
   &.isError {
     border: 1px solid $danger;
   }
+}
+
+.form__input--checkbox {
+  display: inline;
 }
 
 // if the input form should have a measureent indicator (gal, oz, etc)
@@ -67,6 +76,12 @@ $_line-height: 1.5;
     border-top: 1px solid $danger;
     border-right: 1px solid $danger;
     border-bottom: 1px solid $danger;
+  }
+}
+
+.form__select.isError {
+  .Select-control {
+    border: 1px solid $danger;
   }
 }
 

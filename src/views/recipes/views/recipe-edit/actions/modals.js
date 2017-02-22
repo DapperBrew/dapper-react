@@ -2,6 +2,7 @@
 // action types
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const SHOW_EDIT_MODAL = 'SHOW_EDIT_MODAL';
+export const SHOW_CUSTOM_MODAL = 'SHOW_CUSTOM_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 export const RESET_MODAL = 'RESET_MODAL';
 export const ERROR_MODAL = 'ERROR_MODAL';
@@ -78,6 +79,11 @@ export const showEditModal = (name, key) => ({
   type: SHOW_EDIT_MODAL,
   name,
   key,
+});
+
+export const showCustomModal = name => ({
+  type: SHOW_CUSTOM_MODAL,
+  name,
 });
 
 export const hideModal = name => ({

@@ -2664,6 +2664,10 @@ input[type="button"].button--block {
   font-weight: 600;
   margin-bottom: 5px; }
 
+.form__label--checkbox {
+  display: inline;
+  margin-left: 10px; }
+
 .form__input {
   font-size: 14px;
   line-height: 1.5;
@@ -2675,6 +2679,9 @@ input[type="button"].button--block {
   border: 1px solid #d3d3d3; }
   .form__input.isError {
     border: 1px solid #e91c53; }
+
+.form__input--checkbox {
+  display: inline; }
 
 .form__input--measure {
   width: 90%;
@@ -2706,6 +2713,9 @@ input[type="button"].button--block {
     border-top: 1px solid #e91c53;
     border-right: 1px solid #e91c53;
     border-bottom: 1px solid #e91c53; }
+
+.form__select.isError .Select-control {
+  border: 1px solid #e91c53; }
 
 .form__select--input {
   width: 30%;
@@ -2986,9 +2996,30 @@ input[type="button"].button--block {
   display: flex;
   justify-content: space-between; }
 
+.fermentable-custom-input {
+  display: flex; }
+
+.fermentable-advanced-input {
+  display: flex;
+  justify-content: space-between; }
+
 .fermentable-form-group {
   margin-bottom: 20px;
   width: 24%; }
+
+.fermentable-form-group__checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 24%; }
+
+.fermentable-form-group--checkbox {
+  margin-bottom: 0;
+  width: 100%; }
+
+.fermentable-form-group--name {
+  width: 48%;
+  margin-bottom: 20px; }
 
 .fermentable-form-group__color,
 .fermentable-form-group__potential {

@@ -36,6 +36,7 @@ const initialState = {
   miscStage: 'boil',
   miscName: '',
   modalIsEdit: false,
+  modalIsCustom: false,
   modalKey: '',
 };
 
@@ -55,6 +56,14 @@ const modals = (state = initialState, action) => {
         modalName: action.name,
         modalKey: action.key,
         modalIsEdit: true,
+        modalLoaded: false,
+      };
+    case actions.SHOW_CUSTOM_MODAL:
+      return {
+        ...state,
+        modalOpen: true,
+        modalName: action.name,
+        modalIsCustom: true,
         modalLoaded: false,
       };
     case actions.HIDE_MODAL:

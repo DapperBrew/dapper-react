@@ -82,7 +82,7 @@ const recipeEdit = (state = initialState, action) => {
         fermentables: [
           ...state.fermentables,
           {
-            name: action.name,
+            name: action.fermentableName,
             key: action.key,
             weight: action.fermentableWeight,
             unit: action.fermentableWeightUnit,
@@ -90,8 +90,8 @@ const recipeEdit = (state = initialState, action) => {
             potential: action.fermentablePotential,
             maltster: action.fermentableMaltster,
             type: action.fermentableType,
-            inMash: action.inMash,
-            afterBoil: action.afterBoil,
+            inMash: action.fermentableInMash,
+            afterBoil: action.fermentableAfterBoil,
           },
         ],
       };

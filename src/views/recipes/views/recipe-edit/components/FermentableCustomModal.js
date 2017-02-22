@@ -9,7 +9,7 @@ import FermentableModalInput from './FermentableModalInput';
 
 // actions
 import { hideModal } from '../actions/modals';
-import { editFermentable } from '../actions/recipeStaged';
+import { addCustomFermentable } from '../actions/recipeStaged';
 
 // selectors
 import { getFermentableList } from '../selectors/modals';
@@ -22,13 +22,12 @@ const FermentableEditModal = (props) => {
     <AddModal
       items={items}
       name={'customFermentable'}
-      header="Edit Fermentable"
+      header="Add Custom Fermentable"
     >
       <FermentableModalInput />
       <ModalEditSubmit
         closeModal={() => dispatch(hideModal())}
-        submitModal={() => dispatch(editFermentable(
-          modal.itemIndex,
+        submitModal={() => dispatch(addCustomFermentable(
           modal.fermentableName,
           modal.fermentableWeight,
           modal.fermentableWeightUnit,

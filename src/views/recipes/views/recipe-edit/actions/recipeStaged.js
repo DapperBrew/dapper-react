@@ -99,7 +99,7 @@ export const addFermentable = (
 ) => (
   (dispatch, getState) => {
     const currentFermentable = getState().data.fermentables[id];
-    if (!id) { // check if an item is selected
+    if (!id) { // check if an item is selected (and not custom)
       dispatch({
         type: ERROR_MODAL,
         error: 'Please select an item.',
@@ -144,7 +144,7 @@ export const addFermentable = (
     } else {
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
-        name: currentFermentable.name,
+        name: currentFermentable.fermentableName,
         key: uniqueId(),
         fermentableWeight,
         fermentableWeightUnit,
@@ -152,8 +152,8 @@ export const addFermentable = (
         fermentablePotential,
         fermentableMaltster,
         fermentableType: currentFermentable.type,
-        inMash: currentFermentable.inMash,
-        afterBoil: currentFermentable.afterBoil,
+        fermentableInMash: currentFermentable.inMash,
+        fermentableAfterBoil: currentFermentable.afterBoil,
       });
       if (reset) {
         // if reset is true, only reset the modal (don't close it)
@@ -161,6 +161,85 @@ export const addFermentable = (
       } else {
         dispatch(hideModal());
       }
+    }
+  }
+);
+
+export const addCustomFermentable = (
+  fermentableName,
+  fermentableWeight,
+  fermentableWeightUnit,
+  fermentableColor,
+  fermentablePotential,
+  fermentableMaltster,
+  fermentableType,
+  fermentableInMash,
+  fermentableAfterBoil,
+) => (
+  (dispatch) => {
+    if (!fermentableName) { // check for name input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a name.',
+        field: 'name',
+      });
+    } else if (!fermentableWeight) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a weight.',
+        field: 'weight',
+      });
+    } else if (isFinite(Number(fermentableWeight)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Weight must be a number',
+        field: 'weight',
+      });
+    } else if (!fermentableColor) { // check for color input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a color (SRM).',
+        field: 'color',
+      });
+    } else if (isFinite(Number(fermentableColor)) === false) { // check if color is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Color must be a number',
+        field: 'color',
+      });
+    } else if (!fermentablePotential) { // check for fermentation potential input (ppg)
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a potential (ppg).',
+        field: 'potential',
+      });
+    } else if (isFinite(Number(fermentablePotential)) === false) { // check if potential is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Potential (ppg) must be a number',
+        field: 'Potential',
+      });
+    } else if (!fermentableType) { // check type is selected
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please select a fermentable type',
+        field: 'type',
+      });
+    } else {
+      dispatch({
+        type: ADD_FERMENTABLE_SUCCESS,
+        key: uniqueId(),
+        fermentableName,
+        fermentableWeight,
+        fermentableWeightUnit,
+        fermentableColor,
+        fermentablePotential,
+        fermentableMaltster,
+        fermentableType,
+        fermentableInMash,
+        fermentableAfterBoil,
+      });
+      dispatch(hideModal());
     }
   }
 );

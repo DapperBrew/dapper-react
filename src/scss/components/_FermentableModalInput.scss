@@ -7,9 +7,35 @@
   justify-content: space-between;
 }
 
+.fermentable-custom-input {
+  display: flex;
+}
+
+.fermentable-advanced-input {
+  display: flex;
+  justify-content: space-between;
+}
+
 .fermentable-form-group {
   margin-bottom: 20px;
   width: 24%;
+}
+
+.fermentable-form-group__checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 24%;
+}
+
+.fermentable-form-group--checkbox {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.fermentable-form-group--name {
+  width: 48%;
+  margin-bottom: 20px;
 }
 
 .fermentable-form-group__color,
