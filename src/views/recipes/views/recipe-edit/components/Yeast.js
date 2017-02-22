@@ -10,6 +10,7 @@ import Card from '../../../../../components/Card';
 import YeastList from './YeastList';
 import YeastModal from './YeastModal';
 import YeastEditModal from './YeastEditModal';
+import YeastCustomModal from './YeastCustomModal';
 
 const Yeast = (props) => {
   const { dispatch } = props;
@@ -30,8 +31,12 @@ const Yeast = (props) => {
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
+      <button className="mt1 ml1" onClick={() => dispatch(showModal('customYeast'))}>
+        Add New
+      </button>
       <YeastModal />
       <YeastEditModal />
+      <YeastCustomModal />
     </Card>
   );
 };

@@ -9,6 +9,7 @@ import Card from '../../../../../components/Card';
 import MiscList from './MiscList';
 import MiscModal from './MiscModal';
 import MiscEditModal from './MiscEditModal';
+import MiscCustomModal from './MiscCustomModal';
 
 const Misc = (props) => {
   const { dispatch } = props;
@@ -31,8 +32,12 @@ const Misc = (props) => {
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
+      <button className="mt1 ml1" onClick={() => dispatch(showModal('customMisc'))}>
+        Add New
+      </button>
       <MiscModal />
       <MiscEditModal />
+      <MiscCustomModal />
     </Card>
   );
 };

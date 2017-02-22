@@ -1,32 +1,48 @@
 import React from 'react';
-
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+
+// Components
 import Select from 'react-select';
+
+// actions
+import {
+  updateMiscAmount,
+  updateMiscAmountUnit,
+  updateMiscTime,
+  updateMiscTimeUnit,
+  updateMiscStage,
+  updateMiscName,
+  updateIndex,
+} from '../actions/modals';
 
 class MiscModalInput extends React.Component {
 
   componentWillMount() {
-    const { recipeMiscs, modalKey, isEdit } = this.props;
+    const { recipeMiscs, modal, dispatch } = this.props;
+    const { modalIsEdit, modalKey } = modal;
 
-    if (isEdit) {
+    if (modalIsEdit) {
       const selectedItem = recipeMiscs.find(misc => misc.key === modalKey);
       const itemIndex = recipeMiscs.indexOf(selectedItem);
 
-      this.props.onAmountUnitChange(selectedItem.amountUnit);
-      this.props.onAmountChange(selectedItem.amount);
-      this.props.onTimeUnitChange(selectedItem.timeUnit);
-      this.props.onTimeChange(selectedItem.time);
-      this.props.onStageChange(selectedItem.stage);
-      this.props.onNameChange(selectedItem.name);
-      this.props.onIndexChange(itemIndex);
+      dispatch(updateIndex(itemIndex));
+      dispatch(updateMiscAmountUnit(selectedItem.amountUnit));
+      dispatch(updateMiscAmount(selectedItem.amount));
+      dispatch(updateMiscTimeUnit(selectedItem.timeUnit));
+      dispatch(updateMiscTime(selectedItem.time));
+      dispatch(updateMiscStage(selectedItem.stage));
+      dispatch(updateMiscName(selectedItem.name));
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { dispatch, modal, miscs, batchVolume } = this.props;
+    const nextPropsModal = nextProps.modal;
+
     // update the input fields with the default data from the API
-    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
-      const selectedItem = this.props.miscs[nextProps.selectedItem];
-      const batchVolume = this.props.batchVolume;
+    if (nextPropsModal.selectedItem && nextPropsModal.selectedItem !== modal.selectedItem) {
+      const selectedItem = miscs[nextProps.modal.selectedItem];
       let amount = selectedItem.amount;
       // amount values from API are for 5 gallon batches
       // so adjust according to batch size
@@ -34,16 +50,27 @@ class MiscModalInput extends React.Component {
         amount = (selectedItem.amount * (batchVolume / 5)).toFixed(1);
       }
 
-      this.props.onAmountUnitChange(selectedItem.amountUnit);
-      this.props.onAmountChange(amount);
-      this.props.onTimeUnitChange(selectedItem.timeUnit);
-      this.props.onTimeChange(selectedItem.time);
-      this.props.onStageChange(selectedItem.stage);
+      dispatch(updateMiscAmountUnit(selectedItem.amountUnit));
+      dispatch(updateMiscAmount(amount));
+      dispatch(updateMiscTimeUnit(selectedItem.timeUnit));
+      dispatch(updateMiscTime(selectedItem.time));
+      dispatch(updateMiscStage(selectedItem.stage));
     }
   }
 
   render() {
     const props = this.props;
+    const { modal, dispatch } = this.props;
+    const {
+      modalErrorField,
+      miscName,
+      miscAmount,
+      miscAmountUnit,
+      miscTime,
+      miscTimeUnit,
+      miscStage,
+    } = modal;
+
     return (
       <div className="misc-modal-input">
         <div className="misc-form-group">
@@ -51,17 +78,17 @@ class MiscModalInput extends React.Component {
           <input
             id="misc-amount"
             type="text"
-            onChange={e => props.onAmountChange(e.target.value)}
+            onChange={e => dispatch(updateMiscAmount(e.target.value))}
             placeholder="ex: 1.5"
             className={
               classNames(
                 'form__input',
                 'form__input--select',
                 'form__input--misc',
-                { isError: props.errorField === 'amount' },
+                { isError: modalErrorField === 'amount' },
               )
             }
-            value={props.amountValue}
+            value={miscAmount}
           />
           <Select
             name="amount-unit"
@@ -88,8 +115,8 @@ class MiscModalInput extends React.Component {
                 'misc__select--input',
               )
             }
-            onChange={props.onAmountUnitChange}
-            value={props.amountUnitValue}
+            onChange={e => dispatch(updateMiscAmountUnit(e))}
+            value={miscAmountUnit}
             clearable={false}
             simpleValue={true} //eslint-disable-line
           />
@@ -99,16 +126,16 @@ class MiscModalInput extends React.Component {
           <input
             id="misc-time"
             type="text"
-            onChange={e => props.onTimeChange(e.target.value)}
+            onChange={e => dispatch(updateMiscTime(e.target.value))}
             placeholder="ex: 10"
             className={
               classNames(
                 'form__input',
                 'form__input--select',
                 'form__input--misc',
-                { isError: props.errorField === 'time' })
+                { isError: modalErrorField === 'time' })
             }
-            value={props.timeValue}
+            value={miscTime}
           />
           <Select
             name="misc-time-unit"
@@ -120,8 +147,8 @@ class MiscModalInput extends React.Component {
               { label: 'years', value: 'years' },
             ]}
             className="form__select--input misc__select--input"
-            onChange={props.onTimeUnitChange}
-            value={props.timeUnitValue}
+            onChange={e => dispatch(updateMiscTimeUnit(e))}
+            value={miscTimeUnit}
             clearable={false}
             simpleValue={true} //eslint-disable-line
           />
@@ -139,8 +166,8 @@ class MiscModalInput extends React.Component {
               { label: 'Keg', value: 'keg' },
             ]}
             className="input__select"
-            onChange={props.onStageChange}
-            value={props.stageValue}
+            onChange={e => dispatch(updateMiscStage(e))}
+            value={miscStage}
             simpleValue={true} //eslint-disable-line
             clearable={false}
           />
@@ -151,19 +178,19 @@ class MiscModalInput extends React.Component {
 }
 
 MiscModalInput.propTypes = {
-  onAmountUnitChange: React.PropTypes.func.isRequired,
-  onAmountChange: React.PropTypes.func.isRequired,
-  onTimeChange: React.PropTypes.func.isRequired,
-  onTimeUnitChange: React.PropTypes.func.isRequired,
-  onStageChange: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
   miscs: React.PropTypes.object, // eslint-disable-line
-  selectedItem: React.PropTypes.string,
   batchVolume: React.PropTypes.string,
-  modalKey: React.PropTypes.string,
-  onNameChange: React.PropTypes.func,
-  onIndexChange: React.PropTypes.func,
-  isEdit: React.PropTypes.bool,
   recipeMiscs: React.PropTypes.array, //eslint-disable-line
+  modal: React.PropTypes.object, // eslint-disable-line
+  props: React.PropTypes.array, // eslint-disable-line
 };
 
-export default MiscModalInput;
+const mapStateToProps = state => ({
+  modal: state.recipeEdit.modals,
+  miscs: state.data.miscs,
+  recipeMiscs: state.recipeEdit.recipeStaged.miscs,
+  batchVolume: state.recipeEdit.recipeStaged.batchVolume,
+});
+
+export default connect(mapStateToProps)(MiscModalInput);

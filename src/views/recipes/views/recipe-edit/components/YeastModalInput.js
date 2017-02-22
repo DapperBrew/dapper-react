@@ -1,41 +1,68 @@
 import React from 'react';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+
+
+// actions
+import {
+  updateYeastAttenuation,
+  updateYeastMinTemp,
+  updateYeastMaxTemp,
+  updateYeastSupplier,
+  updateYeastSupplierId,
+  updateYeastName,
+  updateIndex,
+} from '../actions/modals';
 
 
 class YeastModalInput extends React.Component {
 
   componentWillMount() {
-    const { recipeYeasts, modalKey, isEdit } = this.props;
+    const { recipeYeasts, modal, dispatch } = this.props;
+    const { modalIsEdit, modalKey } = modal;
 
-    if (isEdit) {
+    if (modalIsEdit) {
       const selectedItem = recipeYeasts.find(yeast => yeast.key === modalKey);
       const itemIndex = recipeYeasts.indexOf(selectedItem);
 
-      this.props.onIndexChange(itemIndex);
-      this.props.onNameChange(selectedItem.name);
-      this.props.onAttenuationChange(selectedItem.averageAttenuation);
-      this.props.onMinTempChange(selectedItem.minTemp);
-      this.props.onMaxTempChange(selectedItem.maxTemp);
-      this.props.onSupplierChange(selectedItem.supplier);
-      this.props.onSupplierIdChange(selectedItem.supplierId);
+      dispatch(updateIndex(itemIndex));
+      dispatch(updateYeastName(selectedItem.name));
+      dispatch(updateYeastAttenuation(selectedItem.averageAttenuation));
+      dispatch(updateYeastMinTemp(selectedItem.minTemp));
+      dispatch(updateYeastMaxTemp(selectedItem.maxTemp));
+      dispatch(updateYeastSupplier(selectedItem.supplier));
+      dispatch(updateYeastSupplierId(selectedItem.supplierId));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedItem && nextProps.selectedItem !== this.props.selectedItem) {
-      const selectedItem = this.props.yeasts[nextProps.selectedItem];
+    const { dispatch, modal, yeasts } = this.props;
+    const nextPropsMOdal = nextProps.modal;
+
+    if (nextPropsMOdal.selectedItem && nextPropsMOdal.selectedItem !== modal.selectedItem) {
+      const selectedItem = yeasts[nextProps.modal.selectedItem];
 
       const avAttenuation = (selectedItem.attenuationMin + selectedItem.attenuationMax) / 2;
 
-      this.props.onAttenuationChange(avAttenuation);
-      this.props.onMinTempChange(selectedItem.fermentTempMin);
-      this.props.onMaxTempChange(selectedItem.fermentTempMax);
+      dispatch(updateYeastAttenuation(avAttenuation));
+      dispatch(updateYeastMinTemp(selectedItem.fermentTempMin));
+      dispatch(updateYeastMaxTemp(selectedItem.fermentTempMax));
     }
   }
 
 
   render() {
-    const props = this.props;
+    const { modal, dispatch } = this.props;
+    const {
+      modalErrorField,
+      yeastName,
+      yeastSupplier,
+      yeastSupplierId,
+      yeastAttenuation,
+      yeastMinTemp,
+      yeastMaxTemp,
+    } = modal;
+
     return (
       <div className="yeast-modal-input">
         <div className="yeast-form-group">
@@ -43,22 +70,22 @@ class YeastModalInput extends React.Component {
           <input
             id="attenuation"
             type="text"
-            onChange={e => props.onAttenuationChange(e.target.value)}
+            onChange={e => dispatch(updateYeastAttenuation(e.target.value))}
             placeholder="ex: 78"
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'yeast-form-group__attenuation',
-                { isError: props.errorField === 'attenuation' })
+                { isError: modalErrorField === 'attenuation' })
               }
-            value={props.attenuationValue}
+            value={yeastAttenuation}
           />
           <div
             className={classNames(
               'form__measure',
               'yeast-form-group__unit',
-              { isError: props.errorField === 'attenuation' },
+              { isError: modalErrorField === 'attenuation' },
             )}
           >%</div>
         </div>
@@ -68,22 +95,22 @@ class YeastModalInput extends React.Component {
           <input
             id="mintemp"
             type="text"
-            onChange={e => props.onMinTempChange(e.target.value)}
+            onChange={e => dispatch(updateYeastMinTemp(e.target.value))}
             placeholder="ex: 65"
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'yeast-form-group__temp',
-                { isError: props.errorField === 'mintemp' })
+                { isError: modalErrorField === 'mintemp' })
               }
-            value={props.minTempValue}
+            value={yeastMinTemp}
           />
           <div
             className={classNames(
               'form__measure',
               'yeast-form-group__unit',
-              { isError: props.errorField === 'mintemp' },
+              { isError: modalErrorField === 'mintemp' },
             )}
           >
             &deg;F
@@ -95,22 +122,22 @@ class YeastModalInput extends React.Component {
           <input
             id="maxtemp"
             type="text"
-            onChange={e => props.onMaxTempChange(e.target.value)}
+            onChange={e => dispatch(updateYeastMaxTemp(e.target.value))}
             placeholder="ex: 70"
             className={
               classNames(
                 'form__input',
                 'form__input--measure',
                 'yeast-form-group__temp',
-                { isError: props.errorField === 'maxtemp' })
+                { isError: modalErrorField === 'maxtemp' })
               }
-            value={props.maxTempValue}
+            value={yeastMaxTemp}
           />
           <div
             className={classNames(
               'form__measure',
               'yeast-form-group__unit',
-              { isError: props.errorField === 'maxtemp' },
+              { isError: modalErrorField === 'maxtemp' },
             )}
           >
             &deg;F
@@ -122,13 +149,18 @@ class YeastModalInput extends React.Component {
 }
 
 YeastModalInput.propTypes = {
-  onAttenuationChange: React.PropTypes.func,
-  onMinTempChange: React.PropTypes.func,
-  onMaxTempChange: React.PropTypes.func,
-  onSupplierChange: React.PropTypes.func,
-  onSupplierIdChange: React.PropTypes.func,
+  dispatch: React.PropTypes.func,
   yeasts: React.PropTypes.object, // eslint-disable-line
-  selectedItem: React.PropTypes.string,
+  hops: React.PropTypes.object, // eslint-disable-line
+  recipeYeasts: React.PropTypes.array, // eslint-disable-line
+  modal: React.PropTypes.object, // eslint-disable-line
+  props: React.PropTypes.array, // eslint-disable-line
 };
 
-export default YeastModalInput;
+const mapStateToProps = state => ({
+  modal: state.recipeEdit.modals,
+  yeasts: state.data.yeasts,
+  recipeYeasts: state.recipeEdit.recipeStaged.yeasts,
+});
+
+export default connect(mapStateToProps)(YeastModalInput);
