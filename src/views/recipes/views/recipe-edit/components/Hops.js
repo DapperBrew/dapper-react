@@ -30,7 +30,7 @@ const Hops = (props) => {
       </table>
 
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
-        Test Button
+        Add New
       </button>
       <HopModal />
       <HopEditModal />

@@ -29,7 +29,7 @@ const Misc = (props) => {
       </table>
 
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
-        Test Button
+        Add New
       </button>
       <MiscModal />
       <MiscEditModal />

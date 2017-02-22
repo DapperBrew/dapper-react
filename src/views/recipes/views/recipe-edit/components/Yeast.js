@@ -28,7 +28,7 @@ const Yeast = (props) => {
         <YeastList />
       </table>
       <button className="mt1" onClick={() => dispatch(showModal(name))}>
-        Test Button
+        Add New
       </button>
       <YeastModal />
       <YeastEditModal />
