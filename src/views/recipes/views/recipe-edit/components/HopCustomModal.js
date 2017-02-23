@@ -18,7 +18,7 @@ const HopEditModal = (props) => {
   return (
     <AddModal
       name="customHop"
-      header="Add Hop"
+      header="Add Custom Hop"
     >
       <HopModalInput />
       <ModalEditSubmit

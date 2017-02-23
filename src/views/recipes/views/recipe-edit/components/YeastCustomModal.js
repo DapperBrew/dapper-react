@@ -16,7 +16,7 @@ const YeastEditModal = (props) => {
   return (
     <AddModal
       name="customYeast"
-      header="Add Yeast"
+      header="Add Custom Yeast"
     >
       <YeastModalInput />
       <ModalEditSubmit

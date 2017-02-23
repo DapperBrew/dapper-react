@@ -24,7 +24,7 @@ const MiscEditModal = (props) => {
   return (
     <AddModal
       name="customMisc"
-      header="Add Spices & Misc"
+      header="Add Custom Spices or Misc"
     >
       <MiscModalInput />
       <ModalEditSubmit
