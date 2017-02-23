@@ -780,8 +780,8 @@ export const addMisc = (
     } else {
       dispatch({
         type: ADD_MISC_SUCCESS,
-        name: currentMisc.name,
         key: uniqueId(),
+        miscName: currentMisc.name,
         miscAmount,
         miscAmountUnit,
         miscTime,
@@ -798,6 +798,61 @@ export const addMisc = (
   }
 );
 
+export const addCustomMisc = (
+  miscName,
+  miscAmount,
+  miscAmountUnit,
+  miscTime,
+  miscTimeUnit,
+  miscStage,
+) => (
+  (dispatch) => {
+    if (!miscName) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!miscAmount) { // check for weight input
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input an amount.',
+        field: 'amount',
+      });
+    } else if (isFinite(Number(miscAmount)) === false) { // check if weight is number
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Amount must be a number',
+        field: 'amount',
+      });
+    } else if (!miscTime) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please input a time.',
+        field: 'time',
+      });
+    } else if (isFinite(Number(miscTime)) !== true) {
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Time must be a number',
+        field: 'time',
+      });
+    } else {
+      dispatch({
+        type: ADD_MISC_SUCCESS,
+        key: uniqueId(),
+        miscName,
+        miscAmount,
+        miscAmountUnit,
+        miscTime,
+        miscTimeUnit,
+        miscStage,
+      });
+      dispatch(hideModal());
+    }
+  }
+);
+
 export const editMisc = (
   itemIndex,
   miscName,
@@ -808,7 +863,13 @@ export const editMisc = (
   miscStage,
 ) => (
   (dispatch) => {
-    if (!miscAmount) { // check for weight input
+    if (!miscName) { // check for name
+      dispatch({
+        type: ERROR_MODAL,
+        error: 'Please enter a name.',
+        field: 'name',
+      });
+    } else if (!miscAmount) { // check for weight input
       dispatch({
         type: ERROR_MODAL,
         error: 'Please input an amount.',

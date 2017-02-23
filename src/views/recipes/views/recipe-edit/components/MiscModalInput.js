@@ -59,7 +59,6 @@ class MiscModalInput extends React.Component {
   }
 
   render() {
-    const props = this.props;
     const { modal, dispatch } = this.props;
     const {
       modalErrorField,
@@ -70,107 +69,133 @@ class MiscModalInput extends React.Component {
       miscTimeUnit,
       miscStage,
     } = modal;
+    let customInfoName;
+
+    if (modal.modalIsCustom || modal.modalIsEdit) {
+      customInfoName = (
+        <div className="misc-custom-input">
+          <div className="misc-form-group--name">
+            <label htmlFor="name" className="form__label">Name</label>
+            <input
+              id="name"
+              type="text"
+              onChange={e => dispatch(updateMiscName(e.target.value))}
+              placeholder="ex: Chilis"
+              className={
+                classNames(
+                  'form__input',
+                  { isError: modalErrorField === 'name' })
+                }
+              value={miscName}
+            />
+          </div>
+        </div>
+      );
+    }
 
     return (
-      <div className="misc-modal-input">
-        <div className="misc-form-group">
-          <label htmlFor="misc-amount" className="form__label">Amount</label>
-          <input
-            id="misc-amount"
-            type="text"
-            onChange={e => dispatch(updateMiscAmount(e.target.value))}
-            placeholder="ex: 1.5"
-            className={
-              classNames(
-                'form__input',
-                'form__input--select',
-                'form__input--misc',
-                { isError: modalErrorField === 'amount' },
-              )
-            }
-            value={miscAmount}
-          />
-          <Select
-            name="amount-unit"
-            options={[
-              { label: 'oz', value: 'oz' },
-              { label: 'lb', value: 'lb' },
-              { label: 'mg', value: 'mg' },
-              { label: 'g', value: 'g' },
-              { label: 'kg', value: 'kg' },
-              { label: 'tsp', value: 'tsp' },
-              { label: 'tbsp', value: 'tbsp' },
-              { label: 'l', value: 'l' },
-              { label: 'ml', value: 'ml' },
-              { label: 'cup', value: 'cup' },
-              { label: 'gal', value: 'gal' },
-              { label: 'cup', value: 'cup' },
-              { label: 'pt', value: 'pt' },
-              { label: 'qt', value: 'qt' },
-              { label: 'items', value: 'items' },
-            ]}
-            className={
-              classNames(
-                'form__select--input',
-                'misc__select--input',
-              )
-            }
-            onChange={e => dispatch(updateMiscAmountUnit(e))}
-            value={miscAmountUnit}
-            clearable={false}
-            simpleValue={true} //eslint-disable-line
-          />
-        </div>
-        <div className="misc-form-group">
-          <label htmlFor="misc-amount" className="form__label">Time</label>
-          <input
-            id="misc-time"
-            type="text"
-            onChange={e => dispatch(updateMiscTime(e.target.value))}
-            placeholder="ex: 10"
-            className={
-              classNames(
-                'form__input',
-                'form__input--select',
-                'form__input--misc',
-                { isError: modalErrorField === 'time' })
-            }
-            value={miscTime}
-          />
-          <Select
-            name="misc-time-unit"
-            options={[
-              { label: 'min', value: 'min' },
-              { label: 'hours', value: 'hours' },
-              { label: 'days', value: 'days' },
-              { label: 'weeks', value: 'weeks' },
-              { label: 'years', value: 'years' },
-            ]}
-            className="form__select--input misc__select--input"
-            onChange={e => dispatch(updateMiscTimeUnit(e))}
-            value={miscTimeUnit}
-            clearable={false}
-            simpleValue={true} //eslint-disable-line
-          />
-        </div>
-        <div className="misc-form-group">
-          <label htmlFor="stage" className="form__label">Stage</label>
-          <Select
-            name="stage"
-            options={[
-              { label: 'Boil', value: 'boil' },
-              { label: 'Mash', value: 'mash' },
-              { label: 'Primary', value: 'primary' },
-              { label: 'Secondary', value: 'secondary' },
-              { label: 'Bottle', value: 'bottle' },
-              { label: 'Keg', value: 'keg' },
-            ]}
-            className="input__select"
-            onChange={e => dispatch(updateMiscStage(e))}
-            value={miscStage}
-            simpleValue={true} //eslint-disable-line
-            clearable={false}
-          />
+      <div>
+        {customInfoName}
+        <div className="misc-modal-input">
+          <div className="misc-form-group">
+            <label htmlFor="misc-amount" className="form__label">Amount</label>
+            <input
+              id="misc-amount"
+              type="text"
+              onChange={e => dispatch(updateMiscAmount(e.target.value))}
+              placeholder="ex: 1.5"
+              className={
+                classNames(
+                  'form__input',
+                  'form__input--select',
+                  'form__input--misc',
+                  { isError: modalErrorField === 'amount' },
+                )
+              }
+              value={miscAmount}
+            />
+            <Select
+              name="amount-unit"
+              options={[
+                { label: 'oz', value: 'oz' },
+                { label: 'lb', value: 'lb' },
+                { label: 'mg', value: 'mg' },
+                { label: 'g', value: 'g' },
+                { label: 'kg', value: 'kg' },
+                { label: 'tsp', value: 'tsp' },
+                { label: 'tbsp', value: 'tbsp' },
+                { label: 'l', value: 'l' },
+                { label: 'ml', value: 'ml' },
+                { label: 'cup', value: 'cup' },
+                { label: 'gal', value: 'gal' },
+                { label: 'cup', value: 'cup' },
+                { label: 'pt', value: 'pt' },
+                { label: 'qt', value: 'qt' },
+                { label: 'items', value: 'items' },
+              ]}
+              className={
+                classNames(
+                  'form__select--input',
+                  'misc__select--input',
+                )
+              }
+              onChange={e => dispatch(updateMiscAmountUnit(e))}
+              value={miscAmountUnit}
+              clearable={false}
+              simpleValue={true} //eslint-disable-line
+            />
+          </div>
+          <div className="misc-form-group">
+            <label htmlFor="misc-amount" className="form__label">Time</label>
+            <input
+              id="misc-time"
+              type="text"
+              onChange={e => dispatch(updateMiscTime(e.target.value))}
+              placeholder="ex: 10"
+              className={
+                classNames(
+                  'form__input',
+                  'form__input--select',
+                  'form__input--misc',
+                  { isError: modalErrorField === 'time' })
+              }
+              value={miscTime}
+            />
+            <Select
+              name="misc-time-unit"
+              options={[
+                { label: 'min', value: 'min' },
+                { label: 'hours', value: 'hours' },
+                { label: 'days', value: 'days' },
+                { label: 'weeks', value: 'weeks' },
+                { label: 'years', value: 'years' },
+              ]}
+              className="form__select--input misc__select--input"
+              onChange={e => dispatch(updateMiscTimeUnit(e))}
+              value={miscTimeUnit}
+              clearable={false}
+              simpleValue={true} //eslint-disable-line
+            />
+          </div>
+          <div className="misc-form-group">
+            <label htmlFor="stage" className="form__label">Stage</label>
+            <Select
+              name="stage"
+              options={[
+                { label: 'Boil', value: 'boil' },
+                { label: 'Mash', value: 'mash' },
+                { label: 'Primary', value: 'primary' },
+                { label: 'Secondary', value: 'secondary' },
+                { label: 'Bottle', value: 'bottle' },
+                { label: 'Keg', value: 'keg' },
+              ]}
+              className="input__select"
+              onChange={e => dispatch(updateMiscStage(e))}
+              value={miscStage}
+              simpleValue={true} //eslint-disable-line
+              clearable={false}
+            />
+          </div>
         </div>
       </div>
     );

@@ -199,7 +199,7 @@ const recipeEdit = (state = initialState, action) => {
         miscs: [
           ...state.miscs,
           {
-            name: action.name,
+            name: action.miscName,
             key: action.key,
             amount: action.miscAmount,
             amountUnit: action.miscAmountUnit,

@@ -8,12 +8,11 @@ import MiscModalInput from './MiscModalInput';
 
 // actions
 import { hideModal } from '../actions/modals';
-import { editMisc } from '../actions/recipeStaged';
+import { addCustomMisc } from '../actions/recipeStaged';
 
 const MiscEditModal = (props) => {
   const { modal, dispatch } = props;
   const {
-    itemIndex,
     miscName,
     miscAmount,
     miscAmountUnit,
@@ -31,14 +30,14 @@ const MiscEditModal = (props) => {
       <ModalEditSubmit
         closeModal={() => dispatch(hideModal())}
         submitModal={() =>
-          dispatch(editMisc(
-            itemIndex,
+          dispatch(addCustomMisc(
             miscName,
             miscAmount,
             miscAmountUnit,
             miscTime,
             miscTimeUnit,
-            miscStage))}
+            miscStage,
+          ))}
       />
     </AddModal>
   );

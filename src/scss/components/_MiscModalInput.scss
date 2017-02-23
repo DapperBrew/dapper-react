@@ -7,6 +7,10 @@
   justify-content: space-between;
 }
 
+.misc-custom-input {
+  display: flex;
+}
+
 .misc-form-group {
   margin-bottom: 20px;
   width: 32%;
@@ -14,6 +18,11 @@
 
 .form__input--misc {
   width: 60%;
+}
+
+.misc-form-group--name {
+  width: 66%;
+  margin-bottom: 20px;
 }
 
 .misc__select--input {
