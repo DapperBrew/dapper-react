@@ -3068,6 +3068,15 @@ input[type="button"].button--block {
 .yeast-form-group__unit {
   width: 30%; }
 
+.mash-recipe-input {
+  width: 50%; }
+
+.form__input--mash {
+  width: 60%; }
+
+.form__measure--mash {
+  width: 40%; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;

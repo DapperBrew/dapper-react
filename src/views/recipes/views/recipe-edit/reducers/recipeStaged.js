@@ -17,6 +17,7 @@ const initialState = {
   equipmentProfile: 'default',
   boilVolume: '7.38',
   trubChillerLoss: '.5',
+  mashTemp: '',
 };
 
 const recipeEdit = (state = initialState, action) => {
@@ -75,6 +76,11 @@ const recipeEdit = (state = initialState, action) => {
       return {
         ...state,
         recipeNotes: action.notes,
+      };
+    case recipeAction.SET_MASH_TEMP:
+      return {
+        ...state,
+        mashTemp: action.temp,
       };
     case recipeAction.ADD_FERMENTABLE_SUCCESS:
       return {

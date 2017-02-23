@@ -31,6 +31,7 @@ export const EDIT_MISC_SUCCESS = 'EDIT_MISC_SUCCESSS';
 export const ADD_MISC_ERROR = 'ADD_MISC_ERROR';
 export const REMOVE_MISC = 'REMOVE_MISC';
 export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
+export const SET_MASH_TEMP = 'SET_MASH_TEMP';
 
 
 export const setStyle = style => ({
@@ -915,6 +916,15 @@ export const removeMisc = key => (
     dispatch({
       type: REMOVE_MISC,
       key,
+    })
+  )
+);
+
+export const setMashTemp = temp => (
+  dispatch => (
+    dispatch({
+      type: SET_MASH_TEMP,
+      temp,
     })
   )
 );

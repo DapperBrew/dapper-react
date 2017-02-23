@@ -14,6 +14,7 @@ import Yeast from './components/Yeast';
 import Stats from './components/Stats';
 import StyleGuide from './components/StyleGuide';
 import Notes from './components/Notes';
+import Mash from './components/Mash';
 
 import { fetchData, fetchStyles } from '../../../../actions/data';
 
@@ -45,6 +46,7 @@ class RecipeEdit extends React.Component {
             <Hops />
             <Yeast />
             <Misc />
+            <Mash />
           </div>
           <div className="info-column">
             <Stats />

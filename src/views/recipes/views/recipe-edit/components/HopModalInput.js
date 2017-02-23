@@ -208,7 +208,7 @@ class HopModalInput extends React.Component {
 
 HopModalInput.propTypes = {
   hops: React.PropTypes.object, // eslint-disable-line
-  recipeHops: React.PropTypes.array, //eslint-disable-line
+  recipeHops: React.PropTypes.array, // eslint-disable-line
   modal: React.PropTypes.object, // eslint-disable-line
   props: React.PropTypes.array, // eslint-disable-line
   dispatch: React.PropTypes.func,

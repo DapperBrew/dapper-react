@@ -9,6 +9,7 @@ const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
 const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
 const postBoilVolume = state => state.recipeEdit.recipeStaged.postBoilVolume;
+const recipeMashTemp = state => state.recipeEdit.recipeStaged.mashTemp;
 
 // Returns sum weight of all recipe fermentables
 const calcTotalWeight = items => (
@@ -91,9 +92,12 @@ const calcYeastAttenuation = (items) => {
 };
 
 // get mash Temp
-const calcMashTemp = () => (
-  151
-);
+const calcMashTemp = (temp) => {
+  if (isFinite(Number(temp))) {
+    return Number(temp);
+  }
+  return 151;
+};
 
 // get estimated final gravity
 const calcFinalGravity = (gravityPoints, attenuation, eff, volume, mashTemp) => {
@@ -259,12 +263,17 @@ export const getYeastAttenuation = createSelector(
   calcYeastAttenuation,
 );
 
+export const getMashTemp = createSelector(
+  recipeMashTemp,
+  calcMashTemp,
+);
+
 export const getFinalGravity = createSelector(
   getTotalGravityPoints,
   getYeastAttenuation,
   efficiency,
   postBoilVolume,
-  calcMashTemp,
+  getMashTemp,
   calcFinalGravity,
 );
 
