@@ -1553,11 +1553,11 @@ h5,
   line-height: 1.5rem; }
 
 a {
-  color: #8FD1B6;
+  color: #49b778;
   text-decoration: none;
   cursor: pointer; }
   a:hover, a:focus {
-    color: #6bc29e; }
+    color: #3a9360; }
   a img {
     border: 0; }
 
@@ -2439,14 +2439,14 @@ button,
   user-select: none;
   padding: 0.75rem 1.5rem;
   border: 2px solid transparent;
-  background: #8FD1B6;
+  background: #49b778;
   transition: all 0.3s ease;
   text-decoration: none; }
   button:active, button:hover, button:focus,
   .button:active,
   .button:hover,
   .button:focus {
-    background: #49b186;
+    background: #2c6e48;
     text-decoration: none;
     outline: 0;
     background-image: none; }
@@ -2478,20 +2478,20 @@ Takes a few variables and creates a new button style
 */
 .button--primary {
   color: #fff;
-  background-color: #8FD1B6;
-  border-color: #8FD1B6; }
+  background-color: #49b778;
+  border-color: #49b778; }
   .button--primary:hover {
     color: #fff;
-    background-color: #6bc29e;
-    border-color: #6bc29e; }
+    background-color: #3a9360;
+    border-color: #3a9360; }
   .button--primary:focus {
     color: #fff;
-    background-color: #6bc29e;
-    border-color: #6bc29e; }
+    background-color: #3a9360;
+    border-color: #3a9360; }
   .button--primary:active {
     color: #fff;
-    background-color: #6bc29e;
-    border-color: #6bc29e; }
+    background-color: #3a9360;
+    border-color: #3a9360; }
 
 .button--secondary {
   color: #fff;
@@ -2530,22 +2530,22 @@ only first param is required
 @param {border-hover} color of border on hover (default: $background-hover)
 */
 .button-outline--primary {
-  color: #8FD1B6;
+  color: #49b778;
   background-image: none;
   background-color: transparent;
-  border-color: #8FD1B6; }
+  border-color: #49b778; }
   .button-outline--primary:hover {
     color: #fff;
-    background-color: #8FD1B6;
-    border-color: #8FD1B6; }
+    background-color: #49b778;
+    border-color: #49b778; }
   .button-outline--primary:focus {
     color: #fff;
-    background-color: #8FD1B6;
-    border-color: #8FD1B6; }
+    background-color: #49b778;
+    border-color: #49b778; }
   .button-outline--primary:active {
     color: #fff;
-    background-color: #8FD1B6;
-    border-color: #8FD1B6; }
+    background-color: #49b778;
+    border-color: #49b778; }
 
 .button-outline--secondary {
   color: #1a1a1a;
@@ -2641,11 +2641,11 @@ input[type="button"].button--block {
 
 .is-active .side-nav__item {
   background-color: #1f222d;
-  box-shadow: inset 3px 0 0 0 #8FD1B6; }
+  box-shadow: inset 3px 0 0 0 #49b778; }
   .is-active .side-nav__item .side-nav__text {
     color: #fff; }
   .is-active .side-nav__item .side-nav__icon use {
-    color: #8FD1B6;
+    color: #49b778;
     stroke: #fff; }
 
 .side-nav__text {
@@ -2678,7 +2678,7 @@ input[type="button"].button--block {
   border-radius: 4px;
   border: 1px solid #d3d3d3; }
   .form__input.isError {
-    border: 1px solid #e91c53; }
+    border: 1px solid #dd5858; }
 
 .form__input--checkbox {
   display: inline; }
@@ -2710,12 +2710,12 @@ input[type="button"].button--block {
   padding: 12px 0;
   text-align: center; }
   .form__measure.isError {
-    border-top: 1px solid #e91c53;
-    border-right: 1px solid #e91c53;
-    border-bottom: 1px solid #e91c53; }
+    border-top: 1px solid #dd5858;
+    border-right: 1px solid #dd5858;
+    border-bottom: 1px solid #dd5858; }
 
 .form__select.isError .Select-control {
-  border: 1px solid #e91c53; }
+  border: 1px solid #dd5858; }
 
 .form__select--input {
   width: 30%;
@@ -2795,12 +2795,12 @@ input[type="button"].button--block {
   color: #828282;
   margin-right: 8px; }
   .recipe-table__icon--edit:hover {
-    color: #26d58f; }
+    color: #6dc593; }
 
 .recipe-table__icon--remove {
   color: #828282; }
   .recipe-table__icon--remove:hover {
-    color: #e91c53; }
+    color: #dd5858; }
 
 .add-modal-overlay {
   z-index: 40;
@@ -2832,7 +2832,7 @@ input[type="button"].button--block {
   overflow: hidden; }
 
 .add-modal__error {
-  color: #e91c53;
+  color: #dd5858;
   display: inline-block;
   padding-top: 10px;
   font-weight: bold; }
@@ -2843,7 +2843,7 @@ input[type="button"].button--block {
   border: 1px solid #d0d0d0;
   margin-bottom: 20px; }
   .ingredient-list-wrap.isError {
-    border: 1px solid #e91c53; }
+    border: 1px solid #dd5858; }
 
 .ingredient-list__thead {
   display: block;
@@ -2867,7 +2867,7 @@ input[type="button"].button--block {
   .ingredient-list__row:hover {
     background-color: rgba(116, 189, 166, 0.3); }
   .ingredient-list__row.is-active {
-    background-color: #8FD1B6; }
+    background-color: #49b778; }
 
 .ingredient-list__cell {
   padding: 10px; }
@@ -2995,13 +2995,13 @@ input[type="button"].button--block {
   margin-left: 10px; }
 
 .is-in-style .style-table__icon {
-  color: #26d58f; }
+  color: #6dc593; }
 
 .is-out .style-table__icon {
-  color: #e91c53; }
+  color: #dd5858; }
 
 .is-close .style-table__icon {
-  color: #ebcd2e; }
+  color: #f7d02d; }
 
 .recipe-note .DraftEditor-root {
   height: 250px; }
