@@ -15,7 +15,10 @@ import {
 } from '../selectors/recipeEdit';
 
 const Stats = props => (
-  <Card cardHeader={true} cardTitle="Stats">
+  <Card
+    cardHeader={true} // eslint-disable-line
+    cardTitle="Stats"
+  >
     <div className="stat">
       <h5 className="stat__title">Original Gravity</h5>
       <div className="stat__content">{props.originalGravity}</div>

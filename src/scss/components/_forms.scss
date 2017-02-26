@@ -6,6 +6,7 @@ $_border-color: $gray-8;
 $_border-radius: $base-radius;
 // $_font-size: 14px;
 $_line-height: 1.5;
+$_disabled: $gray-10;
 
 .form__label {
   @extend .h5;
@@ -77,9 +78,8 @@ $_line-height: 1.5;
   border-bottom-left-radius: 0;
   padding: 12px 0;
   text-align: center;
-  background-color: $gray-10;
+  background-color: $_disabled;
   font-weight: 600;
-  // color: $gray-5;
 
   &.isError {
     border-top: 1px solid $danger;
@@ -101,7 +101,7 @@ $_line-height: 1.5;
 
 .form__select--input .Select-control {
   border-radius: 0 4px 4px 0;
-  background-color: $gray-10;
+  background-color: $_disabled;
   font-weight: 600;
 }
 
