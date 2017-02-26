@@ -128,6 +128,8 @@ h5,
   @include typesize(-1);
   line-height: $leading;
   font-weight: 600;
+  color: $gray-5;
+  text-transform: uppercase;
 }
 
 

@@ -17,19 +17,19 @@ import {
 const Stats = props => (
   <Card cardTitle="Stats">
     <div className="stat">
-      <h4 className="stat__title">Original Gravity</h4>
+      <h5 className="stat__title">Original Gravity</h5>
       <div className="stat__content">{props.originalGravity}</div>
     </div>
     <div className="stat">
-      <h4 className="stat__title">ABV</h4>
+      <h5 className="stat__title">ABV</h5>
       <div className="stat__content">{props.abv} %</div>
     </div>
     <div className="stat">
-      <h4 className="stat__title">Bitterness</h4>
+      <h5 className="stat__title">Bitterness</h5>
       <div className="stat__content">{props.totalIbu} IBU</div>
     </div>
     <div className="stat">
-      <h4 className="stat__title">Color</h4>
+      <h5 className="stat__title">Color</h5>
       <div className="stat__content">{props.srm} SRM</div>
     </div>
     <ul className="small-stats">

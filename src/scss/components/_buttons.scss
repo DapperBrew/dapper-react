@@ -26,16 +26,18 @@ button,
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  padding: spacing(.5) spacing(1);
+  padding: 12px 22px;
   border: 2px solid transparent;
   background: $primary;
   transition: all $base-time $base-ease;
   text-decoration: none;
+  color: $white;
+  font-weight: 600;
 
   &:active,
   &:hover,
   &:focus {
-    background: darken($primary, 20%);
+    background: darken($primary, 5%);
     text-decoration: none;
     outline: 0;
     background-image: none;
@@ -54,14 +56,9 @@ button,
 $_button-primary-color: $white;
 $_button-primary-color-hover: $white;
 $_button-primary-bg:  $primary;
-$_button-primary-bg-hover: darken($primary, 10%);
+$_button-primary-bg-hover: darken($primary, 5%);
 $_button-primary-border: $primary;
-$_button-primary-border-hover: darken($primary, 10%);
-
-$_button-secondary-color: $white;
-$_button-secondary-color-hover: $white;
-$_button-secondary-bg: #1a1a1a;
-$_button-secondary-bg-hover: lighten(#1a1a1a, 10%);
+$_button-primary-border-hover: darken($primary, 5%);
 
 
 /**
@@ -99,15 +96,6 @@ Takes a few variables and creates a new button style
   );
 }
 
-.button--secondary {
-  @include button-variant(
-    $_button-secondary-color,
-    $_button-secondary-color-hover,
-    $_button-secondary-bg,
-    $_button-secondary-bg-hover
-  );
-}
-
 
 /**
 Outline Buttons
@@ -136,10 +124,15 @@ only first param is required
   @include button-outline-variant($_button-primary-bg);
 }
 
-.button-outline--secondary {
-  @include button-outline-variant($_button-secondary-bg);
+.button--secondary {
+  @include button-outline-variant(
+    $gray-4,
+    $gray-8,
+    $gray-10,
+    $gray-4,
+    $gray-8
+  );
 }
-
 
 
 // Button Sizes
@@ -152,7 +145,7 @@ only first param is required
 
 .button--small {
   @include typesize(-1);
-  padding: .25rem .75rem;
+  padding: 8px 10px;
 }
 
 

@@ -10,9 +10,8 @@ $_line-height: 1.5;
 .form__label {
   @extend .h5;
   display: block;
-  color: #777;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: spacing(.25);
 }
 
 ::placeholder {

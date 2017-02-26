@@ -13,10 +13,11 @@ import YeastEditModal from './YeastEditModal';
 import YeastCustomModal from './YeastCustomModal';
 
 const Yeast = (props) => {
-  const { dispatch } = props;
+  const { dispatch, recipeStaged } = props;
   const name = modalInfo.YEAST.NAME;
-  return (
-    <Card cardTitle="Yeast">
+  let recipeTable;
+  if (recipeStaged.yeasts.length > 0) {
+    recipeTable = (
       <table className="recipe-table">
         <thead>
           <tr className="">
@@ -28,10 +29,15 @@ const Yeast = (props) => {
         </thead>
         <YeastList />
       </table>
-      <button className="mt1" onClick={() => dispatch(showModal(name))}>
+    );
+  }
+  return (
+    <Card cardTitle="Yeast">
+      {recipeTable}
+      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
-      <button className="mt1 ml1" onClick={() => dispatch(showCustomModal('customYeast'))}>
+      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customYeast'))}>
         Add Custom
       </button>
       <YeastModal />
@@ -43,10 +49,12 @@ const Yeast = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
+  recipeStaged: state.recipeEdit.recipeStaged,
 });
 
 Yeast.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  recipeStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(Yeast);

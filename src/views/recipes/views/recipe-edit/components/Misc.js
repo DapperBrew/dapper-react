@@ -12,10 +12,11 @@ import MiscEditModal from './MiscEditModal';
 import MiscCustomModal from './MiscCustomModal';
 
 const Misc = (props) => {
-  const { dispatch } = props;
+  const { dispatch, recipeStaged } = props;
   const name = modalInfo.MISC.NAME;
-  return (
-    <Card cardTitle="Spices & Misc">
+  let recipeTable;
+  if (recipeStaged.miscs.length > 0) {
+    recipeTable = (
       <table className="recipe-table">
         <thead>
           <tr className="">
@@ -28,11 +29,16 @@ const Misc = (props) => {
         </thead>
         <MiscList />
       </table>
+    );
+  }
+  return (
+    <Card cardTitle="Spices & Misc">
+      {recipeTable}
 
-      <button className="mt1" onClick={() => dispatch(showModal(name))}>
+      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
-      <button className="mt1 ml1" onClick={() => dispatch(showCustomModal('customMisc'))}>
+      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customMisc'))}>
         Add Custom
       </button>
       <MiscModal />
@@ -44,10 +50,12 @@ const Misc = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
+  recipeStaged: state.recipeEdit.recipeStaged,
 });
 
 Misc.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  recipeStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(Misc);

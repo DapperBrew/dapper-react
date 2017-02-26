@@ -27,6 +27,7 @@ const FermentableModal = (props) => {
       name={name}
       header="Add Fermentable"
     >
+
       <IngredientSearch
         items={items}
         headers={modalInfo.FERMENTABLE.SEARCH_TABLE_HEADER}

@@ -8,12 +8,13 @@ $_divider: $divider;
 .recipe-table {
   width: 100%;
   max-width: 100%;
+  margin-bottom: spacing(1);
 }
 
 .recipe-table__header {
   @extend .h5;
   text-transform: uppercase;
-  padding-bottom: spacing(.5);
+  padding-bottom: spacing(.25);
 }
 
 .recipe-table__row {
@@ -25,7 +26,7 @@ $_divider: $divider;
 }
 
 .recipe-table__cell {
-  padding: spacing(.5) 0;
+  padding: spacing(.25) 0;
 }
 
 .recipe-table__cell--shrink {

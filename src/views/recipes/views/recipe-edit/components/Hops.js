@@ -12,10 +12,11 @@ import HopEditModal from './HopEditModal';
 import HopCustomModal from './HopCustomModal';
 
 const Hops = (props) => {
-  const { dispatch } = props;
+  const { dispatch, recipeStaged } = props;
   const name = modalInfo.HOP.NAME;
-  return (
-    <Card cardTitle="Hops">
+  let recipeTable;
+  if (recipeStaged.hops.length > 0) {
+    recipeTable = (
       <table className="recipe-table">
         <thead>
           <tr className="">
@@ -29,11 +30,17 @@ const Hops = (props) => {
         </thead>
         <HopList />
       </table>
+    );
+  }
 
-      <button className="mt1" onClick={() => dispatch(showModal(name))}>
+  return (
+    <Card cardTitle="Hops">
+      {recipeTable}
+
+      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
         Add New
       </button>
-      <button className="mt1 ml1" onClick={() => dispatch(showCustomModal('customHop'))}>
+      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customHop'))}>
         Add Custom
       </button>
       <HopModal />
@@ -45,10 +52,12 @@ const Hops = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
+  recipeStaged: state.recipeEdit.recipeStaged,
 });
 
 Hops.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  recipeStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(Hops);

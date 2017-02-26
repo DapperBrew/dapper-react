@@ -1550,7 +1550,9 @@ h5,
   font-size: 13.93728px;
   font-size: 0.87108rem;
   line-height: 1.5rem;
-  font-weight: 600; }
+  font-weight: 600;
+  color: #72727a;
+  text-transform: uppercase; }
 
 a {
   color: #49b778;
@@ -2437,16 +2439,18 @@ button,
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  padding: 0.75rem 1.5rem;
+  padding: 12px 22px;
   border: 2px solid transparent;
   background: #49b778;
   transition: all 0.3s ease;
-  text-decoration: none; }
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600; }
   button:active, button:hover, button:focus,
   .button:active,
   .button:hover,
   .button:focus {
-    background: #2c6e48;
+    background: #41a56c;
     text-decoration: none;
     outline: 0;
     background-image: none; }
@@ -2482,33 +2486,16 @@ Takes a few variables and creates a new button style
   border-color: #49b778; }
   .button--primary:hover {
     color: #fff;
-    background-color: #3a9360;
-    border-color: #3a9360; }
+    background-color: #41a56c;
+    border-color: #41a56c; }
   .button--primary:focus {
     color: #fff;
-    background-color: #3a9360;
-    border-color: #3a9360; }
+    background-color: #41a56c;
+    border-color: #41a56c; }
   .button--primary:active {
     color: #fff;
-    background-color: #3a9360;
-    border-color: #3a9360; }
-
-.button--secondary {
-  color: #fff;
-  background-color: #1a1a1a;
-  border-color: #1a1a1a; }
-  .button--secondary:hover {
-    color: #fff;
-    background-color: #343434;
-    border-color: #343434; }
-  .button--secondary:focus {
-    color: #fff;
-    background-color: #343434;
-    border-color: #343434; }
-  .button--secondary:active {
-    color: #fff;
-    background-color: #343434;
-    border-color: #343434; }
+    background-color: #41a56c;
+    border-color: #41a56c; }
 
 /**
 Outline Buttons
@@ -2547,23 +2534,23 @@ only first param is required
     background-color: #49b778;
     border-color: #49b778; }
 
-.button-outline--secondary {
-  color: #1a1a1a;
+.button--secondary {
+  color: #4e4f58;
   background-image: none;
   background-color: transparent;
-  border-color: #1a1a1a; }
-  .button-outline--secondary:hover {
-    color: #fff;
-    background-color: #1a1a1a;
-    border-color: #1a1a1a; }
-  .button-outline--secondary:focus {
-    color: #fff;
-    background-color: #1a1a1a;
-    border-color: #1a1a1a; }
-  .button-outline--secondary:active {
-    color: #fff;
-    background-color: #1a1a1a;
-    border-color: #1a1a1a; }
+  border-color: #d5d5d7; }
+  .button--secondary:hover {
+    color: #4e4f58;
+    background-color: #f4f4f4;
+    border-color: #d5d5d7; }
+  .button--secondary:focus {
+    color: #4e4f58;
+    background-color: #f4f4f4;
+    border-color: #d5d5d7; }
+  .button--secondary:active {
+    color: #4e4f58;
+    background-color: #f4f4f4;
+    border-color: #d5d5d7; }
 
 .button--large {
   font-size: 18.368px;
@@ -2573,7 +2560,7 @@ only first param is required
 .button--small {
   font-size: 13.93728px;
   font-size: 0.87108rem;
-  padding: .25rem .75rem; }
+  padding: 8px 10px; }
 
 .button--block {
   display: block;
@@ -2658,9 +2645,8 @@ input[type="button"].button--block {
 
 .form__label {
   display: block;
-  color: #777;
   text-transform: uppercase;
-  margin-bottom: 4px; }
+  margin-bottom: 0.375rem; }
 
 ::placeholder {
   color: #b8b9bc; }
@@ -2761,11 +2747,12 @@ input[type="button"].button--block {
 
 .recipe-table {
   width: 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 1.5rem; }
 
 .recipe-table__header {
   text-transform: uppercase;
-  padding-bottom: 0.75rem; }
+  padding-bottom: 0.375rem; }
 
 .recipe-table__row {
   border-top: 1px solid #d5d5d7; }
@@ -2773,7 +2760,7 @@ input[type="button"].button--block {
     border-bottom: 1px solid #d5d5d7; }
 
 .recipe-table__cell {
-  padding: 0.75rem 0; }
+  padding: 0.375rem 0; }
 
 .recipe-table__cell--shrink {
   white-space: nowrap;
@@ -2939,9 +2926,6 @@ input[type="button"].button--block {
   margin-bottom: 20px; }
 
 .stat__title {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
   margin-bottom: 0; }
 
 .stat__content {
