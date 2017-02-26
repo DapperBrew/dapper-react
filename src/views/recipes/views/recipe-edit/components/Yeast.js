@@ -11,6 +11,7 @@ import YeastList from './YeastList';
 import YeastModal from './YeastModal';
 import YeastEditModal from './YeastEditModal';
 import YeastCustomModal from './YeastCustomModal';
+import AddButton from './AddButton';
 
 const Yeast = (props) => {
   const { dispatch, recipeStaged } = props;
@@ -34,12 +35,10 @@ const Yeast = (props) => {
   return (
     <Card cardTitle="Yeast">
       {recipeTable}
-      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
-        Add New
-      </button>
-      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customYeast'))}>
-        Add Custom
-      </button>
+      <AddButton
+        onPrimaryClick={() => dispatch(showModal(name))}
+        onSecondaryClick={() => dispatch(showCustomModal('customYeast'))}
+      />
       <YeastModal />
       <YeastEditModal />
       <YeastCustomModal />

@@ -10,6 +10,7 @@ import FermentableList from './FermentableList';
 import FermentableModal from './FermentableModal';
 import FermentableEditModal from './FermentableEditModal';
 import FermentableCustomModal from './FermentableCustomModal';
+import AddButton from './AddButton';
 
 
 const Fermentables = (props) => {
@@ -36,13 +37,10 @@ const Fermentables = (props) => {
     <div>
       <Card cardTitle="Fermentables">
         {recipeTable}
-
-        <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
-          Add New
-        </button>
-        <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customFermentable'))}>
-          Add Custom
-        </button>
+        <AddButton
+          onPrimaryClick={() => dispatch(showModal(name))}
+          onSecondaryClick={() => dispatch(showCustomModal('customFermentable'))}
+        />
         <FermentableModal />
         <FermentableEditModal />
         <FermentableCustomModal />

@@ -10,6 +10,7 @@ import MiscList from './MiscList';
 import MiscModal from './MiscModal';
 import MiscEditModal from './MiscEditModal';
 import MiscCustomModal from './MiscCustomModal';
+import AddButton from './AddButton';
 
 const Misc = (props) => {
   const { dispatch, recipeStaged } = props;
@@ -34,13 +35,10 @@ const Misc = (props) => {
   return (
     <Card cardTitle="Spices & Misc">
       {recipeTable}
-
-      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
-        Add New
-      </button>
-      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customMisc'))}>
-        Add Custom
-      </button>
+      <AddButton
+        onPrimaryClick={() => dispatch(showModal(name))}
+        onSecondaryClick={() => dispatch(showCustomModal('customMisc'))}
+      />
       <MiscModal />
       <MiscEditModal />
       <MiscCustomModal />

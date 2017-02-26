@@ -18,7 +18,6 @@ button,
 .button {
   @include typesize(0);
   display: inline-block;
-  font-weight: inherit;
   border-radius: $base-radius;
   line-height: inherit;
   text-align: center;

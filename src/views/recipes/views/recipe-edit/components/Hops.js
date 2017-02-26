@@ -10,6 +10,7 @@ import HopList from './HopList';
 import HopModal from './HopModal';
 import HopEditModal from './HopEditModal';
 import HopCustomModal from './HopCustomModal';
+import AddButton from './AddButton';
 
 const Hops = (props) => {
   const { dispatch, recipeStaged } = props;
@@ -36,13 +37,10 @@ const Hops = (props) => {
   return (
     <Card cardTitle="Hops">
       {recipeTable}
-
-      <button className="button button--primary" onClick={() => dispatch(showModal(name))}>
-        Add New
-      </button>
-      <button className="button button--secondary ml1" onClick={() => dispatch(showCustomModal('customHop'))}>
-        Add Custom
-      </button>
+      <AddButton
+        onPrimaryClick={() => dispatch(showModal(name))}
+        onSecondaryClick={() => dispatch(showCustomModal('customHop'))}
+      />
       <HopModal />
       <HopEditModal />
       <HopCustomModal />

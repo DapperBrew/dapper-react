@@ -1,17 +1,19 @@
 import React from 'react';
 
 const AddButton = props => (
-  <button
-    className="button button--primary mt1"
-    onClick={props.openModal}
-  >
-    {props.text}
-  </button>
+  <div>
+    <button className="button button--primary" onClick={props.onPrimaryClick}>
+      Add New
+    </button>
+    <button className="button button--secondary ml1" onClick={props.onSecondaryClick}>
+      Add Custom
+    </button>
+  </div>
 );
 
 AddButton.propTypes = {
-  openModal: React.PropTypes.func.isRequired,
-  text: React.PropTypes.string.isRequired,
+  onPrimaryClick: React.PropTypes.func.isRequired,
+  onSecondaryClick: React.PropTypes.func.isRequired,
 };
 
 export default AddButton;
