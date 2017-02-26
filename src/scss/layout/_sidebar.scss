@@ -4,7 +4,7 @@
 
 // variables
 $_sidebar-width: 200px;
-$_bg-color: #2b2c37;
+$_bg-color: $gray-2;
 
 .sidebar {
   width: $_sidebar-width;
@@ -16,7 +16,7 @@ $_bg-color: #2b2c37;
 }
 
 .sidebar__logo {
-  width: 70px;
+  width: 120px;
   display: block;
   margin: 35px auto 0;
 }

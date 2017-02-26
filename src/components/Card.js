@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = props => (
   <div className="card clearfix">
-    <h3 className="card__title">{props.cardTitle}</h3>
+    <h2 className="card__title">{props.cardTitle}</h2>
     {props.children}
   </div>
 );

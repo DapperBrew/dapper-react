@@ -7,30 +7,36 @@
 
 // Colors
 // -------------------------
-$primary            : #49b778;
-$secondary          : #000;
-$tertiary           : #000;
+$primary       : #49b778;
+$primary-light : #6dc593;
+$primary-lightest: #d3eedf;
+$primary-dark  : #37895a;
 
-$brand              : #49b778;
-$brand-high         : #000;
-$brand-low          : #000;
+$secondary     : #000;
+$tertiary      : #000;
 
+$success       : #6dc593;
 
-$success            : #6dc593;
-$success-high       : #28e398;
-$success-low        : #24c987;
+$warning       : #f7d02d;
 
-$warning            : #f7d02d;
-$warning-high       : #f7d830;
-$warning-low        : #dec22b;
+$danger        : #dd5858;
 
+$white         : #fff;
+$black         : #000;
 
-$danger             : #dd5858;
-$danger-high        : #f51d57;
-$danger-low         : #db1a4e;
+$gray-1        : #17181e;
+$gray-2        : #24252d;
+$gray-3        : #32323d;
+$gray-4        : #4e4f58;
+$gray-5        : #72727a;
+$gray-6        : #95959b;
+$gray-7        : #b8b9bc;
+$gray-8        : #d5d5d7;
+$gray-9        : #eaeaeb;
+$gray-10       : #f4f4f4;
 
-$white              : #fff;
-$black              : #000;
+$divider: $gray-8;
+$disabled: $gray-10;
 
 
 // Type
@@ -40,8 +46,8 @@ $black              : #000;
 
 $base-font-size     : 16;
 $base-line-height   : 1.5;
-$base-font-color    : $black;
-$scale              : 1.414;
+$base-font-color    : $gray-3;
+$scale              : 1.148;
 $leading            : $base-line-height * 1rem;
 $sans-serif         : 'proxima-nova', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
 $serif              : 'Cambria', 'Georgia', 'serif';

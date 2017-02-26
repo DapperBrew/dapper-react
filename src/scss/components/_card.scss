@@ -10,8 +10,7 @@ $_bg-color: #fff;
   background-color: $_bg-color;
   padding: 20px;
   margin-bottom: 15px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
-              0 0 0 1px rgba(63, 63, 68, 0.1);
+  box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0;
 }
 
 .card__title {

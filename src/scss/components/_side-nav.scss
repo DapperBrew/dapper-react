@@ -3,9 +3,9 @@
 // ----------------------------------------------------------------------------
 
 // color variables
-$_highlight: #1f222d;
+$_highlight: $gray-1;
 $_primary: $primary;
-$_link-color: #9e9e9e;
+$_link-color: $gray-6;
 
 // Icons
 
@@ -49,7 +49,6 @@ $_link-color: #9e9e9e;
 }
 
 .side-nav__item:hover {
-  background-color: lighten($_highlight, 2%);
 
   .side-nav__text {
     color: $white;
@@ -76,7 +75,8 @@ $_link-color: #9e9e9e;
 }
 
 .side-nav__text {
-  font-size: 12px;
+  font-size: 13px;
+  letter-spacing: .5px;
   text-transform: uppercase;
   color: $_link-color;
   margin-left: 12px;

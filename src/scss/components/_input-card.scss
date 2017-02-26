@@ -4,12 +4,12 @@
 
 .form-group {
   @include span(6 inside no-gutters);
-  margin-bottom: 20px;
+  margin-bottom: spacing(1);
 }
 
 .form-group--half {
   @include span(3 inside no-gutters);
-  margin-bottom: 20px;
+  margin-bottom: spacing(1);
 }
 
 .form-group--half {

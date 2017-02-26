@@ -2,18 +2,21 @@
 // Forms
 // ----------------------------------------------------------------------------
 
-$_border-color: #d3d3d3;
+$_border-color: $gray-8;
 $_border-radius: $base-radius;
-$_font-size: 14px;
+// $_font-size: 14px;
 $_line-height: 1.5;
 
 .form__label {
+  @extend .h5;
   display: block;
   color: #777;
-  font-size: 12px;
   text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+}
+
+::placeholder {
+  color: $gray-7;
 }
 
 .form__label--checkbox {
@@ -22,7 +25,7 @@ $_line-height: 1.5;
 }
 
 .form__input {
-  font-size: $_font-size;
+  // font-size: $_font-size;
   line-height: $_line-height;
   float: left;
   display: block;
@@ -34,6 +37,10 @@ $_line-height: 1.5;
   &.isError {
     border: 1px solid $danger;
   }
+}
+
+.Select-control {
+  border-color: $_border-color;
 }
 
 .form__input--checkbox {
@@ -56,8 +63,8 @@ $_line-height: 1.5;
 
 // measurement indicator to the right of the form input
 .form__measure {
-  font-size: $_font-size;
-  line-height: $_line-height;
+  // font-size: $_font-size;
+  // line-height: $_line-height;
   float: right;
   border-top: 1px solid $_border-color;
   border-right: 1px solid $_border-color;
@@ -71,6 +78,8 @@ $_line-height: 1.5;
   border-bottom-left-radius: 0;
   padding: 12px 0;
   text-align: center;
+  background-color: $gray-9;
+  // color: $gray-5;
 
   &.isError {
     border-top: 1px solid $danger;
