@@ -1516,8 +1516,7 @@ h5 {
   font-weight: 600;
   font-family: "proxima-nova", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
   line-height: 1.5;
-  margin-bottom: 0.75rem;
-  letter-spacing: .5px; }
+  margin-bottom: 0.75rem; }
 
 h1,
 .h1 {
@@ -1553,7 +1552,8 @@ h5,
   line-height: 1.5rem;
   font-weight: 600;
   color: #72727a;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  letter-spacing: .5px; }
 
 a {
   color: #49b778;
@@ -2586,7 +2586,7 @@ input[type="button"].button--block {
   padding: 0; }
 
 .card__header {
-  padding: 16px 20px;
+  padding: 0.75rem 20px;
   background-color: #72727a;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px; }
@@ -3106,18 +3106,19 @@ input[type="button"].button--block {
   margin: 35px auto 0; }
 
 .header {
-  height: 72px;
+  z-index: 20;
+  height: 4.5rem;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #fff;
   padding: 0 1.38889%;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-  z-index: 20; }
+  box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0; }
 
 .header__title {
-  line-height: 72px;
-  font-weight: 700; }
+  line-height: 4.5rem;
+  font-weight: 700;
+  margin: 0; }
 
 .content {
   padding: 1.38889% 0 calc(1.38889% + 30px); }

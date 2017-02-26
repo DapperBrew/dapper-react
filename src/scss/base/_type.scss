@@ -96,7 +96,6 @@ h5 {
   font-family: $header-font-family;
   line-height: $base-line-height;
   margin-bottom: spacing(.5);
-  letter-spacing: .5px;
 }
 
 h1,
@@ -130,6 +129,7 @@ h5,
   font-weight: 600;
   color: $gray-5;
   text-transform: uppercase;
+  letter-spacing: .5px;
 }
 
 
