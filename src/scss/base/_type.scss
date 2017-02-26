@@ -108,7 +108,7 @@ h1,
 h2,
 .h2 {
   @include typesize(2);
-  line-height: $leading * 2;
+  line-height: $leading;
 }
 
 h3,
@@ -127,6 +127,7 @@ h5,
 .h5 {
   @include typesize(-1);
   line-height: $leading;
+  font-weight: 600;
 }
 
 

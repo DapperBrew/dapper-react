@@ -3,19 +3,23 @@
 // ----------------------------------------------------------------------------
 
 // First overwrite defaults
-$select-input-height: 47px;
-$select-input-placeholder: #d3d3d3;
+$select-input-height: 50px;
+$select-input-placeholder: $gray-7;
 $select-padding-vertical: 12px !default;
 $select-padding-horizontal: 12px !default;
+$select-input-border-focus: $primary-light !default;
+$select-option-focused-bg: $primary-lightest !default;
+
+
 
 // Then import
 @import '../../../node_modules/react-select/scss/default';
 
 // Custom Css
 
-.input__select {
-  font-size: 14px;
-}
+// .input__select {
+//   font-size: 14px;
+// }
 
 .Select-clear {
   line-height: 1.5;

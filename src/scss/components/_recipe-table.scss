@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------
 
 $_icon-color: #828282;
+$_divider: $divider;
 
 .recipe-table {
   width: 100%;
@@ -10,21 +11,21 @@ $_icon-color: #828282;
 }
 
 .recipe-table__header {
+  @extend .h5;
   text-transform: uppercase;
-  font-size: 15px;
-  padding-bottom: 10px;
+  padding-bottom: spacing(.5);
 }
 
 .recipe-table__row {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid $_divider;
 
   &:last-child {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid $_divider;
   }
 }
 
 .recipe-table__cell {
-  padding: 10px 0;
+  padding: spacing(.5) 0;
 }
 
 .recipe-table__cell--shrink {
