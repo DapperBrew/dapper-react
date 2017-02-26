@@ -43,7 +43,7 @@ class Notes extends React.Component {
       ],
     };
     return (
-      <Card cardTitle="Notes">
+      <Card cardHeader={true} cardTitle="Notes">
         <RichTextEditor
           value={this.state.value}
           onChange={this.onChange}

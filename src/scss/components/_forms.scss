@@ -77,7 +77,8 @@ $_line-height: 1.5;
   border-bottom-left-radius: 0;
   padding: 12px 0;
   text-align: center;
-  background-color: $gray-9;
+  background-color: $gray-10;
+  font-weight: 600;
   // color: $gray-5;
 
   &.isError {
@@ -100,6 +101,8 @@ $_line-height: 1.5;
 
 .form__select--input .Select-control {
   border-radius: 0 4px 4px 0;
+  background-color: $gray-10;
+  font-weight: 600;
 }
 
 .form__select--input.is-open .Select-control {

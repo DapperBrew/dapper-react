@@ -111,7 +111,7 @@ const StyleGuide = (props) => {
   };
 
   return (
-    <Card cardTitle="Style Guide">
+    <Card cardHeader={true} cardTitle="Style Guide">
       <h4>{category}</h4>
       <table className="style-table">
         <thead>

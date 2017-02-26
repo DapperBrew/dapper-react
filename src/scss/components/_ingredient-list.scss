@@ -2,11 +2,12 @@
 // Ingredient List
 // ----------------------------------------------------------------------------
 
+$_table-border: $gray-8;
 
 .ingredient-list-wrap {
   overflow-y: auto;
   height: 250px; // height of ingredient list
-  border: 1px solid #d0d0d0;
+  border: 1px solid $_table-border;
   margin-bottom: 20px;
 
   &.isError {
@@ -30,10 +31,14 @@
 }
 
 .ingredient-list__header {
-  background-color: #d0d0d0;
+  background-color: $gray-10;
+  border-top: 1px solid $_table-border;
+  border-left: 1px solid $_table-border;
+  border-right: 1px solid $_table-border;
 }
 
 .ingredient-list__header-cell {
+  @extend .h5;
   padding: 10px;
   float: left;
 }
@@ -41,15 +46,16 @@
 
 // the body
 .ingredient-list__row {
-  border-bottom: 1px solid #d0d0d0;
+  border-bottom: 1px solid $_table-border;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(116, 189, 166, 0.3);
+    background-color: $primary-lightest;
   }
 
   &.is-active {
     background-color: $primary;
+    color: $white;
   }
 }
 .ingredient-list__cell {
