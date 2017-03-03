@@ -1,0 +1,73 @@
+// ----------------------------------------------------------------------------
+// Create Recipe View
+// ----------------------------------------------------------------------------
+
+.login-page {
+  height: 100vh;
+  background-color: $primary-dark;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 0;
+  position: fixed;
+  width: 100%;
+  overflow: scroll;
+}
+
+.login {
+  width: 400px;
+  border-radius: 4px;
+  padding: spacing(2);
+  background-color: $white;
+}
+
+.login__label {
+  @include typesize(-1);
+  display: block;
+  margin-bottom: spacing(.25);
+  font-weight: 600;
+}
+
+.login__input {
+  padding: spacing(.5);
+  background-color: $gray-9;
+  border-radius: 4px;
+  border: 0 solid transparent;
+  width: 100%;
+  line-height: 1.5;
+
+  &.isError {
+    background-color: lighten($danger, 30%);
+  }
+}
+
+.login__error-box {
+  border-radius: 4px;
+  background-color: #fbcdcd;
+  padding: 12px;
+  text-align: center;
+}
+
+.login__inline-error {
+  height: spacing(1);
+  color: $danger;
+  font-size: 14px;
+  display: block;
+
+  &--password-match {
+    color: green;
+  }
+
+  &.isError {
+    color: $danger;
+  }
+}
+
+.login__button {
+  border: 0 solid transparent;
+}
+
+.login__message {
+  text-align: center;
+  margin-top: 12px;
+}

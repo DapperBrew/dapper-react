@@ -3,14 +3,14 @@
 // ----------------------------------------------------------------------------
 
 $_bg-color: $white;
-$_sidebar-height: spacing(3);
 
 .header {
   @include z-index(header);
-  height: $_sidebar-height;
+  height: $header-height;
   position: fixed;
   top: 0;
-  width: 100%;
+  left: $sidebar-width;
+  right: 0;
   background-color: $_bg-color;
   padding: 0 $gutter;
   box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0;
@@ -20,4 +20,10 @@ $_sidebar-height: spacing(3);
   line-height: $_sidebar-height;
   font-weight: 700;
   margin: 0;
+  display: inline-block;
+}
+
+// TEMPORARY
+.signout {
+  float: right;
 }

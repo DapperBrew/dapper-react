@@ -3107,18 +3107,23 @@ input[type="button"].button--block {
 
 .header {
   z-index: 20;
-  height: 4.5rem;
+  height: 72px;
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 200px;
+  right: 0;
   background-color: #fff;
   padding: 0 1.38889%;
   box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0; }
 
 .header__title {
-  line-height: 4.5rem;
+  line-height: 72px;
   font-weight: 700;
-  margin: 0; }
+  margin: 0;
+  display: inline-block; }
+
+.signout {
+  float: right; }
 
 .content {
   padding: 1.38889% 0 calc(1.38889% + 30px); }
@@ -3152,6 +3157,63 @@ input[type="button"].button--block {
   float: left;
   margin-left: 0.69444%;
   margin-right: 0.69444%; }
+
+.login-page {
+  height: 100vh;
+  background-color: #37895a;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 0;
+  position: fixed;
+  width: 100%;
+  overflow: scroll; }
+
+.login {
+  width: 400px;
+  border-radius: 4px;
+  padding: 3rem;
+  background-color: #fff; }
+
+.login__label {
+  font-size: 13.93728px;
+  font-size: 0.87108rem;
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600; }
+
+.login__input {
+  padding: 0.75rem;
+  background-color: #eaeaeb;
+  border-radius: 4px;
+  border: 0 solid transparent;
+  width: 100%;
+  line-height: 1.5; }
+  .login__input.isError {
+    background-color: #f7d7d7; }
+
+.login__error-box {
+  border-radius: 4px;
+  background-color: #fbcdcd;
+  padding: 12px;
+  text-align: center; }
+
+.login__inline-error {
+  height: 1.5rem;
+  color: #dd5858;
+  font-size: 14px;
+  display: block; }
+  .login__inline-error--password-match {
+    color: green; }
+  .login__inline-error.isError {
+    color: #dd5858; }
+
+.login__button {
+  border: 0 solid transparent; }
+
+.login__message {
+  text-align: center;
+  margin-top: 12px; }
 
 .test {
   color: #fff;
