@@ -56,6 +56,31 @@ export const signInUser = ({ email, password }) => (
   }
 );
 
+export const signUpUser = ({ email, password }) => (
+  (dispatch) => {
+    axios({
+      url: 'http://localhost:8080/users',
+      method: 'post',
+      responseType: 'json',
+      data: {
+        email,
+        password,
+      },
+    })
+    .then((res) => {
+      // add token to local storage
+      localStorage.setItem('token', res.data.token);
+      // dispatch action
+      dispatch({ type: AUTHENTICATE_USER });
+      // redirect to application
+      history.push('/');
+    })
+    .catch((res) => {
+      dispatch(authError(res.response.data.error));
+    });
+  }
+);
+
 export const signOutUser = () => (
   (dispatch) => {
     // remove token from localstorage

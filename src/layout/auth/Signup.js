@@ -21,6 +21,11 @@ class Signup extends React.Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({ confirmPassword: '' });
+    this.props.dispatch(actions.updateSignupPassword(''));
+  }
+
   onConfirmFocus = () => {
     this.setState({ confirmFocus: true });
   }
@@ -28,11 +33,14 @@ class Signup extends React.Component {
   handleSignup = (e) => {
     e.preventDefault();
 
+    let isValid = true;
     // email validation
     if (!this.props.email) {
       this.setState({ emailError: 'Please enter an email address' });
+      isValid = false;
     } else if (!isEmail(this.props.email)) {
       this.setState({ emailError: 'Email address is not valid' });
+      isValid = false;
     } else {
       this.setState({ emailError: '' });
     }
@@ -40,6 +48,7 @@ class Signup extends React.Component {
     // password validation
     if (!this.props.password) {
       this.setState({ passwordError: 'Please enter a password' });
+      isValid = false;
     } else {
       this.setState({ passwordError: '' });
     }
@@ -47,13 +56,18 @@ class Signup extends React.Component {
     // password confirmation validation
     if (!this.state.confirmPassword) {
       this.setState({ confirmPasswordError: 'Please enter a confirmation password' });
+      isValid = false;
     } else {
       this.setState({ confirmPasswordError: '' });
     }
-    // this.props.dispatch(actions.signInUser({
-    //   email: this.props.email,
-    //   password: this.props.password,
-    // }));
+
+    // if everything is valid, dispatch signUpUser
+    if (isValid) {
+      this.props.dispatch(actions.signUpUser({
+        email: this.props.email,
+        password: this.props.password,
+      }));
+    }
   }
 
   handleEmailChange = (e) => {
@@ -74,6 +88,17 @@ class Signup extends React.Component {
     } else {
       this.setState({ confirmPasswordError: '' });
     }
+  }
+
+  renderAlert = () => {
+    if (this.props.errorMessage) {
+      return (
+        <div className="login__error-box mt1">
+          {this.props.errorMessage}
+        </div>
+      );
+    }
+    return null;
   }
 
   render() {
@@ -106,7 +131,7 @@ class Signup extends React.Component {
               className={
                 classNames(
                   'login__input',
-                  { isError: this.state.emailError })
+                  { isError: this.state.emailError || this.props.errorMessage })
               }
               type="text"
               placeholder="you@domain.com"
@@ -147,7 +172,7 @@ class Signup extends React.Component {
                 classNames(
                   'login__inline-error',
                   'login__inline-error--password-match',
-                  { isError: !passwordsEqual },
+                  { isError: !passwordsEqual || !this.state.confirmPassword },
                 )
               }
             >
@@ -155,10 +180,11 @@ class Signup extends React.Component {
             </span>
             <button
               className="button--block mt1 login__button"
-              onClick={this.handleSignup}
+              onClick={this.handleSignup(passwordsEqual)}
             >
               Sign Up
             </button>
+            {this.renderAlert()}
             <p className="login__message">Already have an account? <Link to="/login">Login.</Link></p>
           </form>
         </div>
