@@ -17,6 +17,7 @@ class Login extends React.Component {
 
   componenetWillMount() {
     this.props.dispatch(actions.updateLoginPassword(''));
+    this.props.dispatch(actions.authError(''));
   }
 
   handleEmailChange = (e) => {
