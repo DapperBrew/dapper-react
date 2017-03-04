@@ -1,95 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import isEmail from 'validator/lib/isEmail';
+import { Field, reduxForm } from 'redux-form';
 import classNames from 'classnames';
-
+import isEmail from 'validator/lib/isEmail';
 
 // actions
 import * as actions from '../../actions/auth';
 
 
+const inputField = (props) => {
+  const { input, label, type, placeholder } = props;
+  const { touched, error } = props.meta;
+  return (
+    <div>
+      <label htmlFor={name} className="login__label">{label}</label>
+      <input
+        {...input}
+        id={label}
+        placeholder={placeholder}
+        type={type}
+        className={classNames(
+          'login__input',
+          // { isError: { error } },
+        )}
+      />
+      <span className="login__inline-error">{touched && error ? error : ''}</span>
+    </div>
+  );
+};
+
+
 class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      confirmPassword: '',
-      emailError: '',
-      passwordError: '',
-      confirmPasswordError: '',
-      confirmFocus: false,
-    };
-  }
 
   componentWillMount() {
-    this.setState({ confirmPassword: '' });
-    this.props.dispatch(actions.updateSignupPassword(''));
+    const { initialize, dispatch } = this.props;
+    dispatch(initialize({ email: this.props.loginEmail }));
   }
 
-  onConfirmFocus = () => {
-    this.setState({ confirmFocus: true });
+  handleSignupSubmit = (formValues) => {
+    this.props.dispatch(actions.signUpUser(formValues));
   }
 
-  handleSignup = (e) => {
-    e.preventDefault();
-
-    let isValid = true;
-    // email validation
-    if (!this.props.email) {
-      this.setState({ emailError: 'Please enter an email address' });
-      isValid = false;
-    } else if (!isEmail(this.props.email)) {
-      this.setState({ emailError: 'Email address is not valid' });
-      isValid = false;
-    } else {
-      this.setState({ emailError: '' });
-    }
-
-    // password validation
-    if (!this.props.password) {
-      this.setState({ passwordError: 'Please enter a password' });
-      isValid = false;
-    } else {
-      this.setState({ passwordError: '' });
-    }
-
-    // password confirmation validation
-    if (!this.state.confirmPassword) {
-      this.setState({ confirmPasswordError: 'Please enter a confirmation password' });
-      isValid = false;
-    } else {
-      this.setState({ confirmPasswordError: '' });
-    }
-
-    // if everything is valid, dispatch signUpUser
-    if (isValid) {
-      this.props.dispatch(actions.signUpUser({
-        email: this.props.email,
-        password: this.props.password,
-      }));
-    }
-  }
-
-  handleEmailChange = (e) => {
-    this.props.dispatch(actions.updateAuthEmail(e.target.value));
-  }
-
-  handlePasswordChange = (e) => {
-    this.props.dispatch(actions.updateSignupPassword(e.target.value));
-  }
-
-  handleConfirmPasswordChange = (e) => {
-    this.setState({ confirmPassword: e.target.value });
-  }
-
-  checkPasswordEqual = () => {
-    if (this.state.confirmPassword !== this.props.password) {
-      this.setState({ confirmPasswordError: 'Passwords do not match' });
-    } else {
-      this.setState({ confirmPasswordError: '' });
-    }
-  }
-
+  // Alert shown if error is received from serven
   renderAlert = () => {
     if (this.props.errorMessage) {
       return (
@@ -102,85 +55,37 @@ class Signup extends React.Component {
   }
 
   render() {
-    let passwordsEqual = false;
-    let passwordsEqualMessage;
-    // if password & confirm password are equal, set var to true
-    if (this.state.confirmPassword === this.props.password) {
-      passwordsEqual = true;
-    }
-    // set message below confirm password input
-    if (
-      !passwordsEqual
-      && this.state.confirmPassword
-      && this.state.confirmFocus
-    ) {
-      passwordsEqualMessage = 'Passwords do not match';
-    } else if (this.state.confirmPassword && this.props.password && passwordsEqual) {
-      passwordsEqualMessage = 'Passwords Match!';
-    } else if (!this.state.confirmPassword) {
-      passwordsEqualMessage = this.state.confirmPasswordError;
-    }
+    const { handleSubmit, submitting } = this.props;
     return (
       <div className="login-page">
         <div className="login">
           <h2 className="text-center">Sign up for Dapper</h2>
-          <form className="login__form">
-            <label htmlFor="login-email" className="login__label">Email Address</label>
-            <input
-              id="login-email"
-              className={
-                classNames(
-                  'login__input',
-                  { isError: this.state.emailError || this.props.errorMessage })
-              }
-              type="text"
+          <form onSubmit={handleSubmit(this.handleSignupSubmit)}>
+            <Field
+              name="email"
+              type="email"
               placeholder="you@domain.com"
-              onChange={this.handleEmailChange}
-              value={this.props.email}
+              component={inputField}
+              label="Email Address"
             />
-            <span className="login__inline-error">{this.state.emailError}</span>
-            <label htmlFor="login-password" className="login__label">Password</label>
-            <input
-              id="login-password"
-              className={
-                classNames(
-                  'login__input',
-                  { isError: this.state.passwordError })
-              }
+            <Field
+              name="password"
               type="password"
+              component={inputField}
+              label="Password"
               placeholder="password"
-              value={this.props.password}
-              onChange={this.handlePasswordChange}
             />
-            <span className="login__inline-error">{this.state.passwordError}</span>
-            <label htmlFor="login-confirm-password" className="login__label">Confirm Password</label>
-            <input
-              id="login-confirm-password"
-              className={
-                classNames(
-                  'login__input',
-                  { isError: this.state.passwordError })
-              }
+            <Field
+              name="passwordConfirm"
               type="password"
-              placeholder="confirm password"
-              value={this.state.confirmPassword}
-              onChange={this.handleConfirmPasswordChange}
-              onFocus={this.onConfirmFocus}
+              component={inputField}
+              label="Confirm Password"
+              placeholder="password"
             />
-            <span
-              className={
-                classNames(
-                  'login__inline-error',
-                  'login__inline-error--password-match',
-                  { isError: !passwordsEqual || !this.state.confirmPassword },
-                )
-              }
-            >
-              {passwordsEqualMessage}
-            </span>
             <button
-              className="button--block mt1 login__button"
-              onClick={this.handleSignup(passwordsEqual)}
+              type="submit"
+              disabled={submitting}
+              className="button--block login__button"
             >
               Sign Up
             </button>
@@ -193,16 +98,62 @@ class Signup extends React.Component {
   }
 }
 
+// validation function. Checks everything here before submitting
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Please enter an email address';
+  }
+
+  if (values.email && !isEmail(values.email)) {
+    errors.email = 'Email address is not valid';
+  }
+
+  if (!values.password) {
+    errors.password = 'Please enter a password';
+  }
+
+  if (values.password && values.password.length < 8) {
+    errors.password = 'Password must be at least 8 characters.';
+  }
+
+  if (!values.passwordConfirm) {
+    errors.passwordConfirm = 'Please enter a password confirmation';
+  }
+
+  if (values.password !== values.passwordConfirm) {
+    errors.passwordConfirm = 'Passwords must match';
+  }
+
+  return errors;
+};
+
+inputField.propTypes = {
+  input: React.PropTypes.object, // eslint-disable-line
+  label: React.PropTypes.string,
+  type: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
+  meta: React.PropTypes.object, // eslint-disable-line
+};
+
 Signup.propTypes = {
   dispatch: React.PropTypes.func,
-  email: React.PropTypes.string,
-  password: React.PropTypes.string,
+  initialize: React.PropTypes.func,
+  errorMessage: React.PropTypes.string,
+  loginEmail: React.PropTypes.string,
+  handleSubmit: React.PropTypes.func,
+  submitting: React.PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.error,
-  email: state.auth.email,
-  password: state.auth.signupPassword,
+  loginEmail: state.auth.email,
 });
 
-export default connect(mapStateToProps)(Signup);
+const SignupForm = reduxForm({
+  form: 'signupForm',
+  validate,
+})(Signup);
+
+export default connect(mapStateToProps)(SignupForm);
