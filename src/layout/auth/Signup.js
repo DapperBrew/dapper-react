@@ -36,6 +36,7 @@ class Signup extends React.Component {
   componentWillMount() {
     const { initialize, dispatch } = this.props;
     dispatch(initialize({ email: this.props.loginEmail }));
+    this.props.dispatch(actions.authError(''));
   }
 
   handleSignupSubmit = (formValues) => {
