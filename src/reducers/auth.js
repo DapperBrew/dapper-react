@@ -28,7 +28,7 @@ const auth = (state = initialState, action) => {
     case actions.AUTHENTICATE_USER :
       return {
         ...state,
-        authenticated: true,
+        authenticated: action.isAuth,
         error: '',
         email: '',
         loginPassword: '',

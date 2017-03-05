@@ -7,17 +7,17 @@ import * as actions from '../../actions/auth';
 
 
 class Login extends React.Component {
+  componentWillMount() {
+    this.props.dispatch(actions.updateLoginPassword(''));
+    this.props.dispatch(actions.authError(''));
+  }
+
   handleLogin = (e) => {
     e.preventDefault();
     this.props.dispatch(actions.signInUser({
       email: this.props.email,
       password: this.props.password,
     }));
-  }
-
-  componenetWillMount() {
-    this.props.dispatch(actions.updateLoginPassword(''));
-    this.props.dispatch(actions.authError(''));
   }
 
   handleEmailChange = (e) => {

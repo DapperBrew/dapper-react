@@ -8,12 +8,14 @@ export default (ComposedComponent) => {
     }
 
     componentWillMount() {
+      // if a user isn't authenticated, push them to login screen.
       if (!this.props.authenticated) {
-        this.context.router.push('/');
+        this.context.router.push('/login');
       }
     }
 
     componentWillUpdate(nextProps) {
+      // if a user isn't authenticated, push them to login screen.
       if (!nextProps.authenticated) {
         this.context.router.push('/login');
       }
@@ -23,6 +25,10 @@ export default (ComposedComponent) => {
       return <ComposedComponent {...this.props} />;
     }
   }
+
+  Authentication.propTypes = {
+    authenticated: React.PropTypes.bool,
+  };
 
   function mapStateToProps(state) {
     return { authenticated: state.auth.authenticated };

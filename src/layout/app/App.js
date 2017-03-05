@@ -13,20 +13,25 @@ import Signup from '../auth/Signup';
 import RequireAuth from '../auth/RequireAuth';
 
 // actions
-import { AUTHENTICATE_USER } from '../../actions/auth';
+import { authenticateUser, confirmAuth } from '../../actions/auth';
 
 const token = localStorage.getItem('token');
 
 if (token) {
-  store.dispatch({ type: AUTHENTICATE_USER });
+  // is there is a token, authenticate user
+  store.dispatch(authenticateUser(true));
+  // double check that the token is not fake
+  store.dispatch(confirmAuth());
 }
 
 const Dapper = () => (
+
   <div className="app">
     <Sidebar />
     <Main />
   </div>
 );
+
 
 const App = () => (
   <Provider store={store}>
@@ -39,5 +44,6 @@ const App = () => (
     </Router>
   </Provider>
 );
+
 
 export default App;
