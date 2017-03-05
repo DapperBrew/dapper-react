@@ -39,8 +39,7 @@ export const authenticateUser = isAuth => ({
 export const signInUser = ({ email, password }) => (
   (dispatch) => {
     axios({
-      // url: `${process.env.REACT_APP_API_URL}/fermentables`,
-      url: 'http://localhost:8080/sessions',
+      url: `${process.env.REACT_APP_API_URL}/sessions`,
       method: 'post',
       data: {
         email,
@@ -64,7 +63,7 @@ export const signInUser = ({ email, password }) => (
 export const signUpUser = ({ email, password }) => (
   (dispatch) => {
     axios({
-      url: 'http://localhost:8080/users',
+      url: `${process.env.REACT_APP_API_URL}/users`,
       method: 'post',
       responseType: 'json',
       data: {
@@ -100,7 +99,7 @@ export const signOutUser = () => (
 export const confirmAuth = () => (
   (dispatch) => {
     axios({
-      url: 'http://localhost:8080/sessions',
+      url: `${process.env.REACT_APP_API_URL}/sessions`,
       method: 'get',
       headers: { authorization: localStorage.getItem('token') },
     })
