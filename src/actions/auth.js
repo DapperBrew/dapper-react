@@ -31,6 +31,11 @@ export const authError = error => ({
   error,
 });
 
+export const authenticateUser = isAuth => ({
+  type: AUTHENTICATE_USER,
+  isAuth,
+});
+
 export const signInUser = ({ email, password }) => (
   (dispatch) => {
     axios({
@@ -46,7 +51,7 @@ export const signInUser = ({ email, password }) => (
         // add token to local storage
         localStorage.setItem('token', res.data.token);
         // dispatch action
-        dispatch({ type: AUTHENTICATE_USER });
+        dispatch(authenticateUser(true));
         // redirect to application
         history.push('/');
       })
@@ -71,7 +76,7 @@ export const signUpUser = ({ email, password }) => (
       // add token to local storage
       localStorage.setItem('token', res.data.token);
       // dispatch action
-      dispatch({ type: AUTHENTICATE_USER });
+      dispatch(authenticateUser(true));
       // redirect to application
       history.push('/');
     })
@@ -89,5 +94,19 @@ export const signOutUser = () => (
     history.push('/login');
     // dispatch action
     dispatch({ type: UNAUTHENTICATE_USER });
+  }
+);
+
+export const confirmAuth = () => (
+  (dispatch) => {
+    axios({
+      url: 'http://localhost:8080/sessions',
+      method: 'get',
+      headers: { authorization: localStorage.getItem('token') },
+    })
+      .catch(() => {
+        dispatch(authenticateUser(false));
+        history.push('/login');
+      });
   }
 );
