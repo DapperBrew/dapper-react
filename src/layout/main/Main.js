@@ -1,73 +1,49 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateHeader } from '../../actions/ui';
+import { persistStore } from 'redux-persist';
 
-import Header from '../../layout/header/Header';
-import Footer from '../../layout/footer/Footer';
-import Dashboard from '../../views/dashboard/Dashboard';
-import RecipeEdit from '../../views/recipes/views/recipe-edit';
-import Calculators from '../../views/calculators/Calculators';
-import Brewlog from '../../views/brewlog/Brewlog';
-import Equipment from '../../views/equipment/Equipment';
-import Settings from '../../views/settings/Settings';
-import NotFound from '../../views/not-found/NotFound';
+import store from '../../store';
+
+// components
+import Sidebar from '../sidebar/Sidebar';
+import Content from '../content/Content';
+
+// actions
+import { fetchData, fetchStyles } from '../../actions/data';
+
 
 class Main extends React.Component {
 
-  render() {
-    const changeHeader = title => this.props.dispatch(updateHeader(title));
-    return (
-      <div className="main">
-        <Header title={this.props.ui.title} />
-        <div className="content">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (<Dashboard updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/recipes"
-              render={() => (<RecipeEdit updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/calculators"
-              render={() => (<Calculators updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/brewlog"
-              render={() => (<Brewlog updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/equipment"
-              render={() => (<Equipment updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/settings"
-              render={() => (<Settings updateHeader={changeHeader} />)}
-            />
-            <Route
-              render={() => (<NotFound updateHeader={changeHeader} />)}
-            />
-          </Switch>
-        </div>
-        <Footer />
-      </div>
-    );
+  componentWillMount() {
+    // rehydrate from localstorage before loading from API
+    persistStore(store, {}, () => {
+      this.props.dispatch(fetchData());
+      this.props.dispatch(fetchStyles());
+    });
   }
+
+  render() {
+    if (this.props.data.loaded) {
+      return (
+        <div className="app">
+          <Sidebar />
+          <Content />
+        </div>
+      );
+    }
+    return <div>LOADING</div>;
+  }
+
 }
 
 Main.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  ui: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-  }),
+  dispatch: React.PropTypes.func,
+  data: React.PropTypes.object, // eslint-disable-line
+  loaded: React.PropTypes.bool,
 };
 
-
 const mapStateToProps = state => ({
-  ui: state.ui,
+  data: state.data,
 });
 
 export default connect(mapStateToProps)(Main);

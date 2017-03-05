@@ -1,9 +1,5 @@
-/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
-import { persistStore } from 'redux-persist';
-
-import store from '../../../../store'
 
 // Components
 import RecipeInfo from './components/RecipeInfo';
@@ -16,50 +12,23 @@ import StyleGuide from './components/StyleGuide';
 import Notes from './components/Notes';
 import Mash from './components/Mash';
 
-import { fetchData, fetchStyles } from '../../../../actions/data';
-
-
-// DELETE LATER
-import Card from '../../../../components/Card';
-
-class RecipeEdit extends React.Component {
-  componentWillMount(dispatch) {
-    this.props.updateHeader('Create Recipe');
-
-    // rehydrate from localstorage before loading from API
-    persistStore(store, {}, () => {
-      this.props.dispatch(fetchData());
-      this.props.dispatch(fetchStyles());
-    });
-  }
-
-
-  render() {
-    const { data } = this.props;
-
-    if (data.loaded) {
-      return (
-        <div className="container">
-          <RecipeInfo />
-          <div className="input-column">
-            <Fermentables />
-            <Hops />
-            <Yeast />
-            <Misc />
-            <Mash />
-          </div>
-          <div className="info-column">
-            <Stats />
-            <StyleGuide />
-            <Notes />
-          </div>
-        </div>
-      );
-    } else {
-      return <div>LOADING</div>
-    }
-  }
-}
+const RecipeEdit = () => (
+  <div className="container">
+    <RecipeInfo />
+    <div className="input-column">
+      <Fermentables />
+      <Hops />
+      <Yeast />
+      <Misc />
+      <Mash />
+    </div>
+    <div className="info-column">
+      <Stats />
+      <StyleGuide />
+      <Notes />
+    </div>
+  </div>
+);
 
 RecipeEdit.propTypes = {
   updateHeader: React.PropTypes.func.isRequired,
@@ -67,7 +36,6 @@ RecipeEdit.propTypes = {
 
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
-  data: state.data,
 });
 
 export default connect(mapStateToProps)(RecipeEdit);
