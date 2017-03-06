@@ -2,10 +2,10 @@ import * as actions from '../actions/auth';
 
 const initialState = {
   authenticated: false,
+  error: '',
   email: '',
   loginPassword: '',
   signupPassword: '',
-  error: '',
 };
 
 const auth = (state = initialState, action) => {

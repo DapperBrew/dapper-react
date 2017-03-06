@@ -1,6 +1,9 @@
 import axios from 'axios';
 import history from '../history';
 
+// other actions
+import { setUserId } from './user';
+
 // action constants
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const UNAUTHENTICATE_USER = 'UNAUTHENTICATE_USER';
@@ -50,7 +53,8 @@ export const signInUser = ({ email, password }) => (
         // add token to local storage
         localStorage.setItem('token', res.data.token);
         // dispatch action
-        dispatch(authenticateUser(true));
+        dispatch(authenticateUser(true, res.data.id));
+        dispatch(setUserId(res.data.id));
         // redirect to application
         history.push('/');
       })
@@ -103,6 +107,10 @@ export const confirmAuth = () => (
       method: 'get',
       headers: { authorization: localStorage.getItem('token') },
     })
+      .then((res) => {
+        dispatch(authenticateUser(true));
+        dispatch(setUserId(res.data.payload.id));
+      })
       .catch(() => {
         dispatch(authenticateUser(false));
         history.push('/login');

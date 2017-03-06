@@ -128,6 +128,7 @@ export const fetchStyles = () => (
     dispatch(requestStyles());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/styles`,
+      headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'get',
       responseType: 'json',
@@ -146,6 +147,7 @@ const fetchFermentables = () => (
     dispatch(requestFermentables());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/fermentables`,
+      headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'get',
       responseType: 'json',
@@ -164,6 +166,7 @@ const fetchHops = () => (
     dispatch(requestHops());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/hops`,
+      headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'get',
       responseType: 'json',
@@ -182,6 +185,7 @@ const fetchYeasts = () => (
     dispatch(requestYeasts());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/yeasts`,
+      headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'get',
       responseType: 'json',
@@ -200,6 +204,7 @@ const fetchMisc = () => (
     dispatch(requestMisc());
     return axios({
       url: `${process.env.REACT_APP_API_URL}/miscs`,
+      headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'get',
       responseType: 'json',
