@@ -53,10 +53,10 @@ export const signInUser = ({ email, password }) => (
         // add token to local storage
         localStorage.setItem('token', res.data.token);
         // dispatch action
-        dispatch(authenticateUser(true, res.data.id));
+        dispatch(authenticateUser(true));
         dispatch(setUserId(res.data.id));
         // redirect to application
-        history.push('/');
+        setTimeout(() => { history.push('/'); }, 50);
       })
       .catch(() => {
         dispatch(authError('The username or password you entered is incorrect'));
@@ -69,7 +69,6 @@ export const signUpUser = ({ email, password }) => (
     axios({
       url: `${process.env.REACT_APP_API_URL}/users`,
       method: 'post',
-      responseType: 'json',
       data: {
         email,
         password,
@@ -80,8 +79,10 @@ export const signUpUser = ({ email, password }) => (
       localStorage.setItem('token', res.data.token);
       // dispatch action
       dispatch(authenticateUser(true));
+      dispatch(setUserId(res.data.id));
       // redirect to application
-      history.push('/');
+      setTimeout(() => { history.push('/'); }, 50);
+      // history.push('/');
     })
     .catch((res) => {
       dispatch(authError(res.response.data.error));
@@ -109,7 +110,7 @@ export const confirmAuth = () => (
     })
       .then((res) => {
         dispatch(authenticateUser(true));
-        dispatch(setUserId(res.data.payload.id));
+        dispatch(setUserId(res.data.id));
       })
       .catch(() => {
         dispatch(authenticateUser(false));
