@@ -12,23 +12,31 @@ import StyleGuide from './components/StyleGuide';
 import Notes from './components/Notes';
 import Mash from './components/Mash';
 
-const RecipeEdit = () => (
-  <div className="container">
-    <RecipeInfo />
-    <div className="input-column">
-      <Fermentables />
-      <Hops />
-      <Yeast />
-      <Misc />
-      <Mash />
-    </div>
-    <div className="info-column">
-      <Stats />
-      <StyleGuide />
-      <Notes />
-    </div>
-  </div>
-);
+class RecipeEdit extends React.Component {
+  componentWillMount() {
+    this.props.updateHeader('Create Recipe');
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <RecipeInfo />
+        <div className="input-column">
+          <Fermentables />
+          <Hops />
+          <Yeast />
+          <Misc />
+          <Mash />
+        </div>
+        <div className="info-column">
+          <Stats />
+          <StyleGuide />
+          <Notes />
+        </div>
+      </div>
+    );
+  }
+}
 
 RecipeEdit.propTypes = {
   updateHeader: React.PropTypes.func.isRequired,

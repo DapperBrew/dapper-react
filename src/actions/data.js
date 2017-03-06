@@ -137,7 +137,7 @@ export const fetchStyles = () => (
     .then(response => dispatch(receiveStyles(response)))
     .catch((response) => {
       dispatch(errorStyles(response.data));
-      console.error(response);
+      throw response;
     });
   }
 );
@@ -229,7 +229,7 @@ export const fetchData = () => (
       .then(() => dispatch(receiveData()))
       .catch((response) => {
         dispatch(errorData(response.data));
-        console.error(response);
+        throw response;
       });
   }
 );

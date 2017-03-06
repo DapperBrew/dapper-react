@@ -15,7 +15,6 @@ const data = (state = initialState, action) => {
       if (incoming) return { ...state, ...incoming };
       return {
         ...state,
-        ...action.payload.data,
       };
     case actions.DATA_SUCCESS:
       return {

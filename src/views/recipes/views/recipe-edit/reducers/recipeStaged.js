@@ -1,4 +1,5 @@
 import reject from 'lodash/reject';
+import { REHYDRATE } from 'redux-persist/constants';
 import * as recipeAction from '../actions/recipeStaged';
 
 const initialState = {
@@ -18,10 +19,17 @@ const initialState = {
   boilVolume: '7.38',
   trubChillerLoss: '.5',
   mashTemp: '',
+  recipeStaged: [],
 };
 
 const recipeEdit = (state = initialState, action) => {
   switch (action.type) {
+    case REHYDRATE:
+      var incoming = action.payload.recipeEdit; // eslint-disable-line
+      if (incoming) return { ...state, ...action.payload.recipeEdit.recipeStaged };
+      return {
+        ...state,
+      };
     case recipeAction.SET_STYLE:
       return {
         ...state,
