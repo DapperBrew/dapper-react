@@ -74,6 +74,7 @@ class RecipeList extends React.Component {
             placeholder="Filter..."
             onChange={this.handleSearchInput}
             value={this.state.recipeSearch}
+            autoFocus
           />
         </div>
         <ReactTable

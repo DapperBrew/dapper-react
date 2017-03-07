@@ -3172,6 +3172,19 @@ input[type="button"].button--block {
   display: block;
   margin: 35px auto 0; }
 
+.sidebar__button {
+  width: 160px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #fff;
+  border-color: #49b778; }
+  .sidebar__button:hover, .sidebar__button:focus {
+    background-color: #37895a;
+    border-color: #37895a;
+    color: #fff; }
+  .sidebar__button:focus {
+    background-color: transparent; }
+
 .header {
   z-index: 20;
   height: 72px;

@@ -29,6 +29,9 @@ const Sidebar = () => (
       <NavLink to="/settings" activeClassName="is-active">
         <SidebarNav sideIcon="settings-gear-64" sideName="Settings" />
       </NavLink>
+      <NavLink to="/recipes/add-new" activeClassName="is-active">
+        <button className="mt1 button button--secondary sidebar__button">New Recipe</button>
+      </NavLink>
     </ul>
   </div>
 );

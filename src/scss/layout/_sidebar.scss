@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 
 // variables
-$_sidebar-width: 200px;
+$_sidebar-width: $sidebar-width;
 $_bg-color: $gray-2;
 
 .sidebar {
@@ -19,4 +19,23 @@ $_bg-color: $gray-2;
   width: 120px;
   display: block;
   margin: 35px auto 0;
+}
+
+.sidebar__button {
+  width: ($_sidebar-width - 40);
+  margin-left: 20px;
+  margin-right: 20px;
+  color: $white;
+  border-color: $primary;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+    color: $white;
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
 }
