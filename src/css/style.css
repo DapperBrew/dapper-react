@@ -4,6 +4,7 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url(../../node_modules/react-table/react-table.css);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -1546,7 +1547,8 @@ h5,
 .h5,
 .form__label,
 .recipe-table__header,
-.ingredient-list__header-cell {
+.ingredient-list__header-cell,
+.ReactTable .rt-thead .rt-tr {
   font-size: 13.93728px;
   font-size: 0.87108rem;
   line-height: 1.5rem;
@@ -2574,7 +2576,7 @@ input[type="reset"].button--block,
 input[type="button"].button--block {
   width: 100%; }
 
-.card {
+.card, .rt-table, .ReactTable .-pagination {
   width: 100%;
   border-radius: 4px;
   background-color: #fff;
@@ -2582,7 +2584,10 @@ input[type="button"].button--block {
   margin-bottom: 15px;
   box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0; }
 
-.card--header {
+.card--header,
+.card--no-padding,
+.rt-table,
+.ReactTable .-pagination {
   padding: 0; }
 
 .card__header {
@@ -3085,6 +3090,68 @@ input[type="button"].button--block {
 .form__measure--mash {
   width: 40%; }
 
+.rt-thead.-headerGroups {
+  display: none; }
+
+.ReactTable {
+  border: 0; }
+
+.ReactTable .rt-thead.-header {
+  box-shadow: none;
+  background-color: #4e4f58;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px; }
+
+.ReactTable .rt-thead .rt-tr {
+  text-align: left;
+  color: #fff; }
+
+.ReactTable .rt-thead .rt-th,
+.ReactTable .rt-thead .rt-td,
+.ReactTable .rt-tbody .rt-th,
+.ReactTable .rt-tbody .rt-td {
+  border-right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0; }
+
+.rt-thead {
+  padding: 12px 20px; }
+
+.ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: solid 1px #eaeaeb;
+  padding: 0.75rem 20px; }
+  .ReactTable .rt-tbody .rt-tr-group:hover {
+    background-color: #f4f4f4; }
+
+.ReactTable .rt-thead .rt-th.-sort-desc {
+  box-shadow: inset 0 -3px 0 0 #fff; }
+
+.ReactTable .rt-thead .rt-th.-sort-asc {
+  box-shadow: inset 0 3px 0 0 #fff; }
+
+.ReactTable .-pagination {
+  padding: 10px 20px;
+  border: 0; }
+
+.button--table {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
+
+.button--table.button--secondary:hover {
+  background-color: #d5d5d7; }
+
+.recipe-search {
+  margin-bottom: 1.5rem; }
+
+.recipe-search input[type="search"] {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid #d5d5d7;
+  border-radius: 4px; }
+
 .main {
   min-height: 100vh;
   margin-left: 200px;
@@ -3214,23 +3281,3 @@ input[type="button"].button--block {
 .login__message {
   text-align: center;
   margin-top: 12px; }
-
-.test {
-  color: #fff;
-  background-color: #000;
-  border-radius: 3px;
-  height: 150px;
-  margin-bottom: calc(1.38889%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  font-weight: 600; }
-
-.button-example {
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  padding: 1.5rem;
-  border: solid #f7f7f9 4px;
-  margin-bottom: 20px; }

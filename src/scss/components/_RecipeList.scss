@@ -1,0 +1,99 @@
+// ----------------------------------------------------------------------------
+// Recipe List
+//
+// NOTES:
+// Currently this table uses react-table, so most of the styles are overriding
+// styles from the imported css
+// ----------------------------------------------------------------------------
+
+// import base styles
+@import '../../node_modules/react-table/react-table.css';
+
+.rt-thead.-headerGroups {
+  display: none;
+}
+
+.ReactTable {
+  border: 0;
+}
+
+.rt-table {
+  @extend .card;
+  @extend .card--no-padding;
+}
+
+.ReactTable .rt-thead.-header {
+  box-shadow: none;
+  background-color: $gray-4;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.ReactTable .rt-thead .rt-tr {
+  @extend .h5;
+  text-align: left;
+  color: $white;
+}
+
+.ReactTable .rt-thead .rt-th,
+.ReactTable .rt-thead .rt-td,
+.ReactTable .rt-tbody .rt-th,
+.ReactTable .rt-tbody .rt-td {
+  border-right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+}
+
+.rt-thead {
+  padding: 12px 20px;
+}
+
+.ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: solid 1px $gray-9;
+  padding: spacing(.5) 20px;
+  &:hover {
+    background-color: $gray-10;
+  }
+}
+
+.ReactTable .rt-thead .rt-th.-sort-desc {
+  box-shadow: inset 0 -3px 0 0 $white;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-asc {
+    box-shadow: inset 0 3px 0 0 $white;
+}
+
+.ReactTable .-pagination {
+  @extend .card;
+  @extend .card--no-padding;
+  padding: 10px 20px;
+  border: 0;
+}
+
+.button--table {
+  padding-left: spacing(1);
+  padding-right: spacing(1);
+}
+
+.button--table.button--secondary {
+  &:hover{
+    background-color: $gray-8;
+  }
+}
+
+// FILTER BOX
+
+.recipe-search {
+  margin-bottom: spacing(1);
+}
+
+.recipe-search input[type="search"] {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid $gray-8;
+  border-radius: 4px;
+}

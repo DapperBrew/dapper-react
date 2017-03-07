@@ -13,7 +13,8 @@ $_bg-color: #fff;
   box-shadow: rgba(23, 24, 30, 0.2) 0 1px 3px 0;
 }
 
-.card--header {
+.card--header,
+.card--no-padding {
   padding: 0;
 }
 

@@ -12,9 +12,12 @@ import StyleGuide from './components/StyleGuide';
 import Notes from './components/Notes';
 import Mash from './components/Mash';
 
+// actions
+import { updateHeader } from '../../../../actions/ui';
+
 class RecipeEdit extends React.Component {
   componentWillMount() {
-    this.props.updateHeader('Create Recipe');
+    this.props.dispatch(updateHeader('Create Recipe'));
   }
 
   render() {
@@ -39,7 +42,7 @@ class RecipeEdit extends React.Component {
 }
 
 RecipeEdit.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({

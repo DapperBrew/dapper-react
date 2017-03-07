@@ -6,7 +6,7 @@ import { updateHeader } from '../../actions/ui';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import Dashboard from '../../views/dashboard/Dashboard';
-import RecipeEdit from '../../views/recipes/views/recipe-edit';
+import Recipes from '../../views/recipes';
 import Calculators from '../../views/calculators/Calculators';
 import Brewlog from '../../views/brewlog/Brewlog';
 import Equipment from '../../views/equipment/Equipment';
@@ -29,7 +29,7 @@ class Content extends React.Component {
             />
             <Route
               path="/recipes"
-              render={() => (<RecipeEdit updateHeader={changeHeader} />)}
+              render={() => (<Recipes updateHeader={changeHeader} />)}
             />
             <Route
               path="/calculators"
