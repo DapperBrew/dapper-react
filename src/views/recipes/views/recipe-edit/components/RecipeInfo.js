@@ -85,7 +85,7 @@ class RecipeInfo extends React.Component {
             options={stylesDropdown}
             name="select-style"
             onChange={style => dispatch(actions.setStyle(style))}
-            value={recipeStaged.style}
+            value={recipeStaged.styleId}
           />
           <CardSelect
             side="right"

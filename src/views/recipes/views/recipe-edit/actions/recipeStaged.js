@@ -1,4 +1,4 @@
-import uniqueId from 'lodash/uniqueId';
+import uuid from 'uuid/v4';
 import isFinite from 'lodash/isFinite';
 import { hideModal, resetModal, ERROR_MODAL } from './modals';
 
@@ -32,12 +32,22 @@ export const ADD_MISC_ERROR = 'ADD_MISC_ERROR';
 export const REMOVE_MISC = 'REMOVE_MISC';
 export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
 export const SET_MASH_TEMP = 'SET_MASH_TEMP';
+export const RESET_STAGED = 'RESET_STAGED';
 
-
-export const setStyle = style => ({
-  type: SET_STYLE,
-  style,
+export const resetStaged = () => ({
+  type: RESET_STAGED,
 });
+
+export const setStyle = id => (
+  (dispatch, getState) => {
+    const style = getState().data.styles[id].name;
+    dispatch({
+      type: SET_STYLE,
+      style,
+      id,
+    });
+  }
+);
 
 export const setName = name => ({
   type: SET_NAME,
@@ -146,7 +156,7 @@ export const addFermentable = (
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
         fermentableName: currentFermentable.name,
-        key: uniqueId(),
+        key: uuid(),
         fermentableWeight,
         fermentableWeightUnit,
         fermentableColor,
@@ -229,7 +239,7 @@ export const addCustomFermentable = (
     } else {
       dispatch({
         type: ADD_FERMENTABLE_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         fermentableName,
         fermentableWeight,
         fermentableWeightUnit,
@@ -310,7 +320,7 @@ export const editFermentable = (
       dispatch({
         type: EDIT_FERMENTABLE_SUCCESS,
         itemIndex,
-        key: uniqueId(),
+        key: uuid(),
         fermentableName,
         fermentableWeight,
         fermentableWeightUnit,
@@ -384,7 +394,7 @@ export const addHop = (id, hopWeight, hopTime, hopStage, hopType, hopAlpha, rese
     } else {
       dispatch({
         type: ADD_HOP_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         hopName: currentHops.name,
         hopWeight,
         hopTime,
@@ -449,7 +459,7 @@ export const addCustomHop = (hopName, hopWeight, hopTime, hopStage, hopType, hop
     } else {
       dispatch({
         type: ADD_HOP_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         hopName,
         hopWeight,
         hopTime,
@@ -510,7 +520,7 @@ export const editHop = (itemIndex, hopName, hopWeight, hopTime, hopStage, hopTyp
       dispatch({
         type: EDIT_HOP_SUCCESS,
         itemIndex,
-        key: uniqueId(),
+        key: uuid(),
         hopName,
         hopWeight,
         hopTime,
@@ -580,7 +590,7 @@ export const addYeast = (id, yeastAttenuation, yeastMinTemp, yeastMaxTemp, reset
     } else {
       dispatch({
         type: ADD_YEAST_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         yeastName: currentYeast.name,
         yeastSupplier: currentYeast.supplier,
         yeastSupplierId: currentYeast.supplierId,
@@ -652,7 +662,7 @@ export const addCustomYeast = (
     } else {
       dispatch({
         type: ADD_YEAST_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         yeastName,
         yeastSupplier,
         yeastSupplierId,
@@ -714,7 +724,7 @@ export const editYeast = (
     } else {
       dispatch({
         type: EDIT_YEAST_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         itemIndex,
         yeastName,
         yeastSupplier,
@@ -781,7 +791,7 @@ export const addMisc = (
     } else {
       dispatch({
         type: ADD_MISC_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         miscName: currentMisc.name,
         miscAmount,
         miscAmountUnit,
@@ -841,7 +851,7 @@ export const addCustomMisc = (
     } else {
       dispatch({
         type: ADD_MISC_SUCCESS,
-        key: uniqueId(),
+        key: uuid(),
         miscName,
         miscAmount,
         miscAmountUnit,
@@ -899,7 +909,7 @@ export const editMisc = (
         type: EDIT_MISC_SUCCESS,
         itemIndex,
         miscName,
-        key: uniqueId(),
+        key: uuid(),
         miscAmount,
         miscAmountUnit,
         miscTime,

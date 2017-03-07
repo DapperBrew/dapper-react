@@ -191,7 +191,7 @@ StyleGuide.propTypes = {
 
 const mapStateToProps = state => ({
   styles: state.data.styles,
-  recipeStyle: state.recipeEdit.recipeStaged.style,
+  recipeStyle: state.recipeEdit.recipeStaged.styleId,
   recipeOG: getOriginalGravity(state),
   recipeFG: getFinalGravity(state),
   recipeABV: getABV(state),

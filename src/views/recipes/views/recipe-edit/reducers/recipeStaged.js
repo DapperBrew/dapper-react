@@ -19,7 +19,6 @@ const initialState = {
   boilVolume: '7.38',
   trubChillerLoss: '.5',
   mashTemp: '',
-  recipeStaged: [],
 };
 
 const recipeEdit = (state = initialState, action) => {
@@ -30,10 +29,15 @@ const recipeEdit = (state = initialState, action) => {
       return {
         ...state,
       };
+    case recipeAction.RESET_STAGED:
+      return {
+        ...initialState,
+      };
     case recipeAction.SET_STYLE:
       return {
         ...state,
         style: action.style,
+        styleId: action.id,
       };
     case recipeAction.SET_NAME:
       return {
@@ -103,7 +107,7 @@ const recipeEdit = (state = initialState, action) => {
             srm: action.fermentableColor,
             potential: action.fermentablePotential,
             maltster: action.fermentableMaltster,
-            type: action.fermentableType,
+            fermentableType: action.fermentableType,
             inMash: action.fermentableInMash,
             afterBoil: action.fermentableAfterBoil,
           },
@@ -122,7 +126,7 @@ const recipeEdit = (state = initialState, action) => {
               srm: action.fermentableColor,
               potential: action.fermentablePotential,
               maltster: action.fermentableMaltster,
-              type: action.fermentableType,
+              fermentableType: action.fermentableType,
               inMash: action.fermentableInMash,
               afterBoil: action.fermentableAfterBoil,
             }])
@@ -144,7 +148,7 @@ const recipeEdit = (state = initialState, action) => {
             weight: action.hopWeight,
             time: action.hopTime,
             stage: action.hopStage,
-            type: action.hopType,
+            hopType: action.hopType,
             alpha: action.hopAlpha,
           },
         ],
@@ -160,7 +164,7 @@ const recipeEdit = (state = initialState, action) => {
               weight: action.hopWeight,
               time: action.hopTime,
               stage: action.hopStage,
-              type: action.hopType,
+              hopType: action.hopType,
               alpha: action.hopAlpha,
             }])
               .concat(state.hops.slice(action.itemIndex + 1)),

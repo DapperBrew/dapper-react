@@ -17,7 +17,7 @@ const HopList = props => (
     {props.recipeHops.map((hop) => {
       const { dispatch, boilGravity, recipeStaged } = props;
       let adjust;
-      if (hop.type === 'pellet') {
+      if (hop.hopType === 'pellet') {
         adjust = 10;
       }
 

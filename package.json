@@ -40,6 +40,7 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
     "susy": "^2.2.12",
+    "uuid": "^3.0.1",
     "validator": "^7.0.0"
   },
   "scripts": {

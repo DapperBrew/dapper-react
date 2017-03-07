@@ -4,7 +4,7 @@ import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import matchSorter from 'match-sorter';
 
-import data from '../../../../data/recipes.json';
+import fakeRecipes from '../../../../data/recipes.json';
 
 // actions
 import { updateHeader } from '../../../../actions/ui';
@@ -64,7 +64,15 @@ class RecipeList extends React.Component {
   }
 
   render() {
-    const filteredData = matchSorter(data, this.state.recipeSearch, { keys: ['name', 'style', 'recipeType'] });
+    const recipes = Object.keys(this.props.recipes).map(key => this.props.recipes[key]);
+
+    // combine real and fake recipes
+    const result = [
+      ...recipes,
+      ...fakeRecipes,
+    ];
+
+    const filteredData = matchSorter(result, this.state.recipeSearch, { keys: ['name', 'style', 'recipeType'] });
     return (
       <div className="container">
         <div className="recipe-search">
@@ -89,10 +97,11 @@ class RecipeList extends React.Component {
 
 RecipeList.propTypes = {
   dispatch: React.PropTypes.func,
+  recipes: React.PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  data: state.data,
+  recipes: state.recipes,
 });
 
 export default connect(mapStateToProps)(RecipeList);
