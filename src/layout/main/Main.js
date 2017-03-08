@@ -23,7 +23,7 @@ class Main extends React.Component {
   }
 
   render() {
-    if (this.props.data.loaded) {
+    if (this.props.data.loaded && this.props.auth.authenticated) {
       return (
         <div className="app">
           <Sidebar />
@@ -40,10 +40,13 @@ Main.propTypes = {
   dispatch: React.PropTypes.func,
   data: React.PropTypes.object, // eslint-disable-line
   loaded: React.PropTypes.bool,
+  auth: React.PropTypes.object,
+  authenticated: React.PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   data: state.data,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(Main);
