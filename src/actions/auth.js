@@ -2,7 +2,9 @@ import axios from 'axios';
 import history from '../history';
 
 // other actions
-import { setUserId } from './user';
+import { setUserId, clearUser } from './user';
+import { clearRecipes } from '../views/recipes/actions/recipes';
+import { clearFlags } from './flags';
 
 // action constants
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -97,7 +99,10 @@ export const signOutUser = () => (
     // redirect to login screen
     history.push('/login');
     // dispatch action
-    dispatch({ type: UNAUTHENTICATE_USER });
+    dispatch(authenticateUser());
+    dispatch(clearUser());
+    dispatch(clearRecipes());
+    dispatch(clearFlags());
   }
 );
 

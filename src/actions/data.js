@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { normalize } from 'normalizr';
-import { REHYDRATE } from 'redux-persist/constants';
 import * as schema from './schemas';
 
 // action constants
@@ -28,10 +27,6 @@ export const YEASTS_ERROR = 'YEASTS_ERROR';
 export const MISC_REQUEST = 'MISC_REQUEST';
 export const MISC_SUCCESS = 'MISC_SUCCESS';
 export const MISC_ERROR = 'MISC_ERROR';
-
-export const requestLocalData = () => ({
-  type: REHYDRATE,
-});
 
 export const requestData = () => ({
   type: DATA_REQUEST,
@@ -137,7 +132,7 @@ export const fetchStyles = () => (
     .then(response => dispatch(receiveStyles(response)))
     .catch((response) => {
       dispatch(errorStyles(response.data));
-      throw response;
+      console.error(response);
     });
   }
 );
@@ -156,7 +151,7 @@ const fetchFermentables = () => (
       .then(response => dispatch(receiveFermentables(response)))
       .catch((response) => {
         dispatch(errorFermentables(response.data));
-        throw response;
+        console.error(response);
       });
   }
 );
@@ -175,7 +170,7 @@ const fetchHops = () => (
       .then(response => dispatch(receiveHops(response)))
       .catch((response) => {
         dispatch(errorHops(response.data));
-        throw response;
+        console.error(response);
       });
   }
 );
@@ -194,7 +189,7 @@ const fetchYeasts = () => (
       .then(response => dispatch(receiveYeasts(response)))
       .catch((response) => {
         dispatch(errorYeasts(response.data));
-        throw response;
+        console.error(response);
       });
   }
 );
@@ -213,7 +208,7 @@ const fetchMisc = () => (
       .then(response => dispatch(receiveMisc(response)))
       .catch((response) => {
         dispatch(errorMisc(response.data));
-        throw response;
+        console.error(response);
       });
   }
 );
@@ -229,7 +224,7 @@ export const fetchData = () => (
       .then(() => dispatch(receiveData()))
       .catch((response) => {
         dispatch(errorData(response.data));
-        throw response;
+        console.error(response);
       });
   }
 );

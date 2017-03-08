@@ -9,6 +9,8 @@ const user = (state = initialState, action) => {
         ...state,
         id: action.id,
       };
+    case actions.CLEAR_USER:
+      return initialState;
     default:
       return state;
   }

@@ -4,10 +4,9 @@ import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import matchSorter from 'match-sorter';
 
-import fakeRecipes from '../../../../data/recipes.json';
-
 // actions
 import { updateHeader } from '../../../../actions/ui';
+import { fetchRecipes } from '../../actions/recipes';
 
 const columns = [
   {
@@ -57,6 +56,10 @@ class RecipeList extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(updateHeader('Recipes'));
+
+    if (this.props.flags.recipesLoaded === false) {
+      this.props.dispatch(fetchRecipes());
+    }
   }
 
   handleSearchInput = (e) => {
@@ -65,14 +68,8 @@ class RecipeList extends React.Component {
 
   render() {
     const recipes = Object.keys(this.props.recipes).map(key => this.props.recipes[key]);
+    const filteredData = matchSorter(recipes.reverse(), this.state.recipeSearch, { keys: ['name', 'style', 'recipeType'] });
 
-    // combine real and fake recipes
-    const result = [
-      ...recipes,
-      ...fakeRecipes,
-    ];
-
-    const filteredData = matchSorter(result, this.state.recipeSearch, { keys: ['name', 'style', 'recipeType'] });
     return (
       <div className="container">
         <div className="recipe-search">
@@ -97,11 +94,15 @@ class RecipeList extends React.Component {
 
 RecipeList.propTypes = {
   dispatch: React.PropTypes.func,
-  recipes: React.PropTypes.array,
+  recipes: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.array,
+  ]),
 };
 
 const mapStateToProps = state => ({
   recipes: state.recipes,
+  flags: state.flags,
 });
 
 export default connect(mapStateToProps)(RecipeList);

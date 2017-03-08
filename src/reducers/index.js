@@ -7,6 +7,7 @@ import auth from './auth';
 import user from './user';
 import recipeEdit from '../views/recipes/views/recipe-edit/reducers/index';
 import recipes from '../views/recipes/reducers/recipes';
+import flags from './flags';
 
 const rootReducer = combineReducers({
   ui,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   auth,
   user,
   recipes,
+  flags,
   form: formReducer,
 });
 
