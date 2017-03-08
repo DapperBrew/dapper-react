@@ -37,7 +37,7 @@ const columns = [
       render: recipe => (
         <div>
           <button className="button button--table button--primary button--small">Brew</button>
-          <Link to={`/recipes/${recipe.row.id}`}>
+          <Link to={`/recipes/${recipe.row._id}/edit`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
         </div>

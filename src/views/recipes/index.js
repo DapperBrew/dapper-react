@@ -23,6 +23,11 @@ class Recipes extends React.Component {
           path="/recipes/add-new"
           component={RecipeEdit}
         />
+        <Route
+          exact
+          path="/recipes/:recipeId/edit"
+          component={RecipeEdit}
+        />
       </Switch>
     );
   }

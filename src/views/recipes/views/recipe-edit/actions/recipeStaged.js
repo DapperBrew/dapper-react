@@ -2,6 +2,7 @@ import uuid from 'uuid/v4';
 import isFinite from 'lodash/isFinite';
 import { hideModal, resetModal, ERROR_MODAL } from './modals';
 
+// external actions
 
 // action types
 export const SET_STYLE = 'SET_STYLE';
@@ -33,9 +34,15 @@ export const REMOVE_MISC = 'REMOVE_MISC';
 export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
 export const SET_MASH_TEMP = 'SET_MASH_TEMP';
 export const RESET_STAGED = 'RESET_STAGED';
+export const LOAD_STAGED = 'LOAD_STAGED';
 
 export const resetStaged = () => ({
   type: RESET_STAGED,
+});
+
+export const loadStaged = recipe => ({
+  type: LOAD_STAGED,
+  recipe,
 });
 
 export const setStyle = id => (

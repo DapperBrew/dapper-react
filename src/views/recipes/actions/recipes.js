@@ -2,7 +2,7 @@ import axios from 'axios';
 import history from '../../../history';
 
 // import outside actions
-import { resetStaged } from '../views/recipe-edit/actions/recipeStaged';
+import { resetStaged, loadStaged } from '../views/recipe-edit/actions/recipeStaged';
 
 // constants
 export const SAVE_RECIPE_REQUEST = 'SAVE_RECIPE_REQUEST';
@@ -13,10 +13,32 @@ export const RECIPES_REQUEST = 'RECIPES_REQUEST';
 export const RECIPES_SUCCESS = 'RECIPES_SUCCESS';
 export const RECIPES_ERROR = 'RECIPES_ERROR';
 
+export const SINGLE_RECIPE_REQUEST = 'SINGLE_RECIPE_REQUEST';
+export const SINGLE_RECIPE_SUCCESS = 'SINGLE_RECIPE_SUCCESS';
+export const SINGLE_RECIPE_ERROR = 'SINGLE_RECIPE_ERROR';
+
+export const EDIT_RECIPE_REQUEST = 'EDIT_RECIPE_REQUEST';
+export const EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS';
+export const EDIT_RECIPE_ERROR = 'EDIT_RECIPE_ERROR';
+
 export const CLEAR_RECIPES = 'CLEAR_RECIPES';
 
 export const clearRecipes = () => ({
   type: CLEAR_RECIPES,
+});
+
+export const requestEditRecipe = () => ({
+  type: EDIT_RECIPE_REQUEST,
+});
+
+export const successEditRecipe = recipes => ({
+  type: EDIT_RECIPE_SUCCESS,
+  recipes,
+});
+
+export const errorEditRecipe = error => ({
+  type: EDIT_RECIPE_ERROR,
+  error,
 });
 
 export const requestRecipes = () => ({
@@ -33,6 +55,19 @@ export const errorRecipes = error => ({
   error,
 });
 
+export const requestSingleRecipe = () => ({
+  type: SINGLE_RECIPE_REQUEST,
+});
+
+export const receiveSingleRecipe = () => ({
+  type: SINGLE_RECIPE_SUCCESS,
+});
+
+export const errorSingleRecipe = error => ({
+  type: SINGLE_RECIPE_ERROR,
+  error,
+});
+
 export const fetchRecipes = () => (
   (dispatch, getState) => {
     const userId = getState().user.id;
@@ -45,6 +80,50 @@ export const fetchRecipes = () => (
       responseType: 'json',
     })
       .then(response => dispatch(receiveRecipes(response.data)))
+      .catch((err) => {
+        dispatch(errorRecipes(err));
+        console.error(err);
+      });
+  }
+);
+
+export const sendRecipeEdit = (recipeId, recipe) => (
+  (dispatch) => {
+    dispatch(requestEditRecipe());
+    return axios({
+      url: `${process.env.REACT_APP_API_URL}/recipes/${recipeId}/recipes`,
+      headers: { authorization: localStorage.getItem('token') },
+      timeout: 20000,
+      method: 'put',
+      data: {
+        recipeId,
+        ...recipe,
+      },
+    })
+      .then((res) => {
+        dispatch(successEditRecipe(res.data.recipe));
+        dispatch(resetStaged());
+        history.push(('/recipes'));
+      })
+      .catch((response) => {
+        dispatch(errorEditRecipe(response.data));
+        throw response;
+      });
+  }
+);
+
+export const fetchSingleRecipe = recipeId => (
+  (dispatch) => {
+    dispatch(requestSingleRecipe());
+    return axios({
+      url: `${process.env.REACT_APP_API_URL}/recipes/${recipeId}`,
+      headers: { authorization: localStorage.getItem('token') },
+      timeout: 20000,
+      method: 'get',
+      responseType: 'json',
+    })
+      .then(response => dispatch(loadStaged(response.data)))
+      .then(dispatch(receiveSingleRecipe()))
       .catch((err) => {
         dispatch(errorRecipes(err));
         console.error(err);

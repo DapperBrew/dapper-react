@@ -14,12 +14,21 @@ import Mash from './components/Mash';
 
 // actions
 import { updateHeader } from '../../../../actions/ui';
-import { saveRecipe } from '../../actions/recipes';
+import { saveRecipe, fetchSingleRecipe } from '../../actions/recipes';
 import { resetStaged } from '.././recipe-edit/actions/recipeStaged';
 
 class RecipeEdit extends React.Component {
   componentWillMount() {
-    this.props.dispatch(updateHeader('Create Recipe'));
+    const path = this.props.match.path;
+    const recipeId = this.props.match.params.recipeId;
+
+    if (path === '/recipes/:recipeId/edit') {
+      this.props.dispatch(updateHeader('Edit Recipe'));
+      this.props.dispatch(fetchSingleRecipe(recipeId));
+    } else {
+      this.props.dispatch(updateHeader('Create Recipe'));
+    }
+
   }
 
   handleSaveRecipe = () => {
@@ -61,6 +70,7 @@ RecipeEdit.propTypes = {
 const mapStateToProps = state => ({
   modal: state.recipeEdit.modals,
   recipeStaged: state.recipeEdit.recipeStaged,
+  recipes: state.recipes,
 });
 
 export default connect(mapStateToProps)(RecipeEdit);

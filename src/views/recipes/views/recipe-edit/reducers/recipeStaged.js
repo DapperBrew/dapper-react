@@ -33,6 +33,11 @@ const recipeEdit = (state = initialState, action) => {
       return {
         ...initialState,
       };
+    case recipeAction.LOAD_STAGED:
+      return {
+        ...state,
+        ...action.recipe,
+      };
     case recipeAction.SET_STYLE:
       return {
         ...state,
