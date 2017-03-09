@@ -38,6 +38,11 @@ const recipeEdit = (state = initialState, action) => {
         ...state,
         ...action.recipe,
       };
+    case recipeAction.SET_STAGED_MODE:
+      return {
+        ...state,
+        mode: action.stagedMode,
+      };
     case recipeAction.SET_STYLE:
       return {
         ...state,

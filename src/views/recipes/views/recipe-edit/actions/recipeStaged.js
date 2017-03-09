@@ -35,6 +35,12 @@ export const SET_RECIPE_NOTES = 'SET_RECIPE_NOTES';
 export const SET_MASH_TEMP = 'SET_MASH_TEMP';
 export const RESET_STAGED = 'RESET_STAGED';
 export const LOAD_STAGED = 'LOAD_STAGED';
+export const SET_STAGED_MODE = 'SET_STAGED_MODE';
+
+export const setStagedMode = stagedMode => ({
+  type: SET_STAGED_MODE,
+  stagedMode,
+});
 
 export const resetStaged = () => ({
   type: RESET_STAGED,

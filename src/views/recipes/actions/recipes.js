@@ -1,4 +1,5 @@
 import axios from 'axios';
+import omit from 'lodash/omit';
 import history from '../../../history';
 
 // import outside actions
@@ -31,9 +32,10 @@ export const requestEditRecipe = () => ({
   type: EDIT_RECIPE_REQUEST,
 });
 
-export const successEditRecipe = recipes => ({
+export const successEditRecipe = (recipe, itemIndex) => ({
   type: EDIT_RECIPE_SUCCESS,
-  recipes,
+  recipe,
+  itemIndex,
 });
 
 export const errorEditRecipe = error => ({
@@ -87,27 +89,28 @@ export const fetchRecipes = () => (
   }
 );
 
-export const sendRecipeEdit = (recipeId, recipe) => (
+export const editRecipe = (recipeId, recipe, itemIndex) => (
   (dispatch) => {
     dispatch(requestEditRecipe());
+    const recipeSansId = omit(recipe, '_id');
     return axios({
-      url: `${process.env.REACT_APP_API_URL}/recipes/${recipeId}/recipes`,
+      url: `${process.env.REACT_APP_API_URL}/recipes/${recipeId}`,
       headers: { authorization: localStorage.getItem('token') },
       timeout: 20000,
       method: 'put',
       data: {
         recipeId,
-        ...recipe,
+        recipeSansId,
       },
     })
       .then((res) => {
-        dispatch(successEditRecipe(res.data.recipe));
+        dispatch(successEditRecipe(recipe, itemIndex));
         dispatch(resetStaged());
         history.push(('/recipes'));
       })
-      .catch((response) => {
-        dispatch(errorEditRecipe(response.data));
-        throw response;
+      .catch((err) => {
+        dispatch(errorRecipes(err));
+        console.error(err);
       });
   }
 );
