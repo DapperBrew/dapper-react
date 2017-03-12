@@ -1,5 +1,4 @@
 import axios from 'axios';
-import omit from 'lodash/omit';
 import history from '../../../history';
 
 // import outside actions
@@ -92,7 +91,6 @@ export const fetchRecipes = () => (
 export const editRecipe = (recipeId, recipe, itemIndex) => (
   (dispatch) => {
     dispatch(requestEditRecipe());
-    const recipeSansId = omit(recipe, '_id');
     return axios({
       url: `${process.env.REACT_APP_API_URL}/recipes/${recipeId}`,
       headers: { authorization: localStorage.getItem('token') },
@@ -100,10 +98,10 @@ export const editRecipe = (recipeId, recipe, itemIndex) => (
       method: 'put',
       data: {
         recipeId,
-        recipeSansId,
+        recipe,
       },
     })
-      .then((res) => {
+      .then(() => {
         dispatch(successEditRecipe(recipe, itemIndex));
         dispatch(resetStaged());
         history.push(('/recipes'));

@@ -7,7 +7,7 @@ const recipeEdit = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE:
       var incoming = action.payload.recipes; // eslint-disable-line
-      if (incoming) return { ...state, ...action.payload.recipes };
+      if (incoming) return [{ ...state, ...action.payload.recipes }];
       return {
         ...state,
       };

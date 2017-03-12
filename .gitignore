@@ -12,4 +12,6 @@ build
 # misc
 .DS_Store
 .env
+app.yaml
 npm-debug.log
+/haters

@@ -2,6 +2,9 @@
   "name": "dapper-react",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "7.7.1"
+  },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "concurrently": "^3.3.0",
@@ -11,11 +14,11 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "gh-pages": "^0.12.0",
-    "node-sass": "^4.1.0",
-    "normalize.scss": "^0.1.0",
-    "react-scripts": "0.9.0"
+    "node-sass": "^4.1.0"
   },
   "dependencies": {
+    "normalize.scss": "^0.1.0",
+    "react-scripts": "0.9.0",
     "axios": "^0.15.3",
     "classnames": "^2.2.5",
     "dapper-calc": "github:dapperbrew/DapperCalc",
@@ -50,7 +53,7 @@
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",
     "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css",
-    "deploy": "git push heroku master",
+    "deploy": "npm run build && firebase deploy",
     "test": "./node_modules/.bin/eslint src"
   }
 }
