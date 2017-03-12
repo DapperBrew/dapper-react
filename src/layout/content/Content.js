@@ -7,7 +7,7 @@ import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import Dashboard from '../../views/dashboard/Dashboard';
 import Recipes from '../../views/recipes';
-import Calculators from '../../views/calculators/Calculators';
+import Calculators from '../../views/calculators';
 import Brewlog from '../../views/brewlog/Brewlog';
 import Equipment from '../../views/equipment/Equipment';
 import Settings from '../../views/settings/Settings';

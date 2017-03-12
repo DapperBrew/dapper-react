@@ -1,0 +1,80 @@
+// ----------------------------------------------------------------------------
+// Calculator List
+// ----------------------------------------------------------------------------
+
+.calc-list {
+  @include span(6);
+}
+
+.calc-list__title {
+  padding: 20px 20px spacing(.5);
+  margin: 0;
+}
+
+.calc-list__list {
+  padding: 0;
+  margin: 0;
+}
+
+.calc-list__item {
+  @extend .clearfix;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid $gray-8;
+  font-weight: 600;
+  transition: background-color $base-time $base-ease;
+  color: $gray-5;
+
+  &:hover {
+    background-color: $primary-lightest;
+  }
+}
+
+.calc-list__text-wrap {
+  float: left;
+  padding: spacing(.5) 20px;
+
+}
+
+.calc-list__item:hover {
+  .calc-list__button-wrap {
+    display: block;
+  }
+}
+
+.calc-list__button-wrap {
+  float: right;
+  padding: spacing(.5) 20px;
+  display: none;
+  transition: display $base-time $base-ease;
+}
+
+.calc-icon {
+  display: inline-block;
+  color: $gray-6;
+  height: 22px;
+  width: 22px;
+  stroke-width: 4px;
+  stroke: currentColor;
+  vertical-align: middle;
+  fill: none;
+  margin-left: 10px;
+}
+
+
+.calc-desc {
+  @include span(6);
+}
+
+.calc-desc__title {
+  padding: 20px 20px spacing(.5);
+  color: $white;
+  background-color: $gray-4;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0;
+}
+
+.calc-desc__body {
+  padding: 20px;
+}

@@ -98,6 +98,8 @@ RecipeList.propTypes = {
     React.PropTypes.object,
     React.PropTypes.array,
   ]),
+  flags: React.PropTypes.object,
+
 };
 
 const mapStateToProps = state => ({

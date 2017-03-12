@@ -776,7 +776,7 @@ Takes a few variables and creates a new button style
 @param {color-hover} color of text on hover (default: $white)
 @param {border-hover} color of border on hover (default: $background-hover)
 */
-.clearfix:after {
+.clearfix:after, .calc-list__item:after {
   content: "";
   display: table;
   clear: both; }
@@ -3151,6 +3151,71 @@ input[type="button"].button--block {
   box-sizing: border-box;
   border: 2px solid #d5d5d7;
   border-radius: 4px; }
+
+.calc-list {
+  width: 48.61111%;
+  float: left;
+  margin-left: 0.69444%;
+  margin-right: 0.69444%; }
+
+.calc-list__title {
+  padding: 20px 20px 0.75rem;
+  margin: 0; }
+
+.calc-list__list {
+  padding: 0;
+  margin: 0; }
+
+.calc-list__item {
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid #d5d5d7;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  color: #72727a; }
+  .calc-list__item:hover {
+    background-color: #d3eedf; }
+
+.calc-list__text-wrap {
+  float: left;
+  padding: 0.75rem 20px; }
+
+.calc-list__item:hover .calc-list__button-wrap {
+  display: block; }
+
+.calc-list__button-wrap {
+  float: right;
+  padding: 0.75rem 20px;
+  display: none;
+  transition: display 0.3s ease; }
+
+.calc-icon {
+  display: inline-block;
+  color: #95959b;
+  height: 22px;
+  width: 22px;
+  stroke-width: 4px;
+  stroke: currentColor;
+  vertical-align: middle;
+  fill: none;
+  margin-left: 10px; }
+
+.calc-desc {
+  width: 48.61111%;
+  float: left;
+  margin-left: 0.69444%;
+  margin-right: 0.69444%; }
+
+.calc-desc__title {
+  padding: 20px 20px 0.75rem;
+  color: #fff;
+  background-color: #4e4f58;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0; }
+
+.calc-desc__body {
+  padding: 20px; }
 
 .main {
   min-height: 100vh;
