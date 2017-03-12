@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Components
 import RecipeList from './views/recipe-list';
 import RecipeEdit from './views/recipe-edit';
+import NotFound from '../../views/not-found/NotFound';
 
 class Recipes extends React.Component {
   componentWillMount() {
@@ -28,6 +29,7 @@ class Recipes extends React.Component {
           path="/recipes/:recipeId/edit"
           component={RecipeEdit}
         />
+        <Route component={NotFound} />
       </Switch>
     );
   }

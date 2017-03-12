@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+// actions
+import { updateHeader } from '../../actions/ui';
 
 class NotFound extends React.Component {
 
   componentWillMount() {
-    this.props.updateHeader('');
+    this.props.dispatch(updateHeader('Whelp...'));
   }
 
   render() {
@@ -18,7 +22,7 @@ class NotFound extends React.Component {
 }
 
 NotFound.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
 };
 
-export default NotFound;
+export default connect()(NotFound);

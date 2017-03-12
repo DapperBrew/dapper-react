@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 // Components
 import Abv from './components/Abv';
 import CalcList from './components/CalcList';
+import NotFound from '../../views/not-found/NotFound';
 
 
 class Calculators extends React.Component {
@@ -26,6 +27,7 @@ class Calculators extends React.Component {
           path="/calculators/abv"
           component={Abv}
         />
+        <Route component={NotFound} />
       </Switch>
     );
   }
