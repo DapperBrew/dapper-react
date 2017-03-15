@@ -1,5 +1,5 @@
 import { REHYDRATE } from 'redux-persist/constants';
-import * as actions from '../actions/equipment';
+// import * as actions from '../actions/equipment';
 
 const initialState = [];
 

@@ -75,7 +75,9 @@ class MiscModalInput extends React.Component {
       customInfoName = (
         <div className="misc-custom-input">
           <div className="misc-form-group--name">
-            <label htmlFor="name" className="form__label">Name</label>
+            <div className="form__label-wrap">
+              <label htmlFor="name" className="form__label">Name</label>
+            </div>
             <input
               id="name"
               type="text"
@@ -98,7 +100,9 @@ class MiscModalInput extends React.Component {
         {customInfoName}
         <div className="misc-modal-input">
           <div className="misc-form-group">
-            <label htmlFor="misc-amount" className="form__label">Amount</label>
+            <div className="form__label-wrap">
+              <label htmlFor="misc-amount" className="form__label">Amount</label>
+            </div>
             <input
               id="misc-amount"
               type="text"
@@ -146,7 +150,9 @@ class MiscModalInput extends React.Component {
             />
           </div>
           <div className="misc-form-group">
-            <label htmlFor="misc-amount" className="form__label">Time</label>
+            <div className="form__label-wrap">
+              <label htmlFor="misc-amount" className="form__label">Time</label>
+            </div>
             <input
               id="misc-time"
               type="text"

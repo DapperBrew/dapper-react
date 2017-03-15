@@ -87,7 +87,9 @@ class HopModalInput extends React.Component {
         {customInfoName}
         <div className="hop-modal-input">
           <div className="hop-form-group">
-            <label htmlFor="weight" className="form__label">Weight</label>
+            <div className="form__label-wrap">
+              <label htmlFor="weight" className="form__label">Weight</label>
+            </div>
             <input
               id="weight"
               type="text"
@@ -132,7 +134,9 @@ class HopModalInput extends React.Component {
             />
           </div>
           <div className="hop-form-group">
-            <label htmlFor="time" className="form__label">Time</label>
+            <div className="form__label-wrap">
+              <label htmlFor="time" className="form__label">Time</label>
+            </div>
             <input
               id="time"
               type="text"

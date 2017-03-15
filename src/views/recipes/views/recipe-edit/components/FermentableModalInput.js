@@ -149,7 +149,9 @@ class FermentableModalInput extends React.Component {
         {customInfoName}
         <div className="fermentable-modal-input">
           <div className="fermentable-form-group">
-            <label htmlFor="weight" className="form__label">Weight</label>
+            <div className="form__label-wrap">
+              <label htmlFor="weight" className="form__label">Weight</label>
+            </div>
             <input
               id="weight"
               type="text"

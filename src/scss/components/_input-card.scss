@@ -6,7 +6,7 @@
   margin-bottom: spacing(1);
 }
 
-.form-group--full{
+.form-group--full {
   @include span(full);
 }
 
@@ -44,4 +44,15 @@
 .form-group--inside-right {
   padding-right: 0;
   padding-left: 10px;
+}
+
+.question-icon {
+  display: inline-block;
+  color: $white;
+  height: 16px;
+  width: 16px;
+  stroke: currentColor;
+  vertical-align: middle;
+  fill: $gray-6;
+  margin-left: 6px;
 }
