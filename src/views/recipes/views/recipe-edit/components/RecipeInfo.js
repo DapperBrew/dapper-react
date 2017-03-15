@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 
 // Components
 import Card from '../../../../../components/Card';
-import Input from '../components/Input';
-import InputHalf from '../components/InputHalf';
-import CardSelect from '../components/Select';
-import InputSelect from '../components/InputSelect';
+import Input from '../../../../../components/Input';
+import CardSelect from '../../../../../components/Select';
+import InputSelect from '../../../../../components/InputSelect';
 
 // Selectors
 import { getStylesObject } from '../selectors/recipeEdit';
@@ -32,9 +31,10 @@ class RecipeInfo extends React.Component {
   }
 
   batchVolumeInput = () => (
-    <InputHalf
+    <Input
       side="right"
       inside="left"
+      inputWidth="quarter"
       id="batch-size"
       label="Batch Size"
       measurement="gal"
@@ -45,9 +45,10 @@ class RecipeInfo extends React.Component {
   )
 
   postBoilInput = () => (
-    <InputHalf
+    <Input
       side="right"
       inside="left"
+      inputWidth="quarter"
       id="batch-size"
       label="Post-Boil Volume"
       measurement="gal"
@@ -65,6 +66,7 @@ class RecipeInfo extends React.Component {
         <Card cardTitle="Recipe Info">
           <Input
             side="left"
+            inputWidth="half"
             id="recipe-name"
             label="Recipe Name"
             placeholder="ex: Hop Pun"
@@ -73,6 +75,7 @@ class RecipeInfo extends React.Component {
           />
           <CardSelect
             side="right"
+            inputWidth="half"
             label="Recipe Type"
             options={type}
             name="select-type"
@@ -81,6 +84,7 @@ class RecipeInfo extends React.Component {
           />
           <CardSelect
             side="left"
+            inputWidth="half"
             label="Recipe Style"
             options={stylesDropdown}
             name="select-style"
@@ -89,6 +93,7 @@ class RecipeInfo extends React.Component {
           />
           <CardSelect
             side="right"
+            inputWidth="half"
             label="Equipment Profile"
             options={[{ label: 'Default', value: 'default' }]}
             name="select-profile"
@@ -110,9 +115,10 @@ class RecipeInfo extends React.Component {
 
           {efficiencyType === 'brewhouse' ? this.batchVolumeInput() : this.postBoilInput()}
 
-          <InputHalf
+          <Input
             side="left"
             inside="right"
+            inputWidth="quarter"
             id="boil-time"
             label="Boil Time"
             placeholder="ex: 60"

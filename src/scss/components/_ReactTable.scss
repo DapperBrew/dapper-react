@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// Recipe List
+// React Table
 //
 // NOTES:
 // Currently this table uses react-table, so most of the styles are overriding
@@ -53,6 +53,7 @@
 .ReactTable .rt-tbody .rt-tr-group {
   border-bottom: solid 1px $gray-9;
   padding: spacing(.5) 20px;
+
   &:hover {
     background-color: $gray-10;
   }
@@ -63,7 +64,7 @@
 }
 
 .ReactTable .rt-thead .rt-th.-sort-asc {
-    box-shadow: inset 0 3px 0 0 $white;
+  box-shadow: inset 0 3px 0 0 $white;
 }
 
 .ReactTable .-pagination {
@@ -79,21 +80,8 @@
 }
 
 .button--table.button--secondary {
-  &:hover{
+
+  &:hover {
     background-color: $gray-8;
   }
-}
-
-// FILTER BOX
-
-.recipe-search {
-  margin-bottom: spacing(1);
-}
-
-.recipe-search input[type="search"] {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  border: 2px solid $gray-8;
-  border-radius: 4px;
 }

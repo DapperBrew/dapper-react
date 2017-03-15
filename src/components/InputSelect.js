@@ -7,8 +7,10 @@ import classNames from 'classnames';
 
 const InputSelect = props => (
   <div>
-    <div className={`form-group form-group--${props.side}`}>
-      <label htmlFor={props.id} className="form__label">{props.label}</label>
+    <div className={`form-group form-group--half form-group--${props.side}`}>
+      <div className="form__label-wrap">
+        <label htmlFor={props.id} className="form__label">{props.label}</label>
+      </div>
       <input
         id={props.id}
         type="text"

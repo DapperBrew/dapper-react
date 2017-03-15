@@ -3,16 +3,22 @@
 // ----------------------------------------------------------------------------
 
 .form-group {
+  margin-bottom: spacing(1);
+}
+
+.form-group--full{
+  @include span(full);
+}
+
+.form-group--half {
   @include span(6 inside no-gutters);
-  margin-bottom: spacing(1);
 }
 
-.form-group--half {
+.form-group--quarter {
   @include span(3 inside no-gutters);
-  margin-bottom: spacing(1);
 }
 
-.form-group--half {
+.form-group--quarter {
   .form__input--measure {
     width: 80%;
   }

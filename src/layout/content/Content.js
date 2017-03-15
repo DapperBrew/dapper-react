@@ -9,7 +9,7 @@ import Dashboard from '../../views/dashboard/Dashboard';
 import Recipes from '../../views/recipes';
 import Calculators from '../../views/calculators';
 import Brewlog from '../../views/brewlog/Brewlog';
-import Equipment from '../../views/equipment/Equipment';
+import Equipment from '../../views/equipment';
 import Settings from '../../views/settings/Settings';
 import NotFound from '../../views/not-found/NotFound';
 

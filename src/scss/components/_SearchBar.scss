@@ -1,0 +1,15 @@
+// ----------------------------------------------------------------------------
+// Search Bar
+// ----------------------------------------------------------------------------
+
+.search-bar {
+  margin-bottom: spacing(1);
+}
+
+.search-bar input[type="search"] {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid $gray-8;
+  border-radius: 4px;
+}

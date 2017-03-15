@@ -6,7 +6,7 @@ import matchSorter from 'match-sorter';
 
 // actions
 import { updateHeader } from '../../../../actions/ui';
-import { fetchRecipes } from '../../actions/recipes';
+import { fetchEquipment } from '../../actions/equipment';
 
 const columns = [
   {
@@ -17,15 +17,14 @@ const columns = [
   },
   {
     columns: [{
-      header: 'Style',
-      accessor: 'style',
+      header: 'Batch Volume',
+      accessor: 'volume',
     }],
   },
   {
     columns: [{
-      header: 'Recipe Type',
-      accessor: 'recipeType',
-      maxWidth: 200,
+      header: 'Efficiency',
+      accessor: 'efficiency',
     }],
   },
   {
@@ -36,7 +35,6 @@ const columns = [
       maxWidth: 200,
       render: recipe => (
         <div>
-          <button className="button button--table button--primary button--small">Brew</button>
           <Link to={`/recipes/${recipe.row._id}/edit`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
@@ -46,19 +44,19 @@ const columns = [
   },
 ];
 
-class RecipeList extends React.Component {
+class EquipmentList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipeSearch: '',
+      equipmentSearch: '',
     };
   }
 
   componentWillMount() {
-    this.props.dispatch(updateHeader('Recipes'));
+    this.props.dispatch(updateHeader('Equipment'));
 
-    if (this.props.flags.recipesLoaded === false) {
-      this.props.dispatch(fetchRecipes());
+    if (this.props.flags.equipmentLoaded === false) {
+      this.props.dispatch(fetchEquipment());
     }
   }
 
@@ -67,18 +65,21 @@ class RecipeList extends React.Component {
   }
 
   render() {
-    const recipes = Object.keys(this.props.recipes).map(key => this.props.recipes[key]);
-    const filteredData = matchSorter(recipes.reverse(), this.state.recipeSearch, { keys: ['name', 'style', 'recipeType'] });
+    const equipments = Object.keys(this.props.equipments).map(key => this.props.equipments[key]);
+    const filteredData = matchSorter(equipments.reverse(), this.state.equipmentSearch, { keys: ['name', 'style', 'recipeType'] });
 
     return (
       <div className="container">
+        <Link to="/equipment/add-new">
+          <button className="button button--primary mb1">Add Equipment Profile</button>
+        </Link>
         <div className="search-bar">
           <input
             className="search-bar__input"
             type="search"
             placeholder="Filter..."
             onChange={this.handleSearchInput}
-            value={this.state.recipeSearch}
+            value={this.state.equipmentSearch}
             autoFocus
           />
         </div>
@@ -92,9 +93,9 @@ class RecipeList extends React.Component {
   }
 }
 
-RecipeList.propTypes = {
+EquipmentList.propTypes = {
   dispatch: React.PropTypes.func,
-  recipes: React.PropTypes.oneOfType([
+  equipments: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.array,
   ]),
@@ -103,8 +104,8 @@ RecipeList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipes: state.recipes,
+  equipments: state.equipments,
   flags: state.flags,
 });
 
-export default connect(mapStateToProps)(RecipeList);
+export default connect(mapStateToProps)(EquipmentList);

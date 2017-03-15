@@ -1,12 +1,22 @@
 import React from 'react';
 import Select from 'react-select';
+import classNames from 'classnames';
 
 class CardSelect extends React.Component {
 
   render() {
     const props = this.props;
     return (
-      <div className={`form-group form-group--${props.side}`}>
+      <div
+        className={classNames({
+          'form-group': true,
+          'form-group--full': props.inputWidth === 'full',
+          'form-group--half': props.inputWidth === 'half',
+          'form-group--quarter': props.inputWidth === 'quarter',
+          'form-group--left': props.side === 'left',
+          'form-group--right': props.side === 'right',
+        })}
+      >
         <label htmlFor={props.name} className="form__label">{props.label}</label>
         <Select
           name={props.name}

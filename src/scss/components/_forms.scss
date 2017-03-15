@@ -10,9 +10,13 @@ $_disabled: $gray-10;
 
 .form__label {
   @extend .h5;
-  display: block;
+  display: inline-block;
   text-transform: uppercase;
   margin-bottom: spacing(.25);
+}
+
+.form__label-wrap {
+  display: block;
 }
 
 ::placeholder {
@@ -49,7 +53,7 @@ $_disabled: $gray-10;
 
 // if the input form should have a measureent indicator (gal, oz, etc)
 .form__input--measure {
-  width: 90%;
+  width: 85%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -63,14 +67,12 @@ $_disabled: $gray-10;
 
 // measurement indicator to the right of the form input
 .form__measure {
-  // font-size: $_font-size;
-  // line-height: $_line-height;
   float: right;
   border-top: 1px solid $_border-color;
   border-right: 1px solid $_border-color;
   border-bottom: 1px solid $_border-color;
   border-left: 0 solid transparent;
-  width: 10%;
+  width: 15%;
   border-radius: 4px;
   border-top-right-radius: $_border-radius;
   border-bottom-right-radius: $_border-radius;

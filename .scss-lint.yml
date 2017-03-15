@@ -24,7 +24,7 @@ linters:
     enabled: true
 
   ExtendDirective:
-    enabled: true
+    enabled: false
 
   ElsePlacement:
     enabled: false

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 // Components
@@ -8,8 +7,6 @@ import RecipeEdit from './views/recipe-edit';
 import NotFound from '../../views/not-found/NotFound';
 
 class Recipes extends React.Component {
-  componentWillMount() {
-  }
 
   render() {
     return (
@@ -38,9 +35,4 @@ class Recipes extends React.Component {
 Recipes.propTypes = {
 };
 
-const mapStateToProps = state => ({
-  modal: state.recipeEdit.modals,
-  updateHeader: state.ui.title,
-});
-
-export default connect(mapStateToProps)(Recipes);
+export default Recipes;

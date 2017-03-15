@@ -1548,7 +1548,8 @@ h5,
 .form__label,
 .recipe-table__header,
 .ingredient-list__header-cell,
-.ReactTable .rt-thead .rt-tr {
+.ReactTable .rt-thead .rt-tr,
+.equipment-input__label {
   font-size: 13.93728px;
   font-size: 0.87108rem;
   line-height: 1.5rem;
@@ -2664,9 +2665,12 @@ input[type="button"].button--block {
   font-weight: 600; }
 
 .form__label {
-  display: block;
+  display: inline-block;
   text-transform: uppercase;
   margin-bottom: 0.375rem; }
+
+.form__label-wrap {
+  display: block; }
 
 ::placeholder {
   color: #b8b9bc; }
@@ -2693,7 +2697,7 @@ input[type="button"].button--block {
   display: inline; }
 
 .form__input--measure {
-  width: 90%;
+  width: 85%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
@@ -2708,7 +2712,7 @@ input[type="button"].button--block {
   border-right: 1px solid #d5d5d7;
   border-bottom: 1px solid #d5d5d7;
   border-left: 0 solid transparent;
-  width: 10%;
+  width: 15%;
   border-radius: 4px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -2739,19 +2743,26 @@ input[type="button"].button--block {
   border-radius: 0 4px 0 0; }
 
 .form-group {
-  width: 50%;
-  float: left;
   margin-bottom: 1.5rem; }
+
+.form-group--full {
+  width: 98.61111%;
+  float: left;
+  margin-left: 0.69444%;
+  margin-right: 0.69444%; }
 
 .form-group--half {
-  width: 25%;
-  float: left;
-  margin-bottom: 1.5rem; }
+  width: 50%;
+  float: left; }
 
-.form-group--half .form__input--measure {
+.form-group--quarter {
+  width: 25%;
+  float: left; }
+
+.form-group--quarter .form__input--measure {
   width: 80%; }
 
-.form-group--half .form__measure {
+.form-group--quarter .form__measure {
   width: 20%; }
 
 .form-group--left {
@@ -3142,16 +3153,6 @@ input[type="button"].button--block {
 .button--table.button--secondary:hover {
   background-color: #d5d5d7; }
 
-.recipe-search {
-  margin-bottom: 1.5rem; }
-
-.recipe-search input[type="search"] {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  border: 2px solid #d5d5d7;
-  border-radius: 4px; }
-
 .calc-list {
   width: 48.61111%;
   float: left;
@@ -3216,6 +3217,129 @@ input[type="button"].button--block {
 
 .calc-desc__body {
   padding: 20px; }
+
+.search-bar {
+  margin-bottom: 1.5rem; }
+
+.search-bar input[type="search"] {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid #d5d5d7;
+  border-radius: 4px; }
+
+.question-icon {
+  display: inline-block;
+  color: #fff;
+  height: 16px;
+  width: 16px;
+  stroke: currentColor;
+  vertical-align: middle;
+  fill: #95959b;
+  margin-left: 6px; }
+
+.equipment-input__label {
+  margin-bottom: 0.375rem;
+  display: inline-block; }
+
+.react-toggle {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  user-select: none;
+  top: 6px;
+  margin-right: 10px; }
+
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: opacity 0.25s; }
+
+.react-toggle-track {
+  width: 50px;
+  height: 24px;
+  padding: 0;
+  border-radius: 30px;
+  background-color: #4D4D4D;
+  transition: all 0.2s ease; }
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #000000; }
+
+.react-toggle--checked .react-toggle-track {
+  background-color: #6dc593; }
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #6dc593; }
+
+.react-toggle-track-check {
+  position: absolute;
+  width: 14px;
+  height: 10px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  left: 8px;
+  opacity: 0;
+  transition: opacity 0.25s ease; }
+
+.react-toggle--checked .react-toggle-track-check {
+  opacity: 1;
+  transition: opacity 0.25s ease; }
+
+.react-toggle-track-x {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  right: 10px;
+  opacity: 1;
+  transition: opacity 0.25s ease; }
+
+.react-toggle--checked .react-toggle-track-x {
+  opacity: 0; }
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #4D4D4D;
+  border-radius: 50%;
+  background-color: #FAFAFA;
+  box-sizing: border-box;
+  transition: all 0.25s ease; }
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 27px;
+  border-color: #6dc593; }
+
+.react-toggle--focus .react-toggle-thumb {
+  box-shadow: 0px 0px 2px 3px #0099E0; }
+
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+  box-shadow: 0px 0px 5px 5px #0099E0; }
 
 .main {
   min-height: 100vh;
