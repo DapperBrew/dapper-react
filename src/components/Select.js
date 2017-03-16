@@ -26,6 +26,7 @@ class CardSelect extends React.Component {
           className="input__select"
           value={props.value}
           simpleValue={true} //eslint-disable-line
+          disabled={props.disabled}
         />
       </div>
     );

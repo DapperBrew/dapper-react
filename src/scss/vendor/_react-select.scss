@@ -10,6 +10,7 @@ $select-padding-horizontal: 12px !default;
 $select-input-border-focus: $primary-light !default;
 $select-option-focused-bg: $primary-lightest !default;
 $select-text-color: $base-font-color !default;
+$select-input-bg-disabled: $gray-8 !default;
 
 
 
@@ -24,4 +25,12 @@ $select-text-color: $base-font-color !default;
 
 .Select-clear {
   line-height: 1.5;
+}
+
+.Select .Select-control {
+  transition: background-color $base-time $base-ease;
+}
+
+.Select.is-disabled .Select-control {
+  cursor: not-allowed;
 }

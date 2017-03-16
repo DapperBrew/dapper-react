@@ -12,9 +12,14 @@ class Input extends React.Component {
   }
 
   renderMeasurement = () => {
+    const classes = classNames(
+      'form__measure',
+      { isError: this.props.isError },
+      { 'is-disabled': this.props.disabled },
+    );
     if (this.props.measurement) {
       return (
-        <div className={classNames('form__measure', { isError: this.props.isError })}>{this.props.measurement}</div>
+        <div className={classes}>{this.props.measurement}</div>
       );
     }
     return false;
@@ -68,6 +73,7 @@ class Input extends React.Component {
               { isError: props.isError })
           }
           value={props.value}
+          disabled={props.disabled}
         />
         {this.renderMeasurement()}
       </div>
@@ -81,6 +87,7 @@ Input.propTypes = {
   isError: React.PropTypes.bool,
   tooltip: React.PropTypes.string,
   id: React.PropTypes.string,
+  disabled: React.PropTypes.bool,
 };
 
 export default Input;

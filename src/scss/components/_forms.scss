@@ -37,9 +37,16 @@ $_disabled: $gray-10;
   padding: 12px;
   border-radius: $_border-radius;
   border: 1px solid $_border-color;
+  transition: background-color $base-time $base-ease;
 
   &.isError {
     border: 1px solid $danger;
+  }
+
+  &:disabled {
+    background-color: $gray-8;
+    color: $gray-6;
+    cursor: not-allowed;
   }
 }
 
@@ -87,6 +94,10 @@ $_disabled: $gray-10;
     border-top: 1px solid $danger;
     border-right: 1px solid $danger;
     border-bottom: 1px solid $danger;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
   }
 }
 
