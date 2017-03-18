@@ -42,13 +42,13 @@ class Mash extends React.Component {
   }
 
   handleSetMashTempAdjust = () => {
-    const { dispatch, equipments } = this.props;
-    dispatch(actions.setEqMashTempAdjust(!equipments.mashTempAdjust));
+    const { dispatch, equipmentStaged } = this.props;
+    dispatch(actions.setEqMashTempAdjust(!equipmentStaged.mashTempAdjust));
   }
 
 
   render() {
-    const { equipments } = this.props;
+    const { equipmentStaged } = this.props;
     return (
       <div className="col-md-6">
         <div className="card clearfix">
@@ -60,7 +60,7 @@ class Mash extends React.Component {
             placeholder="ex: 10"
             measurement="gal"
             onChange={this.handleSetMashTunVolume}
-            value={equipments.mashTunVolume}
+            value={equipmentStaged.mashTunVolume}
           />
           <Input
             inputWidth="full"
@@ -70,7 +70,7 @@ class Mash extends React.Component {
             measurement="gal"
             tooltip="Amount left over after it is drained"
             onChange={this.handleSetMashTunDeadspace}
-            value={equipments.mashTunDeadspace}
+            value={equipmentStaged.mashTunDeadspace}
           />
           <Input
             inputWidth="full"
@@ -80,7 +80,7 @@ class Mash extends React.Component {
             measurement="qt/lb"
             tooltip="Ratio of water to grain in your mash"
             onChange={this.handleSetMashThickness}
-            value={equipments.mashThickness}
+            value={equipmentStaged.mashThickness}
           />
           <Input
             inputWidth="full"
@@ -90,12 +90,12 @@ class Mash extends React.Component {
             measurement="gal"
             tooltip="Amount left over after it is drained"
             onChange={this.handleSetLauterTunDeadspace}
-            value={equipments.lauterTunDeadspace}
+            value={equipmentStaged.lauterTunDeadspace}
           />
           <MashAdjustToggle
             id="equip-mash-adjust"
             onChange={this.handleSetMashTempAdjust}
-            checked={equipments.mashTempAdjust}
+            checked={equipmentStaged.mashTempAdjust}
             tooltip="It is recommended to preheat your mash tun, however you can enable this option, and dapper will adjust mash temps according to your equipment profile"
           />
           <Input
@@ -105,8 +105,8 @@ class Mash extends React.Component {
             placeholder="ex: 9"
             measurement="lb"
             onChange={this.handleSetMashTunWeight}
-            value={equipments.mashTunWeight}
-            disabled={!equipments.mashTempAdjust}
+            value={equipmentStaged.mashTunWeight}
+            disabled={!equipmentStaged.mashTempAdjust}
           />
           <Select
             inputWidth="full"
@@ -116,8 +116,8 @@ class Mash extends React.Component {
             }]}
             name="equip-mash-material"
             onChange={this.handleSetMashTunMaterial}
-            value={equipments.mashTunMaterial}
-            disabled={!equipments.mashTempAdjust}
+            value={equipmentStaged.mashTunMaterial}
+            disabled={!equipmentStaged.mashTempAdjust}
           />
         </div>
       </div>
@@ -128,11 +128,11 @@ class Mash extends React.Component {
 
 Mash.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(Mash);

@@ -782,7 +782,7 @@ Takes a few variables and creates a new button style
 @param {color-hover} color of text on hover (default: $white)
 @param {border-hover} color of border on hover (default: $background-hover)
 */
-.clearfix:after, .calc-list__item:after {
+.clearfix:after, .form-group--full:after, .calc-list__item:after {
   content: "";
   display: table;
   clear: both; }
@@ -2756,12 +2756,6 @@ input[type="button"].button--block {
 
 .form-group {
   margin-bottom: 1.5rem; }
-
-.form-group--full {
-  width: 98.61111%;
-  float: left;
-  margin-left: 0.69444%;
-  margin-right: 0.69444%; }
 
 .form-group--half {
   width: 50%;

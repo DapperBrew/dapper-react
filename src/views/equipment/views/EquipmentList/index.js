@@ -6,7 +6,7 @@ import matchSorter from 'match-sorter';
 
 // actions
 import { updateHeader } from '../../../../actions/ui';
-import { fetchEquipment } from '../../actions/equipment';
+import { fetchEquipmentList } from '../../actions/equipment';
 
 const columns = [
   {
@@ -17,8 +17,8 @@ const columns = [
   },
   {
     columns: [{
-      header: 'Batch Volume',
-      accessor: 'volume',
+      header: 'Batch Size',
+      accessor: 'batchSize',
     }],
   },
   {
@@ -33,9 +33,9 @@ const columns = [
       className: 'text-right',
       headerClassName: 'text-right',
       maxWidth: 200,
-      render: recipe => (
+      render: equipmentProfile => (
         <div>
-          <Link to={`/recipes/${recipe.row._id}/edit`}>
+          <Link to={`/equipment/${equipmentProfile.row._id}/`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
         </div>
@@ -55,8 +55,8 @@ class EquipmentList extends React.Component {
   componentWillMount() {
     this.props.dispatch(updateHeader('Equipment'));
 
-    if (this.props.flags.equipmentLoaded === false) {
-      this.props.dispatch(fetchEquipment());
+    if (this.props.flags.equipmentsLoaded === false) {
+      this.props.dispatch(fetchEquipmentList());
     }
   }
 

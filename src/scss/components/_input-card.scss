@@ -7,7 +7,8 @@
 }
 
 .form-group--full {
-  @include span(full);
+  // @include span(full);
+  @extend .clearfix;
 }
 
 .form-group--half {

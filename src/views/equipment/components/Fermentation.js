@@ -25,7 +25,7 @@ class Fermentation extends React.Component {
   }
 
   render() {
-    const { equipments } = this.props;
+    const { equipmentStaged } = this.props;
     return (
       <div className="col-md-6">
         <div className="card clearfix">
@@ -38,7 +38,7 @@ class Fermentation extends React.Component {
             measurement="gal"
             tooltip="Amount of wort left in kettle & chiller after transfering to fermenter"
             onChange={this.handleSetTrubLoss}
-            value={equipments.trubLoss}
+            value={equipmentStaged.trubLoss}
           />
           <Input
             inputWidth="full"
@@ -48,7 +48,7 @@ class Fermentation extends React.Component {
             measurement="gal"
             tooltip="Amount of wort left in fermenter after transfers or bottling"
             onChange={this.handleSetFermenterLoss}
-            value={equipments.fermenterLoss}
+            value={equipmentStaged.fermenterLoss}
           />
           <Input
             inputWidth="full"
@@ -58,7 +58,7 @@ class Fermentation extends React.Component {
             measurement="gal"
             tooltip="Amount of water added to wort after transering to fermenter"
             onChange={this.handleSetFermenterTopUp}
-            value={equipments.fermenterTopUp}
+            value={equipmentStaged.fermenterTopUp}
           />
         </div>
       </div>
@@ -68,11 +68,11 @@ class Fermentation extends React.Component {
 
 Fermentation.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(Fermentation);

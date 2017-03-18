@@ -30,7 +30,7 @@ class Basic extends React.Component {
   }
 
   render() {
-    const { equipments } = this.props;
+    const { equipmentStaged } = this.props;
     return (
       <div className="col-md-12">
         <div className="card clearfix">
@@ -42,7 +42,7 @@ class Basic extends React.Component {
             label="Equipment Profile Name"
             placeholder="ex: 5 Gallon All Grain"
             onChange={this.handleSetName}
-            value={equipments.name}
+            value={equipmentStaged.name}
           />
           <Select
             side="right"
@@ -53,7 +53,7 @@ class Basic extends React.Component {
             }]}
             name="equip-name"
             onChange={this.handleSetType}
-            value={equipments.recipeType}
+            value={equipmentStaged.recipeType}
           />
           <Input
             side="left"
@@ -64,7 +64,7 @@ class Basic extends React.Component {
             measurement="%"
             tooltip="Total efficiency into the fermenter"
             onChange={this.handleSetEfficiency}
-            value={equipments.efficiency}
+            value={equipmentStaged.efficiency}
           />
           <Input
             side="right"
@@ -75,7 +75,7 @@ class Basic extends React.Component {
             measurement="gal"
             tooltip="Total amount into the fermenter"
             onChange={this.handleSetBatchSize}
-            value={equipments.batchSize}
+            value={equipmentStaged.batchSize}
           />
         </div>
       </div>
@@ -85,11 +85,11 @@ class Basic extends React.Component {
 
 Basic.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(Basic);

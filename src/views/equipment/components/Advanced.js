@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Toggle from 'react-toggle';
 
 // Components
 import Input from '../../../components/Input';
-import Toggle from 'react-toggle';
 
 // actions
 import * as actions from '../actions/equipment';
@@ -36,13 +36,13 @@ class Advanced extends React.Component {
   }
 
   handleSetEnableAdvanced = () => {
-    const { dispatch, equipments } = this.props;
-    dispatch(actions.setEqEnableAdvanced(!equipments.enableAdvanced));
+    const { dispatch, equipmentStaged } = this.props;
+    dispatch(actions.setEqEnableAdvanced(!equipmentStaged.enableAdvanced));
   }
 
   handleRenderAdvanced = () => {
-    const { equipments } = this.props;
-    if (equipments.enableAdvanced) {
+    const { equipmentStaged } = this.props;
+    if (equipmentStaged.enableAdvanced) {
       return (
         <div>
           <Input
@@ -54,7 +54,7 @@ class Advanced extends React.Component {
             measurement="cal/gc"
             tooltip="The specific heat of a material (kcal/kg &deg;C)"
             onChange={this.handleSetSpecificHeat}
-            value={equipments.specificHeat}
+            value={equipmentStaged.specificHeat}
           />
           <Input
             side="right"
@@ -65,7 +65,7 @@ class Advanced extends React.Component {
             measurement="&deg;F"
             tooltip="Adjust the boil temperature. Usually ~212F or 100C"
             onChange={this.handleSetBoilTemp}
-            value={equipments.boilTemp}
+            value={equipmentStaged.boilTemp}
           />
           <Input
             side="left"
@@ -76,7 +76,7 @@ class Advanced extends React.Component {
             measurement="%"
             tooltip="Percentage of volume lost after the wort cools"
             onChange={this.handleSetWortShrinkage}
-            value={equipments.wortShrinkage}
+            value={equipmentStaged.wortShrinkage}
           />
           <Input
             side="right"
@@ -87,7 +87,7 @@ class Advanced extends React.Component {
             tooltip="The volume that grain occupies"
             measurement="gal/lb"
             onChange={this.handleSetGrainVolume}
-            value={equipments.grainVolume}
+            value={equipmentStaged.grainVolume}
           />
           <Input
             side="left"
@@ -98,7 +98,7 @@ class Advanced extends React.Component {
             tooltip="The amount of water absorbed by grain"
             measurement="gal/lb"
             onChange={this.handleSetGrainAbsorption}
-            value={equipments.grainAbsorption}
+            value={equipmentStaged.grainAbsorption}
           />
         </div>
       );
@@ -107,7 +107,7 @@ class Advanced extends React.Component {
   }
 
   render() {
-    const { equipments } = this.props;
+    const { equipmentStaged } = this.props;
     return (
       <div className="col-md-12">
         <div className="card clearfix">
@@ -116,7 +116,7 @@ class Advanced extends React.Component {
             <Toggle
               id="advanced-toggle"
               onChange={this.handleSetEnableAdvanced}
-              checked={equipments.enableAdvanced}
+              checked={equipmentStaged.enableAdvanced}
             />
             <label htmlFor="advanced-toggle">Enabled advanced equipment settings? (Danger Will Robinson, Danger!)</label>
           </div>
@@ -130,11 +130,11 @@ class Advanced extends React.Component {
 
 Advanced.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(Advanced);

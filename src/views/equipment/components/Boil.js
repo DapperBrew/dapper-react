@@ -25,7 +25,7 @@ class Boil extends React.Component {
   }
 
   render() {
-    const { equipments } = this.props;
+    const { equipmentStaged } = this.props;
     return (
       <div className="col-md-6">
         <div className="card clearfix">
@@ -37,17 +37,17 @@ class Boil extends React.Component {
             placeholder="ex: 60"
             measurement="min"
             onChange={this.handleSetBoilTime}
-            value={equipments.boilTime}
+            value={equipmentStaged.boilTime}
           />
           <Input
             inputWidth="full"
             id="equip-boil-off"
             label="Boil Off Per Hour"
             placeholder="ex: 1.1"
-            tooltip="Amount of water lost every hour while boiling"
+            tooltip="Amount of wort lost every hour while boi``ling"
             measurement="gal"
             onChange={this.handleSetBoilOff}
-            value={equipments.boilOff}
+            value={equipmentStaged.boilOff}
           />
           <Input
             inputWidth="full"
@@ -57,7 +57,7 @@ class Boil extends React.Component {
             measurement="gal"
             tooltip="Amount of water added to wort before boiling"
             onChange={this.handleSetBoilTopUp}
-            value={equipments.boilTopUp}
+            value={equipmentStaged.boilTopUp}
           />
         </div>
       </div>
@@ -67,11 +67,11 @@ class Boil extends React.Component {
 
 Boil.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(Boil);

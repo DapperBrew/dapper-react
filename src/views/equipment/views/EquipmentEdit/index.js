@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import findIndex from 'lodash/findIndex';
+import history from '../../../../history';
 
 
 // components
@@ -11,12 +13,36 @@ import Advanced from '../../components/Advanced';
 
 // actions
 import * as actions from '../../actions/equipment';
+import { updateHeader } from '../../../../actions/ui';
 
 class EquipmentEdit extends React.Component {
 
+  componentWillMount() {
+    this.props.dispatch(updateHeader('Edit Equipment Profile'));
+
+    // load Equipment if not already loaded
+    if (this.props.flags.equipmentsLoaded === false) {
+      this.props.dispatch(actions.fetchEquipmentList());
+    }
+  }
+
+
+  componentWillUpdate(nextProps) {
+    // redirect to 404 if the equipment ID doesn't exist
+    if (nextProps.flags.equipmentsLoaded === true) {
+      const { equipments } = nextProps;
+      const equipmentId = nextProps.match.params.equipmentId;
+      const currentProfile = findIndex(equipments, { _id: equipmentId });
+
+      if (currentProfile === -1) {
+        history.push(('/404'));
+      }
+    }
+  }
+
   handleSave = () => {
-    const { dispatch, equipments } = this.props;
-    dispatch(actions.saveEquipmentProfile(equipments));
+    const { dispatch, equipmentStaged } = this.props;
+    dispatch(actions.saveEquipmentProfile(equipmentStaged));
   }
 
   handleReset = () => {
@@ -42,12 +68,17 @@ class EquipmentEdit extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  equipmentStaged: state.equipmentStaged,
   equipments: state.equipments,
+  recipes: state.recipes,
+  flags: state.flags,
 });
 
 EquipmentEdit.propTypes = {
   dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.object, // eslint-disable-line
+  equipmentStaged: React.PropTypes.object, // eslint-disable-line
+  equipmentsLoaded: React.PropTypes.bool,
+  flags: React.PropTypes.object, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(EquipmentEdit);

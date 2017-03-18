@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../../../history';
 
 // constants
 export const SAVE_EQUIPMENT_REQUEST = 'SAVE_EQUIPMENT_REQUEST';
@@ -180,7 +181,7 @@ export const errorEquipmentList = error => ({
   error,
 });
 
-export const fetchEquipmentLIst = () => (
+export const fetchEquipmentList = () => (
   (dispatch, getState) => {
     const userId = getState().user.id;
     dispatch(requestEquipmentList());
@@ -203,9 +204,9 @@ export const saveEquipmentProfileRequest = () => ({
   type: SAVE_EQUIPMENT_REQUEST,
 });
 
-export const saveEquipmentProfileSuccess = (profile, id) => ({
+export const saveEquipmentProfileSuccess = (equipmentProfile, id) => ({
   type: SAVE_EQUIPMENT_SUCCESS,
-  profile,
+  equipmentProfile,
   id,
 });
 
@@ -229,7 +230,7 @@ export const saveEquipmentProfile = equipmentProfile => (
       },
     })
       .then((res) => {
-        dispatch(saveEquipmentProfileSuccess(res.data.profile, res.data.id));
+        dispatch(saveEquipmentProfileSuccess(res.data.equipmentProfile, res.data.id));
         dispatch(resetEquipmentProfile());
         history.push(('/equipment'));
       })

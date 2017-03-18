@@ -32,13 +32,13 @@ const initialState = {
   grainAbsorption: '.12',
 };
 
-const equipments = (state = initialState, action) => {
+const equipmentStaged = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE:
-      var incoming = action.payload.equipments; // eslint-disable-line
+      var incoming = action.payload.equipmentStaged; // eslint-disable-line
       if (incoming) return { ...state, ...incoming };
       return {
-        ...state,
+        state,
       };
     case actions.RESET_EQUIPMENT_PROFILE:
       return initialState;
@@ -162,4 +162,4 @@ const equipments = (state = initialState, action) => {
   }
 };
 
-export default equipments;
+export default equipmentStaged;

@@ -1,5 +1,6 @@
-import find from 'lodash/find';
 import React from 'react';
+import find from 'lodash/find';
+import findKey from 'lodash/findKey'
 import { connect } from 'react-redux';
 
 // Components
@@ -59,8 +60,12 @@ class RecipeEdit extends React.Component {
     // (later used to splice in the updated Recipe)
     const recipeId = this.props.match.params.recipeId;
     const { recipes } = this.props;
-    const selectedRecipe = recipes.find(recipe => recipe._id === recipeId);
-    const itemIndex = recipes.indexOf(selectedRecipe);
+    console.log(typeof recipes);
+    // const test = findKey(recipes, { _id: recipeId });
+    // console.log(recipes[test]);
+
+    // const selectedRecipe = recipes.find(recipe => recipe._id === recipeId);
+    const itemIndex = findKey(recipes, { _id: recipeId });
 
 
     this.props.dispatch(editRecipe(recipeId, this.props.recipeStaged, itemIndex));
