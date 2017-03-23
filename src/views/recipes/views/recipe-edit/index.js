@@ -60,10 +60,6 @@ class RecipeEdit extends React.Component {
     // (later used to splice in the updated Recipe)
     const recipeId = this.props.match.params.recipeId;
     const { recipes } = this.props;
-    // const test = findKey(recipes, { _id: recipeId });
-    // console.log(recipes[test]);
-
-    // const selectedRecipe = recipes.find(recipe => recipe._id === recipeId);
     const itemIndex = findKey(recipes, { _id: recipeId });
 
 
@@ -116,7 +112,7 @@ RecipeEdit.propTypes = {
   dispatch: React.PropTypes.func,
   recipeStaged: React.PropTypes.object, // eslint-disable-line
   match: React.PropTypes.object, // eslint-disable-line
-  recipes: React.PropTypes.array, // eslint-disable-line
+  recipes: React.PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

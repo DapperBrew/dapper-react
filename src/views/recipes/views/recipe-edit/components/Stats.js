@@ -12,6 +12,7 @@ import {
   getABV,
   getFinalGravity,
   getPreBoilGravity,
+  getPreBoilVolume,
 } from '../selectors/recipeEdit';
 
 const Stats = props => (
@@ -72,7 +73,7 @@ const mapStateToProps = state => ({
   abv: getABV(state),
   finalGravity: getFinalGravity(state),
   preBoilGravity: getPreBoilGravity(state),
-  preBoilVolume: state.recipeEdit.recipeStaged.boilVolume,
+  preBoilVolume: getPreBoilVolume(state),
 });
 
 export default connect(mapStateToProps)(Stats);
