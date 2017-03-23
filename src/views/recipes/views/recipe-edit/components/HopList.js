@@ -10,12 +10,12 @@ import { showEditModal } from '../actions/modals';
 import EditIcons from './EditIcons';
 
 // selectors
-import { getPreBoilGravity } from '../selectors/recipeEdit';
+import { getPreBoilGravity, getPostBoilVolume } from '../selectors/recipeEdit';
 
 const HopList = props => (
   <tbody>
     {props.recipeHops.map((hop) => {
-      const { dispatch, boilGravity, recipeStaged } = props;
+      const { dispatch, boilGravity, postBoilVolume } = props;
       let adjust;
       if (hop.hopType === 'pellet') {
         adjust = 10;
@@ -27,9 +27,10 @@ const HopList = props => (
         Number(hop.alpha),
         Number(hop.time),
         Number(boilGravity),
-        Number(recipeStaged.postBoilVolume),
+        Number(postBoilVolume),
         adjust,
       );
+
       return (
         <tr key={hop.key} className="recipe-table__row">
           <td className="recipe-table__cell text-left">{hop.name}</td>
@@ -51,6 +52,7 @@ const mapStateToProps = state => ({
   recipeHops: state.recipeEdit.recipeStaged.hops,
   recipeStaged: state.recipeEdit.recipeStaged,
   boilGravity: getPreBoilGravity(state),
+  postBoilVolume: getPostBoilVolume(state),
 });
 
 HopList.propTypes = {

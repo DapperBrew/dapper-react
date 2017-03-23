@@ -7,10 +7,10 @@ const recipeYeasts = state => state.recipeEdit.recipeStaged.yeasts;
 const recipeHops = state => state.recipeEdit.recipeStaged.hops;
 const styles = state => state.data.styles;
 const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
-const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
-const postBoilVolume = state => state.recipeEdit.recipeStaged.postBoilVolume;
 const recipeMashTemp = state => state.recipeEdit.recipeStaged.mashTemp;
 const equipments = state => state.equipments;
+const recipeStaged = state => state.recipeEdit.recipeStaged;
+const equipmentProfileId = state => state.recipeEdit.recipeStaged.equipmentProfileId;
 
 // Returns sum weight of all recipe fermentables
 const calcTotalWeight = items => (
@@ -68,16 +68,22 @@ const calcTotalPoints = (items) => {
 };
 
 // returns the estimated original gravity of a recipe
-const calcOriginalGravity = (gravityPoints, eff, volume) => {
+const calcOriginalGravity = (gravityPoints, recipe, postBoilVolume) => {
+  const { batchVolume, efficiencyType } = recipe;
+  const eff = recipe.efficiency;
   if (isFinite(Number(gravityPoints[0]))
       && isFinite(Number(gravityPoints[1]))
       && Number(eff) > 0
-      && Number(volume) > 0
+      && Number(batchVolume) > 0
+      && Number(postBoilVolume) > 0
     ) {
+    // convert to numbers
     const fGravityPointsNum = Number(gravityPoints[0]);
     const sGravityPointsNum = Number(gravityPoints[1]);
     const effNum = Number(eff);
+    const volume = efficiencyType === 'mash' ? postBoilVolume : batchVolume;
     const volumeNum = Number(volume);
+
     const finalCalc = calc.estimateOriginalGravity(
       fGravityPointsNum,
       sGravityPointsNum,
@@ -87,6 +93,25 @@ const calcOriginalGravity = (gravityPoints, eff, volume) => {
     return finalCalc.toFixed(3);
   }
   return 'N/A';
+};
+
+const calcPostBoilVolume = (recipe, equipmentList, equipmentId) => {
+  if (recipe.efficiencyType === 'mash') {
+    return Number(recipe.postBoilVolume);
+  }
+
+  if (equipmentList && equipmentId) {
+    const equipmentProfile = equipmentList[equipmentId];
+    const { batchVolume } = recipe;
+    const { trubLoss, fermenterLoss } = equipmentProfile;
+    const trubLossNum = Number(trubLoss);
+    const batchVolumeNum = Number(batchVolume);
+    const fermenterLossNum = Number(fermenterLoss);
+
+    const postBoilVolume = batchVolumeNum + trubLossNum + fermenterLossNum;
+    return postBoilVolume;
+  }
+  return 0;
 };
 
 // get yeast attenuation (in case of multiple yeasts)
@@ -182,18 +207,25 @@ const calcPreBoilGravity = (og, volume, preBoilVolume) => {
 const calcTotalIbu = (items, gravity, volume) => {
   if (items) {
     return Object.keys(items).reduce((acc, key) => {
+      // convert to numbers
       const weightNum = Number(items[key].weight);
-      const type = items[key].type;
+      const type = items[key].hopType;
       const aaNum = Number(items[key].alpha);
       const timeNum = Number(items[key].time);
       const gravityNum = Number(gravity);
       const volumeNum = Number(volume);
+
+      // adjust according to type (if needed)
       let adjust;
       if (type === 'pellet') {
         adjust = 10;
       }
+
+      // IBU calculations (and rounding)
       const hopIBU = calc.ibu(weightNum, aaNum, timeNum, gravityNum, volumeNum, adjust);
       const hopIBURound = Math.round(hopIBU);
+
+      // return
       return acc + hopIBURound;
     }, 0);
   }
@@ -202,6 +234,7 @@ const calcTotalIbu = (items, gravity, volume) => {
 
 // returns total MCU for beer from recipe Fermentables
 const calcMcu = (items, volume) => {
+  console.log(items, volume);
   if (items) {
     return Object.keys(items).reduce((acc, key) => {
       let weight;
@@ -221,7 +254,46 @@ const calcMcu = (items, volume) => {
   return 0;
 };
 
+// returns SRM value
 const calcSrm = mcu => calc.srm(mcu);
+
+// returns pre boil volume
+export const calcPreBoilVolume = (recipe, equipmentList, profileId) => {
+  if (equipmentList && profileId) {
+    const equipmentProfile = equipmentList[profileId];
+    const { batchVolume, boilTime } = recipe;
+    const { trubLoss, boilOff, wortShrinkage } = equipmentProfile;
+    // convert strings to numbers
+    const batchVolumeNum = Number(batchVolume);
+    const boilTimeNum = Number(boilTime);
+    const trubLossNum = Number(trubLoss);
+    const boilOffNum = Number(boilOff);
+    const wortShrinkageNum = Number(wortShrinkage);
+    // create variables for various stages
+    const fermenterVolume = batchVolumeNum + trubLossNum;
+    const boilTimeVariable = boilTimeNum / 60;
+    const totalBoilOff = boilOffNum * boilTimeVariable;
+    const preBoilVolume = fermenterVolume + totalBoilOff;
+    const shrinkage = (1 + (wortShrinkageNum * 0.01));
+    const totalPreBoilVolume = preBoilVolume * shrinkage;
+    return totalPreBoilVolume.toFixed(2);
+  }
+  return 0;
+};
+
+export const getPostBoilVolume = createSelector(
+  recipeStaged,
+  equipments,
+  equipmentProfileId,
+  calcPostBoilVolume,
+);
+
+export const getPreBoilVolume = createSelector(
+  recipeStaged,
+  equipments,
+  equipmentProfileId,
+  calcPreBoilVolume,
+);
 
 export const getTotalWeight = createSelector(
   recipeFermentables,
@@ -245,28 +317,28 @@ export const getTotalGravityPoints = createSelector(
 
 export const getOriginalGravity = createSelector(
   getTotalGravityPoints,
-  efficiency,
-  postBoilVolume,
+  recipeStaged,
+  getPostBoilVolume,
   calcOriginalGravity,
 );
 
 export const getPreBoilGravity = createSelector(
   getOriginalGravity,
-  postBoilVolume,
-  boilVolume,
+  getPostBoilVolume,
+  getPreBoilVolume,
   calcPreBoilGravity,
 );
 
 export const getRecipeIbu = createSelector(
   recipeHops,
   getPreBoilGravity,
-  postBoilVolume,
+  getPostBoilVolume,
   calcTotalIbu,
 );
 
 export const getRecipeMcu = createSelector(
   recipeFermentables,
-  postBoilVolume,
+  getPostBoilVolume,
   calcMcu,
 );
 
@@ -289,7 +361,7 @@ export const getFinalGravity = createSelector(
   getTotalGravityPoints,
   getYeastAttenuation,
   efficiency,
-  postBoilVolume,
+  getPostBoilVolume,
   getMashTemp,
   calcFinalGravity,
 );

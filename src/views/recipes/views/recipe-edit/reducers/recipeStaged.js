@@ -57,7 +57,8 @@ const recipeEdit = (state = initialState, action) => {
     case recipeAction.SET_EQUIPMENT_PROFILE:
       return {
         ...state,
-        equipmentProfile: action.profile,
+        equipmentProfile: action.name,
+        equipmentProfileId: action.id,
       };
     case recipeAction.SET_EFFICIENCY:
       return {

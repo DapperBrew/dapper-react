@@ -8,7 +8,7 @@ import CardSelect from '../../../../../components/Select';
 import InputSelect from '../../../../../components/InputSelect';
 
 // Selectors
-import { getStylesObject, getEquipmentsObject } from '../selectors/recipeEdit';
+import { getStylesObject, getEquipmentsObject, getPreBoilVolume } from '../selectors/recipeEdit';
 
 // Action creators
 import * as actions from '../actions/recipeStaged';
@@ -19,15 +19,15 @@ import type from '../../../../../data/type';
 class RecipeInfo extends React.Component {
 
   updateBatchVolume = (volume) => {
-    const { dispatch, recipeStaged } = this.props;
+    const { dispatch } = this.props;
     dispatch(actions.setBatchVolume(volume));
-    dispatch(actions.setPostBoilVolume(Number(volume) + Number(recipeStaged.trubChillerLoss)));
+    // dispatch(actions.setPostBoilVolume(Number(volume) + Number(equipmentStaged.trubLoss)));
   }
 
   updatePostBoilVolume = (volume) => {
-    const { dispatch, recipeStaged } = this.props;
+    const { dispatch } = this.props;
     dispatch(actions.setPostBoilVolume(volume));
-    dispatch(actions.setBatchVolume(Number(volume) - Number(recipeStaged.trubChillerLoss)));
+    // dispatch(actions.setBatchVolume(Number(volume) - Number(equipmentStaged.trubLoss)));
   }
 
   handleSelectEquipment = (profile) => {
@@ -65,7 +65,7 @@ class RecipeInfo extends React.Component {
 
   render() {
     const { stylesDropdown, equipmentsDropdown, recipeStaged, dispatch } = this.props;
-    const { efficiencyType, equipmentProfile } = this.props.recipeStaged;
+    const { efficiencyType, equipmentProfileId } = this.props.recipeStaged;
     return (
       <div className="recipe-info">
         <Card cardTitle="Recipe Info">
@@ -103,7 +103,7 @@ class RecipeInfo extends React.Component {
             options={equipmentsDropdown}
             name="select-profile"
             onChange={this.handleSelectEquipment}
-            value={equipmentProfile}
+            value={equipmentProfileId}
           />
           <InputSelect
             side="left"
@@ -149,7 +149,9 @@ const mapStateToProps = state => ({
   styles: state.data.styles,
   stylesDropdown: getStylesObject(state),
   equipmentsDropdown: getEquipmentsObject(state),
+  preBoilVolume: getPreBoilVolume(state),
   equipments: state.equipments,
+  equipmentStaged: state.equipmentStaged,
 });
 
 export default connect(mapStateToProps)(RecipeInfo);

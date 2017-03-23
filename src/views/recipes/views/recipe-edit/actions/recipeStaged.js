@@ -79,7 +79,7 @@ export const setEquipmentProfile = id => (
     dispatch({
       type: SET_EQUIPMENT_PROFILE,
       name,
-      profile: id,
+      id,
     });
   }
 );
