@@ -8,7 +8,7 @@ import CardSelect from '../../../../../components/Select';
 import InputSelect from '../../../../../components/InputSelect';
 
 // Selectors
-import { getStylesObject } from '../selectors/recipeEdit';
+import { getStylesObject, getEquipmentsObject } from '../selectors/recipeEdit';
 
 // Action creators
 import * as actions from '../actions/recipeStaged';
@@ -28,6 +28,11 @@ class RecipeInfo extends React.Component {
     const { dispatch, recipeStaged } = this.props;
     dispatch(actions.setPostBoilVolume(volume));
     dispatch(actions.setBatchVolume(Number(volume) - Number(recipeStaged.trubChillerLoss)));
+  }
+
+  handleSelectEquipment = (profile) => {
+    const { dispatch } = this.props;
+    dispatch(actions.setEquipmentProfile(profile));
   }
 
   batchVolumeInput = () => (
@@ -59,7 +64,7 @@ class RecipeInfo extends React.Component {
   )
 
   render() {
-    const { stylesDropdown, recipeStaged, dispatch } = this.props;
+    const { stylesDropdown, equipmentsDropdown, recipeStaged, dispatch } = this.props;
     const { efficiencyType, equipmentProfile } = this.props.recipeStaged;
     return (
       <div className="recipe-info">
@@ -95,9 +100,9 @@ class RecipeInfo extends React.Component {
             side="right"
             inputWidth="half"
             label="Equipment Profile"
-            options={[{ label: 'Default', value: 'default' }]}
+            options={equipmentsDropdown}
             name="select-profile"
-            onChange={profile => dispatch(actions.setEquipmentProfile(profile))}
+            onChange={this.handleSelectEquipment}
             value={equipmentProfile}
           />
           <InputSelect
@@ -134,6 +139,7 @@ class RecipeInfo extends React.Component {
 
 RecipeInfo.propTypes = {
   stylesDropdown: React.PropTypes.array, // eslint-disable-line
+  equipmentsDropdown: React.PropTypes.array, // eslint-disable-line
   recipeStaged: React.PropTypes.object, // eslint-disable-line
   dispatch: React.PropTypes.func,
 };
@@ -142,6 +148,8 @@ const mapStateToProps = state => ({
   recipeStaged: state.recipeEdit.recipeStaged,
   styles: state.data.styles,
   stylesDropdown: getStylesObject(state),
+  equipmentsDropdown: getEquipmentsObject(state),
+  equipments: state.equipments,
 });
 
 export default connect(mapStateToProps)(RecipeInfo);

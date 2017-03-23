@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { normalize } from 'normalizr';
+import * as schema from './schemas';
 import history from '../../../history';
 
 // constants
@@ -192,7 +194,8 @@ export const fetchEquipmentList = () => (
       method: 'get',
       responseType: 'json',
     })
-      .then(response => dispatch(receiveEquipmentList(response.data)))
+      .then(response => normalize(response.data, schema.equipmentListSchema))
+      .then(response => dispatch(receiveEquipmentList(response)))
       .catch((err) => {
         dispatch(errorEquipmentList(err));
         console.error(err);

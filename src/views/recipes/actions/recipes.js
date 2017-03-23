@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { normalize } from 'normalizr';
+import * as schema from './schemas';
 import history from '../../../history';
 
 // import outside actions
@@ -80,7 +82,8 @@ export const fetchRecipes = () => (
       method: 'get',
       responseType: 'json',
     })
-      .then(response => dispatch(receiveRecipes(response.data)))
+      .then(response => normalize(response.data, schema.recipeListSchema))
+      .then(response => dispatch(receiveRecipes(response)))
       .catch((err) => {
         dispatch(errorRecipes(err));
         console.error(err);

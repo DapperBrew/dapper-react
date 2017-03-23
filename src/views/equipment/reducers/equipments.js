@@ -3,28 +3,21 @@ import { REHYDRATE } from 'redux-persist/constants';
 // actions
 import * as actions from '../actions/equipment';
 
-const initialState = [];
+const initialState = {};
 
 const equipments = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE:
       var incoming = action.payload.equipments; // eslint-disable-line
-      if (incoming) return [...state, ...incoming];
-      return [
-        ...state,
-      ];
+      if (incoming) return { ...state, ...incoming };
+      return state;
     case actions.SAVE_EQUIPMENT_SUCCESS:
-      return [
+      return {
         ...state,
-        {
-          id: action.id,
-          ...action.equipmentProfile,
-        },
-      ];
+        [action.id]: action.equipmentProfile,
+      };
     case actions.EQUIPMENT_LIST_SUCCESS:
-      return [
-        ...action.equipmentList,
-      ];
+      return action.equipmentList.entities.equipments;
     default:
       return state;
   }

@@ -10,6 +10,7 @@ const efficiency = state => state.recipeEdit.recipeStaged.efficiency;
 const boilVolume = state => state.recipeEdit.recipeStaged.boilVolume;
 const postBoilVolume = state => state.recipeEdit.recipeStaged.postBoilVolume;
 const recipeMashTemp = state => state.recipeEdit.recipeStaged.mashTemp;
+const equipments = state => state.equipments;
 
 // Returns sum weight of all recipe fermentables
 const calcTotalWeight = items => (
@@ -19,6 +20,17 @@ const calcTotalWeight = items => (
 
 // Returns array of styles for styles dropdown
 const getStylesDropdown = (items) => {
+  if (items) {
+    return Object.keys(items).map(item => ({
+      label: items[item].name,
+      value: items[item]._id,
+    }));
+  }
+  return [{ label: 'loading...', value: 'loading...' }];
+};
+
+// Returns array of equipment profiles for equipments dropdown
+const getEquipmentsDropdown = (items) => {
   if (items) {
     return Object.keys(items).map(item => ({
       label: items[item].name,
@@ -219,6 +231,11 @@ export const getTotalWeight = createSelector(
 export const getStylesObject = createSelector(
   styles,
   getStylesDropdown,
+);
+
+export const getEquipmentsObject = createSelector(
+  equipments,
+  getEquipmentsDropdown,
 );
 
 export const getTotalGravityPoints = createSelector(

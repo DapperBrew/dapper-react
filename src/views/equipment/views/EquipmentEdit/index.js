@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import findIndex from 'lodash/findIndex';
+import findKey from 'lodash/findKey';
 import history from '../../../../history';
 
 
@@ -28,13 +28,13 @@ class EquipmentEdit extends React.Component {
 
 
   componentWillUpdate(nextProps) {
+    const path = this.props.match.path;
     // redirect to 404 if the equipment ID doesn't exist
     if (nextProps.flags.equipmentsLoaded === true) {
       const { equipments } = nextProps;
       const equipmentId = nextProps.match.params.equipmentId;
-      const currentProfile = findIndex(equipments, { _id: equipmentId });
-
-      if (currentProfile === -1) {
+      const currentProfile = findKey(equipments, { _id: equipmentId });
+      if (path === '/equipment/:equipmentId' && !currentProfile) {
         history.push(('/404'));
       }
     }

@@ -67,10 +67,22 @@ export const setName = name => ({
   name,
 });
 
-export const setEquipmentProfile = profile => ({
-  type: SET_EQUIPMENT_PROFILE,
-  profile,
-});
+// export const setEquipmentProfile = profile => ({
+//   type: SET_EQUIPMENT_PROFILE,
+//   profile,
+// });
+
+export const setEquipmentProfile = id => (
+  (dispatch, getState) => {
+    console.log(id);
+    const name = getState().equipments[id].name;
+    dispatch({
+      type: SET_EQUIPMENT_PROFILE,
+      name,
+      profile: id,
+    });
+  }
+);
 
 export const setEfficiency = eff => ({
   type: SET_EFFICIENCY,
