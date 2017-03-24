@@ -46,6 +46,24 @@ export const EQ_SET_GRAIN_VOLUME = 'EQ_SET_GRAIN_VOLUME';
 export const EQ_SET_GRAIN_ABSORPTION = 'EQ_SET_GRAIN_ABSORPTION';
 export const EQ_SET_ENABLE_ADVANCED = 'EQ_SET_ENABLE_ADVANCED';
 
+export const EQ_SET_STAGED_MODE = 'EQ_SET_STAGED_MODE';
+export const EQ_LOAD_STAGED = 'EQ_LOAD_STAGED';
+export const EQ_CLEAR_EQUIPMENT = 'EQ_CLEAR_EQUIPMENT';
+
+export const clearEqEquipment = () => ({
+  type: EQ_CLEAR_EQUIPMENT,
+});
+
+export const setEqStagedMode = stagedMode => ({
+  type: EQ_SET_STAGED_MODE,
+  stagedMode,
+});
+
+export const loadEqStaged = equipment => ({
+  type: EQ_LOAD_STAGED,
+  equipment,
+});
+
 // ACTIONS (INPUTS)
 export const setEqName = name => ({
   type: EQ_SET_NAME,
@@ -240,6 +258,46 @@ export const saveEquipmentProfile = equipmentProfile => (
       .catch((err) => {
         dispatch(saveEquipmentProfileError(err.data));
         throw err;
+      });
+  }
+);
+
+export const requestEditEquipment = () => ({
+  type: EDIT_EQUIPMENT_REQUEST,
+});
+
+export const successEditEquipment = (equipment, itemIndex) => ({
+  type: EDIT_EQUIPMENT_SUCCESS,
+  equipment,
+  itemIndex,
+});
+
+export const errorEditEquipment = error => ({
+  type: EDIT_EQUIPMENT_ERROR,
+  error,
+});
+
+export const editEquipmentProfile = (equipmentId, equipment, itemIndex) => (
+  (dispatch, getState) => {
+    const userId = getState().user.id;
+    dispatch(requestEditEquipment());
+    return axios({
+      url: `${process.env.REACT_APP_API_URL}/users/${userId}/equipments/${equipmentId}`,
+      headers: { authorization: localStorage.getItem('token') },
+      timeout: 20000,
+      method: 'put',
+      data: {
+        equipmentId,
+        equipment,
+      },
+    })
+      .then(() => {
+        dispatch(successEditEquipment(equipment, itemIndex));
+        dispatch(resetEquipmentProfile());
+        history.push(('/equipment'));
+      })
+      .catch((err) => {
+        dispatch(errorEditEquipment(err));
       });
   }
 );

@@ -8,7 +8,7 @@ const initialState = {
   efficiency: '75',
   batchSize: '5',
   // Mash & Lauter
-  mashTunVolume: '',
+  mashTunVolume: '10',
   mashTunWeight: '',
   mashTunMaterial: '',
   mashTunDeadspace: '0',
@@ -30,6 +30,8 @@ const initialState = {
   wortShrinkage: '4',
   grainVolume: '.0783',
   grainAbsorption: '.12',
+  // other
+  stagedMode: '',
 };
 
 const equipmentStaged = (state = initialState, action) => {
@@ -42,6 +44,16 @@ const equipmentStaged = (state = initialState, action) => {
       };
     case actions.RESET_EQUIPMENT_PROFILE:
       return initialState;
+    case actions.EQ_LOAD_STAGED:
+      return {
+        ...state,
+        ...action.equipment,
+      };
+    case actions.EQ_SET_STAGED_MODE:
+      return {
+        ...state,
+        mode: action.stagedMode,
+      };
     case actions.EQ_SET_NAME:
       return {
         ...state,

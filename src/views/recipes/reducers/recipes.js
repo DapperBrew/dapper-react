@@ -1,4 +1,6 @@
 import { REHYDRATE } from 'redux-persist/constants';
+
+// actions
 import * as actions from '../actions/recipes';
 
 const initialState = {};
@@ -16,7 +18,10 @@ const recipeEdit = (state = initialState, action) => {
         [action.id]: action.recipe,
       };
     case actions.RECIPES_SUCCESS:
-      return action.recipes.entities.recipes;
+      return {
+        ...state,
+        ...action.recipes.entities.recipes,
+      };
     case actions.EDIT_RECIPE_SUCCESS:
       return {
         ...state,

@@ -18,7 +18,27 @@ import { updateHeader } from '../../../../actions/ui';
 class EquipmentEdit extends React.Component {
 
   componentWillMount() {
-    this.props.dispatch(updateHeader('Edit Equipment Profile'));
+    const path = this.props.match.path;
+    const { dispatch, equipments } = this.props;
+    const equipmentId = this.props.match.params.equipmentId;
+    const mode = this.props.equipmentStaged.mode;
+
+    // update headeer
+
+    // determine if this is "edit" or "Crete new" mode
+    if (path === '/equipment/:equipmentId') {
+      dispatch(updateHeader('Edit Equipment Profile'));
+      dispatch(actions.setEqStagedMode('edit'));
+      const selectedEquipment = equipments[equipmentId];
+      dispatch(actions.loadEqStaged(selectedEquipment));
+    } else {
+      dispatch(updateHeader('Create Equipment Profile'));
+      // if this page was previously on an "edit" page then clear values
+      if (mode === 'edit') {
+        dispatch(actions.resetEquipmentProfile());
+      }
+      dispatch(actions.setEqStagedMode('create'));
+    }
   }
 
 
@@ -40,9 +60,33 @@ class EquipmentEdit extends React.Component {
     dispatch(actions.saveEquipmentProfile(equipmentStaged));
   }
 
+  handleEdit = () => {
+    const equipmentId = this.props.match.params.equipmentId;
+    const { equipments, dispatch, equipmentStaged } = this.props;
+    const itemIndex = findKey(equipments, { _id: equipmentId });
+
+    dispatch(actions.editEquipmentProfile(equipmentId, equipmentStaged, itemIndex));
+  }
+
   handleReset = () => {
     const { dispatch } = this.props;
     dispatch(actions.resetEquipmentProfile());
+  }
+
+  renderSubmitButtons = () => {
+    if (this.props.match.path === '/equipment/:equipmentId') {
+      return (
+        <div>
+          <button onClick={this.handleEdit} className="button button--primary">Update</button>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <button onClick={this.handleSave} className="button button--primary">Save</button>
+        <button onClick={this.handleReset} className="button button--secondary ml1">Reset</button>
+      </div>
+    );
   }
 
   render() {
@@ -54,8 +98,7 @@ class EquipmentEdit extends React.Component {
         <Fermentation />
         <Advanced />
         <div className="col-md-12">
-          <button onClick={this.handleSave} className="button button--primary">Save</button>
-          <button onClick={this.handleReset} className="button button--secondary ml1">Reset</button>
+          {this.renderSubmitButtons()}
         </div>
       </div>
     );
@@ -72,8 +115,10 @@ const mapStateToProps = state => ({
 EquipmentEdit.propTypes = {
   dispatch: React.PropTypes.func,
   equipmentStaged: React.PropTypes.object, // eslint-disable-line
-  equipmentsLoaded: React.PropTypes.bool,
   flags: React.PropTypes.object, // eslint-disable-line
+  match: React.PropTypes.object, // eslint-disable-line
+  equipments: React.PropTypes.object, // eslint-disable-line
+  path: React.PropTypes.string,
 };
 
 export default connect(mapStateToProps)(EquipmentEdit);

@@ -59,11 +59,11 @@ class RecipeEdit extends React.Component {
     // get the index of the recipe to pass to the editRecipe dispatcher
     // (later used to splice in the updated Recipe)
     const recipeId = this.props.match.params.recipeId;
-    const { recipes } = this.props;
+    const { recipes, dispatch, recipeStaged } = this.props;
     const itemIndex = findKey(recipes, { _id: recipeId });
 
 
-    this.props.dispatch(editRecipe(recipeId, this.props.recipeStaged, itemIndex));
+    dispatch(editRecipe(recipeId, recipeStaged, itemIndex));
   }
 
   handleResetStaged = () => {

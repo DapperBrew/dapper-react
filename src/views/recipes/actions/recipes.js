@@ -110,7 +110,7 @@ export const editRecipe = (recipeId, recipe, itemIndex) => (
         history.push(('/recipes'));
       })
       .catch((err) => {
-        dispatch(errorRecipes(err));
+        dispatch(errorEditRecipe(err));
         console.error(err);
       });
   }

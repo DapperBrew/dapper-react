@@ -43,9 +43,7 @@ class RecipeInfo extends React.Component {
     const equipmentExist = equipmentCheck ? true : false;
     const defaultEquipment = Object.keys(this.props.equipments)[0];
 
-
     if (!recipeStaged.equipmentProfileId || (!equipmentExist && size(equipments) >= 1)) {
-      console.log('bang');
       this.props.dispatch(actions.setEquipmentProfile(defaultEquipment));
     }
   }

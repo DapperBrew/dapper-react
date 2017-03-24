@@ -5,6 +5,7 @@ import * as recipeAction from '../actions/recipeStaged';
 const initialState = {
   name: '',
   style: '',
+  styleId: '',
   efficiency: '75',
   batchVolume: '6',
   postBoilVolume: '6.5',
@@ -15,10 +16,12 @@ const initialState = {
   yeasts: [],
   miscs: [],
   efficiencyType: 'brewhouse',
-  equipmentProfile: 'default',
+  equipmentProfile: '',
+  equipmentProfileId: '',
   boilVolume: '7.38',
   trubChillerLoss: '.5',
   mashTemp: '',
+  stagedMode: '',
 };
 
 const recipeEdit = (state = initialState, action) => {

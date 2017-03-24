@@ -56,7 +56,7 @@ class EquipmentList extends React.Component {
   }
 
   handleSearchInput = (e) => {
-    this.setState({ recipeSearch: e.target.value });
+    this.setState({ equipmentSearch: e.target.value });
   }
 
   render() {
