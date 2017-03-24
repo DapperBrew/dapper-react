@@ -17,7 +17,10 @@ const equipments = (state = initialState, action) => {
         [action.id]: action.equipmentProfile,
       };
     case actions.EQUIPMENT_LIST_SUCCESS:
-      return action.equipmentList.entities.equipments;
+      return {
+        ...state,
+        ...action.equipmentList.entities.equipments
+      };
     default:
       return state;
   }

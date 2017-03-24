@@ -19,11 +19,6 @@ class EquipmentEdit extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(updateHeader('Edit Equipment Profile'));
-
-    // load Equipment if not already loaded
-    if (this.props.flags.equipmentsLoaded === false) {
-      this.props.dispatch(actions.fetchEquipmentList());
-    }
   }
 
 

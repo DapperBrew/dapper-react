@@ -6,7 +6,6 @@ import matchSorter from 'match-sorter';
 
 // actions
 import { updateHeader } from '../../../../actions/ui';
-import { fetchEquipmentList } from '../../actions/equipment';
 
 const columns = [
   {
@@ -54,10 +53,6 @@ class EquipmentList extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(updateHeader('Equipment'));
-
-    if (this.props.flags.equipmentsLoaded === false) {
-      this.props.dispatch(fetchEquipmentList());
-    }
   }
 
   handleSearchInput = (e) => {

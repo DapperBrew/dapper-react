@@ -30,7 +30,7 @@ class HopModalInput extends React.Component {
       dispatch(updateHopWeight(selectedItem.weight));
       dispatch(updateHopStage(selectedItem.stage));
       dispatch(updateHopTime(selectedItem.time));
-      dispatch(updateHopType(selectedItem.type));
+      dispatch(updateHopType(selectedItem.hopType));
       dispatch(updateHopAlpha(selectedItem.alpha));
       dispatch(updateHopName(selectedItem.name));
     }

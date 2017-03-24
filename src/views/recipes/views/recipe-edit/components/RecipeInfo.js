@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import findKey from 'lodash/findKey';
+import size from 'lodash/size';
 
 // Components
 import Card from '../../../../../components/Card';
@@ -33,6 +35,19 @@ class RecipeInfo extends React.Component {
   handleSelectEquipment = (profile) => {
     const { dispatch } = this.props;
     dispatch(actions.setEquipmentProfile(profile));
+  }
+
+  componentDidMount() {
+    const { equipments, recipeStaged } = this.props;
+    const equipmentCheck = findKey(equipments, { _id: recipeStaged.equipmentProfileId });
+    const equipmentExist = equipmentCheck ? true : false;
+    const defaultEquipment = Object.keys(this.props.equipments)[0];
+
+
+    if (!recipeStaged.equipmentProfileId || (!equipmentExist && size(equipments) >= 1)) {
+      console.log('bang');
+      this.props.dispatch(actions.setEquipmentProfile(defaultEquipment));
+    }
   }
 
   batchVolumeInput = () => (
@@ -104,6 +119,7 @@ class RecipeInfo extends React.Component {
             name="select-profile"
             onChange={this.handleSelectEquipment}
             value={equipmentProfileId}
+            clearable={false}
           />
           <InputSelect
             side="left"
@@ -141,6 +157,7 @@ RecipeInfo.propTypes = {
   stylesDropdown: React.PropTypes.array, // eslint-disable-line
   equipmentsDropdown: React.PropTypes.array, // eslint-disable-line
   recipeStaged: React.PropTypes.object, // eslint-disable-line
+  equipments: React.PropTypes.object, // eslint-disable-line
   dispatch: React.PropTypes.func,
 };
 
