@@ -74,7 +74,6 @@ export const setName = name => ({
 
 export const setEquipmentProfile = id => (
   (dispatch, getState) => {
-    console.log(id);
     const name = getState().equipments[id].name;
     dispatch({
       type: SET_EQUIPMENT_PROFILE,

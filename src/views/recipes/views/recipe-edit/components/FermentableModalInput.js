@@ -36,7 +36,7 @@ class FermentableModalInput extends React.Component {
       dispatch(updateFermentableWeightUnit(selectedItem.unit));
       dispatch(updateFermentableWeight(selectedItem.weight));
       dispatch(updateFermentableMaltster(selectedItem.maltster ? selectedItem.maltster : ''));
-      dispatch(updateFermentableType(selectedItem.type));
+      dispatch(updateFermentableType(selectedItem.fermentableType));
       dispatch(updateFermentableInMash(selectedItem.inMash));
       dispatch(updateFermentableAfterBoil(selectedItem.afterBoil));
     }

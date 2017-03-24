@@ -27,6 +27,7 @@ class CardSelect extends React.Component {
           value={props.value}
           simpleValue={true} //eslint-disable-line
           disabled={props.disabled}
+          clearable={props.clearable}
         />
       </div>
     );

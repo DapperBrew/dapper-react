@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import * as calc from 'dapper-calc/build';
 import isFinite from 'lodash/isFinite';
+import findKey from 'lodash/findKey';
 
 const recipeFermentables = state => state.recipeEdit.recipeStaged.fermentables;
 const recipeYeasts = state => state.recipeEdit.recipeStaged.yeasts;
@@ -14,8 +15,7 @@ const equipmentProfileId = state => state.recipeEdit.recipeStaged.equipmentProfi
 
 // Returns sum weight of all recipe fermentables
 const calcTotalWeight = items => (
-  Object.keys(items)
-    .reduce((previous, key) => (previous + Number(items[key].weight)), 0)
+  items.reduce((previous, item) => (previous + Number(item.weight)), 0)
 );
 
 // Returns array of styles for styles dropdown
@@ -45,15 +45,16 @@ const calcTotalPoints = (items) => {
   if (items) {
     let totalFermentablePoints = 0;
     let totalSugarPoints = 0;
-    Object.keys(items).forEach((key) => {
+    items.forEach((item) => {
       let weight;
-      const type = items[key].type;
-      const potential = Number(items[key].potential);
+      const type = item.fermentableType;
+      const potential = Number(item.potential);
       const points = (potential - 1) * 1000;
-      if (items[key].unit === 'oz') {
-        weight = items[key].weight / 16;
+      const itemWeight = Number(item.weight);
+      if (item.unit === 'oz') {
+        weight = itemWeight / 16;
       } else {
-        weight = items[key].weight;
+        weight = itemWeight;
       }
       const totalPoints = points * weight;
       if (type === 'sugar') {
@@ -96,11 +97,15 @@ const calcOriginalGravity = (gravityPoints, recipe, postBoilVolume) => {
 };
 
 const calcPostBoilVolume = (recipe, equipmentList, equipmentId) => {
-  if (recipe.efficiencyType === 'mash') {
+  if (recipe.efficiencyType === 'mash' || !equipmentId) {
     return Number(recipe.postBoilVolume);
   }
 
-  if (equipmentList && equipmentId) {
+  // check that the quipmentID exist (hasn't been deleted)
+  const equipmentCheck = findKey(equipmentList, { _id: equipmentId });
+  const equipmentExist = equipmentCheck ? true : false;
+
+  if (equipmentList && equipmentId && equipmentExist) {
     const equipmentProfile = equipmentList[equipmentId];
     const { batchVolume } = recipe;
     const { trubLoss, fermenterLoss } = equipmentProfile;
@@ -111,7 +116,7 @@ const calcPostBoilVolume = (recipe, equipmentList, equipmentId) => {
     const postBoilVolume = batchVolumeNum + trubLossNum + fermenterLossNum;
     return postBoilVolume;
   }
-  return 0;
+  return recipe.batchVolume;
 };
 
 // get yeast attenuation (in case of multiple yeasts)
@@ -144,6 +149,7 @@ const calcFinalGravity = (gravityPoints, attenuation, eff, volume, mashTemp) => 
     && isFinite(Number(attenuation))
     && isFinite(Number(eff))
     && isFinite(Number(volume))
+    && volume > 0
     && isFinite(Number(mashTemp))
   ) {
     // Make sure all variables are numbers
@@ -205,13 +211,13 @@ const calcPreBoilGravity = (og, volume, preBoilVolume) => {
 
 // returns total IBUs (added from all recipe hops)
 const calcTotalIbu = (items, gravity, volume) => {
-  if (items) {
-    return Object.keys(items).reduce((acc, key) => {
+  if (items && volume > 0) {
+    return items.reduce((acc, item) => {
       // convert to numbers
-      const weightNum = Number(items[key].weight);
-      const type = items[key].hopType;
-      const aaNum = Number(items[key].alpha);
-      const timeNum = Number(items[key].time);
+      const weightNum = Number(item.weight);
+      const type = item.hopType;
+      const aaNum = Number(item.alpha);
+      const timeNum = Number(item.time);
       const gravityNum = Number(gravity);
       const volumeNum = Number(volume);
 
@@ -234,8 +240,7 @@ const calcTotalIbu = (items, gravity, volume) => {
 
 // returns total MCU for beer from recipe Fermentables
 const calcMcu = (items, volume) => {
-  console.log(items, volume);
-  if (items) {
+  if (items && volume > 0) {
     return Object.keys(items).reduce((acc, key) => {
       let weight;
       if (items[key].unit === 'oz') {
@@ -259,14 +264,19 @@ const calcSrm = mcu => calc.srm(mcu);
 
 // returns pre boil volume
 export const calcPreBoilVolume = (recipe, equipmentList, profileId) => {
-  if (equipmentList && profileId) {
+
+  // check that equipment exists (hasn't been deleted)
+  const equipmentCheck = findKey(equipmentList, { _id: profileId });
+  const equipmentExist = equipmentCheck ? true : false;
+
+  if (equipmentList && profileId && equipmentExist) {
     const equipmentProfile = equipmentList[profileId];
     const { batchVolume, boilTime } = recipe;
     const { trubLoss, boilOff, wortShrinkage } = equipmentProfile;
     // convert strings to numbers
     const batchVolumeNum = Number(batchVolume);
     const boilTimeNum = Number(boilTime);
-    const trubLossNum = Number(trubLoss);
+    const trubLossNum = Number(trubLoss) || 0;
     const boilOffNum = Number(boilOff);
     const wortShrinkageNum = Number(wortShrinkage);
     // create variables for various stages
@@ -278,8 +288,9 @@ export const calcPreBoilVolume = (recipe, equipmentList, profileId) => {
     const totalPreBoilVolume = preBoilVolume * shrinkage;
     return totalPreBoilVolume.toFixed(2);
   }
-  return 0;
+  return (Number(recipe.batchVolume) + 1).toString();
 };
+
 
 export const getPostBoilVolume = createSelector(
   recipeStaged,

@@ -10,6 +10,7 @@ import Content from '../content/Content';
 
 // actions
 import { fetchData, fetchStyles } from '../../actions/data';
+import { fetchEquipmentList } from '../../views/equipment/actions/equipment';
 
 
 class Main extends React.Component {
@@ -19,6 +20,7 @@ class Main extends React.Component {
     persistStore(store, {}, () => {
       this.props.dispatch(fetchData());
       this.props.dispatch(fetchStyles());
+      this.props.dispatch(fetchEquipmentList());
     });
   }
 
@@ -40,7 +42,7 @@ Main.propTypes = {
   dispatch: React.PropTypes.func,
   data: React.PropTypes.object, // eslint-disable-line
   loaded: React.PropTypes.bool,
-  auth: React.PropTypes.object,
+  auth: React.PropTypes.object, // eslint-disable-line
   authenticated: React.PropTypes.bool,
 };
 
