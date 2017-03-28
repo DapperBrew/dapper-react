@@ -13,53 +13,49 @@ import Equipment from '../../views/equipment';
 import Settings from '../../views/settings/Settings';
 import NotFound from '../../views/not-found/NotFound';
 
-class Content extends React.Component {
-
-  render() {
-    const changeHeader = title => this.props.dispatch(updateHeader(title));
-    return (
-      <div className="main">
-        <Header title={this.props.ui.title} />
-        <div className="content">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (<Dashboard updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/recipes"
-              render={() => (<Recipes updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/calculators"
-              render={() => (<Calculators updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/brewlog"
-              render={() => (<Brewlog updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/equipment"
-              render={() => (<Equipment updateHeader={changeHeader} />)}
-            />
-            <Route
-              path="/settings"
-              render={() => (<Settings updateHeader={changeHeader} />)}
-            />
-            <Route
-              render={() => (<NotFound updateHeader={changeHeader} />)}
-            />
-          </Switch>
-        </div>
-        <Footer />
+const Content = (props) => {
+  const changeHeader = title => this.props.dispatch(updateHeader(title));
+  return (
+    <div className="main">
+      <Header title={props.ui.title} />
+      <div className="content">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (<Dashboard updateHeader={changeHeader} />)}
+          />
+          <Route
+            path="/recipes"
+            render={() => (<Recipes updateHeader={changeHeader} />)}
+          />
+          <Route
+            path="/calculators"
+            render={() => (<Calculators updateHeader={changeHeader} />)}
+          />
+          <Route
+            path="/brewlog"
+            render={() => (<Brewlog updateHeader={changeHeader} />)}
+          />
+          <Route
+            path="/equipment"
+            render={() => (<Equipment updateHeader={changeHeader} />)}
+          />
+          <Route
+            path="/settings"
+            render={() => (<Settings updateHeader={changeHeader} />)}
+          />
+          <Route
+            render={() => (<NotFound updateHeader={changeHeader} />)}
+          />
+        </Switch>
       </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 Content.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
   ui: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
   }),

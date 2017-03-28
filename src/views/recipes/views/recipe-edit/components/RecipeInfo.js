@@ -20,6 +20,17 @@ import type from '../../../../../data/type';
 
 class RecipeInfo extends React.Component {
 
+  componentDidMount() {
+    const { equipments, recipeStaged } = this.props;
+    const equipmentCheck = findKey(equipments, { _id: recipeStaged.equipmentProfileId });
+    const equipmentExist = equipmentCheck ? true : false;
+    const defaultEquipment = Object.keys(this.props.equipments)[0];
+
+    if (!recipeStaged.equipmentProfileId || (!equipmentExist && size(equipments) >= 1)) {
+      this.props.dispatch(actions.setEquipmentProfile(defaultEquipment));
+    }
+  }
+
   updateBatchVolume = (volume) => {
     const { dispatch } = this.props;
     dispatch(actions.setBatchVolume(volume));
@@ -37,16 +48,6 @@ class RecipeInfo extends React.Component {
     dispatch(actions.setEquipmentProfile(profile));
   }
 
-  componentDidMount() {
-    const { equipments, recipeStaged } = this.props;
-    const equipmentCheck = findKey(equipments, { _id: recipeStaged.equipmentProfileId });
-    const equipmentExist = equipmentCheck ? true : false;
-    const defaultEquipment = Object.keys(this.props.equipments)[0];
-
-    if (!recipeStaged.equipmentProfileId || (!equipmentExist && size(equipments) >= 1)) {
-      this.props.dispatch(actions.setEquipmentProfile(defaultEquipment));
-    }
-  }
 
   batchVolumeInput = () => (
     <Input

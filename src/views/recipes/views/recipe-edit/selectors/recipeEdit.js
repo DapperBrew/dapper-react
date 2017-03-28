@@ -264,7 +264,6 @@ const calcSrm = mcu => calc.srm(mcu);
 
 // returns pre boil volume
 export const calcPreBoilVolume = (recipe, equipmentList, profileId) => {
-
   // check that equipment exists (hasn't been deleted)
   const equipmentCheck = findKey(equipmentList, { _id: profileId });
   const equipmentExist = equipmentCheck ? true : false;

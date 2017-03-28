@@ -7,12 +7,15 @@ import { signOutUser } from '../../actions/auth';
 const Header = props => (
   <div className="header">
     <h1 className="header__title">{props.title}</h1>
+    {/* eslint-disable jsx-a11y/no-static-element-interactions */}
     <span onClick={() => props.dispatch(signOutUser())} className="signout">Log Out</span>
+    {/* eslint-enable jsx-a11y/no-static-element-interactions */}
   </div>
 );
 
 Header.propTypes = {
   title: React.PropTypes.string.isRequired,
+  dispatch: React.PropTypes.func,
 };
 
 // export default Header;
