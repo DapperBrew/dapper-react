@@ -73,14 +73,14 @@ const modals = (state = initialState, action) => {
         ...state,
         ...initialState,
       };
-    case actions.LOAD_MODAL:
-      return {
-        ...state,
-        searchTableHeaders: action.payload.searchTableHeaders,
-        searchTableCells: action.payload.searchTableCells,
-        searchKeys: action.payload.searchKeys,
-        modalLoaded: true,
-      };
+    // case actions.LOAD_MODAL:
+    //   return {
+    //     ...state,
+    //     searchTableHeaders: action.payload.searchTableHeaders,
+    //     searchTableCells: action.payload.searchTableCells,
+    //     searchKeys: action.payload.searchKeys,
+    //     modalLoaded: true,
+    //   };
     case actions.SEARCH_UPDATE:
       return {
         ...state,

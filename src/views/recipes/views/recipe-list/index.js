@@ -11,33 +11,33 @@ import { fetchRecipes } from '../../actions/recipes';
 const columns = [
   {
     columns: [{
-      header: 'Name',
+      Header: 'Name',
       accessor: 'name',
     }],
   },
   {
     columns: [{
-      header: 'Style',
+      Header: 'Style',
       accessor: 'style',
     }],
   },
   {
     columns: [{
-      header: 'Recipe Type',
+      Header: 'Recipe Type',
       accessor: 'recipeType',
       maxWidth: 200,
     }],
   },
   {
     columns: [{
-      header: '',
+      Header: '',
       className: 'text-right',
       headerClassName: 'text-right',
       maxWidth: 200,
-      render: recipe => (
+      Cell: recipe => (
         <div>
           <button className="button button--table button--primary button--small">Brew</button>
-          <Link to={`/recipes/${recipe.row._id}/edit`}>
+          <Link to={`/recipes/${recipe.original._id}/edit`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
         </div>

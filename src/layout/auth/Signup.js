@@ -14,7 +14,7 @@ const inputField = (props) => {
   const { touched, error } = props.meta;
   return (
     <div>
-      <label htmlFor={name} className="login__label">{label}</label>
+      <label htmlFor={label} className="login__label">{label}</label>
       <input
         {...input}
         id={label}

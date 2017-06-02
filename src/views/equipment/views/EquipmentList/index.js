@@ -10,31 +10,31 @@ import { updateHeader } from '../../../../actions/ui';
 const columns = [
   {
     columns: [{
-      header: 'Name',
+      Header: 'Name',
       accessor: 'name',
     }],
   },
   {
     columns: [{
-      header: 'Batch Size',
+      Header: 'Batch Size',
       accessor: 'batchSize',
     }],
   },
   {
     columns: [{
-      header: 'Efficiency',
+      Header: 'Efficiency',
       accessor: 'efficiency',
     }],
   },
   {
     columns: [{
-      header: '',
+      Header: '',
       className: 'text-right',
       headerClassName: 'text-right',
       maxWidth: 200,
-      render: equipmentProfile => (
+      Cell: equipmentProfile => (
         <div>
-          <Link to={`/equipment/${equipmentProfile.row._id}/`}>
+          <Link to={`/equipment/${equipmentProfile.original._id}/`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
         </div>

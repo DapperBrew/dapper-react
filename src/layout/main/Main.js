@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import { Route } from 'react-router-dom';
 
 import store from '../../store';
 
@@ -26,10 +27,12 @@ class Main extends React.Component {
 
   render() {
     if (this.props.data.loaded && this.props.auth.authenticated) {
+      // Content uses Route component to gain access to location
+      // Otherwise it blocks update.
       return (
         <div className="app">
           <Sidebar />
-          <Content />
+          <Route component={Content} />
         </div>
       );
     }

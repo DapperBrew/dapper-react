@@ -44,6 +44,10 @@ class IngredientList extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.setHeaderSize();
+  }
+  
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', debounce(this.onResize, 75));

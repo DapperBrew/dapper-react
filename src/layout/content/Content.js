@@ -14,7 +14,7 @@ import Settings from '../../views/settings/Settings';
 import NotFound from '../../views/not-found/NotFound';
 
 const Content = (props) => {
-  const changeHeader = title => this.props.dispatch(updateHeader(title));
+  const changeHeader = title => props.dispatch(updateHeader(title));
   return (
     <div className="main">
       <Header title={props.ui.title} />
