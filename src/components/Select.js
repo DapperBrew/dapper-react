@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Select from 'react-select';
 import classNames from 'classnames';
@@ -29,15 +30,15 @@ const CardSelect = props => (
 );
 
 CardSelect.propTypes = {
-  inputWidth: React.PropTypes.string,
-  side: React.PropTypes.string,
-  name: React.PropTypes.string,
-  label: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
-  clearable: React.PropTypes.bool,
-  value: React.PropTypes.string,
-  options: React.PropTypes.object, // eslint-disable-line
-  onChange: React.PropTypes.func,
+  inputWidth: PropTypes.string,
+  side: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  clearable: PropTypes.bool,
+  value: PropTypes.string,
+  options: PropTypes.object, // eslint-disable-line
+  onChange: PropTypes.func,
 };
 
 

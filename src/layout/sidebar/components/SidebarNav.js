@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import icon from '../img/icon.svg';
 
@@ -10,8 +11,8 @@ const SidebarNav = props => (
 );
 
 SidebarNav.propTypes = {
-  sideIcon: React.PropTypes.string.isRequired,
-  sideName: React.PropTypes.string.isRequired,
+  sideIcon: PropTypes.string.isRequired,
+  sideName: PropTypes.string.isRequired,
 };
 
 export default SidebarNav;

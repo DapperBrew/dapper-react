@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -211,11 +212,11 @@ class HopModalInput extends React.Component {
 
 
 HopModalInput.propTypes = {
-  hops: React.PropTypes.object, // eslint-disable-line
-  recipeHops: React.PropTypes.array, // eslint-disable-line
-  modal: React.PropTypes.object, // eslint-disable-line
-  props: React.PropTypes.array, // eslint-disable-line
-  dispatch: React.PropTypes.func,
+  hops: PropTypes.object, // eslint-disable-line
+  recipeHops: PropTypes.array, // eslint-disable-line
+  modal: PropTypes.object, // eslint-disable-line
+  props: PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

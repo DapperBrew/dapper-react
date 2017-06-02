@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -34,7 +35,7 @@ const mapStateToProps = state => ({
 });
 
 MiscList.propTypes = {
-  recipeMiscs: React.PropTypes.array.isRequired, // eslint-disable-line
+  recipeMiscs: PropTypes.array.isRequired, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(MiscList);

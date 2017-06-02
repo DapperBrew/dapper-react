@@ -26,6 +26,7 @@
     "normalize-scss": "^7.0.0",
     "normalize.scss": "^0.1.0",
     "normalizr": "^3.1.0",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-modal": "^1.6.5",

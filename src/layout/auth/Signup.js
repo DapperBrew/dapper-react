@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -131,20 +132,20 @@ const validate = (values) => {
 };
 
 inputField.propTypes = {
-  input: React.PropTypes.object, // eslint-disable-line
-  label: React.PropTypes.string,
-  type: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  meta: React.PropTypes.object, // eslint-disable-line
+  input: PropTypes.object, // eslint-disable-line
+  label: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  meta: PropTypes.object, // eslint-disable-line
 };
 
 Signup.propTypes = {
-  dispatch: React.PropTypes.func,
-  initialize: React.PropTypes.func,
-  errorMessage: React.PropTypes.string,
-  loginEmail: React.PropTypes.string,
-  handleSubmit: React.PropTypes.func,
-  submitting: React.PropTypes.bool,
+  dispatch: PropTypes.func,
+  initialize: PropTypes.func,
+  errorMessage: PropTypes.string,
+  loginEmail: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

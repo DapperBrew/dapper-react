@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Dashboard extends React.Component {
@@ -18,7 +19,7 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  updateHeader: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

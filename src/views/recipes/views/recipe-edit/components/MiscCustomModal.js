@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -45,10 +46,10 @@ const MiscEditModal = (props) => {
 
 
 MiscEditModal.propTypes = {
-  dispatch: React.PropTypes.func,
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  miscs: React.PropTypes.object, // eslint-disable-line
-  recipeMiscs: React.PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func,
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  miscs: PropTypes.object, // eslint-disable-line
+  recipeMiscs: PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

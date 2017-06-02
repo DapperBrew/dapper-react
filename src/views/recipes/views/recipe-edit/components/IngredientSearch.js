@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -34,12 +35,12 @@ const IngredientSearch = (props) => {
 };
 
 IngredientSearch.propTypes = {
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  dispatch: React.PropTypes.func,
-  items: React.PropTypes.array.isRequired, // eslint-disable-line
-  cells: React.PropTypes.array.isRequired, //eslint-disable-line
-  headers: React.PropTypes.array.isRequired, // eslint-disable-line
-  searchKeys: React.PropTypes.array.isRequired, // eslint-disable-line
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  dispatch: PropTypes.func,
+  items: PropTypes.array.isRequired, // eslint-disable-line
+  cells: PropTypes.array.isRequired, //eslint-disable-line
+  headers: PropTypes.array.isRequired, // eslint-disable-line
+  searchKeys: PropTypes.array.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -56,8 +57,8 @@ const Content = (props) => {
 };
 
 Content.propTypes = {
-  ui: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
+  ui: PropTypes.shape({
+    title: PropTypes.string.isRequired,
   }),
 };
 

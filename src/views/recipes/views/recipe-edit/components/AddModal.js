@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -46,11 +47,11 @@ class AddModal extends React.Component {
 }
 
 AddModal.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  dispatch: React.PropTypes.func.isRequired,
-  children: React.PropTypes.node.isRequired, // eslint-disable-line
-  header: React.PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired, // eslint-disable-line
+  header: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

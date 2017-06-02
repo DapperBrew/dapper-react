@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -79,10 +80,10 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  dispatch: React.PropTypes.func,
-  errorMessage: React.PropTypes.string,
-  email: React.PropTypes.string,
-  password: React.PropTypes.string,
+  dispatch: PropTypes.func,
+  errorMessage: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

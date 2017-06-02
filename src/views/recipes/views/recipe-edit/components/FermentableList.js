@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -46,8 +47,8 @@ const mapStateToProps = state => ({
 });
 
 FermentableList.propTypes = {
-  recipeFermentables: React.PropTypes.array.isRequired, // eslint-disable-line
-  totalWeight: React.PropTypes.number,
+  recipeFermentables: PropTypes.array.isRequired, // eslint-disable-line
+  totalWeight: PropTypes.number,
 };
 
 export default connect(mapStateToProps)(FermentableList);

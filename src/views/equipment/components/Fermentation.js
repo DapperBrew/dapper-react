@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -67,8 +68,8 @@ class Fermentation extends React.Component {
 }
 
 Fermentation.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipmentStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func,
+  equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -31,8 +32,8 @@ const Mash = (props) => {
 };
 
 Mash.propTypes = {
-  dispatch: React.PropTypes.func,
-  modal: React.PropTypes.object // eslint-disable-line
+  dispatch: PropTypes.func,
+  modal: PropTypes.object // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // const Card = props => (
@@ -29,9 +30,9 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  cardTitle: React.PropTypes.string,
-  children: React.PropTypes.node,
-  cardHeader: React.PropTypes.bool,
+  cardTitle: PropTypes.string,
+  children: PropTypes.node,
+  cardHeader: PropTypes.bool,
 };
 
 export default Card;

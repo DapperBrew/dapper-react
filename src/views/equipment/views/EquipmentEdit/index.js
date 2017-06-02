@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import findKey from 'lodash/findKey';
@@ -113,12 +114,12 @@ const mapStateToProps = state => ({
 });
 
 EquipmentEdit.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipmentStaged: React.PropTypes.object, // eslint-disable-line
-  flags: React.PropTypes.object, // eslint-disable-line
-  match: React.PropTypes.object, // eslint-disable-line
-  equipments: React.PropTypes.object, // eslint-disable-line
-  path: React.PropTypes.string,
+  dispatch: PropTypes.func,
+  equipmentStaged: PropTypes.object, // eslint-disable-line
+  flags: PropTypes.object, // eslint-disable-line
+  match: PropTypes.object, // eslint-disable-line
+  equipments: PropTypes.object, // eslint-disable-line
+  path: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(EquipmentEdit);

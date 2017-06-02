@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 // This component is an input with a selct dropdown immediately to the right.
 // This allows a dropdown to be associated with the input
 
@@ -40,16 +41,16 @@ const InputSelect = props => (
 );
 
 InputSelect.propTypes = {
-  side: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
-  id: React.PropTypes.string.isRequired,
-  onInputChange: React.PropTypes.func.isRequired,
-  placeholder: React.PropTypes.string.isRequired,
-  inputValue: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array.isRequired, // eslint-disable-line
-  onSelectChange: React.PropTypes.func.isRequired,
-  selectValue: React.PropTypes.string.isRequired,
-  isError: React.PropTypes.bool,
+  side: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired, // eslint-disable-line
+  onSelectChange: PropTypes.func.isRequired,
+  selectValue: PropTypes.string.isRequired,
+  isError: PropTypes.bool,
 };
 
 export default InputSelect;

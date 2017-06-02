@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const ModalSubmit = props => (
@@ -8,8 +9,8 @@ const ModalSubmit = props => (
 );
 
 ModalSubmit.propTypes = {
-  closeModal: React.PropTypes.func.isRequired,
-  resetModal: React.PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  resetModal: PropTypes.func.isRequired,
 };
 
 export default ModalSubmit;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
@@ -93,12 +94,12 @@ class RecipeList extends React.Component {
 }
 
 RecipeList.propTypes = {
-  dispatch: React.PropTypes.func,
-  recipes: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  dispatch: PropTypes.func,
+  recipes: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]),
-  flags: React.PropTypes.object, // eslint-disable-line
+  flags: PropTypes.object, // eslint-disable-line
 
 };
 

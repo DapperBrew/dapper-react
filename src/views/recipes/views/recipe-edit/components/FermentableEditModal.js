@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -39,8 +40,8 @@ const FermentableEditModal = (props) => {
 };
 
 FermentableEditModal.propTypes = {
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  dispatch: React.PropTypes.func,
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  dispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

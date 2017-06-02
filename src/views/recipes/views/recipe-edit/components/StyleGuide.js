@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -180,13 +181,13 @@ const StyleGuide = (props) => {
 };
 
 StyleGuide.propTypes = {
-  recipeStyle: React.PropTypes.string,
-  styles: React.PropTypes.object.isRequired, // eslint-disable-line
-  recipeOG: React.PropTypes.string.isRequired,
-  recipeFG: React.PropTypes.string.isRequired,
-  recipeABV: React.PropTypes.number.isRequired,
-  recipeIBU: React.PropTypes.number.isRequired,
-  recipeSRM: React.PropTypes.number.isRequired,
+  recipeStyle: PropTypes.string,
+  styles: PropTypes.object.isRequired, // eslint-disable-line
+  recipeOG: PropTypes.string.isRequired,
+  recipeFG: PropTypes.string.isRequired,
+  recipeABV: PropTypes.number.isRequired,
+  recipeIBU: PropTypes.number.isRequired,
+  recipeSRM: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

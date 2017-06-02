@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ibu } from 'dapper-calc/build';
@@ -56,7 +57,7 @@ const mapStateToProps = state => ({
 });
 
 HopList.propTypes = {
-  recipeHops: React.PropTypes.array.isRequired, // eslint-disable-line
+  recipeHops: PropTypes.array.isRequired, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(HopList);

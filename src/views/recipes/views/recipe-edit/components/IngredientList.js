@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from 'react';
@@ -87,16 +88,16 @@ class IngredientList extends React.Component {
 }
 
 IngredientHeader.propTypes = {
-  headers: React.PropTypes.arrayOf(React.PropTypes.string),
+  headers: PropTypes.arrayOf(PropTypes.string),
 };
 
 IngredientListRows.propTypes = {
-  filteredItems: React.PropTypes.arrayOf(React.PropTypes.object),
-  cells: React.PropTypes.arrayOf(React.PropTypes.string),
+  filteredItems: PropTypes.arrayOf(PropTypes.object),
+  cells: PropTypes.arrayOf(PropTypes.string),
 };
 
 IngredientList.propTypes = {
-  isError: React.PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 

@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
 export default (ComposedComponent) => {
   class Authentication extends React.Component {
     static contextTypes = {
-      router: React.PropTypes.object,
+      router: PropTypes.object,
     }
 
     componentWillMount() {
@@ -27,7 +28,7 @@ export default (ComposedComponent) => {
   }
 
   Authentication.propTypes = {
-    authenticated: React.PropTypes.bool,
+    authenticated: PropTypes.bool,
   };
 
   function mapStateToProps(state) {

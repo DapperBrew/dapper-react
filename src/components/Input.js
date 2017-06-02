@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import ReactTooltip from 'react-tooltip';
@@ -82,12 +83,12 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-  measurement: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  isError: React.PropTypes.bool,
-  tooltip: React.PropTypes.string,
-  id: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
+  measurement: PropTypes.string,
+  onChange: PropTypes.func,
+  isError: PropTypes.bool,
+  tooltip: PropTypes.string,
+  id: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Input;

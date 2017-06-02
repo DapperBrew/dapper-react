@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -127,8 +128,8 @@ class Mash extends React.Component {
 }
 
 Mash.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipmentStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func,
+  equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

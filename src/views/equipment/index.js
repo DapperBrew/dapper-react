@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ class Equipment extends React.Component {
 }
 
 Equipment.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  updateHeader: PropTypes.func.isRequired,
 };
 
 export default Equipment;

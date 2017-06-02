@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -212,12 +213,12 @@ class YeastModalInput extends React.Component {
 }
 
 YeastModalInput.propTypes = {
-  dispatch: React.PropTypes.func,
-  yeasts: React.PropTypes.object, // eslint-disable-line
-  hops: React.PropTypes.object, // eslint-disable-line
-  recipeYeasts: React.PropTypes.array, // eslint-disable-line
-  modal: React.PropTypes.object, // eslint-disable-line
-  props: React.PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func,
+  yeasts: PropTypes.object, // eslint-disable-line
+  hops: PropTypes.object, // eslint-disable-line
+  recipeYeasts: PropTypes.array, // eslint-disable-line
+  modal: PropTypes.object, // eslint-disable-line
+  props: PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

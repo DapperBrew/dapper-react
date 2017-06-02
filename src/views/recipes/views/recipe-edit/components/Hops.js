@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -54,8 +55,8 @@ const mapStateToProps = state => ({
 });
 
 Hops.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  recipeStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  recipeStaged: PropTypes.object, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(Hops);

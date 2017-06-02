@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
@@ -89,12 +90,12 @@ class EquipmentList extends React.Component {
 }
 
 EquipmentList.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  dispatch: PropTypes.func,
+  equipments: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]),
-  flags: React.PropTypes.object, // eslint-disable-line
+  flags: PropTypes.object, // eslint-disable-line
 
 };
 

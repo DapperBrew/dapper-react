@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -99,7 +100,7 @@ class Calculators extends React.Component {
 }
 
 Calculators.propTypes = {
-  dispatch: React.PropTypes.func,
+  dispatch: PropTypes.func,
 };
 
 export default connect()(Calculators);

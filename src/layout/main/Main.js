@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -42,11 +43,15 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  dispatch: React.PropTypes.func,
-  data: React.PropTypes.object, // eslint-disable-line
-  loaded: React.PropTypes.bool,
-  auth: React.PropTypes.object, // eslint-disable-line
-  authenticated: React.PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired, // eslint-disable-line
+  loaded: PropTypes.bool,
+  auth: PropTypes.object.isRequired, // eslint-disable-line
+  authenticated: PropTypes.bool.isRequired,
+};
+
+Main.defaultProps = {
+  loaded: false,
 };
 
 const mapStateToProps = state => ({
