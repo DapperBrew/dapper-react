@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -43,7 +44,7 @@ const mapStateToProps = state => ({
 });
 
 YeastList.propTypes = {
-  recipeYeasts: React.PropTypes.array.isRequired, // eslint-disable-line
+  recipeYeasts: PropTypes.array.isRequired, // eslint-disable-line
 };
 
 export default connect(mapStateToProps)(YeastList);

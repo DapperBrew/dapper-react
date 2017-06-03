@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -14,8 +15,8 @@ const Header = props => (
 );
 
 Header.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func,
+  title: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 // export default Header;

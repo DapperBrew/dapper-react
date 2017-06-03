@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import Toggle from 'react-toggle';
@@ -31,10 +32,10 @@ const MashAdjustToggle = props => (
 );
 
 MashAdjustToggle.propTypes = {
-  onChange: React.PropTypes.func,
-  checked: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  tooltip: React.PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  tooltip: PropTypes.string.isRequired,
 };
 
 export default MashAdjustToggle;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import icon from '../img/icons.svg';
@@ -15,8 +16,8 @@ const EditIcons = props => (
 );
 
 EditIcons.propTypes = {
-  removeItem: React.PropTypes.func.isRequired,
-  editItem: React.PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
 };
 
 export default EditIcons;

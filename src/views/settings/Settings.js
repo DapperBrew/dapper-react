@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Settings extends React.Component {
@@ -18,7 +19,7 @@ class Settings extends React.Component {
 }
 
 Settings.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  updateHeader: PropTypes.func.isRequired,
 };
 
 export default Settings;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -209,12 +210,12 @@ class MiscModalInput extends React.Component {
 }
 
 MiscModalInput.propTypes = {
-  dispatch: React.PropTypes.func,
-  miscs: React.PropTypes.object, // eslint-disable-line
-  batchVolume: React.PropTypes.string,
-  recipeMiscs: React.PropTypes.array, //eslint-disable-line
-  modal: React.PropTypes.object, // eslint-disable-line
-  props: React.PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  miscs: PropTypes.object, // eslint-disable-line
+  batchVolume: PropTypes.string.isRequired,
+  recipeMiscs: PropTypes.array, //eslint-disable-line
+  modal: PropTypes.object, // eslint-disable-line
+  props: PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

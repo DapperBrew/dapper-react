@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import values from 'lodash/values';
@@ -61,9 +62,9 @@ const MiscModal = (props) => {
 
 
 MiscModal.propTypes = {
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  miscs: React.PropTypes.object, // eslint-disable-line
-  dispatch: React.PropTypes.func,
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  miscs: PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

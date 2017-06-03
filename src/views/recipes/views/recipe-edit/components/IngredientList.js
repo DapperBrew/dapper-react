@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from 'react';
@@ -44,6 +45,10 @@ class IngredientList extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.setHeaderSize();
+  }
+
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', debounce(this.onResize, 75));
@@ -83,16 +88,16 @@ class IngredientList extends React.Component {
 }
 
 IngredientHeader.propTypes = {
-  headers: React.PropTypes.arrayOf(React.PropTypes.string),
+  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 IngredientListRows.propTypes = {
-  filteredItems: React.PropTypes.arrayOf(React.PropTypes.object),
-  cells: React.PropTypes.arrayOf(React.PropTypes.string),
+  filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cells: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 IngredientList.propTypes = {
-  isError: React.PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 

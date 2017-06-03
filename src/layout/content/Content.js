@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,7 +15,7 @@ import Settings from '../../views/settings/Settings';
 import NotFound from '../../views/not-found/NotFound';
 
 const Content = (props) => {
-  const changeHeader = title => this.props.dispatch(updateHeader(title));
+  const changeHeader = title => props.dispatch(updateHeader(title));
   return (
     <div className="main">
       <Header title={props.ui.title} />
@@ -56,9 +57,10 @@ const Content = (props) => {
 };
 
 Content.propTypes = {
-  ui: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
+  ui: PropTypes.shape({ // eslint-disable-line
+    title: PropTypes.string.isRequired,
   }),
+  dispatch: PropTypes.func.isRequired,
 };
 
 

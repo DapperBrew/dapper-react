@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const AddButton = props => (
@@ -12,8 +13,8 @@ const AddButton = props => (
 );
 
 AddButton.propTypes = {
-  onPrimaryClick: React.PropTypes.func.isRequired,
-  onSecondaryClick: React.PropTypes.func.isRequired,
+  onPrimaryClick: PropTypes.func.isRequired,
+  onSecondaryClick: PropTypes.func.isRequired,
 };
 
 export default AddButton;

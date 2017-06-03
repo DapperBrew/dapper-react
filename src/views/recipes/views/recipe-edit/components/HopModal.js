@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import values from 'lodash/values';
@@ -47,9 +48,9 @@ const HopModal = (props) => {
 };
 
 HopModal.propTypes = {
-  modal: React.PropTypes.object.isRequired, // eslint-disable-line
-  hops: React.PropTypes.array, // eslint-disable-line
-  dispatch: React.PropTypes.func,
+  modal: PropTypes.object.isRequired, // eslint-disable-line
+  hops: PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
@@ -10,31 +11,31 @@ import { updateHeader } from '../../../../actions/ui';
 const columns = [
   {
     columns: [{
-      header: 'Name',
+      Header: 'Name',
       accessor: 'name',
     }],
   },
   {
     columns: [{
-      header: 'Batch Size',
+      Header: 'Batch Size',
       accessor: 'batchSize',
     }],
   },
   {
     columns: [{
-      header: 'Efficiency',
+      Header: 'Efficiency',
       accessor: 'efficiency',
     }],
   },
   {
     columns: [{
-      header: '',
+      Header: '',
       className: 'text-right',
       headerClassName: 'text-right',
       maxWidth: 200,
-      render: equipmentProfile => (
+      Cell: equipmentProfile => (
         <div>
-          <Link to={`/equipment/${equipmentProfile.row._id}/`}>
+          <Link to={`/equipment/${equipmentProfile.original._id}/`}>
             <button className="button button--table button--secondary ml1 button--small">Edit</button>
           </Link>
         </div>
@@ -75,7 +76,7 @@ class EquipmentList extends React.Component {
             placeholder="Filter..."
             onChange={this.handleSearchInput}
             value={this.state.equipmentSearch}
-            autoFocus
+            autoFocus // eslint-disable-line
           />
         </div>
         <ReactTable
@@ -89,12 +90,12 @@ class EquipmentList extends React.Component {
 }
 
 EquipmentList.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipments: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  dispatch: PropTypes.func.isRequired,
+  equipments: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]),
-  flags: React.PropTypes.object, // eslint-disable-line
+  flags: PropTypes.object, // eslint-disable-line
 
 };
 

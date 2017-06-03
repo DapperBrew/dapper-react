@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -84,8 +85,8 @@ class Basic extends React.Component {
 }
 
 Basic.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipmentStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

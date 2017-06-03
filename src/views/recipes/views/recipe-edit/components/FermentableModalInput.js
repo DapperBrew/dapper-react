@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -251,11 +252,11 @@ class FermentableModalInput extends React.Component {
 }
 
 FermentableModalInput.propTypes = {
-  dispatch: React.PropTypes.func,
-  fermentables: React.PropTypes.object, // eslint-disable-line
-  recipeFermentables: React.PropTypes.array, // eslint-disable-line
-  modal: React.PropTypes.object, // eslint-disable-line
-  props: React.PropTypes.array, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  fermentables: PropTypes.object, // eslint-disable-line
+  recipeFermentables: PropTypes.array, // eslint-disable-line
+  modal: PropTypes.object, // eslint-disable-line
+  props: PropTypes.array, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

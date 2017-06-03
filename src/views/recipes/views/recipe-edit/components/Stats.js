@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -55,13 +56,13 @@ const Stats = props => (
 
 
 Stats.propTypes = {
-  originalGravity: React.PropTypes.string.isRequired,
-  totalIbu: React.PropTypes.number.isRequired,
-  srm: React.PropTypes.number.isRequired,
-  abv: React.PropTypes.number.isRequired,
-  preBoilVolume: React.PropTypes.string.isRequired,
-  preBoilGravity: React.PropTypes.number.isRequired,
-  finalGravity: React.PropTypes.string.isRequired,
+  originalGravity: PropTypes.string.isRequired,
+  totalIbu: PropTypes.number.isRequired,
+  srm: PropTypes.number.isRequired,
+  abv: PropTypes.number.isRequired,
+  preBoilVolume: PropTypes.string.isRequired,
+  preBoilGravity: PropTypes.number.isRequired,
+  finalGravity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

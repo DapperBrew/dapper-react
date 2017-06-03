@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
@@ -58,7 +59,7 @@ class Notes extends React.Component {
 
 
 Notes.propTypes = {
-  dispatch: React.PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

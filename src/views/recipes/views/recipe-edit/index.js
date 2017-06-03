@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import find from 'lodash/find';
 import findKey from 'lodash/findKey';
@@ -109,10 +110,10 @@ class RecipeEdit extends React.Component {
 }
 
 RecipeEdit.propTypes = {
-  dispatch: React.PropTypes.func,
-  recipeStaged: React.PropTypes.object, // eslint-disable-line
-  match: React.PropTypes.object, // eslint-disable-line
-  recipes: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  recipeStaged: PropTypes.object, // eslint-disable-line
+  match: PropTypes.object, // eslint-disable-line
+  recipes: PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

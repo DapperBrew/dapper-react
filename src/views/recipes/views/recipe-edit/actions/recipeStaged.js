@@ -53,7 +53,7 @@ export const loadStaged = recipe => ({
 
 export const setStyle = id => (
   (dispatch, getState) => {
-    const style = getState().data.styles[id].name;
+    const style = getState().data.styles[id] ? getState().data.styles[id].name : '';
     dispatch({
       type: SET_STYLE,
       style,

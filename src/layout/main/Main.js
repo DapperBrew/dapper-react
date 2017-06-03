@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import { Route } from 'react-router-dom';
 
 import store from '../../store';
 
@@ -26,10 +28,12 @@ class Main extends React.Component {
 
   render() {
     if (this.props.data.loaded && this.props.auth.authenticated) {
+      // Content uses Route component to gain access to location
+      // Otherwise it blocks update.
       return (
         <div className="app">
           <Sidebar />
-          <Content />
+          <Route component={Content} />
         </div>
       );
     }
@@ -39,11 +43,15 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  dispatch: React.PropTypes.func,
-  data: React.PropTypes.object, // eslint-disable-line
-  loaded: React.PropTypes.bool,
-  auth: React.PropTypes.object, // eslint-disable-line
-  authenticated: React.PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired, // eslint-disable-line
+  loaded: PropTypes.bool,
+  auth: PropTypes.object.isRequired, // eslint-disable-line
+  authenticated: PropTypes.bool.isRequired,
+};
+
+Main.defaultProps = {
+  loaded: false,
 };
 
 const mapStateToProps = state => ({

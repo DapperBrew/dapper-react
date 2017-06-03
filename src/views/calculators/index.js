@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
@@ -34,7 +35,7 @@ class Calculators extends React.Component {
 }
 
 Calculators.propTypes = {
-  updateHeader: React.PropTypes.func.isRequired,
+  updateHeader: PropTypes.func.isRequired,
 };
 
 export default Calculators;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Toggle from 'react-toggle';
@@ -129,8 +130,8 @@ class Advanced extends React.Component {
 }
 
 Advanced.propTypes = {
-  dispatch: React.PropTypes.func,
-  equipmentStaged: React.PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
+  equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

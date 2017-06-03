@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import findKey from 'lodash/findKey';
@@ -153,11 +154,11 @@ class RecipeInfo extends React.Component {
 }
 
 RecipeInfo.propTypes = {
-  stylesDropdown: React.PropTypes.array, // eslint-disable-line
-  equipmentsDropdown: React.PropTypes.array, // eslint-disable-line
-  recipeStaged: React.PropTypes.object, // eslint-disable-line
-  equipments: React.PropTypes.object, // eslint-disable-line
-  dispatch: React.PropTypes.func,
+  stylesDropdown: PropTypes.array, // eslint-disable-line
+  equipmentsDropdown: PropTypes.array, // eslint-disable-line
+  recipeStaged: PropTypes.object, // eslint-disable-line
+  equipments: PropTypes.object, // eslint-disable-line
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -22,7 +23,7 @@ class NotFound extends React.Component {
 }
 
 NotFound.propTypes = {
-  dispatch: React.PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(NotFound);
