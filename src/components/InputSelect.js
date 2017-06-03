@@ -53,4 +53,8 @@ InputSelect.propTypes = {
   isError: PropTypes.bool,
 };
 
+InputSelect.defaultProps = {
+  isError: false,
+};
+
 export default InputSelect;

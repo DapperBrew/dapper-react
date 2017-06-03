@@ -110,7 +110,7 @@ class RecipeEdit extends React.Component {
 }
 
 RecipeEdit.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   recipeStaged: PropTypes.object, // eslint-disable-line
   match: PropTypes.object, // eslint-disable-line
   recipes: PropTypes.object, // eslint-disable-line

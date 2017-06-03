@@ -80,7 +80,7 @@ class RecipeList extends React.Component {
             placeholder="Filter..."
             onChange={this.handleSearchInput}
             value={this.state.recipeSearch}
-            autoFocus
+            autoFocus // eslint-disable-line
           />
         </div>
         <ReactTable
@@ -94,7 +94,7 @@ class RecipeList extends React.Component {
 }
 
 RecipeList.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   recipes: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,

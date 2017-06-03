@@ -84,11 +84,18 @@ class Input extends React.Component {
 
 Input.propTypes = {
   measurement: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   isError: PropTypes.bool,
   tooltip: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+};
+
+Input.defaultProps = {
+  measurement: '',
+  isError: false,
+  tooltip: '',
+  disabled: false,
 };
 
 export default Input;

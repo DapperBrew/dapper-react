@@ -64,7 +64,7 @@ const MiscModal = (props) => {
 MiscModal.propTypes = {
   modal: PropTypes.object.isRequired, // eslint-disable-line
   miscs: PropTypes.object, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

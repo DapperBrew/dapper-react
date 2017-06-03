@@ -32,10 +32,10 @@ const MashAdjustToggle = props => (
 );
 
 MashAdjustToggle.propTypes = {
-  onChange: PropTypes.func,
-  checked: PropTypes.bool,
-  id: PropTypes.string,
-  tooltip: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  tooltip: PropTypes.string.isRequired,
 };
 
 export default MashAdjustToggle;

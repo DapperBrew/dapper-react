@@ -76,7 +76,7 @@ class EquipmentList extends React.Component {
             placeholder="Filter..."
             onChange={this.handleSearchInput}
             value={this.state.equipmentSearch}
-            autoFocus
+            autoFocus // eslint-disable-line
           />
         </div>
         <ReactTable
@@ -90,7 +90,7 @@ class EquipmentList extends React.Component {
 }
 
 EquipmentList.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipments: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,

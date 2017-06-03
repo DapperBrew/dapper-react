@@ -50,7 +50,7 @@ const HopModal = (props) => {
 HopModal.propTypes = {
   modal: PropTypes.object.isRequired, // eslint-disable-line
   hops: PropTypes.array, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

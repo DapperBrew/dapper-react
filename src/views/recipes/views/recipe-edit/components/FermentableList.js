@@ -48,7 +48,7 @@ const mapStateToProps = state => ({
 
 FermentableList.propTypes = {
   recipeFermentables: PropTypes.array.isRequired, // eslint-disable-line
-  totalWeight: PropTypes.number,
+  totalWeight: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(FermentableList);

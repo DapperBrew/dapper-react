@@ -100,7 +100,7 @@ class Calculators extends React.Component {
 }
 
 Calculators.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Calculators);

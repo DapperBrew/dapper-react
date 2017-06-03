@@ -132,20 +132,20 @@ const validate = (values) => {
 };
 
 inputField.propTypes = {
-  input: PropTypes.object, // eslint-disable-line
-  label: PropTypes.string,
-  type: PropTypes.string,
-  placeholder: PropTypes.string,
-  meta: PropTypes.object, // eslint-disable-line
+  input: PropTypes.object.isRequired, // eslint-disable-line
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 Signup.propTypes = {
-  dispatch: PropTypes.func,
-  initialize: PropTypes.func,
-  errorMessage: PropTypes.string,
-  loginEmail: PropTypes.string,
-  handleSubmit: PropTypes.func,
-  submitting: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  initialize: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  loginEmail: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

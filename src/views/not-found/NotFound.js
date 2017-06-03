@@ -23,7 +23,7 @@ class NotFound extends React.Component {
 }
 
 NotFound.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(NotFound);

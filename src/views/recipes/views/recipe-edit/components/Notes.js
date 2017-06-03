@@ -59,7 +59,7 @@ class Notes extends React.Component {
 
 
 Notes.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -190,6 +190,10 @@ StyleGuide.propTypes = {
   recipeSRM: PropTypes.number.isRequired,
 };
 
+StyleGuide.defaultProps = {
+  recipeStyle: '',
+};
+
 const mapStateToProps = state => ({
   styles: state.data.styles,
   recipeStyle: state.recipeEdit.recipeStaged.styleId,

@@ -252,7 +252,7 @@ class FermentableModalInput extends React.Component {
 }
 
 FermentableModalInput.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   fermentables: PropTypes.object, // eslint-disable-line
   recipeFermentables: PropTypes.array, // eslint-disable-line
   modal: PropTypes.object, // eslint-disable-line

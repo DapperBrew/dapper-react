@@ -32,7 +32,7 @@ const Mash = (props) => {
 };
 
 Mash.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   modal: PropTypes.object // eslint-disable-line
 };
 

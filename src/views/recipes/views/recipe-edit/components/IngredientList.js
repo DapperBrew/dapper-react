@@ -48,7 +48,7 @@ class IngredientList extends React.Component {
   componentDidUpdate() {
     this.setHeaderSize();
   }
-  
+
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', debounce(this.onResize, 75));
@@ -88,12 +88,12 @@ class IngredientList extends React.Component {
 }
 
 IngredientHeader.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string),
+  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 IngredientListRows.propTypes = {
-  filteredItems: PropTypes.arrayOf(PropTypes.object),
-  cells: PropTypes.arrayOf(PropTypes.string),
+  filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cells: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 IngredientList.propTypes = {

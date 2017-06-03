@@ -57,9 +57,10 @@ const Content = (props) => {
 };
 
 Content.propTypes = {
-  ui: PropTypes.shape({
+  ui: PropTypes.shape({ // eslint-disable-line
     title: PropTypes.string.isRequired,
   }),
+  dispatch: PropTypes.func.isRequired,
 };
 
 

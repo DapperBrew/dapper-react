@@ -130,7 +130,7 @@ class Advanced extends React.Component {
 }
 
 Advanced.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 

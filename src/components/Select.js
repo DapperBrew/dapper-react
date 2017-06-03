@@ -30,16 +30,22 @@ const CardSelect = props => (
 );
 
 CardSelect.propTypes = {
-  inputWidth: PropTypes.string,
+  inputWidth: PropTypes.string.isRequired,
   side: PropTypes.string,
-  name: PropTypes.string,
-  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   clearable: PropTypes.bool,
   value: PropTypes.string,
-  options: PropTypes.object, // eslint-disable-line
-  onChange: PropTypes.func,
+  options: PropTypes.array.isRequired, // eslint-disable-line
+  onChange: PropTypes.func.isRequired,
 };
 
+CardSelect.defaultProps = {
+  disabled: false,
+  clearable: true,
+  side: 'left',
+  value: '',
+};
 
 export default CardSelect;

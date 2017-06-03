@@ -16,7 +16,7 @@ const Header = props => (
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 // export default Header;

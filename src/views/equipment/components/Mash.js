@@ -128,7 +128,7 @@ class Mash extends React.Component {
 }
 
 Mash.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 

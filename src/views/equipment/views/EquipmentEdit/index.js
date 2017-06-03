@@ -114,12 +114,16 @@ const mapStateToProps = state => ({
 });
 
 EquipmentEdit.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
   flags: PropTypes.object, // eslint-disable-line
   match: PropTypes.object, // eslint-disable-line
   equipments: PropTypes.object, // eslint-disable-line
   path: PropTypes.string,
+};
+
+EquipmentEdit.defaultProps = {
+  path: '',
 };
 
 export default connect(mapStateToProps)(EquipmentEdit);

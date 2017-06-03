@@ -213,7 +213,7 @@ class YeastModalInput extends React.Component {
 }
 
 YeastModalInput.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   yeasts: PropTypes.object, // eslint-disable-line
   hops: PropTypes.object, // eslint-disable-line
   recipeYeasts: PropTypes.array, // eslint-disable-line

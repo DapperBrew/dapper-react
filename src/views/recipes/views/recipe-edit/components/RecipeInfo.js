@@ -158,7 +158,7 @@ RecipeInfo.propTypes = {
   equipmentsDropdown: PropTypes.array, // eslint-disable-line
   recipeStaged: PropTypes.object, // eslint-disable-line
   equipments: PropTypes.object, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -216,7 +216,7 @@ HopModalInput.propTypes = {
   recipeHops: PropTypes.array, // eslint-disable-line
   modal: PropTypes.object, // eslint-disable-line
   props: PropTypes.array, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

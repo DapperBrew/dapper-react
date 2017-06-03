@@ -36,7 +36,7 @@ const IngredientSearch = (props) => {
 
 IngredientSearch.propTypes = {
   modal: PropTypes.object.isRequired, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired, // eslint-disable-line
   cells: PropTypes.array.isRequired, //eslint-disable-line
   headers: PropTypes.array.isRequired, // eslint-disable-line

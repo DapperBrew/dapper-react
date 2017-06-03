@@ -47,7 +47,7 @@ const FermentableEditModal = (props) => {
 FermentableEditModal.propTypes = {
   modal: PropTypes.object.isRequired, // eslint-disable-line
   fermentables: PropTypes.array, // eslint-disable-line
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

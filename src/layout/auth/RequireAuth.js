@@ -28,7 +28,7 @@ export default (ComposedComponent) => {
   }
 
   Authentication.propTypes = {
-    authenticated: PropTypes.bool,
+    authenticated: PropTypes.bool.isRequired,
   };
 
   function mapStateToProps(state) {

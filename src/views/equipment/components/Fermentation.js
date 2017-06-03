@@ -68,7 +68,7 @@ class Fermentation extends React.Component {
 }
 
 Fermentation.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 

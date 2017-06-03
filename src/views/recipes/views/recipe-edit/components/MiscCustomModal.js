@@ -46,7 +46,7 @@ const MiscEditModal = (props) => {
 
 
 MiscEditModal.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   modal: PropTypes.object.isRequired, // eslint-disable-line
   miscs: PropTypes.object, // eslint-disable-line
   recipeMiscs: PropTypes.array, // eslint-disable-line

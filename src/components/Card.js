@@ -30,9 +30,13 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  cardTitle: PropTypes.string,
-  children: PropTypes.node,
+  cardTitle: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   cardHeader: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  cardHeader: false,
 };
 
 export default Card;

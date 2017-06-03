@@ -67,7 +67,7 @@ class Boil extends React.Component {
 }
 
 Boil.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 

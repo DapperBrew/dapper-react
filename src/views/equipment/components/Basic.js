@@ -85,7 +85,7 @@ class Basic extends React.Component {
 }
 
 Basic.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   equipmentStaged: PropTypes.object, // eslint-disable-line
 };
 

@@ -210,9 +210,9 @@ class MiscModalInput extends React.Component {
 }
 
 MiscModalInput.propTypes = {
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
   miscs: PropTypes.object, // eslint-disable-line
-  batchVolume: PropTypes.string,
+  batchVolume: PropTypes.string.isRequired,
   recipeMiscs: PropTypes.array, //eslint-disable-line
   modal: PropTypes.object, // eslint-disable-line
   props: PropTypes.array, // eslint-disable-line
