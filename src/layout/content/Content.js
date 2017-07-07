@@ -13,11 +13,13 @@ import Brewlog from '../../views/brewlog/Brewlog';
 import Equipment from '../../views/equipment';
 import Settings from '../../views/settings/Settings';
 import NotFound from '../../views/not-found/NotFound';
+import Hamburger from '../../components/Hamburger';
 
 const Content = (props) => {
   const changeHeader = title => props.dispatch(updateHeader(title));
   return (
     <div className="main">
+      <Hamburger />
       <Header title={props.ui.title} />
       <div className="content">
         <Switch>

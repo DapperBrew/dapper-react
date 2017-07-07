@@ -86,7 +86,9 @@ $body-bg            : $white;
 // Sizes
 // -------------------------
 $sidebar-width: 200px;
+$sidebar-width-md: 120px;
 $header-height: 72px;
+$header-height-sm: 50px;
 
 
 // Z-indeex
@@ -95,7 +97,9 @@ $header-height: 72px;
 $z-index: (
   bury:               -1,
   content:            10,
-  header:             20,
+  header:             15,
+  blackout:           20,
+  sidebar:            21,
   navtrigger:         22,
   modal:              40,
 );

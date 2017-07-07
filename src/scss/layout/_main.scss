@@ -3,13 +3,20 @@
 // ---------------------------------------------------------------------------
 
 $_bg-color: $gray-9;
-$_sidebar-width: 200px;
-$_sidebar-height: 72px;
 
 .main {
   min-height: 100vh;
-  margin-left: $sidebar-width;
+  margin-left: 0;
   background-color: $_bg-color;
-  padding-top: $header-height;
+  padding-top: $header-height-sm;
   position: relative;
+
+  @include bp(medium) {
+    margin-left: $sidebar-width-md;
+    padding-top: $header-height;
+  }
+
+  @include bp(large) {
+    margin-left: $sidebar-width;
+  }
 }
