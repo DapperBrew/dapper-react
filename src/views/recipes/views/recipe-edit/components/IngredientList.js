@@ -67,7 +67,11 @@ class IngredientList extends React.Component {
     const cells = document.getElementsByClassName('ingredient-list__cell');
 
     for (let i = 0; i < headers.length; i += 1) {
-      headers[i].style.width = `${cells[i].offsetWidth}px`;
+      const pixelWidth = cells[i].offsetWidth;
+      const subPixelWidth = cells[i].getBoundingClientRect().width;
+      // falls back to offsetWidth if getBoundingClientRect() is not supported
+      // Workaround for subpixels not supportd in offsetWidth
+      headers[i].style.width = `${subPixelWidth}px` || `${pixelWidth}`;
     }
   }
 

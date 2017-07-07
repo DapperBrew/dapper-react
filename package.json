@@ -56,7 +56,12 @@
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",
     "styles:watch": "node-sass --include-path ./node_modules/ ./src/scss/style.scss -w  -o ./src/css",
-    "deploy": "npm run build && firebase deploy",
-    "test": "./node_modules/.bin/eslint src; exit 0"
+    "firebase": "npm run build && firebase deploy",
+    "test": "./node_modules/.bin/eslint src; exit 0",
+    "stage": "now -e DB_HOST=@host -e REACT_APP_API_URL=@api",
+    "deploy": "now -e DB_HOST=@host -e REACT_APP_API_URL=@api && now alias"
+  },
+  "now": {
+    "alias": "dapperbrew.com"
   }
 }

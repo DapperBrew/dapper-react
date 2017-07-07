@@ -11,14 +11,14 @@ export default (ComposedComponent) => {
     componentWillMount() {
       // if a user isn't authenticated, push them to login screen.
       if (!this.props.authenticated) {
-        this.context.router.push('/login');
+        this.context.router.history.push('/login');
       }
     }
 
     componentWillUpdate(nextProps) {
       // if a user isn't authenticated, push them to login screen.
       if (!nextProps.authenticated) {
-        this.context.router.push('/login');
+        this.context.router.history.push('/login');
       }
     }
 
