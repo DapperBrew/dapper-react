@@ -3762,10 +3762,13 @@ body.is-open {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 100px 0;
+  padding: 10px;
   position: fixed;
   width: 100%;
   overflow: scroll; }
+  @media all and (min-width: 46.875em) {
+    .login-page {
+      padding: 100px 10px; } }
 
 .login {
   width: 400px;
