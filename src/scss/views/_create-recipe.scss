@@ -7,9 +7,17 @@
 }
 
 .input-column {
-  @include span(8);
+  @include span(12);
+
+  @include bp(medium) {
+    @include span(8);
+  }
 }
 
 .info-column {
-  @include span(4);
+  @include span(12);
+
+  @include bp(medium) {
+    @include span(4);
+  }
 }

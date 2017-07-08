@@ -32,6 +32,20 @@
   visibility: hidden;
 }
 
+.hide-mobile {
+  @include bp(max-width medium) {
+    display: none !important;
+    visibility: none !important;
+  }
+}
+
+.hide-desktop {
+  @include bp(medium) {
+    display: none !important;
+    visibility: none !important;
+  }
+}
+
 // Text
 // -------------------------
 

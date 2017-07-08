@@ -179,7 +179,9 @@ class HopModalInput extends React.Component {
             />
           </div>
           <div className="hop-form-group">
-            <label htmlFor="time" className="form__label">Alpha Acid %</label>
+            <div className="form__label-wrap">
+              <label htmlFor="time" className="form__label">Alpha Acid %</label>
+            </div>
             <input
               id="time"
               type="text"

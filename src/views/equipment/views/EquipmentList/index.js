@@ -19,12 +19,16 @@ const columns = [
     columns: [{
       Header: 'Batch Size',
       accessor: 'batchSize',
+      className: 'hide-mobile',
+      headerClassName: 'hide-mobile',
     }],
   },
   {
     columns: [{
       Header: 'Efficiency',
       accessor: 'efficiency',
+      className: 'hide-mobile',
+      headerClassName: 'hide-mobile',
     }],
   },
   {

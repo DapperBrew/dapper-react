@@ -15,7 +15,9 @@ const Mash = (props) => {
     <Card cardTitle="Mash Info">
       <div className="mash-recipe-input">
         <div className="mash-form-group mash-form-group--temp">
-          <label htmlFor="mash-temp" className="form__label">Recommended Mash Temperature</label>
+          <div className="form__label-wrap">
+            <label htmlFor="mash-temp" className="form__label">Recommended Mash Temperature</label>
+          </div>
           <input
             id="mash-temp"
             type="text"

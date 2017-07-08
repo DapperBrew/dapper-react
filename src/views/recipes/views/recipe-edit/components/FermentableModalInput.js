@@ -139,8 +139,8 @@ class FermentableModalInput extends React.Component {
               <label htmlFor="inMash" className="form__label form__label--checkbox">Add After Boil?</label>
             </div>
           </div>
-          <div className="fermentable-form-group" />
-          <div className="fermentable-form-group" />
+          <div className="fermentable-form-group hide-mobile" />
+          <div className="fermentable-form-group hide-mobile" />
         </div>
       );
     }

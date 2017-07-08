@@ -70,7 +70,9 @@ class YeastModalInput extends React.Component {
       customInfoName = (
         <div className="yeast-custom-input">
           <div className="yeast-form-group--name">
-            <label htmlFor="name" className="form__label">Name</label>
+            <div className="form__label-wrap">
+              <label htmlFor="name" className="form__label">Name</label>
+            </div>
             <input
               id="name"
               type="text"
@@ -89,7 +91,9 @@ class YeastModalInput extends React.Component {
       customInfoAdvanced = (
         <div className="yeast-advanced-input">
           <div className="yeast-form-group">
-            <label htmlFor="name" className="form__label">Supplier (optional)</label>
+            <div className="form__label-wrap">
+              <label htmlFor="name" className="form__label">Supplier (optional)</label>
+            </div>
             <input
               id="name"
               type="text"
@@ -104,7 +108,9 @@ class YeastModalInput extends React.Component {
             />
           </div>
           <div className="yeast-form-group">
-            <label htmlFor="name" className="form__label">Supplier ID (optional)</label>
+            <div className="form__label-wrap">
+              <label htmlFor="name" className="form__label">Supplier ID (optional)</label>
+            </div>
             <input
               id="name"
               type="text"
@@ -118,7 +124,7 @@ class YeastModalInput extends React.Component {
               value={yeastSupplierId}
             />
           </div>
-          <div className="yeast-form-group" />
+          <div className="yeast-form-group hide-mobile" />
         </div>
       );
     }
@@ -128,7 +134,9 @@ class YeastModalInput extends React.Component {
         {customInfoName}
         <div className="yeast-modal-input">
           <div className="yeast-form-group">
-            <label htmlFor="attenuation" className="form__label">Attenuation</label>
+            <div className="form__label-wrap">
+              <label htmlFor="attenuation" className="form__label">Attenuation</label>
+            </div>
             <input
               id="attenuation"
               type="text"
@@ -153,7 +161,9 @@ class YeastModalInput extends React.Component {
           </div>
 
           <div className="yeast-form-group">
-            <label htmlFor="mintemp" className="form__label">Min Temperature</label>
+            <div className="form__label-wrap">
+              <label htmlFor="mintemp" className="form__label">Min Temperature</label>
+            </div>
             <input
               id="mintemp"
               type="text"
@@ -180,7 +190,9 @@ class YeastModalInput extends React.Component {
           </div>
 
           <div className="yeast-form-group">
-            <label htmlFor="maxtemp" className="form__label">Max Temperature</label>
+            <div className="form__label-wrap">
+              <label htmlFor="maxtemp" className="form__label">Max Temperature</label>
+            </div>
             <input
               id="maxtemp"
               type="text"

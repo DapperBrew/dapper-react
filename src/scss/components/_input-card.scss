@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------
 
 .form-group {
+  @include clearfix;
   margin-bottom: spacing(1);
 }
 
@@ -12,39 +13,63 @@
 }
 
 .form-group--half {
-  @include span(6 inside no-gutters);
+
+  @include bp(medium) {
+    @include span(6 inside no-gutters);
+  }
 }
 
 .form-group--quarter {
-  @include span(3 inside no-gutters);
+  @include span(6 inside no-gutters);
+
+  @include bp(medium) {
+    @include span(3 inside no-gutters);
+  }
 }
 
 .form-group--quarter {
   .form__input--measure {
-    width: 80%;
+    width: 60%;
+
+    @include bp(medium) {
+      width: 80%;
+    }
   }
 
   .form__measure {
-    width: 20%;
+    width: 40%;
+
+    @include bp(medium) {
+      width: 20%;
+    }
   }
 }
 
 .form-group--left {
-  padding-right: 10px;
+
+  @include bp(medium) {
+    padding-right: 10px;
+  }
 }
 
 .form-group--right {
-  padding-left: 10px;
+
+  @include bp(medium) {
+    padding-left: 10px;
+  }
 }
 
 .form-group--inside-left {
-  padding-left: 10px;
   padding-right: 10px;
+
+  @include bp(medium) {
+    padding-left: 10px;
+  }
 }
 
 .form-group--inside-right {
-  padding-right: 0;
   padding-left: 10px;
+  padding-right: 0;
 }
 
 .question-icon {

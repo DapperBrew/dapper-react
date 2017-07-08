@@ -97,13 +97,15 @@ class RecipeEdit extends React.Component {
           <Yeast />
           <Misc />
           <Mash />
-          {this.renderSubmitButtons()}
+          <div className="hide-mobile">{this.renderSubmitButtons()}</div>
         </div>
         <div className="info-column">
           <Stats />
           <StyleGuide />
           <Notes />
         </div>
+        <div className="hide-desktop">{this.renderSubmitButtons()}</div>
+
       </div>
     );
   }

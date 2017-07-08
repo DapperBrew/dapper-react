@@ -3,7 +3,11 @@
 // ----------------------------------------------------------------------------
 
 .calc-list {
-  @include span(6);
+  @include span(12);
+
+  @include bp(medium) {
+    @include span(6);
+  }
 }
 
 .calc-list__title {
@@ -63,7 +67,12 @@
 
 
 .calc-desc {
-  @include span(6);
+  display: none;
+
+  @include bp(medium) {
+    @include span(6);
+    display: block;
+  }
 }
 
 .calc-desc__title {

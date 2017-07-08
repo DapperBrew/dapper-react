@@ -10,22 +10,31 @@
   right: 0;
   bottom: 0;
   background-color: rgba(23, 24, 30, 0.75);
+  overflow-y: scroll;
+  padding-bottom: 10px;
 }
 
 .add-modal-wrapper {
-  position: relative;
-  margin-left: 200px;
-  margin-top: 72px;
+
+  @include bp(medium) {
+    position: relative;
+    margin-left: 200px;
+    margin-top: 72px;
+  }
 }
 
 .add-modal {
-  @include span(10);
-  @include push(1);
-  margin-top: 40px;
+  @include span(12);
+  margin-top: 20px;
   position: relative;
   background-color: $white;
   border-radius: 4px;
   padding: 20px;
+
+  @include bp(medium) {
+    @include span(10);
+    @include push(1);
+  }
 }
 
 .ReactModal__Body--open {

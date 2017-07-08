@@ -3,8 +3,11 @@
 // ----------------------------------------------------------------------------
 
 .hop-modal-input {
-  display: flex;
-  justify-content: space-between;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .hop-custom-input {
@@ -12,8 +15,13 @@
 }
 
 .hop-form-group {
+  @include clearfix;
   margin-bottom: 20px;
-  width: 19%;
+  width: 100%;
+
+  @include bp(medium) {
+    width: 19%;
+  }
 }
 
 .hop-form-group__weight,
@@ -26,8 +34,12 @@
 }
 
 .hop-form-group--name {
-  width: 59.5%;
+  width: 100%;
   margin-bottom: 20px;
+
+  @include bp(medium) {
+    width: 59.5%;
+  }
 }
 
 .hop-form-group__input-select {

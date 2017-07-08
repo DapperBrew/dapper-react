@@ -67,9 +67,13 @@ $_disabled: $gray-10;
 
 // if input has a select field immediatly following
 .form__input--select {
-  width: 70%;
+  width: 50%;
   border-right: 0 solid transparent;
   border-radius: 4px 0 0 4px;
+
+  @include bp(medium) {
+    width: 70%;
+  }
 }
 
 // measurement indicator to the right of the form input
@@ -108,8 +112,12 @@ $_disabled: $gray-10;
 }
 
 .form__select--input {
-  width: 30%;
+  width: 50%;
   float: left;
+
+  @include bp(medium) {
+    width: 30%;
+  }
 }
 
 .form__select--input .Select-control {

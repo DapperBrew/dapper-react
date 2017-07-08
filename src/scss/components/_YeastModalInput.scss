@@ -3,8 +3,11 @@
 // ----------------------------------------------------------------------------
 
 .yeast-modal-input {
-  display: flex;
-  justify-content: space-between;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .yeast-custom-input {
@@ -12,13 +15,21 @@
 }
 
 .yeast-advanced-input {
-  display: flex;
-  justify-content: space-between;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .yeast-form-group {
+  @include clearfix;
   margin-bottom: 20px;
-  width: 32%;
+  width: 100%;
+
+  @include bp(medium) {
+    width: 32%;
+  }
 }
 
 .yeast-form-group__temp,
@@ -27,8 +38,12 @@
 }
 
 .yeast-form-group--name {
-  width: 66%;
+  width: 100%;
   margin-bottom: 20px;
+
+  @include bp(medium) {
+    width: 66%;
+  }
 }
 
 .yeast-form-group__unit {

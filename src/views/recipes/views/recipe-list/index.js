@@ -20,6 +20,8 @@ const columns = [
     columns: [{
       Header: 'Style',
       accessor: 'style',
+      className: 'hide-mobile',
+      headerClassName: 'hide-mobile',
     }],
   },
   {
@@ -27,6 +29,8 @@ const columns = [
       Header: 'Recipe Type',
       accessor: 'recipeType',
       maxWidth: 200,
+      className: 'hide-mobile',
+      headerClassName: 'hide-mobile',
     }],
   },
   {

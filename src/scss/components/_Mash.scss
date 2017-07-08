@@ -3,7 +3,12 @@
 // ----------------------------------------------------------------------------
 
 .mash-recipe-input {
-  width: 50%;
+  @include clearfix;
+  width: 100%;
+
+  @include bp(medium) {
+    width: 50%;
+  }
 }
 
 .form__input--mash {

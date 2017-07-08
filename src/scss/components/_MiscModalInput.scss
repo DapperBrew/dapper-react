@@ -3,8 +3,10 @@
 // ----------------------------------------------------------------------------
 
 .misc-modal-input {
-  display: flex;
-  justify-content: space-between;
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .misc-custom-input {
@@ -13,7 +15,11 @@
 
 .misc-form-group {
   margin-bottom: 20px;
-  width: 32%;
+  width: 100%;
+
+  @include bp(medium) {
+    width: 32%;
+  }
 }
 
 .form__input--misc {
@@ -21,8 +27,12 @@
 }
 
 .misc-form-group--name {
-  width: 66%;
+  width: 100%;
   margin-bottom: 20px;
+
+  @include bp(medium) {
+    width: 66%;
+  }
 }
 
 .misc__select--input {

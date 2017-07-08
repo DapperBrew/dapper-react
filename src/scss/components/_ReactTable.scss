@@ -74,14 +74,39 @@
   border: 0;
 }
 
+
 .button--table {
-  padding-left: spacing(1);
-  padding-right: spacing(1);
+  padding-left: .5rem;
+  padding-right: .5rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  @include bp(medium) {
+    padding-left: spacing(1);
+    padding-right: spacing(1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .button--table.button--secondary {
 
   &:hover {
     background-color: $gray-8;
+  }
+}
+
+// Responsive Stuff
+
+@include bp(max-width medium) {
+  .rt-thead,
+  .rt-tbody {
+    min-width: 0 !important;
+  }
+
+  .-pageSizeOptions,
+  .-pageInfo {
+    display: none !important;
+    visibility: none !important;
   }
 }

@@ -3,29 +3,49 @@
 // ----------------------------------------------------------------------------
 
 .fermentable-modal-input {
-  display: flex;
-  justify-content: space-between;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .fermentable-custom-input {
-  display: flex;
+
+  @include bp(medium) {
+    display: flex;
+  }
 }
 
 .fermentable-advanced-input {
-  display: flex;
-  justify-content: space-between;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .fermentable-form-group {
+  @include clearfix;
   margin-bottom: 20px;
-  width: 24%;
+  width: 100%;
+
+  @include bp(medium) {
+    width: 24%;
+  }
 }
 
 .fermentable-form-group__checkbox-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 24%;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @include bp(medium) {
+    width: 24%;
+    margin-bottom: 0;
+  }
 }
 
 .fermentable-form-group--checkbox {
@@ -34,8 +54,13 @@
 }
 
 .fermentable-form-group--name {
-  width: 49.33%;
+  @include clearfix;
+  width: 100%;
   margin-bottom: 20px;
+
+  @include bp(medium) {
+    width: 49.33%;
+  }
 }
 
 .fermentable-form-group__color,
