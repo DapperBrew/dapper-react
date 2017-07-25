@@ -44,7 +44,7 @@ class Signup extends React.Component {
     this.props.dispatch(actions.signUpUser(formValues));
   }
 
-  // Alert shown if error is received from serven
+  // Alert shown if error is received from server
   renderAlert = () => {
     if (this.props.errorMessage) {
       return (
@@ -64,6 +64,7 @@ class Signup extends React.Component {
           <h2 className="text-center">Sign up for Dapper</h2>
           <form onSubmit={handleSubmit(this.handleSignupSubmit)}>
             <Field
+              required
               name="email"
               type="email"
               placeholder="you@domain.com"
@@ -71,6 +72,7 @@ class Signup extends React.Component {
               label="Email Address"
             />
             <Field
+              required
               name="password"
               type="password"
               component={inputField}
@@ -78,6 +80,7 @@ class Signup extends React.Component {
               placeholder="password"
             />
             <Field
+              required
               name="passwordConfirm"
               type="password"
               component={inputField}

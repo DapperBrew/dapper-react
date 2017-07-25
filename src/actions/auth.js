@@ -66,7 +66,7 @@ export const signInUser = ({ email, password }) => (
   }
 );
 
-export const signUpUser = ({ email, password }) => (
+export const signUpUser = ({ email, password, passwordConfirm }) => (
   (dispatch) => {
     axios({
       url: `${process.env.REACT_APP_API_URL}/users`,
@@ -74,6 +74,7 @@ export const signUpUser = ({ email, password }) => (
       data: {
         email,
         password,
+        passwordConfirm,
       },
     })
     .then((res) => {
