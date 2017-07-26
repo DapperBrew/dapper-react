@@ -7,26 +7,20 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../actions/auth';
 
 
-class Login extends React.Component {
+class Forgot extends React.Component {
   componentWillMount() {
-    this.props.dispatch(actions.updateLoginPassword(''));
     this.props.dispatch(actions.authError(''));
   }
 
-  handleLogin = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(actions.signInUser({
+    this.props.dispatch(actions.forgotPassword({
       email: this.props.email,
-      password: this.props.password,
     }));
   }
 
   handleEmailChange = (e) => {
     this.props.dispatch(actions.updateAuthEmail(e.target.value));
-  }
-
-  handlePasswordChange = (e) => {
-    this.props.dispatch(actions.updateLoginPassword(e.target.value));
   }
 
   renderAlert = () => {
@@ -44,7 +38,8 @@ class Login extends React.Component {
     return (
       <div className="login-page">
         <div className="login">
-          <h2 className="text-center">Welcome! Please log in.</h2>
+          <h2 className="text-center">Forgot your password?</h2>
+          <p className="text-center">Enter your email address to reset your password.</p>
           <form className="login__form mt1">
             <label htmlFor="login-email" className="login__label">Email Address</label>
             <input
@@ -55,24 +50,14 @@ class Login extends React.Component {
               onChange={this.handleEmailChange}
               value={this.props.email}
             />
-            <label htmlFor="login-password" className="login__label mt1">Password</label>
-            <input
-              id="login-password"
-              className="login__input"
-              type="password"
-              placeholder="password"
-              value={this.props.password}
-              onChange={this.handlePasswordChange}
-            />
             <button
               className="button--block mt1 login__button"
-              onClick={this.handleLogin}
+              onClick={this.handleSubmit}
             >
-              Login
+              Submit
             </button>
             {this.renderAlert()}
-            <p className="login__message">Don&#39;t have an account? <Link to="/signup">Sign up.</Link></p>
-            <p className="login__message">Forgot your password? <Link to="/forgot">Click here</Link></p>
+            <p className="login__message"><Link to="/login">Return to Log in.</Link></p>
           </form>
         </div>
       </div>
@@ -80,17 +65,15 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+Forgot.propTypes = {
   dispatch: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   errorMessage: state.auth.error,
   email: state.auth.email,
-  password: state.auth.loginPassword,
 });
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Forgot);

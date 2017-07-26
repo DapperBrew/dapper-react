@@ -41,6 +41,49 @@ export const authenticateUser = isAuth => ({
   isAuth,
 });
 
+export const forgotPassword = ({ email }) => (
+  (dispatch) => {
+    axios({
+      url: `${process.env.REACT_APP_API_URL}/sessions/forgot`,
+      method: 'post',
+      data: { email },
+    })
+    .catch((err) => {
+      dispatch(authError(err.response.data.error));
+    });
+  }
+);
+
+export const resetCheck = resetToken => (
+  (dispatch) => {
+    axios({
+      url: `${process.env.REACT_APP_API_URL}/sessions/reset/${resetToken}`,
+      method: 'get',
+      data: { resetToken },
+    })
+    .catch((err) => {
+      if (err.response) {
+        dispatch(authError(err.response.data.error));
+      }
+    });
+  }
+);
+
+export const resetPassword = ({ password, passwordConfirm }, resetToken) => (
+  async (dispatch) => {
+    try {
+      await axios({
+        url: `${process.env.REACT_APP_API_URL}/sessions/reset`,
+        method: 'post',
+        data: { password, passwordConfirm, resetToken },
+      });
+      history.push('/login');
+    } catch (err) {
+      dispatch(authError(err.response.data.error));
+    }
+  }
+);
+
 export const signInUser = ({ email, password }) => (
   (dispatch) => {
     axios({

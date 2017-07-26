@@ -8,6 +8,8 @@ import store from '../../store';
 // components
 import Main from '../main/Main';
 import Login from '../auth/Login';
+import Forgot from '../auth/Forgot';
+import Reset from '../auth/Reset';
 import Signup from '../auth/Signup';
 import RequireAuth from '../auth/RequireAuth';
 
@@ -28,6 +30,8 @@ const App = () => (
     <Router history={history}>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/forgot" component={Forgot} />
+        <Route path="/reset/:resetId" component={Reset} />
         <Route path="/signup" component={Signup} />
         <Route path="/" component={RequireAuth(Main)} />
       </Switch>

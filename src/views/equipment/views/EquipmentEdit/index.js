@@ -26,7 +26,7 @@ class EquipmentEdit extends React.Component {
 
     // update headeer
 
-    // determine if this is "edit" or "Crete new" mode
+    // determine if this is "edit" or "Create new" mode
     if (path === '/equipment/:equipmentId') {
       dispatch(updateHeader('Edit Equipment Profile'));
       dispatch(actions.setEqStagedMode('edit'));
