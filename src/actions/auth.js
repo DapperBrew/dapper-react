@@ -42,15 +42,18 @@ export const authenticateUser = isAuth => ({
 });
 
 export const forgotPassword = ({ email }) => (
-  (dispatch) => {
-    axios({
-      url: `${process.env.REACT_APP_API_URL}/sessions/forgot`,
-      method: 'post',
-      data: { email },
-    })
-    .catch((err) => {
+  async (dispatch) => {
+    try {
+      await axios({
+        url: `${process.env.REACT_APP_API_URL}/sessions/forgot`,
+        method: 'post',
+        data: { email },
+      });
+      history.push('/login');
+      dispatch(authError('You have been emailed a forgot password link'));
+    } catch (err) {
       dispatch(authError(err.response.data.error));
-    });
+    }
   }
 );
 
