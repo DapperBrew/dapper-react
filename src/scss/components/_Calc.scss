@@ -1,0 +1,30 @@
+// ----------------------------------------------------------------------------
+// Calc
+// ----------------------------------------------------------------------------
+
+.calc-breadcrumb {
+  @extend .card;
+  width: auto;
+  padding: 10px;
+
+  @include span(12);
+}
+
+.calc-breadcrumb__link {
+  font-weight: 600;
+  color: $gray-3;
+
+  &:hover {
+    color: $gray-1;
+  }
+}
+
+.calc-breadcrumb__current {
+  font-weight: 600;
+  color: $gray-6;
+}
+
+.calc-icon--breadcrumb {
+  margin-top: -3px;
+  margin-right: 10px;
+}

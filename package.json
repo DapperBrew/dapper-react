@@ -52,6 +52,7 @@
   "scripts": {
     "start": "react-scripts start",
     "watch": "concurrently --kill-others --names 'react-scripts,sass' --prefix name 'react-scripts start' 'npm run styles:watch'",
+    "dev": "npm run watch",
     "build": "npm run styles & react-scripts build",
     "eject": "react-scripts eject",
     "styles": "node-sass --include-path ./node_modules ./src/scss/style.scss -o ./src/css",

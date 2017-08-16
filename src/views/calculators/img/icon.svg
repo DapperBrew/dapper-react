@@ -1,1 +1,16 @@
-<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="calc-icon-tail-right" viewBox="0 0 48 48"><title>tail right</title><g ><line data-cap="butt" data-color="color-2" fill="none" stroke="currentColor" stroke-miterlimit="10" x1="2" y1="24" x2="45" y2="24" stroke-linejoin="round" stroke-linecap="round"/><polyline fill="none" stroke-linecap="round" stroke-miterlimit="10" points="31,10 45,24 &#10;&#9;31,38 " stroke-linejoin="round"/></g></symbol></svg>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="calc-icon-tail-right" viewBox="0 0 32 32">
+    <title>calc-icon-tail-right</title>
+    <g>
+      <g class="nc-icon-wrapper"><line data-cap="butt" data-color="color-2" fill="none" stroke-miterlimit="10" x1="2" y1="16" x2="30" y2="16" stroke-linejoin="round" stroke-linecap="round"/>
+        <polyline fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" points="21,7 30,16 21,25 " stroke-linejoin="round"/></g>
+    </g>
+  </symbol>
+  <symbol id="calc-icon-tail-left" viewBox="0 0 32 32">
+    <title>calc-icon-tail-left</title>
+    <g>
+      <g class="nc-icon-wrapper"><line data-cap="butt" data-color="color-2" fill="none" stroke-miterlimit="10" x1="30" y1="16" x2="2" y2="16" stroke-linejoin="round" stroke-linecap="round"/>
+        <polyline fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" points="11,25 2,16 11,7 " stroke-linejoin="round"/></g>
+    </g>
+  </symbol>
+</svg>

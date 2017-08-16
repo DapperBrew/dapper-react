@@ -2592,7 +2592,7 @@ input[type="reset"].button--block,
 input[type="button"].button--block {
   width: 100%; }
 
-.card, .rt-table, .ReactTable .-pagination {
+.card, .rt-table, .ReactTable .-pagination, .calc-breadcrumb {
   width: 100%;
   border-radius: 4px;
   background-color: #fff;
@@ -3603,6 +3603,28 @@ input[type="button"].button--block {
 
 body.is-open {
   overflow: hidden; }
+
+.calc-breadcrumb {
+  width: auto;
+  padding: 10px;
+  width: 98.61111%;
+  float: left;
+  margin-left: 0.69444%;
+  margin-right: 0.69444%; }
+
+.calc-breadcrumb__link {
+  font-weight: 600;
+  color: #32323d; }
+  .calc-breadcrumb__link:hover {
+    color: #17181e; }
+
+.calc-breadcrumb__current {
+  font-weight: 600;
+  color: #95959b; }
+
+.calc-icon--breadcrumb {
+  margin-top: -3px;
+  margin-right: 10px; }
 
 .main {
   min-height: 100vh;
