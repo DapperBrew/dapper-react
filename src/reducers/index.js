@@ -10,6 +10,7 @@ import recipes from '../views/recipes/reducers/recipes';
 import flags from './flags';
 import equipmentStaged from '../views/equipment/reducers/equipmentStaged';
 import equipments from '../views/equipment/reducers/equipments';
+import calc from '../views/calculators/reducers';
 
 const rootReducer = combineReducers({
   ui,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   flags,
   equipmentStaged,
   equipments,
+  calc,
   form: formReducer,
 });
 

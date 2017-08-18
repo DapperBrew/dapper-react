@@ -2,12 +2,14 @@
 // Calc
 // ----------------------------------------------------------------------------
 
+
+// BREADCRUMB
 .calc-breadcrumb {
   @extend .card;
+  @include span(12);
+
   width: auto;
   padding: 10px;
-
-  @include span(12);
 }
 
 .calc-breadcrumb__link {
@@ -27,4 +29,25 @@
 .calc-icon--breadcrumb {
   margin-top: -3px;
   margin-right: 10px;
+}
+
+// OUTPUT COLUMN
+.calc-output {
+  margin-bottom: spacing(1);
+
+  &--half {
+    @include bp(medium) {
+      width: 50%;
+      float: left;
+    }
+  }
+}
+
+.calc-output__title {
+  margin-bottom: 0;
+}
+
+.calc-output__result {
+  @include typesize(3);
+  font-weight: 600;
 }

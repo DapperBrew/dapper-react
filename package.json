@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
-    "concurrently": "^3.3.0",
+    "concurrently": "^3.5.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -51,7 +51,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "watch": "concurrently --kill-others --names 'react-scripts,sass' --prefix name 'react-scripts start' 'npm run styles:watch'",
+    "watch": "concurrently --kill-others --success first --names 'react-scripts,sass' --prefix name 'react-scripts start' 'npm run styles:watch'",
     "dev": "npm run watch",
     "build": "npm run styles & react-scripts build",
     "eject": "react-scripts eject",
