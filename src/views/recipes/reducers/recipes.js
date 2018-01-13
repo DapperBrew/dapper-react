@@ -1,5 +1,3 @@
-import { REHYDRATE } from 'redux-persist';
-
 // actions
 import * as actions from '../actions/recipes';
 
@@ -7,11 +5,6 @@ const initialState = {};
 
 const recipeEdit = (state = initialState, action) => {
   switch (action.type) {
-    // case REHYDRATE:
-    //   var incoming = action.payload.recipes; // eslint-disable-line
-    //   if (incoming) return { ...state, ...incoming };
-
-    //   return state;
     case actions.SAVE_RECIPE_SUCCESS:
       return {
         ...state,

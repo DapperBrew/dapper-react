@@ -1,5 +1,4 @@
 import reject from 'lodash/reject';
-import { REHYDRATE } from 'redux-persist';
 import * as recipeAction from '../actions/recipeStaged';
 
 const initialState = {
@@ -26,12 +25,6 @@ const initialState = {
 
 const recipeEdit = (state = initialState, action) => {
   switch (action.type) {
-    // case REHYDRATE:
-    //   var incoming = action.payload.recipeEdit; // eslint-disable-line
-    //   if (incoming) return { ...state, ...action.payload.recipeEdit.recipeStaged };
-    //   return {
-    //     ...state,
-    //   };
     case recipeAction.RESET_STAGED:
       return {
         ...initialState,

@@ -1,4 +1,3 @@
-import { REHYDRATE } from 'redux-persist';
 import * as actions from '../actions/data';
 
 const initialState = {
@@ -10,12 +9,6 @@ const initialState = {
 
 const data = (state = initialState, action) => {
   switch (action.type) {
-    // case REHYDRATE:
-    //   var incoming = action.payload.data; // eslint-disable-line
-    //   if (incoming) return { ...state, ...incoming };
-    //   return {
-    //     ...state,
-    //   };
     case actions.DATA_SUCCESS:
       return {
         ...state,
