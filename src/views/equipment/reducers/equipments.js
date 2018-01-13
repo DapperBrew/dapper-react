@@ -1,4 +1,4 @@
-import { REHYDRATE } from 'redux-persist/constants';
+import { REHYDRATE } from 'redux-persist';
 
 // actions
 import * as actions from '../actions/equipment';
@@ -7,11 +7,11 @@ const initialState = {};
 
 const equipments = (state = initialState, action) => {
   switch (action.type) {
-    case REHYDRATE:
-      var incoming = action.payload.equipments; // eslint-disable-line
-      if (incoming) return { ...state, ...incoming };
+    // case REHYDRATE:
+    //   var incoming = action.payload.equipments; // eslint-disable-line
+    //   if (incoming) return { ...state, ...incoming };
 
-      return state;
+    //   return state;
     case actions.SAVE_EQUIPMENT_SUCCESS:
       return {
         ...state,

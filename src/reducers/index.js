@@ -1,4 +1,6 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
+import { persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { reducer as formReducer } from 'redux-form';
 
 import ui from './ui';
@@ -12,7 +14,13 @@ import equipmentStaged from '../views/equipment/reducers/equipmentStaged';
 import equipments from '../views/equipment/reducers/equipments';
 import calc from '../views/calculators/reducers';
 
-const rootReducer = combineReducers({
+const config = {
+  key: 'primary',
+  debug: true,
+  storage,
+};
+
+const rootReducer = persistCombineReducers(config, {
   ui,
   recipeEdit,
   data,

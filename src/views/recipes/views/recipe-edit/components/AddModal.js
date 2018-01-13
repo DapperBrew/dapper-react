@@ -32,6 +32,7 @@ class AddModal extends React.Component {
         overlayClassName="add-modal-overlay"
         onAfterOpen={this.afterOpenModal}
         onRequestCancel={this.onRequestCancel}
+        ariaHideApp={false}
       >
         <div className="container">
           <div className="add-modal">

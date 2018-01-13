@@ -19,7 +19,7 @@ class Main extends React.Component {
 
   componentWillMount() {
     // rehydrate from localstorage before loading from API
-    persistStore(store, {}, () => {
+    persistStore(store, null, () => {
       this.props.dispatch(fetchData());
       this.props.dispatch(fetchStyles());
       this.props.dispatch(fetchEquipmentList());
